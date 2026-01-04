@@ -1,0 +1,108 @@
+{
+  "mission": "Menyediakan produk pertanian organik berkualitas tinggi sambil memberikan edukasi tentang pertanian berkelanjutan kepada masyarakat.",
+  "vision": "Menjadi pusat agrowisata terbaik yang menginspirasi gaya hidup sehat dan peduli lingkungan.",
+  "story": "Griya Flora Babulu dimulai pada tahun 2018 oleh sekelompok petani muda yang memiliki visi untuk menghadirkan pertanian organik yang berkelanjutan. Dari lahan seluas 2 hektar, kami kini telah berkembang menjadi kawasan agrowisata seluas 5 hektar yang menawarkan pengalaman bertani yang menyenangkan dan edukatif.",
+  "values": [
+    {
+      "title": "Organik 100%",
+      "description": "Semua produk kami ditanam tanpa pestisida kimia dan pupuk sintetis"
+    },
+    {
+      "title": "Berkelanjutan",
+      "description": "Kami menerapkan praktik pertanian yang ramah lingkungan dan berkelanjutan"
+    },
+    {
+      "title": "Edukatif",
+      "description": "Kami berkomitmen untuk mengedukasi masyarakat tentang pentingnya pertanian organik"
+    },
+    {
+      "title": "Berkualitas",
+      "description": "Produk segar langsung dari kebun dengan kualitas terjamin"
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2018",
+      "title": "Awal Mula",
+      "description": "Memulai dengan lahan 2 hektar dan 3 jenis tanaman organik"
+    },
+    {
+      "year": "2019",
+      "title": "Ekspansi Produk",
+      "description": "Menambah varietas buah, sayur, dan bunga hingga 20+ jenis"
+    },
+    {
+      "year": "2020",
+      "title": "Membuka Wisata",
+      "description": "Resmi membuka layanan agrowisata untuk keluarga dan sekolah"
+    },
+    {
+      "year": "2022",
+      "title": "Sertifikasi Organik",
+      "description": "Mendapat sertifikasi organik nasional"
+    },
+    {
+      "year": "2024",
+      "title": "Perluasan Lahan",
+      "description": "Berkembang menjadi 5 hektar dengan fasilitas lengkap"
+    }
+  ],
+  "team": [
+    {
+      "name": "Budi Santoso",
+      "role": "Founder & CEO",
+      "bio": "Lulusan pertanian dengan 15 tahun pengalaman di bidang pertanian organik",
+      "image": "/images/team/budi.jpg"
+    },
+    {
+      "name": "Siti Rahayu",
+      "role": "Head of Operations",
+      "bio": "Ahli dalam manajemen operasional dan pengembangan produk organik",
+      "image": "/images/team/siti.jpg"
+    },
+    {
+      "name": "Ahmad Fauzi",
+      "role": "Education Program Manager",
+      "bio": "Berpengalaman dalam program edukasi pertanian untuk berbagai kalangan",
+      "image": "/images/team/ahmad.jpg"
+    }
+  ],
+  "affiliations": [
+    {
+      "name": "Kelompok Tani Sejahtera",
+      "type": "Farmer Group",
+      "description": "Kelompok tani lokal yang menjadi mitra utama dalam pengembangan pertanian organik",
+      "logo": "/images/affiliations/kelompok-tani.png"
+    },
+    {
+      "name": "Asosiasi Pertanian Organik Indonesia",
+      "type": "Association",
+      "description": "Anggota resmi asosiasi yang mendukung pengembangan pertanian organik nasional",
+      "logo": "/images/affiliations/apoi.png"
+    },
+    {
+      "name": "Dinas Pertanian Kabupaten",
+      "type": "Government",
+      "description": "Bekerja sama dengan pemerintah daerah dalam program pemberdayaan petani",
+      "logo": "/images/affiliations/dinas-pertanian.png"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Sertifikasi Organik Indonesia",
+      "year": "2022",
+      "image": "/images/certifications/organic-cert.jpg"
+    },
+    {
+      "name": "Sertifikat Keamanan Pangan",
+      "year": "2023",
+      "image": "/images/certifications/food-safety.jpg"
+    }
+  ],
+  "statistics": {
+    "landArea": "5 hektar",
+    "productTypes": "30+ jenis",
+    "visitorsPerYear": "10.000+",
+    "farmerPartners": "50+ petani"
+  }
+}

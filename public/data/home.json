@@ -1,0 +1,72 @@
+{
+  "hero": {
+    "badge": "100% Organik & Berkelanjutan",
+    "title": "Nikmati Kesegaran",
+    "titleHighlight": "Langsung dari Kebun",
+    "description": "Agrowisata dengan buah-buahan, sayuran, dan bunga organik segar. Pengalaman edukatif yang menyenangkan untuk seluruh keluarga.",
+    "primaryCTA": {
+      "text": "Booking Sekarang",
+      "link": "/booking"
+    },
+    "secondaryCTA": {
+      "text": "Lihat Produk",
+      "link": "/products"
+    },
+    "stats": [
+      {
+        "value": "30+",
+        "label": "Jenis Produk"
+      },
+      {
+        "value": "5",
+        "label": "Hektar Lahan"
+      },
+      {
+        "value": "10K+",
+        "label": "Pengunjung/Tahun"
+      }
+    ]
+  },
+  "features": {
+    "title": "Kenapa Memilih Kami?",
+    "description": "Pengalaman agrowisata terbaik dengan fasilitas lengkap dan produk berkualitas",
+    "items": [
+      {
+        "icon": "Leaf",
+        "title": "100% Organik",
+        "description": "Semua produk ditanam tanpa pestisida kimia dan pupuk sintetis",
+        "color": "text-green-600 bg-green-100"
+      },
+      {
+        "icon": "Users",
+        "title": "Ramah Keluarga",
+        "description": "Aktivitas menyenangkan untuk semua usia, dari anak-anak hingga dewasa",
+        "color": "text-blue-600 bg-blue-100"
+      },
+      {
+        "icon": "GraduationCap",
+        "title": "Edukatif",
+        "description": "Belajar langsung tentang pertanian berkelanjutan dari para ahli",
+        "color": "text-purple-600 bg-purple-100"
+      },
+      {
+        "icon": "Heart",
+        "title": "Produk Segar",
+        "description": "Petik langsung dari kebun, dijamin kesegaran dan kualitasnya",
+        "color": "text-red-600 bg-red-100"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Siap Mengunjungi Kebun Kami?",
+    "description": "Booking sekarang dan dapatkan pengalaman agrowisata yang tak terlupakan bersama keluarga dan teman-teman Anda.",
+    "primaryCTA": {
+      "text": "Booking Kunjungan",
+      "link": "/booking"
+    },
+    "secondaryCTA": {
+      "text": "Hubungi Kami",
+      "phone": "+6281234567890"
+    }
+  }
+}

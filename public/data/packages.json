@@ -1,0 +1,73 @@
+{
+  "packages": [
+    {
+      "id": "pkg-edu",
+      "name": "Paket Edukasi",
+      "type": "educational",
+      "description": "Tour edukasi pertanian organik untuk pelajar dan mahasiswa. Belajar langsung tentang proses bertani organik dari awal hingga panen.",
+      "duration": "3 jam",
+      "minVisitors": 10,
+      "maxVisitors": 50,
+      "includes": [
+        "Tour keliling kebun dengan pemandu berpengalaman",
+        "Penjelasan detail proses pertanian organik",
+        "Praktik menanam dan merawat tanaman",
+        "Makan siang tradisional dengan menu organik",
+        "Sertifikat untuk setiap peserta",
+        "Produk organik untuk dibawa pulang"
+      ],
+      "price": "Rp 75.000/orang",
+      "highlights": [
+        "Belajar tentang pertanian berkelanjutan",
+        "Praktik langsung di kebun",
+        "Cocok untuk sekolah dan universitas"
+      ]
+    },
+    {
+      "id": "pkg-family",
+      "name": "Paket Keluarga",
+      "type": "family",
+      "description": "Paket wisata lengkap untuk keluarga. Nikmati suasana kebun yang asri sambil belajar dan bermain bersama keluarga.",
+      "duration": "5 jam",
+      "minVisitors": 4,
+      "maxVisitors": 20,
+      "includes": [
+        "Tour keliling kebun",
+        "Aktivitas petik buah segar (strawberry, tomat)",
+        "Feeding hewan ternak",
+        "Makan siang di kafe dengan pemandangan kebun",
+        "Playground untuk anak-anak",
+        "Foto session di spot-spot cantik",
+        "Produk segar untuk dibawa pulang"
+      ],
+      "price": "Rp 150.000/orang",
+      "highlights": [
+        "Cocok untuk quality time keluarga",
+        "Aktivitas seru untuk anak-anak",
+        "Fasilitas lengkap dan nyaman"
+      ]
+    },
+    {
+      "id": "pkg-custom",
+      "name": "Paket Custom",
+      "type": "custom",
+      "description": "Rancang sendiri pengalaman wisata Anda! Kami akan menyesuaikan dengan kebutuhan dan budget Anda.",
+      "duration": "Fleksibel",
+      "minVisitors": 1,
+      "maxVisitors": 100,
+      "includes": [
+        "Konsultasi untuk merancang itinerary",
+        "Pilihan aktivitas sesuai keinginan",
+        "Catering dengan menu custom",
+        "Dokumentasi profesional (opsional)",
+        "Dekorasi khusus (untuk acara tertentu)"
+      ],
+      "price": "Mulai dari Rp 100.000/orang",
+      "highlights": [
+        "Sesuai dengan kebutuhan Anda",
+        "Cocok untuk event perusahaan atau gathering",
+        "Layanan profesional dan personal"
+      ]
+    }
+  ]
+}

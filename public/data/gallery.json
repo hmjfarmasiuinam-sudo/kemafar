@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "id": "gal-001",
+      "type": "image",
+      "src": "/images/gallery/fruits/strawberry-field.jpg",
+      "thumbnail": "/images/gallery/thumbs/strawberry-field-thumb.jpg",
+      "alt": "Kebun strawberry yang asri dengan buah merah segar",
+      "category": "fruits",
+      "title": "Kebun Strawberry",
+      "description": "Petik strawberry langsung dari kebun organik kami",
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "id": "gal-002",
+      "type": "image",
+      "src": "/images/gallery/vegetables/greenhouse.jpg",
+      "thumbnail": "/images/gallery/thumbs/greenhouse-thumb.jpg",
+      "alt": "Greenhouse modern untuk sayuran organik",
+      "category": "vegetables",
+      "title": "Greenhouse Sayuran",
+      "description": "Fasilitas greenhouse modern untuk menanam sayuran organik",
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "id": "gal-003",
+      "type": "image",
+      "src": "/images/gallery/flowers/rose-garden.jpg",
+      "thumbnail": "/images/gallery/thumbs/rose-garden-thumb.jpg",
+      "alt": "Taman mawar dengan berbagai warna",
+      "category": "flowers",
+      "title": "Taman Mawar",
+      "description": "Koleksi mawar berbagai warna yang indah",
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "id": "gal-004",
+      "type": "image",
+      "src": "/images/gallery/activities/family-tour.jpg",
+      "thumbnail": "/images/gallery/thumbs/family-tour-thumb.jpg",
+      "alt": "Keluarga menikmati tur kebun",
+      "category": "activities",
+      "title": "Wisata Keluarga",
+      "description": "Aktivitas seru bersama keluarga di kebun",
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "id": "gal-005",
+      "type": "image",
+      "src": "/images/gallery/activities/educational-tour.jpg",
+      "thumbnail": "/images/gallery/thumbs/educational-tour-thumb.jpg",
+      "alt": "Siswa belajar tentang pertanian organik",
+      "category": "activities",
+      "title": "Tour Edukasi",
+      "description": "Program edukasi pertanian untuk pelajar",
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "id": "gal-006",
+      "type": "image",
+      "src": "/images/gallery/facilities/cafe.jpg",
+      "thumbnail": "/images/gallery/thumbs/cafe-thumb.jpg",
+      "alt": "Kafe dengan pemandangan kebun",
+      "category": "facilities",
+      "title": "Kafe & Resto",
+      "description": "Nikmati hidangan segar sambil menikmati pemandangan",
+      "width": 1200,
+      "height": 800
+    }
+  ]
+}

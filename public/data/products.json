@@ -1,0 +1,119 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "slug": "strawberry-organik",
+      "name": "Strawberry Organik",
+      "category": "fruits",
+      "description": "Strawberry segar hasil kebun organik tanpa pestisida. Manis, segar, dan bergizi tinggi.",
+      "images": [
+        "/images/products/strawberry-01.jpg",
+        "/images/products/strawberry-02.jpg"
+      ],
+      "season": "Juni - September",
+      "available": true,
+      "price": "Rp 50.000/kg",
+      "features": [
+        "Organik 100%",
+        "Tanpa pestisida",
+        "Manis dan segar",
+        "Kaya vitamin C"
+      ]
+    },
+    {
+      "id": "prod-002",
+      "slug": "tomat-cherry",
+      "name": "Tomat Cherry",
+      "category": "vegetables",
+      "description": "Tomat cherry organik yang manis dan segar. Sempurna untuk salad dan camilan sehat.",
+      "images": [
+        "/images/products/tomato-cherry-01.jpg"
+      ],
+      "season": "Sepanjang tahun",
+      "available": true,
+      "price": "Rp 35.000/kg",
+      "features": [
+        "Organik",
+        "Manis dan segar",
+        "Cocok untuk salad",
+        "Kaya antioksidan"
+      ]
+    },
+    {
+      "id": "prod-003",
+      "slug": "mawar-holland",
+      "name": "Mawar Holland",
+      "category": "flowers",
+      "description": "Bunga mawar holland segar dengan berbagai warna. Cocok untuk dekorasi dan hadiah.",
+      "images": [
+        "/images/products/rose-holland-01.jpg"
+      ],
+      "season": "Sepanjang tahun",
+      "available": true,
+      "price": "Rp 100.000/dozen",
+      "features": [
+        "Segar dari kebun",
+        "Berbagai warna",
+        "Tahan lama",
+        "Harum"
+      ]
+    },
+    {
+      "id": "prod-004",
+      "slug": "selada-hijau",
+      "name": "Selada Hijau Organik",
+      "category": "vegetables",
+      "description": "Selada hijau organik yang renyah dan segar. Sempurna untuk salad sehat Anda.",
+      "images": [
+        "/images/products/lettuce-01.jpg"
+      ],
+      "season": "Sepanjang tahun",
+      "available": true,
+      "price": "Rp 25.000/ikat",
+      "features": [
+        "Organik 100%",
+        "Renyah dan segar",
+        "Bebas pestisida",
+        "Langsung dari kebun"
+      ]
+    },
+    {
+      "id": "prod-005",
+      "slug": "anggur-hitam",
+      "name": "Anggur Hitam",
+      "category": "fruits",
+      "description": "Anggur hitam manis dan segar. Kaya antioksidan dan vitamin.",
+      "images": [
+        "/images/products/grape-black-01.jpg"
+      ],
+      "season": "Maret - Juli",
+      "available": false,
+      "price": "Rp 80.000/kg",
+      "features": [
+        "Manis alami",
+        "Tanpa biji",
+        "Kaya antioksidan",
+        "Segar"
+      ]
+    },
+    {
+      "id": "prod-006",
+      "slug": "madu-organik",
+      "name": "Madu Organik",
+      "category": "processed",
+      "description": "Madu murni dari lebah yang hidup di kebun organik kami. Kaya manfaat untuk kesehatan.",
+      "images": [
+        "/images/products/honey-01.jpg"
+      ],
+      "season": "Sepanjang tahun",
+      "available": true,
+      "price": "Rp 120.000/500ml",
+      "features": [
+        "Madu murni 100%",
+        "Dari lebah organik",
+        "Tanpa gula tambahan",
+        "Kaya enzim"
+      ]
+    }
+  ]
+}
