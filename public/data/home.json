@@ -3,7 +3,7 @@
     "badge": "Wadah Mahasiswa Farmasi UIN Alauddin",
     "title": "Bersama Membangun",
     "titleHighlight": "Farmasis Profesional",
-    "description": "Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar - Mengembangkan potensi akademik, kepemimpinan, dan pengabdian untuk menjadi farmasis yang berintegritas.",
+    "description": "Kami adalah wadah pengembangan mahasiswa Farmasi UIN Alauddin Makassar yang berfokus pada potensi akademik, kepemimpinan, dan pengabdian untuk mencetak farmasis berintegritas.",
     "primaryCTA": {
       "text": "Lihat Event Kami",
       "link": "/events"
@@ -28,38 +28,38 @@
     ]
   },
   "features": {
-    "title": "Apa yang Dilakukan HMJF?",
-    "description": "Organisasi mahasiswa Farmasi dengan berbagai program unggulan untuk pengembangan akademik dan profesionalisme",
+    "title": "Apa yang Kami Lakukan?",
+    "description": "Berbagai program unggulan kami hadirkan untuk mendukung pengembangan akademik dan profesionalisme Anda",
     "items": [
       {
         "icon": "GraduationCap",
         "title": "Pengembangan Akademik",
-        "description": "Kajian ilmiah, seminar, dan workshop kefarmasian untuk meningkatkan kompetensi",
+        "description": "Kami menyelenggarakan kajian ilmiah dan workshop untuk meningkatkan kompetensi kefarmasian",
         "color": "text-primary-700 bg-primary-50"
       },
       {
         "icon": "Users",
         "title": "Kepemimpinan",
-        "description": "Membentuk jiwa kepemimpinan melalui berbagai program organisasi",
+        "description": "Kami membentuk karakter pemimpin masa depan melalui regenerasi dan kaderisasi terstruktur",
         "color": "text-primary-700 bg-primary-50"
       },
       {
         "icon": "Heart",
         "title": "Pengabdian Masyarakat",
-        "description": "Bakti sosial dan edukasi kesehatan untuk kontribusi nyata bagi masyarakat",
+        "description": "Kami terjun langsung memberikan kontribusi nyata bagi kesehatan masyarakat luas",
         "color": "text-primary-700 bg-primary-50"
       },
       {
         "icon": "Sparkles",
         "title": "Networking",
-        "description": "Membangun koneksi dengan mahasiswa farmasi se-Indonesia dan praktisi",
+        "description": "Kami membangun jejaring luas dengan alumni, praktisi, dan mahasiswa farmasi se-Indonesia",
         "color": "text-primary-700 bg-primary-50"
       }
     ]
   },
   "cta": {
-    "title": "Ingin Tahu Lebih Banyak tentang HMJF?",
-    "description": "Jelajahi informasi lengkap tentang HMJF UIN Alauddin Makassar, kegiatan, dan program kami.",
+    "title": "Bergabunglah Bersama Kami",
+    "description": "Jadilah bagian dari perjalanan kami dalam membangun farmasis profesional yang berakhlak mulia.",
     "primaryCTA": {
       "text": "Lihat Kepengurusan",
       "link": "/leadership"

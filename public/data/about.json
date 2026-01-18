@@ -5,19 +5,23 @@
   "values": [
     {
       "title": "Akademik",
-      "description": "Mendorong keunggulan akademik melalui kajian ilmiah, seminar, dan workshop kefarmasian"
+      "description": "Mendorong keunggulan akademik melalui kajian ilmiah, seminar, dan workshop kefarmasian",
+      "icon": "BookOpen"
     },
     {
       "title": "Kepemimpinan",
-      "description": "Membentuk jiwa kepemimpinan yang amanah, profesional, dan bertanggung jawab"
+      "description": "Membentuk jiwa kepemimpinan yang amanah, profesional, dan bertanggung jawab",
+      "icon": "Users"
     },
     {
       "title": "Pengabdian",
-      "description": "Berkontribusi aktif dalam kegiatan sosial dan kesehatan masyarakat"
+      "description": "Berkontribusi aktif dalam kegiatan sosial dan kesehatan masyarakat",
+      "icon": "HeartHandshake"
     },
     {
       "title": "Profesionalisme",
-      "description": "Mempersiapkan mahasiswa menjadi farmasis yang kompeten dan berintegritas"
+      "description": "Mempersiapkan mahasiswa menjadi farmasis yang kompeten dan berintegritas",
+      "icon": "Briefcase"
     }
   ],
   "timeline": [
@@ -81,9 +85,9 @@
     }
   ],
   "statistics": {
-    "landArea": "200+ Anggota",
-    "productTypes": "50+ Event/Tahun",
-    "visitorsPerYear": "8 Divisi",
-    "farmerPartners": "10 Tahun"
+    "activeMembers": "200+ Anggota",
+    "eventsPerYear": "50+ Event/Tahun",
+    "divisions": "8 Divisi",
+    "yearsActive": "10 Tahun"
   }
 }

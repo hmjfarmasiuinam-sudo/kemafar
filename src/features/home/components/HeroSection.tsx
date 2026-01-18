@@ -5,15 +5,14 @@
 
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/shared/components/ui/Button';
 import { ArrowRight, Leaf, Sparkles, Activity } from 'lucide-react';
 import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
-import { ParallaxHero } from '@/shared/components/ui/ParallaxHero';
 import { cn } from '@/lib/utils';
 import { CountingNumber } from '@/shared/components/ui/CountingNumber';
-import { TiltCard } from '@/shared/components/ui/TiltCard';
 
 // Simplified animation variants - Reduced complexity
 const container = {
@@ -44,135 +43,112 @@ export function HeroSection() {
   const { hero } = homeData;
 
   return (
-    <ParallaxHero className="bg-gradient-to-br from-primary-50 via-white to-secondary-50 relative overflow-hidden pt-32 pb-16 md:py-32 flex items-center min-h-[90vh]">
-      {/* CSS-based Background Animations (Zero JS overhead for these loops) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-200/30 rounded-full blur-3xl animate-float-delayed" />
-      </div>
+    <div className="relative min-h-[90vh] flex items-center bg-white overflow-hidden pt-20">
+      {/* Abstract Background Shapes - Clean & Modern */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-50 rounded-full blur-[100px] opacity-60 -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary-50 rounded-full blur-[100px] opacity-60 translate-y-1/3 -translate-x-1/4" />
 
       <div className="container-custom relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          {/* Text Content - Editorially aligned */}
           <motion.div
             variants={container}
             initial="hidden"
             animate="show"
-            className="space-y-8"
+            className="lg:col-span-7 flex flex-col justify-center"
           >
-            {/* Badge */}
-            <motion.div
-              variants={item}
-              className="inline-flex items-center space-x-2 bg-white/90 backdrop-blur-sm text-primary-700 px-5 py-2.5 rounded-full text-sm font-medium shadow-sm border border-primary-100 cursor-default"
-            >
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary-500"></span>
-              </span>
-              <span>{hero.badge}</span>
+            {/* Badge - Minimalist pill */}
+            <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-50 border border-gray-100 w-fit mb-8">
+              <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+              <span className="text-sm font-medium text-gray-600 tracking-wide uppercase">{hero.badge}</span>
             </motion.div>
 
-            {/* Heading */}
-            <motion.h1 variants={item} className="text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-tight">
-              {hero.title}{' '}
-              <span className="gradient-text">
+            {/* Headline - Massive & Tight */}
+            <motion.h1 variants={item} className="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-[1.1] md:leading-[1] tracking-tighter mb-8">
+              {hero.title}
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500">
                 {hero.titleHighlight}
               </span>
             </motion.h1>
 
-            {/* Description */}
-            <motion.p variants={item} className="text-lg md:text-xl text-gray-600 max-w-xl leading-relaxed">
+            {/* Description - Reader friendly */}
+            <motion.p variants={item} className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl border-l-4 border-gray-100 pl-6 mb-10">
               {hero.description}
             </motion.p>
 
-            {/* Buttons */}
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Button size="lg" asChild className="shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-                <Link href={hero.primaryCTA.link}>
-                  {hero.primaryCTA.text}
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="hover:bg-primary-50 border-primary-200">
-                <Link href={hero.secondaryCTA.link}>
-                  <Leaf className="mr-2 w-5 h-5 text-primary-600" />
-                  {hero.secondaryCTA.text}
-                </Link>
-              </Button>
+            {/* CTAs - Minimal buttons */}
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href={hero.primaryCTA.link}
+                className="px-8 py-4 bg-gray-900 text-white rounded-full font-bold text-lg hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+              >
+                {hero.primaryCTA.text}
+                <Activity className="w-5 h-5" />
+              </Link>
+              <Link
+                href={hero.secondaryCTA.link}
+                className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-bold text-lg hover:bg-gray-50 transition-all hover:border-gray-300 flex items-center justify-center"
+              >
+                {hero.secondaryCTA.text}
+              </Link>
             </motion.div>
 
-            {/* Stats */}
-            <motion.div variants={item} className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-100">
+            {/* Stats - Horizontal minimalist */}
+            <motion.div variants={item} className="flex items-center gap-12 mt-16 pt-8 border-t border-gray-100">
               {hero.stats.map((stat, index) => (
-                <div key={index} className="space-y-1">
-                  <div className="text-3xl font-bold text-primary-600">
+                <div key={index}>
+                  <p className="text-3xl font-black text-gray-900">
                     <CountingNumber
                       value={parseInt(stat.value.replace(/\D/g, ''))}
                       suffix={stat.value.replace(/[0-9]/g, '')}
                       duration={2.5}
                     />
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
+                  </p>
+                  <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Image/Visual Area */}
+          {/* Visual - Editorial Image Composition (No Card Box) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative hidden lg:block"
+            transition={{ duration: 1, delay: 0.2 }}
+            className="lg:col-span-5 relative h-[600px] hidden lg:block"
           >
-            <div className="relative aspect-[4/5] w-full max-w-lg mx-auto">
-              {/* Main Card */}
-              <TiltCard className="absolute inset-0 rounded-[2rem] shadow-2xl" rotationFactor={10}>
-                <div className="h-full w-full bg-gradient-to-br from-primary-600 to-primary-700 rounded-[2rem] overflow-hidden">
-                  <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
-
-                  {/* Decorative Circles */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-                  <div className="absolute inset-0 flex items-center justify-center text-white/90">
-                    <div className="text-center p-8">
-                      <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-2xl mx-auto mb-6 flex items-center justify-center animate-float">
-                        <Activity className="w-12 h-12 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">HMJF UIN</h3>
-                      <p className="text-primary-100">Farmasi Alauddin</p>
-                    </div>
-                  </div>
-                </div>
-              </TiltCard>
-
-              {/* Floating Cards */}
-              <div className="absolute -bottom-10 -left-12 bg-white p-4 rounded-xl shadow-xl animate-float-delayed z-20 max-w-[200px]">
-                <div className="flex items-center space-x-3 mb-2">
-                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                    <Sparkles className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-800 text-sm">Program Unggulan</p>
-                    <p className="text-xs text-gray-500">Pengembangan Softskill</p>
-                  </div>
-                </div>
+            {/* Main Hero Image - Organic Shape */}
+            <div className="relative z-10 w-full h-full">
+              <div className="absolute right-0 top-0 w-4/5 h-4/5 rounded-[4rem] rounded-tr-[10rem] overflow-hidden rotate-3 hover:rotate-0 transition-all duration-700 ease-out shadow-2xl shadow-primary-900/10">
+                <Image
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2070"
+                  alt="Pharmacy Student"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
 
-              <div className="absolute top-20 -right-8 bg-white p-4 rounded-xl shadow-xl animate-float z-20">
-                <div className="flex items-center space-x-2">
-                  <span className="flex h-3 w-3 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                  </span>
-                  <p className="font-bold text-gray-800 text-sm">Aktif Selalu</p>
-                </div>
+              {/* Floating Accent Image */}
+              <div className="absolute left-0 bottom-20 w-3/5 h-2/5 rounded-[3rem] rounded-bl-[6rem] overflow-hidden -rotate-6 hover:-rotate-3 transition-all duration-500 ease-out shadow-xl shadow-secondary-900/10 border-4 border-white">
+                <Image
+                  src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&q=80&w=2079"
+                  alt="Lab Work"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Minimal floating elements */}
+              <div className="absolute top-20 -left-10 bg-white/80 backdrop-blur-md p-4 rounded-full shadow-lg animate-float">
+                <Sparkles className="w-6 h-6 text-primary-500" />
               </div>
             </div>
           </motion.div>
         </div>
       </div>
-    </ParallaxHero>
+    </div>
   );
 }

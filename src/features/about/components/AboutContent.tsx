@@ -2,9 +2,16 @@
 
 import { Timeline } from '@/features/about/components/Timeline';
 import { Section } from '@/shared/components/ui/Section';
-import { Leaf, Target, Heart, Award } from 'lucide-react';
+import { Leaf, Target, Heart, Award, BookOpen, Users, HeartHandshake, Briefcase, LucideIcon } from 'lucide-react';
 import aboutData from '../../../../public/data/about.json';
 import { motion } from 'framer-motion';
+
+const iconMap: Record<string, LucideIcon> = {
+    BookOpen,
+    Users,
+    HeartHandshake,
+    Briefcase
+};
 
 export function AboutContent() {
     return (
@@ -44,7 +51,7 @@ export function AboutContent() {
                                     transition={{ delay: 0.2 }}
                                     className="flex items-center gap-3 mb-4 text-primary-600"
                                 >
-                                    <Leaf className="w-6 h-6" />
+                                    <BookOpen className="w-6 h-6" />
                                     <span className="font-bold tracking-wider uppercase text-sm">Cerita Kami</span>
                                 </motion.div>
                                 <motion.h2
@@ -107,19 +114,22 @@ export function AboutContent() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-                        {aboutData.values.map((value, index) => (
-                            <div key={index} className="group text-center">
-                                <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-primary-100 transition-all duration-300">
-                                    <Leaf className="w-8 h-8 text-primary-600" />
+                        {aboutData.values.map((value, index) => {
+                            const Icon = iconMap[value.icon] || Leaf;
+                            return (
+                                <div key={index} className="group text-center">
+                                    <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:bg-primary-100 transition-all duration-300">
+                                        <Icon className="w-8 h-8 text-primary-600" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                                        {value.title}
+                                    </h3>
+                                    <p className="text-gray-600 leading-relaxed">
+                                        {value.description}
+                                    </p>
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
-                                    {value.title}
-                                </h3>
-                                <p className="text-gray-600 leading-relaxed">
-                                    {value.description}
-                                </p>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </Section>
@@ -134,10 +144,10 @@ export function AboutContent() {
                                     {value}
                                 </div>
                                 <div className="text-sm font-bold text-primary-600 uppercase tracking-widest">
-                                    {key === 'landArea' && 'Anggota Aktif'}
-                                    {key === 'productTypes' && 'Event / Tahun'}
-                                    {key === 'visitorsPerYear' && 'Divisi'}
-                                    {key === 'farmerPartners' && 'Tahun Berdiri'}
+                                    {key === 'activeMembers' && 'Anggota Aktif'}
+                                    {key === 'eventsPerYear' && 'Event / Tahun'}
+                                    {key === 'divisions' && 'Divisi'}
+                                    {key === 'yearsActive' && 'Tahun Berdiri'}
                                 </div>
                             </div>
                         ))}
