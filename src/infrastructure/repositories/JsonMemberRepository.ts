@@ -8,8 +8,12 @@ import { SITE_CONFIG } from '@/lib/constants';
 
 export class JsonMemberRepository implements IMemberRepository {
   private async fetchMembers(): Promise<Member[]> {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || SITE_CONFIG.url;
-    const response = await fetch(`${baseUrl}/data/members.json`, {
+    // Use relative URL in browser, absolute URL during build
+    const url = typeof window !== 'undefined'
+      ? '/data/members.json'
+      : `${process.env.NEXT_PUBLIC_SITE_URL || SITE_CONFIG.url}/data/members.json`;
+
+    const response = await fetch(url, {
       cache: 'no-store',
     });
     if (!response.ok) {

@@ -28,8 +28,8 @@
     ]
   },
   "features": {
-    "title": "Kenapa Bergabung dengan HMJF?",
-    "description": "Wadah pengembangan diri mahasiswa Farmasi dengan berbagai program unggulan",
+    "title": "Apa yang Dilakukan HMJF?",
+    "description": "Organisasi mahasiswa Farmasi dengan berbagai program unggulan untuk pengembangan akademik dan profesionalisme",
     "items": [
       {
         "icon": "GraduationCap",
@@ -58,8 +58,8 @@
     ]
   },
   "cta": {
-    "title": "Siap Bergabung Bersama Kami?",
-    "description": "Hubungi kami untuk informasi lebih lanjut tentang HMJF UIN Alauddin Makassar dan kegiatan kami.",
+    "title": "Ingin Tahu Lebih Banyak tentang HMJF?",
+    "description": "Jelajahi informasi lengkap tentang HMJF UIN Alauddin Makassar, kegiatan, dan program kami.",
     "primaryCTA": {
       "text": "Lihat Kepengurusan",
       "link": "/leadership"
