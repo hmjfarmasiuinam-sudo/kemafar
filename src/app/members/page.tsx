@@ -121,7 +121,7 @@ export default function MembersPage({
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{
-                  delay: index * 0.05,
+                  delay: (index % 15) * 0.05, // Cap delay to avoid waiting too long for lower items
                   duration: 0.6,
                   ease: [0.21, 0.47, 0.32, 0.98],
                 }}

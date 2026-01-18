@@ -12,22 +12,33 @@ import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
 import { ParallaxHero } from '@/shared/components/ui/ParallaxHero';
 import { cn } from '@/lib/utils';
+import { CountingNumber } from '@/shared/components/ui/CountingNumber';
+import { TiltCard } from '@/shared/components/ui/TiltCard';
 
+// Simplified animation variants - Reduced complexity
 // Simplified animation variants - Reduced complexity
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2, // Small delay to let hydration settle
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4 } }, // Faster duration
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 50,
+      damping: 20
+    }
+  },
 };
 
 export function HeroSection() {
@@ -95,7 +106,13 @@ export function HeroSection() {
             <motion.div variants={item} className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-100">
               {hero.stats.map((stat, index) => (
                 <div key={index} className="space-y-1">
-                  <div className="text-3xl font-bold text-primary-600">{stat.value}</div>
+                  <div className="text-3xl font-bold text-primary-600">
+                    <CountingNumber
+                      value={parseInt(stat.value.replace(/\D/g, ''))}
+                      suffix={stat.value.replace(/[0-9]/g, '')}
+                      duration={2.5}
+                    />
+                  </div>
                   <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
                 </div>
               ))}
@@ -111,23 +128,25 @@ export function HeroSection() {
           >
             <div className="relative aspect-[4/5] w-full max-w-lg mx-auto">
               {/* Main Card */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-primary-700 rounded-[2rem] shadow-2xl overflow-hidden transform rotate-3 transition-transform hover:rotate-0 duration-500">
-                <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+              <TiltCard className="absolute inset-0 rounded-[2rem] shadow-2xl" rotationFactor={10}>
+                <div className="h-full w-full bg-gradient-to-br from-primary-600 to-primary-700 rounded-[2rem] overflow-hidden">
+                  <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
 
-                {/* Decorative Circles */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                  {/* Decorative Circles */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
-                <div className="absolute inset-0 flex items-center justify-center text-white/90">
-                  <div className="text-center p-8">
-                    <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-2xl mx-auto mb-6 flex items-center justify-center animate-float">
-                      <Leaf className="w-12 h-12 text-white" />
+                  <div className="absolute inset-0 flex items-center justify-center text-white/90">
+                    <div className="text-center p-8">
+                      <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-2xl mx-auto mb-6 flex items-center justify-center animate-float">
+                        <Leaf className="w-12 h-12 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-2">Griya Flora</h3>
+                      <p className="text-primary-100">Pusat Agrowisata Babulu</p>
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">Griya Flora</h3>
-                    <p className="text-primary-100">Pusat Agrowisata Babulu</p>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
 
               {/* Floating Cards */}
               <div className="absolute -bottom-10 -left-12 bg-white p-4 rounded-xl shadow-xl animate-float-delayed z-20 max-w-[200px]">

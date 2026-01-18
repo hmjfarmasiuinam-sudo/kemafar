@@ -3,10 +3,9 @@
 import Image from 'next/image';
 import { JsonLeadershipRepository } from '@/infrastructure/repositories/JsonLeadershipRepository';
 import { DIVISIONS } from '@/lib/constants';
-import { Mail } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import type { LeadershipListItem, Leadership } from '@/core/entities/Leadership';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
+import type { LeadershipListItem } from '@/core/entities/Leadership';
 
 const positionLabels: Record<string, string> = {
   'ketua': 'Ketua',
@@ -21,6 +20,14 @@ export default function LeadershipPage() {
   const [coreLeadership, setCoreLeadership] = useState<LeadershipListItem[]>([]);
   const [groupedByDivision, setGroupedByDivision] = useState<Record<string, LeadershipListItem[]>>({});
   const [loading, setLoading] = useState(true);
+
+  // Parallax Setup
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,130 +58,137 @@ export default function LeadershipPage() {
   }, []);
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-black text-white">Loading...</div>;
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section - Bold & Minimal */}
-      <section className="relative bg-gray-900 text-white py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/50 to-gray-900" />
-        <div className="container-custom relative z-10">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
-            Kepengurusan
-          </h1>
-          <p className="text-2xl text-gray-300 max-w-3xl leading-relaxed">
-            Struktur kepengurusan HMJF UIN Alauddin periode 2025-2026
-          </p>
+    <div className="min-h-screen bg-white" ref={containerRef}>
+      {/* Hero Section - Cinematic & Abstract */}
+      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden bg-black text-white">
+        <motion.div
+          style={{ y }}
+          className="absolute inset-0 z-0 opacity-60"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-800 via-gray-950 to-black" />
+          <div className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-primary-600/20 rounded-full blur-[100px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-[25rem] h-[25rem] bg-secondary-600/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
+        </motion.div>
+
+        <div className="container-custom relative z-10 text-center mix-blend-screen">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9, letterSpacing: '0em' }}
+            animate={{ opacity: 1, scale: 1, letterSpacing: '-0.02em' }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-7xl md:text-9xl font-black uppercase tracking-tighter mb-6"
+          >
+            Leadership
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto font-light tracking-wide"
+          >
+            The visionaries behind the movement.
+          </motion.p>
         </div>
       </section>
 
-      {/* Core Leadership - Modern Grid */}
-      <section className="container-custom py-24">
-        <div className="max-w-5xl mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Pengurus <span className="text-primary-600">Inti</span>
-          </h2>
+      {/* Core Team - Editorial Posters (Floating Images) */}
+      <section className="bg-black py-32 text-white relative z-20">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
+            {coreLeadership.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: index * 0.15, duration: 0.8 }}
+                className="group relative"
+              >
+                {/* Free-standing Image - No Container/Card Styles */}
+                <div className="relative aspect-[3/4] overflow-hidden mb-6 grayscale group-hover:grayscale-0 transition-all duration-700 ease-out">
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  {/* Subtle Gradient Overlay for Text Readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+
+                {/* Typography - Minimal & Clean */}
+                <div className="border-t border-gray-800 pt-4 group-hover:border-primary-500 transition-colors duration-500">
+                  <h3 className="text-2xl font-bold mb-1 tracking-tight">{member.name}</h3>
+                  <p className="text-primary-500 text-sm font-mono tracking-widest uppercase opacity-80 group-hover:opacity-100 transition-opacity">
+                    {positionLabels[member.position]}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {coreLeadership.map((member, index) => (
+      </section>
+
+      {/* Division Leadership - Editorial List (Non-Grid) */}
+      <section className="bg-white py-32">
+        <div className="container-custom">
+          {Object.entries(groupedByDivision).map(([division, members]) => (
             <motion.div
-              key={member.id}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              key={division}
+              className="mb-32 last:mb-0"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{
-                delay: index * 0.15,
-                duration: 0.6,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
-              whileHover={{ y: -8 }}
-              className="group"
+              transition={{ duration: 0.8 }}
             >
-              {/* Image - minimal frame */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl mb-6 bg-gradient-to-br from-primary-100/50 to-gray-100/50">
-                <Image
-                  src={member.photo}
-                  alt={member.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+              {/* Division Header - Big Typography */}
+              <div className="flex flex-col md:flex-row md:items-end justify-between border-b-4 border-black pb-6 mb-12">
+                <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-black leading-none">
+                  {DIVISIONS[division as keyof typeof DIVISIONS]}
+                </h2>
+                <span className="text-2xl font-bold font-mono text-gray-300 mt-4 md:mt-0">
+                  {String(members.length).padStart(2, '0')} MEMBERS
+                </span>
               </div>
-              {/* Info - clean typography */}
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-primary-600 font-bold mb-4">{positionLabels[member.position]}</p>
-                {member.email && (
-                  <a
-                    href={`mailto:${member.email}`}
-                    className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-primary-600 transition-colors"
+
+              {/* Members List - Interactive Rows */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+                {members.map((member, idx) => (
+                  <motion.div
+                    key={member.id}
+                    className="flex items-center gap-6 group"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.05 }}
                   >
-                    <Mail className="w-4 h-4" />
-                    <span className="line-clamp-1">{member.email}</span>
-                  </a>
-                )}
+                    {/* Circle Avatar - Transitions to Square on Hover */}
+                    <div className="relative w-20 h-20 flex-shrink-0 overflow-hidden rounded-full group-hover:rounded-none transition-all duration-500 bg-gray-100">
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        fill
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      />
+                    </div>
+
+                    {/* Text Info */}
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-gray-900 leading-tight group-hover:text-primary-600 transition-colors">
+                        {member.name}
+                      </h4>
+                      <p className="text-sm text-gray-500 font-mono mt-1 uppercase tracking-wide">
+                        {positionLabels[member.position]}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           ))}
-        </div>
-      </section>
-
-      {/* Division Leadership - Bento Style */}
-      <section className="relative py-24 overflow-hidden bg-gray-50">
-        <div className="container-custom">
-          <div className="max-w-5xl mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Koordinator <span className="text-primary-600">Divisi</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(groupedByDivision).map(([division, members]) => (
-              <div key={division} className="relative">
-                {/* Division header - bold */}
-                <div className="mb-6">
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                    {DIVISIONS[division as keyof typeof DIVISIONS]}
-                  </h3>
-                  <div className="w-16 h-1 bg-primary-600 rounded-full" />
-                </div>
-                {/* Members - minimal layout */}
-                <div className="space-y-6">
-                  {members.map((member) => (
-                    <div key={member.id} className="relative group">
-                      <div className="flex items-center gap-4">
-                        {/* Avatar - larger, cleaner */}
-                        <div className="relative w-20 h-20 flex-shrink-0">
-                          <Image
-                            src={member.photo}
-                            alt={member.name}
-                            fill
-                            className="rounded-2xl object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                        {/* Info */}
-                        <div className="flex-1 min-w-0">
-                          <p className="text-lg font-bold text-gray-900 mb-1 line-clamp-1">
-                            {member.name}
-                          </p>
-                          <p className="text-sm text-primary-600 font-semibold mb-2">
-                            {positionLabels[member.position]}
-                          </p>
-                          {member.email && (
-                            <a
-                              href={`mailto:${member.email}`}
-                              className="text-xs text-gray-600 hover:text-primary-600 transition-colors line-clamp-1 block"
-                            >
-                              {member.email}
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </div>

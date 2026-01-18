@@ -9,6 +9,7 @@ import { Leaf, Users, GraduationCap, Heart, LucideIcon } from 'lucide-react';
 import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
 import { Section } from '@/shared/components/ui/Section';
+import { SpotlightCard } from '@/shared/components/ui/SpotlightCard';
 
 const iconMap: Record<string, LucideIcon> = {
   Leaf,
@@ -63,8 +64,7 @@ export function FeaturesSection() {
                 }}
                 className={`group relative ${isLarge ? 'lg:col-span-2' : ''}`}
               >
-                {/* Glassmorphism background */}
-                <div className="relative h-full p-8 md:p-10 rounded-[2rem] bg-white border border-gray-100/50 shadow-sm hover:shadow-xl hover:border-primary-100 transition-all duration-300">
+                <SpotlightCard className="h-full p-8 md:p-10 rounded-[2rem] border-gray-100/50 bg-white/80 backdrop-blur-sm hover:border-primary-100 transition-all duration-300" spotlightColor="rgba(22, 163, 74, 0.15)">
                   {/* Subtle gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${feature.color.replace('bg-', 'from-').replace('text-', 'to-')}/5 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
@@ -91,7 +91,7 @@ export function FeaturesSection() {
                       </div>
                     )}
                   </div>
-                </div>
+                </SpotlightCard>
               </motion.div>
             );
           })}
