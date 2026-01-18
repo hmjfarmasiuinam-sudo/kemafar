@@ -11,7 +11,7 @@ import aboutData from '../../../public/data/about.json';
 
 export const metadata: Metadata = {
   title: 'Tentang Kami',
-  description: 'Tentang Griya Flora Babulu - Agrowisata Organik',
+  description: 'Tentang HMJF UIN Alauddin Makassar - Himpunan Mahasiswa Jurusan Farmasi',
 };
 
 export default function AboutPage() {
@@ -24,7 +24,7 @@ export default function AboutPage() {
             Tentang Kami
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Mengenal lebih dekat Griya Flora Babulu dan perjalanan kami dalam mengembangkan agrowisata organik.
+            Mengenal lebih dekat HMJF UIN Alauddin Makassar dan perjalanan kami dalam mengembangkan mahasiswa Farmasi yang profesional dan berintegritas.
           </p>
         </div>
 
@@ -96,10 +96,10 @@ export default function AboutPage() {
                     {value}
                   </div>
                   <div className="text-sm text-gray-700">
-                    {key === 'landArea' && 'Luas Lahan'}
-                    {key === 'productTypes' && 'Jenis Produk'}
-                    {key === 'visitorsPerYear' && 'Pengunjung/Tahun'}
-                    {key === 'farmerPartners' && 'Mitra Petani'}
+                    {key === 'landArea' && 'Anggota Aktif'}
+                    {key === 'productTypes' && 'Event per Tahun'}
+                    {key === 'visitorsPerYear' && 'Divisi'}
+                    {key === 'farmerPartners' && 'Tahun Berdiri'}
                   </div>
                 </CardContent>
               </Card>
@@ -115,26 +115,7 @@ export default function AboutPage() {
           <Timeline items={aboutData.timeline} />
         </div>
 
-        {/* Team */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Tim Kami
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {aboutData.team.map((member) => (
-              <Card key={member.name} variant="bordered">
-                <CardContent className="p-6 text-center">
-                  <div className="w-24 h-24 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-12 h-12 text-primary-600" />
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-1">{member.name}</h3>
-                  <p className="text-sm text-primary-600 mb-3">{member.role}</p>
-                  <p className="text-sm text-gray-600">{member.bio}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+        {/* Team - Removed, using Leadership page instead */}
 
         {/* Affiliations */}
         <div className="mb-16">

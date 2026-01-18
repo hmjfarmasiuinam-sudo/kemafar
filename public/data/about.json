@@ -1,108 +1,89 @@
 {
-  "mission": "Menyediakan produk pertanian organik berkualitas tinggi sambil memberikan edukasi tentang pertanian berkelanjutan kepada masyarakat.",
-  "vision": "Menjadi pusat agrowisata terbaik yang menginspirasi gaya hidup sehat dan peduli lingkungan.",
-  "story": "Griya Flora Babulu dimulai pada tahun 2018 oleh sekelompok petani muda yang memiliki visi untuk menghadirkan pertanian organik yang berkelanjutan. Dari lahan seluas 2 hektar, kami kini telah berkembang menjadi kawasan agrowisata seluas 5 hektar yang menawarkan pengalaman bertani yang menyenangkan dan edukatif.",
+  "mission": "Mengembangkan potensi mahasiswa Farmasi melalui kegiatan akademik, pengabdian masyarakat, dan peningkatan soft skills untuk menjadi farmasis profesional yang berintegritas dan berkontribusi bagi kesehatan masyarakat.",
+  "vision": "Menjadi organisasi mahasiswa Farmasi yang unggul, inovatif, dan terdepan dalam pengembangan kompetensi akademik dan non-akademik mahasiswa Farmasi di tingkat regional dan nasional.",
+  "story": "Himpunan Mahasiswa Jurusan Farmasi (HMJF) UIN Alauddin Makassar adalah organisasi intra kampus yang mewadahi seluruh mahasiswa Jurusan Farmasi. Didirikan dengan semangat pengabdian dan pengembangan ilmu kefarmasian, HMJF telah menjadi rumah kedua bagi mahasiswa untuk mengembangkan potensi akademik dan non-akademik. Melalui berbagai program kerja yang terstruktur, kami berkomitmen untuk melahirkan farmasis muda yang profesional, berintegritas, dan siap berkontribusi untuk kesehatan masyarakat.",
   "values": [
     {
-      "title": "Organik 100%",
-      "description": "Semua produk kami ditanam tanpa pestisida kimia dan pupuk sintetis"
+      "title": "Akademik",
+      "description": "Mendorong keunggulan akademik melalui kajian ilmiah, seminar, dan workshop kefarmasian"
     },
     {
-      "title": "Berkelanjutan",
-      "description": "Kami menerapkan praktik pertanian yang ramah lingkungan dan berkelanjutan"
+      "title": "Kepemimpinan",
+      "description": "Membentuk jiwa kepemimpinan yang amanah, profesional, dan bertanggung jawab"
     },
     {
-      "title": "Edukatif",
-      "description": "Kami berkomitmen untuk mengedukasi masyarakat tentang pentingnya pertanian organik"
+      "title": "Pengabdian",
+      "description": "Berkontribusi aktif dalam kegiatan sosial dan kesehatan masyarakat"
     },
     {
-      "title": "Berkualitas",
-      "description": "Produk segar langsung dari kebun dengan kualitas terjamin"
+      "title": "Profesionalisme",
+      "description": "Mempersiapkan mahasiswa menjadi farmasis yang kompeten dan berintegritas"
     }
   ],
   "timeline": [
     {
-      "year": "2018",
-      "title": "Awal Mula",
-      "description": "Memulai dengan lahan 2 hektar dan 3 jenis tanaman organik"
+      "year": "2015",
+      "title": "Pendirian HMJF",
+      "description": "Resmi berdiri sebagai wadah mahasiswa Farmasi UIN Alauddin Makassar"
+    },
+    {
+      "year": "2017",
+      "title": "Pharmacy Camp Pertama",
+      "description": "Menyelenggarakan Pharmacy Camp sebagai program unggulan pengembangan soft skills"
     },
     {
       "year": "2019",
-      "title": "Ekspansi Produk",
-      "description": "Menambah varietas buah, sayur, dan bunga hingga 20+ jenis"
+      "title": "Kolaborasi Nasional",
+      "description": "Menjalin kerjasama dengan berbagai organisasi farmasi tingkat nasional"
     },
     {
-      "year": "2020",
-      "title": "Membuka Wisata",
-      "description": "Resmi membuka layanan agrowisata untuk keluarga dan sekolah"
+      "year": "2021",
+      "title": "Digitalisasi Program",
+      "description": "Adaptasi digital dalam kegiatan organisasi dan pelayanan anggota"
     },
     {
-      "year": "2022",
-      "title": "Sertifikasi Organik",
-      "description": "Mendapat sertifikasi organik nasional"
-    },
-    {
-      "year": "2024",
-      "title": "Perluasan Lahan",
-      "description": "Berkembang menjadi 5 hektar dengan fasilitas lengkap"
+      "year": "2023",
+      "title": "Prestasi Nasional",
+      "description": "Meraih penghargaan sebagai HMJ Farmasi terbaik di berbagai kompetisi"
     }
   ],
-  "team": [
-    {
-      "name": "Budi Santoso",
-      "role": "Founder & CEO",
-      "bio": "Lulusan pertanian dengan 15 tahun pengalaman di bidang pertanian organik",
-      "image": "/images/team/budi.jpg"
-    },
-    {
-      "name": "Siti Rahayu",
-      "role": "Head of Operations",
-      "bio": "Ahli dalam manajemen operasional dan pengembangan produk organik",
-      "image": "/images/team/siti.jpg"
-    },
-    {
-      "name": "Ahmad Fauzi",
-      "role": "Education Program Manager",
-      "bio": "Berpengalaman dalam program edukasi pertanian untuk berbagai kalangan",
-      "image": "/images/team/ahmad.jpg"
-    }
-  ],
+  "team": [],
   "affiliations": [
     {
-      "name": "Kelompok Tani Sejahtera",
-      "type": "Farmer Group",
-      "description": "Kelompok tani lokal yang menjadi mitra utama dalam pengembangan pertanian organik",
-      "logo": "/images/affiliations/kelompok-tani.png"
+      "name": "ISMAFARSI",
+      "type": "National Organization",
+      "description": "Ikatan Senat Mahasiswa Farmasi Seluruh Indonesia - organisasi payung mahasiswa farmasi tingkat nasional",
+      "logo": "/images/affiliations/ismafarsi.png"
     },
     {
-      "name": "Asosiasi Pertanian Organik Indonesia",
-      "type": "Association",
-      "description": "Anggota resmi asosiasi yang mendukung pengembangan pertanian organik nasional",
-      "logo": "/images/affiliations/apoi.png"
+      "name": "IAI Sulawesi Selatan",
+      "type": "Professional Association",
+      "description": "Ikatan Apoteker Indonesia cabang Sulawesi Selatan sebagai mitra pembinaan profesionalisme",
+      "logo": "/images/affiliations/iai.png"
     },
     {
-      "name": "Dinas Pertanian Kabupaten",
+      "name": "Dinas Kesehatan Sulsel",
       "type": "Government",
-      "description": "Bekerja sama dengan pemerintah daerah dalam program pemberdayaan petani",
-      "logo": "/images/affiliations/dinas-pertanian.png"
+      "description": "Kerjasama dalam program kesehatan masyarakat dan pengabdian sosial",
+      "logo": "/images/affiliations/dinkes.png"
     }
   ],
   "certifications": [
     {
-      "name": "Sertifikasi Organik Indonesia",
-      "year": "2022",
-      "image": "/images/certifications/organic-cert.jpg"
+      "name": "HMJ Farmasi Terbaik Regional",
+      "year": "2023",
+      "image": "/images/certifications/best-hmj.jpg"
     },
     {
-      "name": "Sertifikat Keamanan Pangan",
-      "year": "2023",
-      "image": "/images/certifications/food-safety.jpg"
+      "name": "Penghargaan Pengabdian Masyarakat",
+      "year": "2024",
+      "image": "/images/certifications/community-service.jpg"
     }
   ],
   "statistics": {
-    "landArea": "5 hektar",
-    "productTypes": "30+ jenis",
-    "visitorsPerYear": "10.000+",
-    "farmerPartners": "50+ petani"
+    "landArea": "200+ Anggota",
+    "productTypes": "50+ Event/Tahun",
+    "visitorsPerYear": "8 Divisi",
+    "farmerPartners": "10 Tahun"
   }
 }

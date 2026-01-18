@@ -1,68 +1,68 @@
 {
   "hero": {
-    "badge": "100% Organik & Berkelanjutan",
-    "title": "Nikmati Kesegaran",
-    "titleHighlight": "Langsung dari Kebun",
-    "description": "Agrowisata dengan buah-buahan, sayuran, dan bunga organik segar. Pengalaman edukatif yang menyenangkan untuk seluruh keluarga.",
+    "badge": "Wadah Mahasiswa Farmasi UIN Alauddin",
+    "title": "Bersama Membangun",
+    "titleHighlight": "Farmasis Profesional",
+    "description": "Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar - Mengembangkan potensi akademik, kepemimpinan, dan pengabdian untuk menjadi farmasis yang berintegritas.",
     "primaryCTA": {
-      "text": "Booking Sekarang",
-      "link": "/booking"
+      "text": "Lihat Event Kami",
+      "link": "/events"
     },
     "secondaryCTA": {
-      "text": "Lihat Produk",
-      "link": "/products"
+      "text": "Tentang Kami",
+      "link": "/about"
     },
     "stats": [
       {
-        "value": "30+",
-        "label": "Jenis Produk"
+        "value": "200+",
+        "label": "Anggota Aktif"
       },
       {
-        "value": "5",
-        "label": "Hektar Lahan"
+        "value": "50+",
+        "label": "Event per Tahun"
       },
       {
-        "value": "10K+",
-        "label": "Pengunjung/Tahun"
+        "value": "8",
+        "label": "Divisi"
       }
     ]
   },
   "features": {
-    "title": "Kenapa Memilih Kami?",
-    "description": "Pengalaman agrowisata terbaik dengan fasilitas lengkap dan produk berkualitas",
+    "title": "Kenapa Bergabung dengan HMJF?",
+    "description": "Wadah pengembangan diri mahasiswa Farmasi dengan berbagai program unggulan",
     "items": [
       {
-        "icon": "Leaf",
-        "title": "100% Organik",
-        "description": "Semua produk ditanam tanpa pestisida kimia dan pupuk sintetis",
-        "color": "text-green-600 bg-green-100"
-      },
-      {
-        "icon": "Users",
-        "title": "Ramah Keluarga",
-        "description": "Aktivitas menyenangkan untuk semua usia, dari anak-anak hingga dewasa",
+        "icon": "GraduationCap",
+        "title": "Pengembangan Akademik",
+        "description": "Kajian ilmiah, seminar, dan workshop kefarmasian untuk meningkatkan kompetensi",
         "color": "text-blue-600 bg-blue-100"
       },
       {
-        "icon": "GraduationCap",
-        "title": "Edukatif",
-        "description": "Belajar langsung tentang pertanian berkelanjutan dari para ahli",
+        "icon": "Users",
+        "title": "Kepemimpinan",
+        "description": "Membentuk jiwa kepemimpinan melalui berbagai program organisasi",
         "color": "text-purple-600 bg-purple-100"
       },
       {
         "icon": "Heart",
-        "title": "Produk Segar",
-        "description": "Petik langsung dari kebun, dijamin kesegaran dan kualitasnya",
+        "title": "Pengabdian Masyarakat",
+        "description": "Bakti sosial dan edukasi kesehatan untuk kontribusi nyata bagi masyarakat",
         "color": "text-red-600 bg-red-100"
+      },
+      {
+        "icon": "Sparkles",
+        "title": "Networking",
+        "description": "Membangun koneksi dengan mahasiswa farmasi se-Indonesia dan praktisi",
+        "color": "text-green-600 bg-green-100"
       }
     ]
   },
   "cta": {
-    "title": "Siap Mengunjungi Kebun Kami?",
-    "description": "Booking sekarang dan dapatkan pengalaman agrowisata yang tak terlupakan bersama keluarga dan teman-teman Anda.",
+    "title": "Siap Bergabung Bersama Kami?",
+    "description": "Hubungi kami untuk informasi lebih lanjut tentang HMJF UIN Alauddin Makassar dan kegiatan kami.",
     "primaryCTA": {
-      "text": "Booking Kunjungan",
-      "link": "/booking"
+      "text": "Lihat Kepengurusan",
+      "link": "/leadership"
     },
     "secondaryCTA": {
       "text": "Hubungi Kami",

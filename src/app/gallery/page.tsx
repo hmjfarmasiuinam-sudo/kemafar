@@ -9,7 +9,7 @@ import { jsonGalleryRepository } from '@/infrastructure/repositories/JsonGallery
 
 export const metadata: Metadata = {
   title: 'Galeri',
-  description: 'Galeri foto dan video Griya Flora Babulu',
+  description: 'Galeri foto dan video kegiatan HMJF UIN Alauddin Makassar',
 };
 
 export default async function GalleryPage() {
@@ -24,7 +24,7 @@ export default async function GalleryPage() {
             Galeri Kami
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl">
-            Lihat momen-momen indah dan kegiatan menarik di agrowisata kami melalui koleksi foto dan video.
+            Lihat momen-momen indah dan kegiatan menarik HMJF UIN Alauddin Makassar melalui koleksi foto dan video.
           </p>
         </div>
 
