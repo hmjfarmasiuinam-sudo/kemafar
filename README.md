@@ -76,33 +76,36 @@ cp .env.example .env.local
 # Edit .env.local dengan Supabase credentials kamu
 ```
 
-### Database Setup
+### Database Setup (Cloud-Based)
+
+> **Note**: Semua setup database dilakukan di Supabase Dashboard (cloud-based). Tidak perlu Supabase CLI lokal.
 
 1. **Create Supabase Project**
    - Buat project baru di [Supabase](https://supabase.com)
-   - Copy Project URL dan Anon Key
+   - Copy **Project URL** dan **Anon Key** dari Settings → API
 
-2. **Run Migration**
-   ```bash
-   # Di Supabase SQL Editor, jalankan migration file:
-   supabase/migrations/20240122000000_initial_schema.sql
-   ```
+2. **Run Migration di SQL Editor**
+   - Buka **SQL Editor** di Supabase Dashboard
+   - Copy isi file `supabase/migrations/20240122000000_initial_schema.sql`
+   - Paste dan **Run** di SQL Editor
+   - Tunggu hingga selesai (create tables, RLS policies, functions)
 
-3. **Seed Data (Optional)**
-   ```bash
-   # Jalankan seed file untuk data artikel dari kemafar.org:
-   supabase/seed-articles.sql
-   ```
+3. **Seed Data Articles (Optional)**
+   - Di **SQL Editor**, copy isi file `supabase/seed-articles.sql`
+   - Paste dan **Run** untuk insert 82 artikel dari kemafar.org
+   - Proses memakan waktu ~30 detik
 
 4. **Create First Admin User**
-   - Signup melalui aplikasi
-   - Di Supabase Dashboard → Authentication → Users
-   - Edit user, set `raw_app_meta_data`:
+   - Signup melalui aplikasi (http://localhost:3000/admin/login)
+   - Di Supabase Dashboard → **Authentication** → **Users**
+   - Click user yang baru dibuat → Edit user
+   - Tambahkan di `raw_app_meta_data`:
      ```json
      {
        "role": "super_admin"
      }
      ```
+   - Save → Logout → Login kembali
 
 ### Environment Variables
 
