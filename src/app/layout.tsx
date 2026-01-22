@@ -2,10 +2,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Poppins } from 'next/font/google';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/constants';
-import { FloatingDock } from '@/shared/components/layout/FloatingDock';
-import { Footer } from '@/shared/components/layout/Footer';
 import { Toaster } from 'sonner';
-import { PageTransition } from '@/shared/providers/PageTransition';
 import { AuthProvider } from '@/lib/auth/AuthContext';
 
 const plusJakarta = Plus_Jakarta_Sans({
