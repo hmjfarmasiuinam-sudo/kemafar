@@ -3,7 +3,7 @@
  */
 
 import { Article, ArticleListItem, ArticleCategory } from '@/core/entities/Article';
-import { IArticleRepository } from '@/core/repositories/IArticleRepository';
+import { IArticleRepository, PaginatedResult } from '@/core/repositories/IArticleRepository';
 import articlesData from '../../../public/data/articles.json';
 
 export class JsonArticleRepository implements IArticleRepository {
@@ -24,6 +24,37 @@ export class JsonArticleRepository implements IArticleRepository {
       .filter((article) => article.category === category)
       .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
       .map(this.toListItem);
+  }
+
+  async getPaginated(
+    page: number,
+    limit: number,
+    category?: ArticleCategory
+  ): Promise<PaginatedResult<ArticleListItem>> {
+    const articles = await this.fetchArticles();
+
+    let filtered = articles;
+    if (category) {
+      filtered = articles.filter((article) => article.category === category);
+    }
+
+    const sorted = filtered.sort(
+      (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    );
+
+    const totalCount = sorted.length;
+    const totalPages = Math.ceil(totalCount / limit);
+    const from = (page - 1) * limit;
+    const paginated = sorted.slice(from, from + limit);
+
+    return {
+      items: paginated.map(this.toListItem),
+      totalCount,
+      totalPages,
+      currentPage: page,
+      hasNextPage: page < totalPages,
+      hasPrevPage: page > 1,
+    };
   }
 
   async getFeatured(limit: number = 3): Promise<ArticleListItem[]> {
@@ -78,3 +109,4 @@ export class JsonArticleRepository implements IArticleRepository {
     };
   }
 }
+

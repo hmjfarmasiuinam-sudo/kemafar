@@ -1,4 +1,4 @@
-import { IArticleRepository } from '@/core/repositories/IArticleRepository';
+import { IArticleRepository, PaginatedResult } from '@/core/repositories/IArticleRepository';
 import { Article, ArticleListItem, ArticleCategory } from '@/core/entities/Article';
 import { supabase } from '@/lib/supabase/client';
 import { dbArticleToArticle, dbArticleToListItem } from '@/lib/supabase/type-mappers';
@@ -65,6 +65,49 @@ export class SupabaseArticleRepository implements IArticleRepository {
       return data?.map(dbArticleToListItem) ?? [];
     } catch (error) {
       console.error('Failed to fetch articles by category:', error);
+      throw new Error('Unable to load articles. Please try again later.');
+    }
+  }
+
+  async getPaginated(
+    page: number,
+    limit: number,
+    category?: ArticleCategory
+  ): Promise<PaginatedResult<ArticleListItem>> {
+    try {
+      const from = (page - 1) * limit;
+      const to = from + limit - 1;
+
+      let query = supabase
+        .from('articles')
+        .select('*', { count: 'exact' })
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+
+      if (category) {
+        query = query.eq('category', category);
+      }
+
+      const { data, count, error } = await query.range(from, to);
+
+      if (error) {
+        console.error('Error fetching paginated articles:', error);
+        throw new Error('Failed to fetch articles');
+      }
+
+      const totalCount = count ?? 0;
+      const totalPages = Math.ceil(totalCount / limit);
+
+      return {
+        items: data?.map(dbArticleToListItem) ?? [],
+        totalCount,
+        totalPages,
+        currentPage: page,
+        hasNextPage: page < totalPages,
+        hasPrevPage: page > 1,
+      };
+    } catch (error) {
+      console.error('Failed to fetch paginated articles:', error);
       throw new Error('Unable to load articles. Please try again later.');
     }
   }

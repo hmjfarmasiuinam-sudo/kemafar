@@ -4,10 +4,13 @@ import { RepositoryFactory } from '@/infrastructure/repositories/RepositoryFacto
 import { ARTICLE_CATEGORIES } from '@/lib/constants';
 import { ArticlesGrid } from '@/features/articles/components/ArticlesGrid';
 import { SegmentedControl } from '@/shared/components/ui/SegmentedControl';
+import { Pagination } from '@/shared/components/ui/Pagination';
 import { ArticleCategory } from '@/core/entities/Article';
 
 // Zod schema for validating article category query parameter
 const ArticleCategorySchema = z.enum(['post', 'blog', 'opinion', 'publication', 'info']);
+
+const ITEMS_PER_PAGE = 12;
 
 export const metadata: Metadata = {
   title: 'Artikel - HMJF UIN Alauddin',
@@ -17,7 +20,7 @@ export const metadata: Metadata = {
 export default async function ArticlesPage({
   searchParams,
 }: {
-  searchParams: { category?: string };
+  searchParams: { category?: string; page?: string };
 }) {
   const articleRepo = RepositoryFactory.getArticleRepository();
 
@@ -28,12 +31,13 @@ export default async function ArticlesPage({
     if (validation.success) {
       validatedCategory = validation.data;
     }
-    // If validation fails, validatedCategory remains undefined and we show all articles
   }
 
-  const articles = validatedCategory
-    ? await articleRepo.getByCategory(validatedCategory)
-    : await articleRepo.getAll();
+  // Validate page parameter
+  const currentPage = Math.max(1, parseInt(searchParams.page ?? '1', 10) || 1);
+
+  // Fetch paginated articles
+  const result = await articleRepo.getPaginated(currentPage, ITEMS_PER_PAGE, validatedCategory);
 
   return (
     <div className="min-h-screen bg-white">
@@ -64,7 +68,20 @@ export default async function ArticlesPage({
 
       {/* Articles Masonry Grid - Animated */}
       <section className="container-custom py-16">
-        <ArticlesGrid articles={articles} />
+        {/* Results Count */}
+        <p className="text-gray-600 mb-8">
+          Menampilkan {result.items.length} dari {result.totalCount} artikel
+        </p>
+
+        <ArticlesGrid articles={result.items} />
+
+        {/* Pagination */}
+        <Pagination
+          currentPage={result.currentPage}
+          totalPages={result.totalPages}
+          basePath="/articles"
+          searchParams={{ category: validatedCategory }}
+        />
       </section>
     </div>
   );
