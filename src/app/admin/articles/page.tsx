@@ -7,13 +7,14 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { Search, Plus, Edit, Trash2, Eye, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { Article } from '@/types/article';
 
-interface Article {
+interface ArticleListItem {
   id: string;
   title: string;
   slug: string;
   category: string;
-  status: 'draft' | 'pending' | 'published' | 'archived';
+  status: Article['status'];
   author: {
     name: string;
     email: string;
@@ -30,7 +31,7 @@ const ITEMS_PER_PAGE = 20;
 export default function ArticlesPage() {
   const router = useRouter();
   const { user, profile, hasPermission, canEditOwnContent, canPublishArticles } = useAuth();
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<ArticleListItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
@@ -141,6 +142,7 @@ export default function ArticlesPage() {
     try {
       const { error } = await supabase
         .from('articles')
+        // @ts-ignore Supabase types not generated
         .update({ status: 'published', published_at: now })
         .eq('id', id);
 
@@ -171,6 +173,7 @@ export default function ArticlesPage() {
     try {
       const { error } = await supabase
         .from('articles')
+        // @ts-ignore Supabase types not generated
         .update({ status: 'draft' })
         .eq('id', id);
 
@@ -184,7 +187,7 @@ export default function ArticlesPage() {
     }
   }
 
-  function canEditArticle(article: Article): boolean {
+  function canEditArticle(article: ArticleListItem): boolean {
     if (hasPermission(['super_admin', 'admin'])) return true;
     if (profile?.role === 'kontributor' && user) {
       return canEditOwnContent(article.author_id) && article.status === 'draft';
@@ -192,7 +195,7 @@ export default function ArticlesPage() {
     return false;
   }
 
-  function canDeleteArticle(article: Article): boolean {
+  function canDeleteArticle(article: ArticleListItem): boolean {
     if (hasPermission(['super_admin', 'admin'])) return true;
     if (profile?.role === 'kontributor' && user) {
       return canEditOwnContent(article.author_id) && article.status === 'draft';

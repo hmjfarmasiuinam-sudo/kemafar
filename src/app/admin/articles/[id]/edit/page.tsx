@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
 import { MarkdownEditor } from '@/shared/components/MarkdownEditor';
+import { Article, ArticleUpdateData } from '@/types/article';
 
 interface ArticleFormData {
   title: string;
@@ -64,26 +65,29 @@ export default function EditArticlePage() {
         return;
       }
 
+      // Type assertion for Supabase data
+      const article = data as Article;
+
       // Check permissions - profile is guaranteed to exist here due to useEffect guard
       if (profile?.role === 'kontributor') {
-        if (!canEditOwnContent(data.author_id) || data.status !== 'draft') {
+        if (!canEditOwnContent(article.author_id) || article.status !== 'draft') {
           toast.error('You can only edit your own draft articles');
           router.push('/admin/articles');
           return;
         }
       }
 
-      setAuthorId(data.author_id);
+      setAuthorId(article.author_id);
       setFormData({
-        title: data.title || '',
-        slug: data.slug || '',
-        excerpt: data.excerpt || '',
-        content: data.content || '',
-        category: data.category as ArticleFormData['category'] || 'post',
-        cover_image: data.cover_image || '',
-        tags: Array.isArray(data.tags) ? data.tags.join(', ') : '',
-        featured: data.featured || false,
-        status: data.status || 'draft',
+        title: article.title || '',
+        slug: article.slug || '',
+        excerpt: article.excerpt || '',
+        content: article.content || '',
+        category: article.category as ArticleFormData['category'] || 'post',
+        cover_image: article.cover_image || '',
+        tags: Array.isArray(article.tags) ? article.tags.join(', ') : '',
+        featured: article.featured || false,
+        status: article.status || 'draft',
       });
     } catch (error: any) {
       console.error('Error fetching article:', error);
@@ -140,11 +144,11 @@ export default function EditArticlePage() {
         cover_image: formData.cover_image,
         tags: formData.tags ? formData.tags.split(',').map((t) => t.trim()) : [],
         featured: formData.featured,
-        updated_at: new Date().toISOString(),
       };
 
       const { error } = await supabase
         .from('articles')
+        // @ts-expect-error - Supabase types not generated yet
         .update(articleData)
         .eq('id', params.id);
 

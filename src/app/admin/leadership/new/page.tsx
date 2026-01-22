@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase/client';
 import { toast } from 'sonner';
 import { ArrowLeft, Upload, X } from 'lucide-react';
 import Link from 'next/link';
+import { LeadershipFormData } from '@/types/forms';
 
 const POSITIONS = [
   { value: 'ketua', label: 'Ketua' },
@@ -27,31 +28,11 @@ const DIVISIONS = [
   { value: 'islamic-spirituality', label: 'Islamic Spirituality' },
 ];
 
-interface FormData {
-  name: string;
-  position: string;
-  division: string;
-  photo: string;
-  email: string;
-  phone: string;
-  nim: string;
-  batch: string;
-  bio: string;
-  social_media: {
-    instagram?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
-  period_start: string;
-  period_end: string;
-  order: number;
-}
-
 export default function NewLeadershipPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string>('');
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<LeadershipFormData>({
     name: '',
     position: '',
     division: '',
@@ -61,7 +42,9 @@ export default function NewLeadershipPage() {
     nim: '',
     batch: '',
     bio: '',
-    social_media: {},
+    social_media_instagram: '',
+    social_media_linkedin: '',
+    social_media_twitter: '',
     period_start: '',
     period_end: '',
     order: 1,
@@ -75,7 +58,7 @@ export default function NewLeadershipPage() {
   const handleSocialMediaChange = (platform: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      social_media: { ...prev.social_media, [platform]: value },
+      [`social_media_${platform}`]: value,
     }));
   };
 
@@ -143,26 +126,30 @@ export default function NewLeadershipPage() {
     try {
       setLoading(true);
 
-      // Clean social media data
-      const cleanedSocialMedia = Object.fromEntries(
-        Object.entries(formData.social_media).filter(([_, value]) => value !== '')
-      );
+      // Build social_media object from flattened fields
+      const socialMedia: any = {};
+      if (formData.social_media_instagram) socialMedia.instagram = formData.social_media_instagram;
+      if (formData.social_media_linkedin) socialMedia.linkedin = formData.social_media_linkedin;
+      if (formData.social_media_twitter) socialMedia.twitter = formData.social_media_twitter;
 
-      const { error } = await supabase.from('leadership').insert({
-        name: formData.name,
-        position: formData.position,
-        division: formData.division || null,
-        photo: formData.photo,
-        email: formData.email || null,
-        phone: formData.phone || null,
-        nim: formData.nim || null,
-        batch: formData.batch || null,
-        bio: formData.bio || null,
-        social_media: Object.keys(cleanedSocialMedia).length > 0 ? cleanedSocialMedia : null,
-        period_start: formData.period_start,
-        period_end: formData.period_end,
-        order: formData.order,
-      });
+      const { error } = await supabase
+        .from('leadership')
+        // @ts-ignore Supabase types not generated
+        .insert({
+          name: formData.name,
+          position: formData.position,
+          division: formData.division || null,
+          photo: formData.photo,
+          email: formData.email || null,
+          phone: formData.phone || null,
+          nim: formData.nim || null,
+          batch: formData.batch || null,
+          bio: formData.bio || null,
+          social_media: Object.keys(socialMedia).length > 0 ? socialMedia : null,
+          period_start: formData.period_start,
+          period_end: formData.period_end,
+          order: formData.order,
+        });
 
       if (error) throw error;
 
@@ -403,21 +390,21 @@ export default function NewLeadershipPage() {
               <input
                 type="url"
                 placeholder="Instagram URL"
-                value={formData.social_media.instagram || ''}
+                value={formData.social_media_instagram || ''}
                 onChange={(e) => handleSocialMediaChange('instagram', e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
               <input
                 type="url"
                 placeholder="LinkedIn URL"
-                value={formData.social_media.linkedin || ''}
+                value={formData.social_media_linkedin || ''}
                 onChange={(e) => handleSocialMediaChange('linkedin', e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
               <input
                 type="url"
                 placeholder="Twitter URL"
-                value={formData.social_media.twitter || ''}
+                value={formData.social_media_twitter || ''}
                 onChange={(e) => handleSocialMediaChange('twitter', e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />

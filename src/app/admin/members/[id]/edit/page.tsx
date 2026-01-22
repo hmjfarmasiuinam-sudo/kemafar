@@ -7,23 +7,8 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
-
-interface MemberFormData {
-  name: string;
-  nim: string;
-  email: string;
-  phone: string;
-  photo: string;
-  batch: string;
-  status: 'active' | 'inactive' | 'alumni';
-  division: string;
-  position: string;
-  bio: string;
-  interests: string;
-  achievements: string;
-  instagram: string;
-  linkedin: string;
-}
+import { MemberFormData } from '@/types/forms';
+import { Member } from '@/types';
 
 export default function EditMemberPage() {
   const router = useRouter();
@@ -41,11 +26,14 @@ export default function EditMemberPage() {
     status: 'active',
     division: '',
     position: '',
+    joined_at: '',
+    graduated_at: '',
     bio: '',
     interests: '',
     achievements: '',
-    instagram: '',
-    linkedin: '',
+    social_media_instagram: '',
+    social_media_linkedin: '',
+    social_media_twitter: '',
   });
 
   useEffect(() => {
@@ -73,21 +61,26 @@ export default function EditMemberPage() {
         return;
       }
 
+      const member = data as Member;
+
       setFormData({
-        name: data.name || '',
-        nim: data.nim || '',
-        email: data.email || '',
-        phone: data.phone || '',
-        photo: data.photo || '',
-        batch: data.batch || '',
-        status: data.status || 'active',
-        division: data.division || '',
-        position: data.position || '',
-        bio: data.bio || '',
-        interests: Array.isArray(data.interests) ? data.interests.join(', ') : '',
-        achievements: Array.isArray(data.achievements) ? data.achievements.join(', ') : '',
-        instagram: data.social_media?.instagram || '',
-        linkedin: data.social_media?.linkedin || '',
+        name: member.name || '',
+        nim: member.nim || '',
+        email: member.email || '',
+        phone: member.phone || '',
+        photo: member.photo || '',
+        batch: member.batch || '',
+        status: member.status || 'active',
+        division: member.division || '',
+        position: member.position || '',
+        joined_at: member.joined_at ? member.joined_at.split('T')[0] : '',
+        graduated_at: member.graduated_at ? member.graduated_at.split('T')[0] : '',
+        bio: member.bio || '',
+        interests: Array.isArray(member.interests) ? member.interests.join(', ') : '',
+        achievements: Array.isArray(member.achievements) ? member.achievements.join(', ') : '',
+        social_media_instagram: member.social_media?.instagram || '',
+        social_media_linkedin: member.social_media?.linkedin || '',
+        social_media_twitter: member.social_media?.twitter || '',
       });
     } catch (error: any) {
       console.error('Error fetching member:', error);
@@ -102,6 +95,12 @@ export default function EditMemberPage() {
     setLoading(true);
 
     try {
+      // Build social_media object from flattened fields
+      const socialMedia: any = {};
+      if (formData.social_media_instagram) socialMedia.instagram = formData.social_media_instagram;
+      if (formData.social_media_linkedin) socialMedia.linkedin = formData.social_media_linkedin;
+      if (formData.social_media_twitter) socialMedia.twitter = formData.social_media_twitter;
+
       const memberData = {
         name: formData.name,
         nim: formData.nim,
@@ -112,6 +111,8 @@ export default function EditMemberPage() {
         status: formData.status,
         division: formData.division || null,
         position: formData.position || null,
+        joined_at: formData.joined_at || null,
+        graduated_at: formData.graduated_at || null,
         bio: formData.bio || null,
         interests: formData.interests
           ? formData.interests.split(',').map((i) => i.trim())
@@ -119,14 +120,12 @@ export default function EditMemberPage() {
         achievements: formData.achievements
           ? formData.achievements.split(',').map((a) => a.trim())
           : [],
-        social_media: {
-          instagram: formData.instagram || null,
-          linkedin: formData.linkedin || null,
-        },
+        social_media: Object.keys(socialMedia).length > 0 ? socialMedia : null,
       };
 
       const { error } = await supabase
         .from('members')
+        // @ts-ignore Supabase types not generated
         .update(memberData)
         .eq('id', params.id);
 
@@ -365,14 +364,14 @@ export default function EditMemberPage() {
           </div>
 
           <div>
-            <label htmlFor="instagram" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="social_media_instagram" className="block text-sm font-medium text-gray-700 mb-2">
               Instagram Username
             </label>
             <input
               type="text"
-              id="instagram"
-              name="instagram"
-              value={formData.instagram}
+              id="social_media_instagram"
+              name="social_media_instagram"
+              value={formData.social_media_instagram}
               onChange={handleChange}
               placeholder="username (without @)"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
@@ -380,16 +379,31 @@ export default function EditMemberPage() {
           </div>
 
           <div>
-            <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="social_media_linkedin" className="block text-sm font-medium text-gray-700 mb-2">
               LinkedIn URL
             </label>
             <input
               type="url"
-              id="linkedin"
-              name="linkedin"
-              value={formData.linkedin}
+              id="social_media_linkedin"
+              name="social_media_linkedin"
+              value={formData.social_media_linkedin}
               onChange={handleChange}
               placeholder="https://linkedin.com/in/username"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="social_media_twitter" className="block text-sm font-medium text-gray-700 mb-2">
+              Twitter URL
+            </label>
+            <input
+              type="url"
+              id="social_media_twitter"
+              name="social_media_twitter"
+              value={formData.social_media_twitter}
+              onChange={handleChange}
+              placeholder="https://twitter.com/username"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>

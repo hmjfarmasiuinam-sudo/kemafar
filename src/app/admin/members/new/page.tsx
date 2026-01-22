@@ -62,6 +62,7 @@ export default function NewMemberPage() {
         },
       };
 
+      // @ts-expect-error - Supabase types not generated yet
       const { error } = await supabase.from('members').insert([memberData]);
 
       if (error) throw error;

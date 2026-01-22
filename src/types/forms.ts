@@ -28,11 +28,9 @@ export interface LeadershipFormData {
   nim: string;
   batch: string;
   bio: string;
-  social_media: {
-    instagram?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
+  social_media_instagram: string;
+  social_media_linkedin: string;
+  social_media_twitter: string;
   period_start: string;
   period_end: string;
   order: number;
@@ -44,17 +42,19 @@ export interface MemberFormData {
   nim: string;
   email: string;
   phone: string;
-  batch: string;
-  major: string;
   photo: string;
-  bio: string;
-  join_date: string;
+  batch: string;
   status: 'active' | 'inactive' | 'alumni';
-  social_media: {
-    instagram?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
+  division: string;
+  position: string;
+  joined_at: string;
+  graduated_at: string;
+  bio: string;
+  interests: string;
+  achievements: string;
+  social_media_instagram: string;
+  social_media_linkedin: string;
+  social_media_twitter: string;
 }
 
 // Article Forms
@@ -64,9 +64,10 @@ export interface ArticleFormData {
   content: string;
   excerpt: string;
   cover_image: string;
-  category: string;
-  tags: string[];
-  status: 'draft' | 'published';
+  category: 'post' | 'blog' | 'opinion' | 'publication' | 'info';
+  tags: string;
+  featured: boolean;
+  status: 'draft' | 'pending' | 'published' | 'archived';
 }
 
 // Event Forms
@@ -74,13 +75,21 @@ export interface EventFormData {
   title: string;
   slug: string;
   description: string;
+  content: string;
   cover_image: string;
+  category: 'seminar' | 'workshop' | 'community-service' | 'competition' | 'training' | 'other';
   location: string;
-  event_date: string;
-  start_time: string;
-  end_time: string;
-  registration_link: string;
+  location_type: string;
+  location_address: string;
+  location_maps_url: string;
+  start_date: string;
+  end_date: string;
+  organizer_name: string;
+  organizer_contact: string;
+  registration_url: string;
+  registration_deadline: string;
+  max_participants: string;
   status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
-  max_participants: number | null;
-  tags: string[];
+  tags: string;
+  featured: boolean;
 }

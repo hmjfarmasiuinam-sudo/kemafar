@@ -7,14 +7,15 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { Search, Plus, Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { Member } from '@/types/member';
 
-interface Member {
+interface MemberListItem {
   id: string;
   name: string;
   nim: string;
   email: string;
   batch: string;
-  status: string;
+  status: Member['status'];
   division: string | null;
   position: string | null;
 }
@@ -26,7 +27,7 @@ const ITEMS_PER_PAGE = 20;
 export default function MembersPage() {
   const router = useRouter();
   const { profile, hasPermission, loading: authLoading } = useAuth();
-  const [members, setMembers] = useState<Member[]>([]);
+  const [members, setMembers] = useState<MemberListItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');

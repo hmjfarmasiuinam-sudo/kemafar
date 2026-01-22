@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Upload, X } from 'lucide-react';
 import Link from 'next/link';
 import { LeadershipFormData } from '@/types';
+import { Leadership } from '@/types/leadership';
 import { showError, showSuccess } from '@/lib/utils/error-handler';
 import { FormSkeleton } from '@/components/ui/Skeleton';
 
@@ -47,7 +48,9 @@ export default function EditLeadershipPage() {
     nim: '',
     batch: '',
     bio: '',
-    social_media: {},
+    social_media_instagram: '',
+    social_media_linkedin: '',
+    social_media_twitter: '',
     period_start: '',
     period_end: '',
     order: 1,
@@ -71,27 +74,31 @@ export default function EditLeadershipPage() {
       if (error) throw error;
 
       if (!data) {
-        toast.error('Leader not found');
+        showError('Leader not found');
         router.push('/admin/leadership');
         return;
       }
 
+      const leader = data as Leadership;
+
       setFormData({
-        name: data.name || '',
-        position: data.position || '',
-        division: data.division || '',
-        photo: data.photo || '',
-        email: data.email || '',
-        phone: data.phone || '',
-        nim: data.nim || '',
-        batch: data.batch || '',
-        bio: data.bio || '',
-        social_media: data.social_media || {},
-        period_start: data.period_start || '',
-        period_end: data.period_end || '',
-        order: data.order || 1,
+        name: leader.name || '',
+        position: leader.position || '',
+        division: leader.division || '',
+        photo: leader.photo || '',
+        email: leader.email || '',
+        phone: leader.phone || '',
+        nim: leader.nim || '',
+        batch: leader.batch || '',
+        bio: leader.bio || '',
+        social_media_instagram: leader.social_media?.instagram || '',
+        social_media_linkedin: leader.social_media?.linkedin || '',
+        social_media_twitter: leader.social_media?.twitter || '',
+        period_start: leader.period_start || '',
+        period_end: leader.period_end || '',
+        order: leader.order || 1,
       });
-      setPhotoPreview(data.photo || '');
+      setPhotoPreview(leader.photo || '');
     } catch (error) {
       showError(error, 'Failed to load leader');
       router.push('/admin/leadership');
@@ -108,7 +115,7 @@ export default function EditLeadershipPage() {
   const handleSocialMediaChange = (platform: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      social_media: { ...prev.social_media, [platform]: value },
+      [`social_media_${platform}`]: value,
     }));
   };
 
@@ -169,12 +176,14 @@ export default function EditLeadershipPage() {
     try {
       setLoading(true);
 
-      const cleanedSocialMedia = Object.fromEntries(
-        Object.entries(formData.social_media).filter(([_, value]) => value !== '')
-      );
+      const socialMedia: any = {};
+      if (formData.social_media_instagram) socialMedia.instagram = formData.social_media_instagram;
+      if (formData.social_media_linkedin) socialMedia.linkedin = formData.social_media_linkedin;
+      if (formData.social_media_twitter) socialMedia.twitter = formData.social_media_twitter;
 
       const { error } = await supabase
         .from('leadership')
+        // @ts-ignore Supabase types not generated
         .update({
           name: formData.name,
           position: formData.position,
@@ -185,7 +194,7 @@ export default function EditLeadershipPage() {
           nim: formData.nim || null,
           batch: formData.batch || null,
           bio: formData.bio || null,
-          social_media: Object.keys(cleanedSocialMedia).length > 0 ? cleanedSocialMedia : null,
+          social_media: Object.keys(socialMedia).length > 0 ? socialMedia : null,
           period_start: formData.period_start,
           period_end: formData.period_end,
           order: formData.order,
@@ -445,21 +454,21 @@ export default function EditLeadershipPage() {
               <input
                 type="url"
                 placeholder="Instagram URL"
-                value={formData.social_media.instagram || ''}
+                value={formData.social_media_instagram || ''}
                 onChange={(e) => handleSocialMediaChange('instagram', e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
               <input
                 type="url"
                 placeholder="LinkedIn URL"
-                value={formData.social_media.linkedin || ''}
+                value={formData.social_media_linkedin || ''}
                 onChange={(e) => handleSocialMediaChange('linkedin', e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
               <input
                 type="url"
                 placeholder="Twitter URL"
-                value={formData.social_media.twitter || ''}
+                value={formData.social_media_twitter || ''}
                 onChange={(e) => handleSocialMediaChange('twitter', e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />

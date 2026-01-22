@@ -6,13 +6,14 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { Search, Plus, Edit, Trash2, Eye } from 'lucide-react';
 import Link from 'next/link';
+import { Event } from '@/types/event';
 
-interface Event {
+interface EventListItem {
   id: string;
   title: string;
   slug: string;
   category: string;
-  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  status: Event['status'];
   start_date: string;
   end_date: string;
   creator_id: string;
@@ -28,7 +29,7 @@ const ITEMS_PER_PAGE = 20;
 
 export default function EventsPage() {
   const { user, profile, hasPermission, canEditOwnContent } = useAuth();
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<EventListItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
@@ -119,7 +120,7 @@ export default function EventsPage() {
     }
   }
 
-  function canEditEvent(event: Event): boolean {
+  function canEditEvent(event: EventListItem): boolean {
     if (hasPermission(['super_admin', 'admin'])) return true;
     if (profile?.role === 'kontributor' && user) {
       return canEditOwnContent(event.creator_id);
@@ -127,7 +128,7 @@ export default function EventsPage() {
     return false;
   }
 
-  function canDeleteEvent(event: Event): boolean {
+  function canDeleteEvent(event: EventListItem): boolean {
     if (hasPermission(['super_admin', 'admin'])) return true;
     if (profile?.role === 'kontributor' && user) {
       return canEditOwnContent(event.creator_id);

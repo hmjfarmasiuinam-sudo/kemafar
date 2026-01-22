@@ -8,23 +8,13 @@ import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
 import { MarkdownEditor } from '@/shared/components/MarkdownEditor';
-
-interface ArticleFormData {
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: string;
-  category: 'post' | 'blog' | 'opinion' | 'publication' | 'info';
-  cover_image: string;
-  tags: string;
-  featured: boolean;
-}
+import { ArticleFormData } from '@/types/forms';
 
 export default function NewArticlePage() {
   const router = useRouter();
   const { user, profile } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState<ArticleFormData>({
+  const [formData, setFormData] = useState<Omit<ArticleFormData, 'status'>>({
     title: '',
     slug: '',
     excerpt: '',
@@ -95,6 +85,7 @@ export default function NewArticlePage() {
         published_at: new Date().toISOString(),
       };
 
+      // @ts-expect-error - Supabase types not generated yet
       const { error } = await supabase.from('articles').insert([articleData]);
 
       if (error) throw error;

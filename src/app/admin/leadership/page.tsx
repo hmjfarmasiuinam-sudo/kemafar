@@ -7,25 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { Search, Plus, Edit, Trash2, Calendar } from 'lucide-react';
 import Link from 'next/link';
-
-interface Leadership {
-  id: string;
-  name: string;
-  position: 'ketua' | 'wakil-ketua' | 'sekretaris' | 'bendahara' | 'coordinator' | 'member';
-  division: string | null;
-  photo: string;
-  email: string | null;
-  phone: string | null;
-  nim: string | null;
-  batch: string | null;
-  bio: string | null;
-  social_media: Record<string, string> | null;
-  period_start: string;
-  period_end: string;
-  order: number;
-  created_at: string;
-  updated_at: string;
-}
+import { Leadership } from '@/types/leadership';
 
 const POSITION_LABELS: Record<string, string> = {
   'ketua': 'Ketua',

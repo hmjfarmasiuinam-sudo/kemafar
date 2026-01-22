@@ -6,7 +6,7 @@
 export interface Leadership {
   id: string;
   name: string;
-  position: string;
+  position: 'ketua' | 'wakil-ketua' | 'sekretaris' | 'bendahara' | 'coordinator' | 'member';
   division: string | null;
   photo: string;
   email: string | null;

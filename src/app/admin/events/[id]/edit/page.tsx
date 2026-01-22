@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
+import { Event } from '@/types/event';
 
 interface EventFormData {
   title: string;
@@ -75,40 +76,42 @@ export default function EditEventPage() {
         return;
       }
 
+      const event = data as Event;
+
       // Check permissions
       if (profile?.role === 'kontributor') {
-        if (!canEditOwnContent(data.creator_id)) {
+        if (!canEditOwnContent(event.creator_id)) {
           toast.error('You can only edit your own events');
           router.push('/admin/events');
           return;
         }
       }
 
-      setCreatorId(data.creator_id);
+      setCreatorId(event.creator_id);
 
       // Format dates for datetime-local input
-      const startDate = new Date(data.start_date);
-      const endDate = new Date(data.end_date);
-      const regDeadline = data.registration_deadline ? new Date(data.registration_deadline) : null;
+      const startDate = new Date(event.start_date);
+      const endDate = new Date(event.end_date);
+      const regDeadline = event.registration_deadline ? new Date(event.registration_deadline) : null;
 
       setFormData({
-        title: data.title || '',
-        slug: data.slug || '',
-        description: data.description || '',
-        content: data.content || '',
-        category: data.category || 'seminar',
-        status: data.status || 'upcoming',
+        title: event.title || '',
+        slug: event.slug || '',
+        description: event.description || '',
+        content: event.content || '',
+        category: event.category || 'seminar',
+        status: event.status || 'upcoming',
         start_date: startDate.toISOString().slice(0, 16),
         end_date: endDate.toISOString().slice(0, 16),
-        location_type: data.location?.type || 'offline',
-        location_address: data.location?.address || '',
-        cover_image: data.cover_image || '',
-        organizer_name: data.organizer?.name || '',
-        registration_url: data.registration_url || '',
+        location_type: event.location?.type || 'offline',
+        location_address: event.location?.address || '',
+        cover_image: event.cover_image || '',
+        organizer_name: event.organizer?.name || '',
+        registration_url: event.registration_url || '',
         registration_deadline: regDeadline ? regDeadline.toISOString().slice(0, 16) : '',
-        max_participants: data.max_participants ? data.max_participants.toString() : '',
-        tags: Array.isArray(data.tags) ? data.tags.join(', ') : '',
-        featured: data.featured || false,
+        max_participants: event.max_participants ? event.max_participants.toString() : '',
+        tags: Array.isArray(event.tags) ? event.tags.join(', ') : '',
+        featured: event.featured || false,
       });
     } catch (error: any) {
       console.error('Error fetching event:', error);
@@ -178,6 +181,7 @@ export default function EditEventPage() {
 
       const { error } = await supabase
         .from('events')
+        // @ts-ignore Supabase types not generated
         .update(eventData)
         .eq('id', params.id);
 

@@ -7,26 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
-
-interface EventFormData {
-  title: string;
-  slug: string;
-  description: string;
-  content: string;
-  category: 'seminar' | 'workshop' | 'community-service' | 'competition' | 'training' | 'other';
-  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
-  start_date: string;
-  end_date: string;
-  location_type: string;
-  location_address: string;
-  cover_image: string;
-  organizer_name: string;
-  registration_url: string;
-  registration_deadline: string;
-  max_participants: string;
-  tags: string;
-  featured: boolean;
-}
+import { EventFormData } from '@/types/forms';
 
 export default function NewEventPage() {
   const router = useRouter();
@@ -38,13 +19,16 @@ export default function NewEventPage() {
     description: '',
     content: '',
     category: 'seminar',
+    location: '',
     status: 'upcoming',
     start_date: '',
     end_date: '',
     location_type: 'offline',
     location_address: '',
+    location_maps_url: '',
     cover_image: '',
     organizer_name: '',
+    organizer_contact: '',
     registration_url: '',
     registration_deadline: '',
     max_participants: '',
@@ -115,6 +99,7 @@ export default function NewEventPage() {
         creator_id: user.id,
       };
 
+      // @ts-expect-error - Supabase types not generated yet
       const { error } = await supabase.from('events').insert([eventData]);
 
       if (error) throw error;
