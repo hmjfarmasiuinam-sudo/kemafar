@@ -57,9 +57,6 @@ export default function LeadershipPage() {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-black text-white">Loading...</div>;
-  }
 
   return (
     <div className="min-h-screen bg-white" ref={containerRef}>

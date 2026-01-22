@@ -46,9 +46,6 @@ export default function MembersPage({
     fetchData();
   }, [batch, division]);
 
-  if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  }
 
   return (
     <div className="min-h-screen bg-white">
