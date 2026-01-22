@@ -7,12 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import 'react-markdown-editor-lite/lib/index.css';
-
-const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
-  ssr: false,
-});
+import { MarkdownEditor } from '@/shared/components/MarkdownEditor';
 
 interface ArticleFormData {
   title: string;
@@ -56,7 +51,7 @@ export default function NewArticlePage() {
     });
   }
 
-  function handleEditorChange({ text }: { text: string }) {
+  function handleEditorChange({ text }: { text: string; html: string }) {
     setFormData({
       ...formData,
       content: text,
@@ -255,19 +250,12 @@ export default function NewArticlePage() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Content <span className="text-red-500">*</span>
             </label>
-            <div className="border border-gray-300 rounded-lg overflow-hidden">
-              <MdEditor
-                value={formData.content}
-                style={{ height: '500px' }}
-                renderHTML={(text) => {
-                  const MarkdownIt = require('markdown-it');
-                  const md = new MarkdownIt();
-                  return md.render(text);
-                }}
-                onChange={handleEditorChange}
-                placeholder="Write your article content in Markdown..."
-              />
-            </div>
+            <MarkdownEditor
+              value={formData.content}
+              onChange={handleEditorChange}
+              placeholder="Write your article content in Markdown..."
+              height="500px"
+            />
           </div>
         </div>
 

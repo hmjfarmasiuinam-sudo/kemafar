@@ -46,7 +46,8 @@ export default function EventsPage() {
     }, searchQuery ? 300 : 0); // Debounce only for search
 
     return () => clearTimeout(timer);
-  }, [searchQuery, statusFilter, categoryFilter, currentPage]); // Remove profile, user from deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery, statusFilter, categoryFilter, currentPage, profile?.id]);
 
   async function fetchEvents() {
     try {

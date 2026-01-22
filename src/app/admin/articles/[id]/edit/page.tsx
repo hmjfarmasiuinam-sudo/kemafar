@@ -7,12 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import 'react-markdown-editor-lite/lib/index.css';
-
-const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
-  ssr: false,
-});
+import { MarkdownEditor } from '@/shared/components/MarkdownEditor';
 
 interface ArticleFormData {
   title: string;
@@ -46,14 +41,18 @@ export default function EditArticlePage() {
   });
 
   useEffect(() => {
+    // Only fetch if profile is loaded to ensure permission checks work
+    if (!profile) return;
+
     fetchArticle();
-  }, [params.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.id, profile?.id]);
 
   async function fetchArticle() {
     try {
       const { data, error } = await supabase
         .from('articles')
-        .select('*')
+        .select('id, title, slug, excerpt, content, category, cover_image, tags, featured, status, author_id')
         .eq('id', params.id)
         .single();
 
@@ -65,7 +64,7 @@ export default function EditArticlePage() {
         return;
       }
 
-      // Check permissions
+      // Check permissions - profile is guaranteed to exist here due to useEffect guard
       if (profile?.role === 'kontributor') {
         if (!canEditOwnContent(data.author_id) || data.status !== 'draft') {
           toast.error('You can only edit your own draft articles');
@@ -80,7 +79,7 @@ export default function EditArticlePage() {
         slug: data.slug || '',
         excerpt: data.excerpt || '',
         content: data.content || '',
-        category: data.category || 'post',
+        category: data.category as ArticleFormData['category'] || 'post',
         cover_image: data.cover_image || '',
         tags: Array.isArray(data.tags) ? data.tags.join(', ') : '',
         featured: data.featured || false,
@@ -110,7 +109,7 @@ export default function EditArticlePage() {
     });
   }
 
-  function handleEditorChange({ text }: { text: string }) {
+  function handleEditorChange({ text }: { text: string; html: string }) {
     setFormData({
       ...formData,
       content: text,
@@ -308,19 +307,12 @@ export default function EditArticlePage() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Content <span className="text-red-500">*</span>
             </label>
-            <div className="border border-gray-300 rounded-lg overflow-hidden">
-              <MdEditor
-                value={formData.content}
-                style={{ height: '500px' }}
-                renderHTML={(text) => {
-                  const MarkdownIt = require('markdown-it');
-                  const md = new MarkdownIt();
-                  return md.render(text);
-                }}
-                onChange={handleEditorChange}
-                placeholder="Write your article content in Markdown..."
-              />
-            </div>
+            <MarkdownEditor
+              value={formData.content}
+              onChange={handleEditorChange}
+              placeholder="Write your article content in Markdown..."
+              height="500px"
+            />
           </div>
         </div>
 

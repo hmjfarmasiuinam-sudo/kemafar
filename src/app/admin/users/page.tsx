@@ -5,14 +5,18 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function UsersPage() {
-  const { hasPermission } = useAuth();
+  const { profile, hasPermission } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
+    // Only run permission check if profile is loaded
+    if (!profile) return;
+
     if (!hasPermission(['super_admin'])) {
       router.push('/admin/dashboard');
     }
-  }, [hasPermission, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile?.id]);
 
   return (
     <div className="space-y-6">

@@ -89,6 +89,8 @@ export interface Database {
           content: string
           category: string
           author: Json
+          author_id: string
+          status: 'draft' | 'pending' | 'published' | 'archived'
           cover_image: string
           published_at: string
           updated_at: string | null
@@ -105,6 +107,8 @@ export interface Database {
           content: string
           category: string
           author: Json
+          author_id: string
+          status?: 'draft' | 'pending' | 'published' | 'archived'
           cover_image: string
           published_at: string
           updated_at?: string | null
@@ -121,6 +125,8 @@ export interface Database {
           content?: string
           category?: string
           author?: Json
+          author_id?: string
+          status?: 'draft' | 'pending' | 'published' | 'archived'
           cover_image?: string
           published_at?: string
           updated_at?: string | null
@@ -145,6 +151,7 @@ export interface Database {
           cover_image: string
           images: string[] | null
           organizer: Json
+          creator_id: string
           registration_url: string | null
           registration_deadline: string | null
           max_participants: number | null
@@ -168,6 +175,7 @@ export interface Database {
           cover_image: string
           images?: string[] | null
           organizer: Json
+          creator_id: string
           registration_url?: string | null
           registration_deadline?: string | null
           max_participants?: number | null
@@ -191,6 +199,7 @@ export interface Database {
           cover_image?: string
           images?: string[] | null
           organizer?: Json
+          creator_id?: string
           registration_url?: string | null
           registration_deadline?: string | null
           max_participants?: number | null

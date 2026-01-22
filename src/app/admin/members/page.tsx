@@ -36,25 +36,30 @@ export default function MembersPage() {
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
+    // Only run permission check if profile is loaded
+    if (!profile) return;
+
     if (!hasPermission(['super_admin', 'admin'])) {
       router.push('/admin/dashboard');
       return;
     }
 
     fetchBatches();
-  }, [hasPermission, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile?.id]);
 
   // Initial fetch and refetch when filters/pagination change
   useEffect(() => {
-    // Only fetch if user has permission
-    if (!hasPermission(['super_admin', 'admin'])) return;
+    // Only fetch if profile is loaded and user has permission
+    if (!profile || !hasPermission(['super_admin', 'admin'])) return;
 
     const timer = setTimeout(() => {
       fetchMembers();
     }, searchQuery ? 300 : 0); // Debounce only for search
 
     return () => clearTimeout(timer);
-  }, [searchQuery, statusFilter, batchFilter, currentPage]); // Stable deps only
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery, statusFilter, batchFilter, currentPage, profile?.id]);
 
   async function fetchBatches() {
     try {
