@@ -3,8 +3,8 @@
 import { Timeline } from '@/features/about/components/Timeline';
 import { Section } from '@/shared/components/ui/Section';
 import { Leaf, Target, Heart, Award, BookOpen, Users, HeartHandshake, Briefcase, LucideIcon } from 'lucide-react';
-import aboutData from '../../../../public/data/about.json';
 import { motion } from 'framer-motion';
+import { AboutSettings } from '@/core/repositories/ISettingsRepository';
 
 const iconMap: Record<string, LucideIcon> = {
     BookOpen,
@@ -13,7 +13,11 @@ const iconMap: Record<string, LucideIcon> = {
     Briefcase
 };
 
-export function AboutContent() {
+interface AboutContentProps {
+    data: AboutSettings;
+}
+
+export function AboutContent({ data }: AboutContentProps) {
     return (
         <div className="bg-white min-h-screen">
             {/* Header */}
@@ -71,7 +75,7 @@ export function AboutContent() {
                             className="w-full md:w-2/3"
                         >
                             <p className="text-gray-700 leading-relaxed text-lg md:text-xl text-balance">
-                                {aboutData.story}
+                                {data.story}
                             </p>
                         </motion.div>
                     </motion.div>
@@ -88,7 +92,7 @@ export function AboutContent() {
                                 <h3 className="text-2xl font-bold">Misi Kami</h3>
                             </div>
                             <p className="text-gray-300 text-lg leading-relaxed border-l-2 border-primary-600 pl-6">
-                                {aboutData.mission}
+                                {data.mission}
                             </p>
                         </div>
 
@@ -98,7 +102,7 @@ export function AboutContent() {
                                 <h3 className="text-2xl font-bold">Visi Kami</h3>
                             </div>
                             <p className="text-gray-300 text-lg leading-relaxed border-l-2 border-secondary-600 pl-6">
-                                {aboutData.vision}
+                                {data.vision}
                             </p>
                         </div>
                     </div>
@@ -114,7 +118,7 @@ export function AboutContent() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-                        {aboutData.values.map((value, index) => {
+                        {data.values.map((value, index) => {
                             const Icon = iconMap[value.icon] || Leaf;
                             return (
                                 <div key={index} className="group text-center">
@@ -138,7 +142,7 @@ export function AboutContent() {
             <Section className="py-24 bg-primary-50">
                 <div className="container-custom">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                        {Object.entries(aboutData.statistics).map(([key, value]) => (
+                        {Object.entries(data.statistics).map(([key, value]) => (
                             <div key={key} className="text-center">
                                 <div className="text-4xl md:text-6xl font-black text-gray-900 mb-2 tracking-tighter">
                                     {value}
@@ -161,7 +165,7 @@ export function AboutContent() {
                     <h2 className="text-3xl font-bold text-gray-900 mb-16 text-center">
                         Perjalanan Kami
                     </h2>
-                    <Timeline items={aboutData.timeline} />
+                    <Timeline items={data.timeline} />
                 </div>
             </Section>
 
@@ -170,7 +174,7 @@ export function AboutContent() {
                 <div className="container-custom">
                     <h2 className="text-3xl font-bold mb-16 text-center">Kemitraan & Afiliasi</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-                        {aboutData.affiliations.map((affiliation) => (
+                        {data.affiliations.map((affiliation) => (
                             <div key={affiliation.name} className="border-t pt-8 border-gray-800 hover:border-primary-500 transition-colors duration-300">
                                 <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
                                     <div className="p-3 bg-white/5 rounded-lg">
@@ -192,7 +196,7 @@ export function AboutContent() {
             <Section className="py-24">
                 <div className="container-custom max-w-5xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {aboutData.certifications.map((cert) => (
+                        {data.certifications.map((cert) => (
                             <div key={cert.name} className="flex items-center gap-6 p-6 rounded-3xl hover:bg-gray-50 transition-colors duration-300">
                                 <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
                                     <Award className="w-10 h-10 text-primary-600" />

@@ -6,9 +6,9 @@
 'use client';
 
 import { Leaf, Users, GraduationCap, Heart, LucideIcon } from 'lucide-react';
-import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
 import { Section } from '@/shared/components/ui/Section';
+import { HomeSettings } from '@/core/repositories/ISettingsRepository';
 
 const iconMap: Record<string, LucideIcon> = {
   Leaf,
@@ -17,9 +17,11 @@ const iconMap: Record<string, LucideIcon> = {
   Heart,
 };
 
-export function FeaturesSection() {
-  const { features } = homeData;
+interface FeaturesSectionProps {
+  data: HomeSettings['features'];
+}
 
+export function FeaturesSection({ data }: FeaturesSectionProps) {
   return (
     <Section className="py-24 bg-white">
       <div className="container-custom">
@@ -33,17 +35,17 @@ export function FeaturesSection() {
               className="max-w-xl"
             >
               <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-8 leading-[0.9] tracking-tighter">
-                {features.title}
+                {data.title}
               </h2>
               <p className="text-xl text-gray-500 leading-relaxed border-l-2 border-primary-500 pl-6">
-                {features.description}
+                {data.description}
               </p>
             </motion.div>
           </div>
 
           {/* Features List - Minimalist & Clean */}
           <div className="space-y-12">
-            {features.items.map((feature, index) => {
+            {data.items.map((feature, index) => {
               const Icon = iconMap[feature.icon] || Leaf;
 
               return (

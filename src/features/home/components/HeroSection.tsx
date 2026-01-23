@@ -7,11 +7,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-// Removed unused Button import
 import { Sparkles, Activity } from 'lucide-react';
-import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
 import { CountingNumber } from '@/shared/components/ui/CountingNumber';
+import { HomeSettings } from '@/core/repositories/ISettingsRepository';
 
 // Simplified animation variants - Reduced complexity
 const container = {
@@ -38,9 +37,11 @@ const item = {
   },
 };
 
-export function HeroSection() {
-  const { hero } = homeData;
+interface HeroSectionProps {
+  data: HomeSettings['hero'];
+}
 
+export function HeroSection({ data }: HeroSectionProps) {
   return (
     <div className="relative min-h-[90vh] flex items-center bg-white overflow-hidden pt-20">
       {/* Abstract Background Shapes - Clean & Modern */}
@@ -59,43 +60,43 @@ export function HeroSection() {
             {/* Badge - Minimalist pill */}
             <motion.div variants={item} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-50 border border-gray-100 w-fit mb-8">
               <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
-              <span className="text-sm font-medium text-gray-600 tracking-wide uppercase">{hero.badge}</span>
+              <span className="text-sm font-medium text-gray-600 tracking-wide uppercase">{data.badge}</span>
             </motion.div>
 
             {/* Headline - Massive & Tight */}
             <motion.h1 variants={item} className="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-[1.1] md:leading-[1] tracking-tighter mb-8">
-              {hero.title}
+              {data.title}
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500">
-                {hero.titleHighlight}
+                {data.titleHighlight}
               </span>
             </motion.h1>
 
             {/* Description - Reader friendly */}
             <motion.p variants={item} className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl border-l-4 border-gray-100 pl-6 mb-10">
-              {hero.description}
+              {data.description}
             </motion.p>
 
             {/* CTAs - Minimal buttons */}
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4">
               <Link
-                href={hero.primaryCTA.link}
+                href={data.primaryCTA.link}
                 className="px-8 py-4 bg-gray-900 text-white rounded-full font-bold text-lg hover:bg-gray-800 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
               >
-                {hero.primaryCTA.text}
+                {data.primaryCTA.text}
                 <Activity className="w-5 h-5" />
               </Link>
               <Link
-                href={hero.secondaryCTA.link}
+                href={data.secondaryCTA.link}
                 className="px-8 py-4 bg-white text-gray-900 border border-gray-200 rounded-full font-bold text-lg hover:bg-gray-50 transition-all hover:border-gray-300 flex items-center justify-center"
               >
-                {hero.secondaryCTA.text}
+                {data.secondaryCTA.text}
               </Link>
             </motion.div>
 
             {/* Stats - Horizontal minimalist */}
             <motion.div variants={item} className="flex items-center gap-12 mt-16 pt-8 border-t border-gray-100">
-              {hero.stats.map((stat, index) => (
+              {data.stats.map((stat, index) => (
                 <div key={index}>
                   <p className="text-3xl font-black text-gray-900">
                     <CountingNumber

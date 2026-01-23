@@ -8,12 +8,14 @@
 import Link from 'next/link';
 import { Button } from '@/shared/components/ui/Button';
 import { Phone, ArrowRight } from 'lucide-react';
-import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
+import { HomeSettings } from '@/core/repositories/ISettingsRepository';
 
-export function CTASection() {
-  const { cta } = homeData;
+interface CTASectionProps {
+  data: HomeSettings['cta'];
+}
 
+export function CTASection({ data }: CTASectionProps) {
   return (
     <section className="relative py-40 overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900">
       {/* Gradient overlays */}
@@ -35,18 +37,18 @@ export function CTASection() {
             viewport={{ once: true }}
           >
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
-              {cta.title}
+              {data.title}
             </h2>
 
             <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
-              {cta.description}
+              {data.description}
             </p>
 
             {/* CTA Buttons - prominent */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Button size="lg" variant="secondary" asChild className="group text-lg px-8 py-6 shadow-2xl hover:scale-105 transition-transform">
-                <Link href={cta.primaryCTA.link}>
-                  {cta.primaryCTA.text}
+                <Link href={data.primaryCTA.link}>
+                  {data.primaryCTA.text}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -56,9 +58,9 @@ export function CTASection() {
                 asChild
                 className="group text-lg px-8 py-6 border-2 border-white text-white hover:bg-white hover:text-primary-700 transition-all"
               >
-                <Link href={`tel:${cta.secondaryCTA.phone}`}>
+                <Link href={`tel:${data.secondaryCTA.phone}`}>
                   <Phone className="mr-2 w-5 h-5" />
-                  {cta.secondaryCTA.text}
+                  {data.secondaryCTA.text}
                 </Link>
               </Button>
             </div>

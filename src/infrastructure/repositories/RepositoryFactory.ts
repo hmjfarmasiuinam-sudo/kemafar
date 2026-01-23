@@ -15,18 +15,21 @@ import { IMemberRepository } from '@/core/repositories/IMemberRepository';
 import { IArticleRepository } from '@/core/repositories/IArticleRepository';
 import { IEventRepository } from '@/core/repositories/IEventRepository';
 import { ILeadershipRepository } from '@/core/repositories/ILeadershipRepository';
+import { ISettingsRepository } from '@/core/repositories/ISettingsRepository';
 
 // JSON implementations
 import { JsonMemberRepository } from './JsonMemberRepository';
 import { JsonArticleRepository } from './JsonArticleRepository';
 import { JsonEventRepository } from './JsonEventRepository';
 import { JsonLeadershipRepository } from './JsonLeadershipRepository';
+import { JsonSettingsRepository } from './JsonSettingsRepository';
 
 // Supabase implementations
 import { SupabaseMemberRepository } from './SupabaseMemberRepository';
 import { SupabaseArticleRepository } from './SupabaseArticleRepository';
 import { SupabaseEventRepository } from './SupabaseEventRepository';
 import { SupabaseLeadershipRepository } from './SupabaseLeadershipRepository';
+import { SupabaseSettingsRepository } from './SupabaseSettingsRepository';
 
 export class RepositoryFactory {
   /**
@@ -71,5 +74,16 @@ export class RepositoryFactory {
   static getLeadershipRepository(): ILeadershipRepository {
     const useSupabase = process.env.NEXT_PUBLIC_USE_SUPABASE_LEADERSHIP === 'true';
     return useSupabase ? new SupabaseLeadershipRepository() : new JsonLeadershipRepository();
+  }
+
+  /**
+   * Get Settings Repository
+   *
+   * Returns Supabase implementation if NEXT_PUBLIC_USE_SUPABASE_SETTINGS=true,
+   * otherwise returns JSON implementation.
+   */
+  static getSettingsRepository(): ISettingsRepository {
+    const useSupabase = process.env.NEXT_PUBLIC_USE_SUPABASE_SETTINGS === 'true';
+    return useSupabase ? new SupabaseSettingsRepository() : new JsonSettingsRepository();
   }
 }
