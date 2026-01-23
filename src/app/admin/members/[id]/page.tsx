@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
+import { RichTextEditor } from '@/shared/components/RichTextEditor';
 import { MemberFormData } from '@/types/forms';
 import { Member, MemberUpdateData } from '@/types';
 
@@ -349,17 +350,14 @@ export default function MemberFormPage() {
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="bio" className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Bio
             </label>
-            <textarea
-              id="bio"
-              name="bio"
-              rows={3}
+            <RichTextEditor
               value={formData.bio}
-              onChange={handleChange}
+              onChange={(markdown) => setFormData((prev) => ({ ...prev, bio: markdown }))}
               placeholder="Short biography..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              height="300px"
             />
           </div>
 

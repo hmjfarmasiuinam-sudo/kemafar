@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
+import { RichTextEditor } from '@/shared/components/RichTextEditor';
 import { Event, EventUpdateData, EventLocation, EventOrganizer } from '@/types/event';
 
 interface EventFormData {
@@ -420,34 +421,26 @@ export default function EventFormPage() {
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Description <span className="text-red-500">*</span>
             </label>
-            <textarea
-              id="description"
-              name="description"
-              rows={3}
-              required
+            <RichTextEditor
               value={formData.description}
-              onChange={handleChange}
+              onChange={(markdown) => setFormData({ ...formData, description: markdown })}
               placeholder="Brief description..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              height="200px"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Full Content <span className="text-red-500">*</span>
             </label>
-            <textarea
-              id="content"
-              name="content"
-              rows={6}
-              required
+            <RichTextEditor
               value={formData.content}
-              onChange={handleChange}
+              onChange={(markdown) => setFormData({ ...formData, content: markdown })}
               placeholder="Detailed information about the event..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              height="400px"
             />
           </div>
 
