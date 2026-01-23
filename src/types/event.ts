@@ -50,3 +50,9 @@ export interface Event {
   created_at: string;
   updated_at: string;
 }
+
+/**
+ * Event update data type
+ * Omits id, creator_id, current_participants, views, created_at, updated_at which are managed by the database
+ */
+export type EventUpdateData = Omit<Event, 'id' | 'creator_id' | 'current_participants' | 'views' | 'created_at' | 'updated_at'>;

@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
-import { toast } from 'sonner';
 import { ArrowLeft, Upload, X } from 'lucide-react';
 import Link from 'next/link';
-import { LeadershipFormData } from '@/types/forms';
+import { LeadershipFormData } from '@/types';
+import { Leadership, LeadershipInsertData, LeadershipUpdateData } from '@/types/leadership';
+import { showError, showSuccess } from '@/lib/utils/error-handler';
+import { FormSkeleton } from '@/components/ui/Skeleton';
 
 const POSITIONS = [
   { value: 'ketua', label: 'Ketua' },
@@ -28,9 +30,14 @@ const DIVISIONS = [
   { value: 'islamic-spirituality', label: 'Islamic Spirituality' },
 ];
 
-export default function NewLeadershipPage() {
+export default function LeadershipFormPage() {
   const router = useRouter();
+  const params = useParams();
+  const id = params?.id as string;
+  const isCreateMode = id === 'new';
+
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(!isCreateMode);
   const [photoPreview, setPhotoPreview] = useState<string>('');
   const [formData, setFormData] = useState<LeadershipFormData>({
     name: '',
@@ -50,6 +57,57 @@ export default function NewLeadershipPage() {
     order: 1,
   });
 
+  useEffect(() => {
+    if (!isCreateMode && id) {
+      fetchLeader();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, isCreateMode]);
+
+  async function fetchLeader() {
+    try {
+      const { data, error } = await supabase
+        .from('leadership')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+
+      if (!data) {
+        showError('Leader not found');
+        router.push('/admin/leadership');
+        return;
+      }
+
+      const leader = data as Leadership;
+
+      setFormData({
+        name: leader.name || '',
+        position: leader.position || '',
+        division: leader.division || '',
+        photo: leader.photo || '',
+        email: leader.email || '',
+        phone: leader.phone || '',
+        nim: leader.nim || '',
+        batch: leader.batch || '',
+        bio: leader.bio || '',
+        social_media_instagram: leader.social_media?.instagram || '',
+        social_media_linkedin: leader.social_media?.linkedin || '',
+        social_media_twitter: leader.social_media?.twitter || '',
+        period_start: leader.period_start || '',
+        period_end: leader.period_end || '',
+        order: leader.order || 1,
+      });
+      setPhotoPreview(leader.photo || '');
+    } catch (error) {
+      showError(error, 'Failed to load leader');
+      router.push('/admin/leadership');
+    } finally {
+      setInitialLoading(false);
+    }
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -66,44 +124,38 @@ export default function NewLeadershipPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     if (!file.type.startsWith('image/')) {
-      toast.error('Please upload an image file');
+      showError('Please upload an image file');
       return;
     }
 
-    // Validate file size (max 2MB)
     if (file.size > 2 * 1024 * 1024) {
-      toast.error('Image size must be less than 2MB');
+      showError('Image size must be less than 2MB');
       return;
     }
 
     try {
       setLoading(true);
 
-      // Create unique filename
       const fileExt = file.name.split('.').pop();
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
       const filePath = `leadership/${fileName}`;
 
-      // Upload to Supabase Storage
       const { error: uploadError } = await supabase.storage
         .from('public-images')
         .upload(filePath, file);
 
       if (uploadError) throw uploadError;
 
-      // Get public URL
       const { data: { publicUrl } } = supabase.storage
         .from('public-images')
         .getPublicUrl(filePath);
 
       setFormData((prev) => ({ ...prev, photo: publicUrl }));
       setPhotoPreview(publicUrl);
-      toast.success('Photo uploaded successfully');
+      showSuccess('Photo uploaded successfully');
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to upload photo';
-      toast.error(message);
+      showError(error, 'Failed to upload photo');
     } finally {
       setLoading(false);
     }
@@ -117,27 +169,23 @@ export default function NewLeadershipPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate required fields
     if (!formData.name || !formData.position || !formData.photo || !formData.period_start || !formData.period_end) {
-      toast.error('Please fill in all required fields');
+      showError('Please fill in all required fields');
       return;
     }
 
     try {
       setLoading(true);
 
-      // Build social_media object from flattened fields
       const socialMedia: Record<string, string> = {};
       if (formData.social_media_instagram) socialMedia.instagram = formData.social_media_instagram;
       if (formData.social_media_linkedin) socialMedia.linkedin = formData.social_media_linkedin;
       if (formData.social_media_twitter) socialMedia.twitter = formData.social_media_twitter;
 
-      const { error } = await supabase
-        .from('leadership')
-        // @ts-ignore Supabase types not generated
-        .insert({
+      if (isCreateMode) {
+        const leadershipData: LeadershipInsertData = {
           name: formData.name,
-          position: formData.position,
+          position: formData.position as LeadershipInsertData['position'],
           division: formData.division || null,
           photo: formData.photo,
           email: formData.email || null,
@@ -149,19 +197,62 @@ export default function NewLeadershipPage() {
           period_start: formData.period_start,
           period_end: formData.period_end,
           order: formData.order,
-        });
+        };
 
-      if (error) throw error;
+        const { error } = await supabase
+          .from('leadership')
+          .insert(leadershipData as unknown as never);
 
-      toast.success('Leader added successfully');
+        if (error) throw error;
+        showSuccess('Leader added successfully');
+      } else {
+        const leadershipData: LeadershipUpdateData = {
+          name: formData.name,
+          position: formData.position as LeadershipUpdateData['position'],
+          division: formData.division || null,
+          photo: formData.photo,
+          email: formData.email || null,
+          phone: formData.phone || null,
+          nim: formData.nim || null,
+          batch: formData.batch || null,
+          bio: formData.bio || null,
+          social_media: Object.keys(socialMedia).length > 0 ? socialMedia : null,
+          period_start: formData.period_start,
+          period_end: formData.period_end,
+          order: formData.order,
+        };
+
+        const { error } = await supabase
+          .from('leadership')
+          .update(leadershipData as unknown as never)
+          .eq('id', id);
+
+        if (error) throw error;
+        showSuccess('Leader updated successfully');
+      }
+
       router.push('/admin/leadership');
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to add leader';
-      toast.error(message);
+      showError(error, isCreateMode ? 'Failed to add leader' : 'Failed to update leader');
     } finally {
       setLoading(false);
     }
   };
+
+  if (initialLoading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 bg-gray-200 rounded-lg animate-pulse" />
+          <div className="space-y-2">
+            <div className="h-8 w-48 bg-gray-200 rounded animate-pulse" />
+            <div className="h-4 w-64 bg-gray-200 rounded animate-pulse" />
+          </div>
+        </div>
+        <FormSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -173,8 +264,12 @@ export default function NewLeadershipPage() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Add New Leader</h1>
-          <p className="text-gray-600 mt-1">Create a new leadership member</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            {isCreateMode ? 'Add New Leader' : 'Edit Leader'}
+          </h1>
+          <p className="text-gray-600 mt-1">
+            {isCreateMode ? 'Create a new leadership member' : 'Update leadership member information'}
+          </p>
         </div>
       </div>
 
@@ -424,7 +519,7 @@ export default function NewLeadershipPage() {
               disabled={loading}
               className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? 'Adding...' : 'Add Leader'}
+              {loading ? (isCreateMode ? 'Adding...' : 'Updating...') : (isCreateMode ? 'Add Leader' : 'Update Leader')}
             </button>
           </div>
         </div>

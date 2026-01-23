@@ -19,10 +19,16 @@ export async function GET(
     }
 
     // Create Supabase client with service role
-    const { client: supabaseAdmin, error: clientError } = createSupabaseAdmin();
-    if (clientError || !supabaseAdmin) {
-      return clientError ?? NextResponse.json({ error: 'Failed to create admin client' }, { status: 500 });
-    }
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    );
 
     // Verify the user making the request
     const token = authHeader.replace('Bearer ', '');
@@ -94,10 +100,16 @@ export async function PATCH(
     }
 
     // Create Supabase client with service role
-    const { client: supabaseAdmin, error: clientError } = createSupabaseAdmin();
-    if (clientError || !supabaseAdmin) {
-      return clientError ?? NextResponse.json({ error: 'Failed to create admin client' }, { status: 500 });
-    }
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    );
 
     // Verify the user making the request
     const token = authHeader.replace('Bearer ', '');
@@ -193,10 +205,16 @@ export async function DELETE(
     }
 
     // Create Supabase client with service role
-    const { client: supabaseAdmin, error: clientError } = createSupabaseAdmin();
-    if (clientError || !supabaseAdmin) {
-      return clientError ?? NextResponse.json({ error: 'Failed to create admin client' }, { status: 500 });
-    }
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    );
 
     // Verify the user making the request
     const token = authHeader.replace('Bearer ', '');

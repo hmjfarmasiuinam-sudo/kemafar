@@ -6,9 +6,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { SITE_CONFIG, ROUTES } from '@/lib/constants';
 import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 // Clean SVG Icons
 const FacebookIcon = () => (

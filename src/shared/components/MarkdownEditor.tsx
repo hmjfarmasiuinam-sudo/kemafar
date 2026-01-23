@@ -6,7 +6,8 @@ import 'react-markdown-editor-lite/lib/index.css';
 
 // Fix for react-markdown-editor-lite: Make React globally available
 if (typeof window !== 'undefined') {
-  (window as any).React = React;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as typeof window & { React: typeof React }).React = React;
 }
 
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
@@ -38,8 +39,9 @@ export function MarkdownEditor({ value, onChange, placeholder, height = '500px' 
         value={value}
         style={{ height }}
         renderHTML={(text) => {
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
           const MarkdownIt = require('markdown-it');
-          const md = new MarkdownIt();
+          const md = new MarkdownIt() as { render: (text: string) => string };
           return md.render(text);
         }}
         onChange={onChange}

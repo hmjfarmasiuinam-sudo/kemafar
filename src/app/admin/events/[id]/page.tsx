@@ -1,40 +1,128 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, FormEvent } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
-import { EventFormData } from '@/types/forms';
+import { Event, EventUpdateData, EventLocation, EventOrganizer } from '@/types/event';
 
-export default function NewEventPage() {
+interface EventFormData {
+  title: string;
+  slug: string;
+  description: string;
+  content: string;
+  category: 'seminar' | 'workshop' | 'community-service' | 'competition' | 'training' | 'other';
+  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  start_date: string;
+  end_date: string;
+  location_type: string;
+  location_address: string;
+  cover_image: string;
+  organizer_name: string;
+  registration_url: string;
+  registration_deadline: string;
+  max_participants: string;
+  tags: string;
+  featured: boolean;
+}
+
+export default function EventFormPage() {
   const router = useRouter();
-  const { user, profile } = useAuth();
+  const params = useParams();
+  const { user, profile, hasPermission, canEditOwnContent } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const [formData, setFormData] = useState<EventFormData>({
     title: '',
     slug: '',
     description: '',
     content: '',
     category: 'seminar',
-    location: '',
     status: 'upcoming',
     start_date: '',
     end_date: '',
     location_type: 'offline',
     location_address: '',
-    location_maps_url: '',
     cover_image: '',
     organizer_name: '',
-    organizer_contact: '',
     registration_url: '',
     registration_deadline: '',
     max_participants: '',
     tags: '',
     featured: false,
   });
+
+  const id = params.id as string;
+  const isCreateMode = id === 'new';
+
+  useEffect(() => {
+    if (!isCreateMode) {
+      fetchEvent();
+    }
+  }, [id]);
+
+  async function fetchEvent() {
+    setFetching(true);
+    try {
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+
+      if (!data) {
+        toast.error('Event not found');
+        router.push('/admin/events');
+        return;
+      }
+
+      const event = data as Event;
+
+      // Check permissions
+      if (profile?.role === 'kontributor') {
+        if (!canEditOwnContent(event.creator_id)) {
+          toast.error('You can only edit your own events');
+          router.push('/admin/events');
+          return;
+        }
+      }
+
+      // Format dates for datetime-local input
+      const startDate = new Date(event.start_date);
+      const endDate = new Date(event.end_date);
+      const regDeadline = event.registration_deadline ? new Date(event.registration_deadline) : null;
+
+      setFormData({
+        title: event.title || '',
+        slug: event.slug || '',
+        description: event.description || '',
+        content: event.content || '',
+        category: event.category || 'seminar',
+        status: event.status || 'upcoming',
+        start_date: startDate.toISOString().slice(0, 16),
+        end_date: endDate.toISOString().slice(0, 16),
+        location_type: event.location?.type || 'offline',
+        location_address: event.location?.address || '',
+        cover_image: event.cover_image || '',
+        organizer_name: event.organizer?.name || '',
+        registration_url: event.registration_url || '',
+        registration_deadline: regDeadline ? regDeadline.toISOString().slice(0, 16) : '',
+        max_participants: event.max_participants ? event.max_participants.toString() : '',
+        tags: Array.isArray(event.tags) ? event.tags.join(', ') : '',
+        featured: event.featured || false,
+      });
+    } catch (error) {
+      console.error('Error fetching event:', error);
+      toast.error('Failed to load event');
+    } finally {
+      setFetching(false);
+    }
+  }
 
   function generateSlug(title: string): string {
     return title
@@ -71,7 +159,16 @@ export default function NewEventPage() {
         throw new Error('You must be logged in');
       }
 
-      const eventData = {
+      const location: EventLocation = {
+        type: formData.location_type as EventLocation['type'],
+        address: formData.location_address,
+      };
+
+      const organizer: EventOrganizer = {
+        name: formData.organizer_name,
+      };
+
+      const eventData: EventUpdateData = {
         title: formData.title,
         slug: formData.slug,
         description: formData.description,
@@ -80,47 +177,71 @@ export default function NewEventPage() {
         status: formData.status,
         start_date: new Date(formData.start_date).toISOString(),
         end_date: new Date(formData.end_date).toISOString(),
-        location: {
-          type: formData.location_type,
-          address: formData.location_address,
-        },
-        cover_image: formData.cover_image,
-        organizer: {
-          name: formData.organizer_name,
-        },
+        location,
+        cover_image: formData.cover_image || null,
+        organizer,
         registration_url: formData.registration_url || null,
         registration_deadline: formData.registration_deadline
           ? new Date(formData.registration_deadline).toISOString()
           : null,
         max_participants: formData.max_participants ? parseInt(formData.max_participants) : null,
-        current_participants: 0,
-        tags: formData.tags ? formData.tags.split(',').map((t) => t.trim()) : [],
+        tags: formData.tags ? formData.tags.split(',').map((t) => t.trim()) : null,
         featured: formData.featured,
-        creator_id: user.id,
       };
 
-      // @ts-expect-error - Supabase types not generated yet
-      const { error } = await supabase.from('events').insert([eventData]);
+      if (isCreateMode) {
+        // Create mode: add creator_id and current_participants
+        const createData = {
+          ...eventData,
+          creator_id: user.id,
+          current_participants: 0,
+        };
 
-      if (error) throw error;
+        const { error } = await supabase
+          .from('events')
+          .insert([createData as unknown as never]);
 
-      toast.success('Event created successfully');
+        if (error) throw error;
+        toast.success('Event created successfully');
+      } else {
+        // Edit mode: update existing event
+        const { error } = await supabase
+          .from('events')
+          .update(eventData as unknown as never)
+          .eq('id', id);
+
+        if (error) throw error;
+        toast.success('Event updated successfully');
+      }
+
       router.push('/admin/events');
     } catch (error) {
-      console.error('Error creating event:', error);
-      const message = error instanceof Error ? error.message : 'Failed to create event';
+      console.error(`Error ${isCreateMode ? 'creating' : 'updating'} event:`, error);
+      const message = error instanceof Error ? error.message : `Failed to ${isCreateMode ? 'create' : 'update'} event`;
       toast.error(message);
     } finally {
       setLoading(false);
     }
   }
 
+  if (fetching) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Create Event</h1>
-          <p className="text-gray-600 mt-1">Add a new event or activity</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            {isCreateMode ? 'Create Event' : 'Edit Event'}
+          </h1>
+          <p className="text-gray-600 mt-1">
+            {isCreateMode ? 'Add a new event or activity' : 'Update event information'}
+          </p>
         </div>
         <Link
           href="/admin/events"
@@ -390,18 +511,20 @@ export default function NewEventPage() {
             />
           </div>
 
-          <div className="md:col-span-2">
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="featured"
-                checked={formData.featured}
-                onChange={handleChange}
-                className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-              />
-              <span className="text-sm font-medium text-gray-700">Featured Event</span>
-            </label>
-          </div>
+          {(isCreateMode || hasPermission(['super_admin', 'admin'])) && (
+            <div className="md:col-span-2">
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  name="featured"
+                  checked={formData.featured}
+                  onChange={handleChange}
+                  className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                />
+                <span className="text-sm font-medium text-gray-700">Featured Event</span>
+              </label>
+            </div>
+          )}
         </div>
 
         <div className="flex justify-end gap-3 mt-6 pt-6 border-t border-gray-200">
@@ -419,12 +542,12 @@ export default function NewEventPage() {
             {loading ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                Creating...
+                {isCreateMode ? 'Creating...' : 'Saving...'}
               </>
             ) : (
               <>
                 <Save className="w-4 h-4" />
-                Create Event
+                {isCreateMode ? 'Create Event' : 'Save Changes'}
               </>
             )}
           </button>

@@ -25,3 +25,15 @@ export interface Leadership {
   created_at: string;
   updated_at: string;
 }
+
+/**
+ * Leadership insert data type for creating new leadership records
+ * Omits id, created_at, updated_at which are managed by the database
+ */
+export type LeadershipInsertData = Omit<Leadership, 'id' | 'created_at' | 'updated_at'>;
+
+/**
+ * Leadership update data type for updating existing leadership records
+ * Omits id, created_at, updated_at which are managed by the database
+ */
+export type LeadershipUpdateData = Omit<Leadership, 'id' | 'created_at' | 'updated_at'>;

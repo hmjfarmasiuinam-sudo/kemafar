@@ -46,7 +46,7 @@ export interface Member {
   status: 'active' | 'inactive' | 'alumni';
   division: string | null;
   position: string | null;
-  joined_at: string;
+  joined_at: string | null;
   graduated_at: string | null;
   bio: string | null;
   interests: MemberInterests | null;
@@ -55,3 +55,9 @@ export interface Member {
   created_at: string;
   updated_at: string;
 }
+
+/**
+ * Member update data type
+ * Omits id, created_at, updated_at which are managed by the database
+ */
+export type MemberUpdateData = Omit<Member, 'id' | 'created_at' | 'updated_at'>;

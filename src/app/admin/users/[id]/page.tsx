@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { useAuth, UserRole } from '@/lib/auth/AuthContext';
-import { ArrowLeft, Upload, X } from 'lucide-react';
+import { ArrowLeft, Upload, X, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
-import { UserFormData } from '@/types';
+import { CreateUserFormData } from '@/types';
 import { showError, showSuccess, handleApiError } from '@/lib/utils/error-handler';
 import { FormSkeleton } from '@/components/ui/Skeleton';
 
@@ -28,17 +28,20 @@ const ROLES: { value: UserRole; label: string; description: string }[] = [
   },
 ];
 
-export default function EditUserPage() {
+export default function UserFormPage() {
   const router = useRouter();
   const params = useParams();
   const id = params?.id as string;
-  const { profile, hasPermission } = useAuth();
+  const isEditMode = id !== 'new';
+  const { profile, hasPermission, session } = useAuth();
 
   const [loading, setLoading] = useState(false);
-  const [initialLoading, setInitialLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(isEditMode);
+  const [showPassword, setShowPassword] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState<string>('');
-  const [formData, setFormData] = useState<UserFormData>({
+  const [formData, setFormData] = useState<CreateUserFormData>({
     email: '',
+    password: '',
     full_name: '',
     role: 'kontributor',
     avatar_url: '',
@@ -50,7 +53,7 @@ export default function EditUserPage() {
       return;
     }
 
-    if (id) {
+    if (isEditMode) {
       fetchUser();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,15 +61,15 @@ export default function EditUserPage() {
 
   async function fetchUser() {
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
+      const { data: { session: currentSession } } = await supabase.auth.getSession();
+      if (!currentSession) {
         showError('Not authenticated');
         router.push('/admin/users');
         return;
       }
 
       const response = await fetch(`/api/admin/users/${id}`, {
-        headers: { 'Authorization': `Bearer ${session.access_token}` },
+        headers: { 'Authorization': `Bearer ${currentSession.access_token}` },
       });
 
       if (!response.ok) {
@@ -84,6 +87,7 @@ export default function EditUserPage() {
 
       setFormData({
         email: userData.email || '',
+        password: '',
         full_name: userData.full_name || '',
         role: userData.role || 'kontributor',
         avatar_url: userData.avatar_url || '',
@@ -97,7 +101,7 @@ export default function EditUserPage() {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -148,10 +152,22 @@ export default function EditUserPage() {
     setAvatarPreview('');
   };
 
+  const generatePassword = () => {
+    const length = 12;
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+    let password = '';
+    for (let i = 0; i < length; i++) {
+      password += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    setFormData((prev) => ({ ...prev, password }));
+    setShowPassword(true);
+    showSuccess('Password generated');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (id === profile?.id) {
+    if (isEditMode && id === profile?.id) {
       showError('You cannot change your own role');
       return;
     }
@@ -161,37 +177,73 @@ export default function EditUserPage() {
       return;
     }
 
+    if (!isEditMode) {
+      if (!formData.email || !formData.password) {
+        showError('Email and password are required for new users');
+        return;
+      }
+
+      if (formData.password.length < 6) {
+        showError('Password must be at least 6 characters');
+        return;
+      }
+    }
+
     try {
       setLoading(true);
 
-      const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
         showError('Not authenticated');
         setLoading(false);
         return;
       }
 
-      const response = await fetch(`/api/admin/users/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Bearer ${session.access_token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          full_name: formData.full_name,
-          role: formData.role,
-          avatar_url: formData.avatar_url || null,
-        }),
-      });
+      if (isEditMode) {
+        // Update existing user
+        const response = await fetch(`/api/admin/users/${id}`, {
+          method: 'PATCH',
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            full_name: formData.full_name,
+            role: formData.role,
+            avatar_url: formData.avatar_url || null,
+          }),
+        });
 
-      if (!response.ok) {
-        await handleApiError(response, 'Failed to update user');
+        if (!response.ok) {
+          await handleApiError(response, 'Failed to update user');
+        }
+
+        showSuccess('User updated successfully');
+      } else {
+        // Create new user
+        const response = await fetch('/api/admin/create-user', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+            full_name: formData.full_name,
+            role: formData.role,
+          }),
+        });
+
+        if (!response.ok) {
+          await handleApiError(response, 'Failed to create user');
+        }
+
+        showSuccess('User created successfully');
       }
 
-      showSuccess('User updated successfully');
       router.push('/admin/users');
     } catch (error) {
-      showError(error, 'Failed to update user');
+      showError(error, `Failed to ${isEditMode ? 'update' : 'create'} user`);
     } finally {
       setLoading(false);
     }
@@ -212,8 +264,7 @@ export default function EditUserPage() {
     );
   }
 
-  // Check if trying to edit own account
-  const isEditingSelf = id === profile?.id;
+  const isEditingSelf = isEditMode && id === profile?.id;
 
   return (
     <div className="space-y-6">
@@ -225,8 +276,14 @@ export default function EditUserPage() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Edit User</h1>
-          <p className="text-gray-600 mt-1">Update user information and permissions</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            {isEditMode ? 'Edit User' : 'Add New User'}
+          </h1>
+          <p className="text-gray-600 mt-1">
+            {isEditMode
+              ? 'Update user information and permissions'
+              : 'Create new admin user account'}
+          </p>
         </div>
       </div>
 
@@ -240,58 +297,70 @@ export default function EditUserPage() {
 
       <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="space-y-6">
-          {/* Avatar Upload */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Avatar</label>
-            {avatarPreview ? (
-              <div className="relative w-24 h-24">
-                <img
-                  src={avatarPreview}
-                  alt="Avatar preview"
-                  className="w-full h-full rounded-full object-cover"
-                />
-                <button
-                  type="button"
-                  onClick={handleRemoveAvatar}
-                  className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            ) : (
-              <div className="relative w-24 h-24">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleAvatarUpload}
-                  className="hidden"
-                  id="avatar-upload"
-                />
-                <label
-                  htmlFor="avatar-upload"
-                  className="flex items-center justify-center w-full h-full border-2 border-dashed border-gray-300 rounded-full cursor-pointer hover:border-green-500 transition-colors"
-                >
-                  <Upload className="w-6 h-6 text-gray-400" />
-                </label>
-              </div>
-            )}
-          </div>
+          {/* Avatar Upload - Only in edit mode */}
+          {isEditMode && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Avatar</label>
+              {avatarPreview ? (
+                <div className="relative w-24 h-24">
+                  <img
+                    src={avatarPreview}
+                    alt="Avatar preview"
+                    className="w-full h-full rounded-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveAvatar}
+                    className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <div className="relative w-24 h-24">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleAvatarUpload}
+                    className="hidden"
+                    id="avatar-upload"
+                  />
+                  <label
+                    htmlFor="avatar-upload"
+                    className="flex items-center justify-center w-full h-full border-2 border-dashed border-gray-300 rounded-full cursor-pointer hover:border-green-500 transition-colors"
+                  >
+                    <Upload className="w-6 h-6 text-gray-400" />
+                  </label>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Email (readonly) */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            {/* Email */}
+            <div className={!isEditMode ? 'md:col-span-2' : ''}>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Email {!isEditMode && <span className="text-red-500">*</span>}
+              </label>
               <input
                 type="email"
+                name="email"
                 value={formData.email}
-                disabled
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed"
+                onChange={handleChange}
+                required={!isEditMode}
+                disabled={isEditMode}
+                className={`w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent ${
+                  isEditMode ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : ''
+                }`}
+                placeholder={isEditMode ? '' : 'user@example.com'}
               />
-              <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+              {isEditMode && (
+                <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+              )}
             </div>
 
             {/* Full Name */}
-            <div>
+            <div className={!isEditMode ? 'md:col-span-2' : ''}>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name <span className="text-red-500">*</span>
               </label>
@@ -302,8 +371,46 @@ export default function EditUserPage() {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                placeholder="John Doe"
               />
             </div>
+
+            {/* Password - Only in create mode */}
+            {!isEditMode && (
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Password <span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                      minLength={6}
+                      className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      placeholder="Min 6 characters"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={generatePassword}
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors whitespace-nowrap"
+                  >
+                    Generate
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Role */}
@@ -326,7 +433,7 @@ export default function EditUserPage() {
                     name="role"
                     value={role.value}
                     checked={formData.role === role.value}
-                    onChange={handleChange}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, role: e.target.value as UserRole }))}
                     disabled={isEditingSelf}
                     className="mt-1"
                   />
@@ -352,7 +459,13 @@ export default function EditUserPage() {
               disabled={loading}
               className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? 'Updating...' : 'Update User'}
+              {loading
+                ? isEditMode
+                  ? 'Updating...'
+                  : 'Creating...'
+                : isEditMode
+                ? 'Update User'
+                : 'Create User'}
             </button>
           </div>
         </div>

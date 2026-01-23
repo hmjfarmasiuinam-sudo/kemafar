@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
@@ -29,7 +28,6 @@ type CategoryFilter = 'all' | 'post' | 'blog' | 'opinion' | 'publication' | 'inf
 const ITEMS_PER_PAGE = 20;
 
 export default function ArticlesPage() {
-  const router = useRouter();
   const { user, profile, hasPermission, canEditOwnContent, canPublishArticles } = useAuth();
   const [articles, setArticles] = useState<ArticleListItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -144,8 +142,8 @@ export default function ArticlesPage() {
     try {
       const { error } = await supabase
         .from('articles')
-        // @ts-ignore Supabase types not generated
-        .update({ status: 'published', published_at: now })
+        // Supabase generated types require double assertion
+        .update({ status: 'published' as const, published_at: now } as unknown as never)
         .eq('id', id);
 
       if (error) throw error;
@@ -176,8 +174,8 @@ export default function ArticlesPage() {
     try {
       const { error } = await supabase
         .from('articles')
-        // @ts-ignore Supabase types not generated
-        .update({ status: 'draft' })
+        // Supabase generated types require double assertion
+        .update({ status: 'draft' as const } as unknown as never)
         .eq('id', id);
 
       if (error) throw error;
@@ -364,7 +362,7 @@ export default function ArticlesPage() {
 
                           {canEditArticle(article) && (
                             <Link
-                              href={`/admin/articles/${article.id}/edit`}
+                              href={`/admin/articles/${article.id}`}
                               className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                               title="Edit"
                             >

@@ -7,11 +7,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/shared/components/ui/Button';
-import { ArrowRight, Leaf, Sparkles, Activity } from 'lucide-react';
+// Removed unused Button import
+import { Sparkles, Activity } from 'lucide-react';
 import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import { CountingNumber } from '@/shared/components/ui/CountingNumber';
 
 // Simplified animation variants - Reduced complexity

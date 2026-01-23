@@ -40,12 +40,12 @@ class Logger {
   }
 
   private sendToMonitoring(
-    level: LogLevel,
-    message: string,
-    options?: LoggerOptions
+    _level: LogLevel,
+    _message: string,
+    _options?: LoggerOptions
   ): void {
     // In production, send to monitoring service (Sentry, LogRocket, etc.)
-    if (!this.isDevelopment && (level === 'error' || level === 'warn')) {
+    if (!this.isDevelopment) {
       // TODO: Integrate with Sentry or other monitoring service
       // Sentry.captureMessage(message, {
       //   level: level as SeverityLevel,
@@ -56,18 +56,18 @@ class Logger {
 
   debug(message: string, options?: LoggerOptions): void {
     if (this.shouldLog('debug')) {
-      console.log(this.formatMessage('debug', message, options));
+      console.warn(this.formatMessage('debug', message, options));
       if (options?.data) {
-        console.log('Data:', options.data);
+        console.warn('Data:', options.data);
       }
     }
   }
 
   info(message: string, options?: LoggerOptions): void {
     if (this.shouldLog('info')) {
-      console.log(this.formatMessage('info', message, options));
+      console.warn(this.formatMessage('info', message, options));
       if (options?.data) {
-        console.log('Data:', options.data);
+        console.warn('Data:', options.data);
       }
     }
   }

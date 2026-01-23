@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Prevent multiple initializations
       if (initializedRef.current) {
         if (process.env.NODE_ENV === 'development') {
-          console.log('[AuthContext] Already initialized, skipping');
+          console.warn('[AuthContext] Already initialized, skipping');
         }
         return;
       }
@@ -114,13 +114,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (!mounted) return;
 
       if (process.env.NODE_ENV === 'development') {
-        console.log('[AuthContext] Auth state change event:', event, 'session:', !!session);
+        console.warn('[AuthContext] Auth state change event:', event, 'session:', !!session);
       }
 
       // Don't process events during initial load - let initAuth handle it
       if (!initializedRef.current && event === 'INITIAL_SESSION') {
         if (process.env.NODE_ENV === 'development') {
-          console.log('[AuthContext] Skipping INITIAL_SESSION - handled by initAuth');
+          console.warn('[AuthContext] Skipping INITIAL_SESSION - handled by initAuth');
         }
         return;
       }
@@ -163,7 +163,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Prevent concurrent fetches - queue the request instead of ignoring it
     if (isFetchingRef.current) {
       if (process.env.NODE_ENV === 'development') {
-        console.log('[AuthContext] Fetch already in progress, queuing for later');
+        console.warn('[AuthContext] Fetch already in progress, queuing for later');
       }
       // Queue this request to run after current fetch completes
       pendingFetchRef.current = userId;
@@ -173,7 +173,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Skip if already fetched for this user AND we're doing a silent refresh
     if (silent && profile?.id === userId) {
       if (process.env.NODE_ENV === 'development') {
-        console.log('[AuthContext] Profile already loaded, skipping silent refresh');
+        console.warn('[AuthContext] Profile already loaded, skipping silent refresh');
       }
       return;
     }
@@ -182,7 +182,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     try {
       if (process.env.NODE_ENV === 'development') {
-        console.log('[AuthContext] Fetching profile for user:', userId);
+        console.warn('[AuthContext] Fetching profile for user:', userId);
       }
 
       const { data, error } = await supabase
@@ -205,7 +205,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Wait a bit and retry once.
         if (error.code === 'PGRST116') {
           if (process.env.NODE_ENV === 'development') {
-            console.log('[AuthContext] Profile not found (PGRST116), waiting for trigger...');
+            console.warn('[AuthContext] Profile not found (PGRST116), waiting for trigger...');
           }
 
           if (!silent) {
@@ -234,7 +234,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (process.env.NODE_ENV === 'development') {
         const fetchedProfile = data as Profile;
-        console.log('[AuthContext] Profile fetched successfully:', {
+        console.warn('[AuthContext] Profile fetched successfully:', {
           id: fetchedProfile.id,
           email: fetchedProfile.email,
           role: fetchedProfile.role,
@@ -242,19 +242,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       setProfile(data);
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (process.env.NODE_ENV === 'development') {
         console.error('[AuthContext] Error in fetchProfile:', error);
       }
 
       // Only clear profile if it's explicitly not found or permission denied (which might mean role revocation)
       // For network errors or timeouts, keep the existing profile to prevent random logouts
-      if (error.code === 'PGRST116' || error.code === '42501') {
+      const err = error as { code?: string };
+      if (err.code === 'PGRST116' || err.code === '42501') {
         setProfile(null);
-        setError(error); // Set error for UI
+        setError(error as Error); // Set error for UI
       } else {
         console.warn('[AuthContext] Fetch failed but keeping existing profile state to prevent logout:', error);
-        setError(error); // Set error for UI even if we keep profile (warn user)
+        setError(error as Error); // Set error for UI even if we keep profile (warn user)
       }
 
       // Don't throw - we want to complete initialization even if profile fetch fails
@@ -268,7 +269,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const pendingUserId = pendingFetchRef.current;
         pendingFetchRef.current = null;
         if (process.env.NODE_ENV === 'development') {
-          console.log('[AuthContext] Processing pending fetch for:', pendingUserId);
+          console.warn('[AuthContext] Processing pending fetch for:', pendingUserId);
         }
         // Use setTimeout to avoid potential stack overflow with recursive calls
         setTimeout(() => fetchProfile(pendingUserId, true), 0);

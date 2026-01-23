@@ -53,12 +53,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   // Redirect to login if not authenticated
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('[AdminLayout] Auth check:', { loading, user: !!user, profile: !!profile });
+      console.warn('[AdminLayout] Auth check:', { loading, user: !!user, profile: !!profile });
     }
 
     if (!loading && !user) {
       if (process.env.NODE_ENV === 'development') {
-        console.log('[AdminLayout] No user, redirecting to login');
+        console.warn('[AdminLayout] No user, redirecting to login');
       }
       router.push('/auth/login');
     }
@@ -69,7 +69,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   // Show loading state
   if (loading) {
     if (process.env.NODE_ENV === 'development') {
-      console.log('[AdminLayout] Showing loading state');
+      console.warn('[AdminLayout] Showing loading state');
     }
     return (
       <div className="min-h-screen flex items-center justify-center">

@@ -63,7 +63,7 @@ export function EventsPreview() {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {events.map((event, index) => (
+            {events.map((event) => (
               <Link
                 key={event.id}
                 href={`/events/${event.slug}`}

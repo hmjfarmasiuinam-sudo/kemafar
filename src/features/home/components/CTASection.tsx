@@ -7,7 +7,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/shared/components/ui/Button';
-import { Calendar, Phone, MapPin, Clock, Users, Sparkles, ArrowRight } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
 import homeData from '../../../../public/data/home.json';
 import { motion } from 'framer-motion';
 

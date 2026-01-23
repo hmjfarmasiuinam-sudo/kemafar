@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createSupabaseAdmin } from '@/lib/api/supabase-admin';
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     // Get authorization header
     const authHeader = request.headers.get('authorization');
@@ -13,16 +13,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Supabase client with service role
-    const supabaseAdmin = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-        },
-      }
-    );
+    const { client: supabaseAdmin, error: clientError } = createSupabaseAdmin();
+    if (clientError || !supabaseAdmin) {
+      return clientError ?? NextResponse.json({ error: 'Failed to create admin client' }, { status: 500 });
+    }
 
     // Verify the user making the request
     const token = authHeader.replace('Bearer ', '');
@@ -35,8 +29,6 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-
-    console.log('Authenticated user:', user.id);
 
     // Check if user is super_admin
     const { data: profile, error: profileError } = await supabaseAdmin
@@ -53,8 +45,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('Super admin verified');
-
     // Get request body
     const { email, password, full_name, role } = await request.json();
 
@@ -64,8 +54,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    console.log('Creating user:', email);
 
     // Create the new user
     const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
@@ -79,8 +67,6 @@ export async function POST(request: NextRequest) {
       console.error('Create user error:', createError);
       throw createError;
     }
-
-    console.log('User created:', newUser.user.id);
 
     // Update profile with role
     const { error: updateError } = await supabaseAdmin
@@ -96,8 +82,6 @@ export async function POST(request: NextRequest) {
       console.error('Update profile error:', updateError);
       throw updateError;
     }
-
-    console.log('Profile updated with role:', role);
 
     return NextResponse.json({
       success: true,

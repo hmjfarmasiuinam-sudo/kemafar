@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createSupabaseAdmin } from '@/lib/api/supabase-admin';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     // Get authorization header
     const authHeader = request.headers.get('authorization');
@@ -15,16 +15,10 @@ export async function GET(request: NextRequest) {
     }
 
     // Create Supabase client with service role (bypasses RLS)
-    const supabaseAdmin = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-        },
-      }
-    );
+    const { client: supabaseAdmin, error: clientError } = createSupabaseAdmin();
+    if (clientError || !supabaseAdmin) {
+      return clientError ?? NextResponse.json({ error: 'Failed to create admin client' }, { status: 500 });
+    }
 
     // Verify the user making the request
     const token = authHeader.replace('Bearer ', '');

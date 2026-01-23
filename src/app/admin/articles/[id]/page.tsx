@@ -1,20 +1,35 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, FormEvent } from 'react';
+import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
 import { MarkdownEditor } from '@/shared/components/MarkdownEditor';
-import { ArticleFormData } from '@/types/forms';
+import { Article } from '@/types/article';
 
-export default function NewArticlePage() {
+interface ArticleFormData {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: 'post' | 'blog' | 'opinion' | 'publication' | 'info';
+  cover_image: string;
+  tags: string;
+  featured: boolean;
+  status: 'draft' | 'pending' | 'published' | 'archived';
+}
+
+export default function ArticlePage() {
   const router = useRouter();
-  const { user, profile } = useAuth();
+  const params = useParams();
+  const { user, profile, hasPermission, canEditOwnContent } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState<Omit<ArticleFormData, 'status'>>({
+  const [fetching, setFetching] = useState(false);
+  const [authorId, setAuthorId] = useState<string>('');
+  const [formData, setFormData] = useState<ArticleFormData>({
     title: '',
     slug: '',
     excerpt: '',
@@ -23,7 +38,67 @@ export default function NewArticlePage() {
     cover_image: '',
     tags: '',
     featured: false,
+    status: 'draft',
   });
+
+  const id = params.id as string;
+  const isCreateMode = id === 'new';
+
+  useEffect(() => {
+    if (!isCreateMode && profile) {
+      fetchArticle();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, profile?.id]);
+
+  async function fetchArticle() {
+    setFetching(true);
+    try {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('id, title, slug, excerpt, content, category, cover_image, tags, featured, status, author_id')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+
+      if (!data) {
+        toast.error('Article not found');
+        router.push('/admin/articles');
+        return;
+      }
+
+      const article = data as unknown as Article;
+
+      // Check permissions
+      if (profile?.role === 'kontributor') {
+        if (!canEditOwnContent(article.author_id) || article.status !== 'draft') {
+          toast.error('You can only edit your own draft articles');
+          router.push('/admin/articles');
+          return;
+        }
+      }
+
+      setAuthorId(article.author_id);
+      setFormData({
+        title: article.title || '',
+        slug: article.slug || '',
+        excerpt: article.excerpt || '',
+        content: article.content || '',
+        category: article.category as ArticleFormData['category'] || 'post',
+        cover_image: article.cover_image || '',
+        tags: Array.isArray(article.tags) ? article.tags.join(', ') : '',
+        featured: article.featured || false,
+        status: article.status || 'draft',
+      });
+    } catch (error) {
+      console.error('Error fetching article:', error);
+      toast.error('Failed to load article');
+      router.push('/admin/articles');
+    } finally {
+      setFetching(false);
+    }
+  }
 
   function generateSlug(title: string): string {
     return title
@@ -58,15 +133,11 @@ export default function NewArticlePage() {
     });
   }
 
-  async function handleSubmit(e: FormEvent, status: 'draft' | 'pending' = 'draft') {
+  async function handleSubmit(e: FormEvent, status?: 'draft' | 'pending') {
     e.preventDefault();
     setLoading(true);
 
     try {
-      if (!user || !profile) {
-        throw new Error('You must be logged in');
-      }
-
       const articleData = {
         title: formData.title,
         slug: formData.slug,
@@ -76,41 +147,77 @@ export default function NewArticlePage() {
         cover_image: formData.cover_image,
         tags: formData.tags ? formData.tags.split(',').map((t) => t.trim()) : [],
         featured: formData.featured,
-        status,
-        author_id: user.id,
-        author: {
-          name: profile.full_name || profile.email,
-          email: profile.email,
-        },
-        published_at: new Date().toISOString(),
       };
 
-      // @ts-expect-error - Supabase types not generated yet
-      const { error } = await supabase.from('articles').insert([articleData]);
+      if (isCreateMode) {
+        if (!user || !profile) {
+          throw new Error('You must be logged in');
+        }
 
-      if (error) throw error;
+        const submitStatus = status || 'draft';
+        const insertData = {
+          ...articleData,
+          status: submitStatus,
+          author_id: user.id,
+          author: {
+            name: profile.full_name || profile.email,
+            email: profile.email,
+          },
+          published_at: new Date().toISOString(),
+        };
 
-      toast.success(
-        status === 'draft'
-          ? 'Article saved as draft'
-          : 'Article submitted for review'
-      );
+        const { error } = await supabase
+          .from('articles')
+          .insert([insertData as unknown as never]);
+
+        if (error) throw error;
+
+        toast.success(
+          submitStatus === 'draft'
+            ? 'Article saved as draft'
+            : 'Article submitted for review'
+        );
+      } else {
+        const { error } = await supabase
+          .from('articles')
+          .update(articleData as unknown as never)
+          .eq('id', id);
+
+        if (error) throw error;
+
+        toast.success('Article updated successfully');
+      }
+
       router.push('/admin/articles');
     } catch (error) {
-      console.error('Error creating article:', error);
-      const message = error instanceof Error ? error.message : 'Failed to create article';
+      console.error('Error saving article:', error);
+      const message = error instanceof Error ? error.message : 'Failed to save article';
       toast.error(message);
     } finally {
       setLoading(false);
     }
   }
 
+  if (fetching) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Create Article</h1>
-          <p className="text-gray-600 mt-1">Write a new article or publication</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            {isCreateMode ? 'Create Article' : 'Edit Article'}
+          </h1>
+          <p className="text-gray-600 mt-1">
+            {isCreateMode
+              ? 'Write a new article or publication'
+              : 'Update article information'}
+          </p>
         </div>
         <Link
           href="/admin/articles"
@@ -224,18 +331,20 @@ export default function NewArticlePage() {
               />
             </div>
 
-            <div className="md:col-span-2">
-              <label className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  name="featured"
-                  checked={formData.featured}
-                  onChange={handleChange}
-                  className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
-                />
-                <span className="text-sm font-medium text-gray-700">Featured Article</span>
-              </label>
-            </div>
+            {(isCreateMode || hasPermission(['super_admin', 'admin'])) && (
+              <div className="md:col-span-2">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    name="featured"
+                    checked={formData.featured}
+                    onChange={handleChange}
+                    className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Featured Article</span>
+                </label>
+              </div>
+            )}
           </div>
 
           <div>
@@ -258,32 +367,55 @@ export default function NewArticlePage() {
           >
             Cancel
           </Link>
-          <button
-            type="button"
-            onClick={(e) => handleSubmit(e, 'draft')}
-            disabled={loading}
-            className="px-6 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Save as Draft
-          </button>
-          <button
-            type="button"
-            onClick={(e) => handleSubmit(e, 'pending')}
-            disabled={loading}
-            className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                Submitting...
-              </>
-            ) : (
-              <>
-                <Save className="w-4 h-4" />
-                Submit for Review
-              </>
-            )}
-          </button>
+          {isCreateMode ? (
+            <>
+              <button
+                type="button"
+                onClick={(e) => handleSubmit(e, 'draft')}
+                disabled={loading}
+                className="px-6 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Save as Draft
+              </button>
+              <button
+                type="button"
+                onClick={(e) => handleSubmit(e, 'pending')}
+                disabled={loading}
+                className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-4 h-4" />
+                    Submit for Review
+                  </>
+                )}
+              </button>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={(e) => handleSubmit(e)}
+              disabled={loading}
+              className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Saving...
+                </>
+              ) : (
+                <>
+                  <Save className="w-4 h-4" />
+                  Save Changes
+                </>
+              )}
+            </button>
+          )}
         </div>
       </form>
     </div>

@@ -8,14 +8,17 @@ import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
 import { MemberFormData } from '@/types/forms';
-import { Member } from '@/types';
+import { Member, MemberUpdateData } from '@/types';
 
-export default function EditMemberPage() {
+export default function MemberFormPage() {
   const router = useRouter();
   const params = useParams();
+  const id = params?.id as string;
+  const isCreateMode = id === 'new';
+
   const { hasPermission } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [fetching, setFetching] = useState(true);
+  const [fetching, setFetching] = useState(!isCreateMode);
   const [formData, setFormData] = useState<MemberFormData>({
     name: '',
     nim: '',
@@ -42,15 +45,17 @@ export default function EditMemberPage() {
       return;
     }
 
-    fetchMember();
-  }, [params.id]);
+    if (!isCreateMode) {
+      fetchMember();
+    }
+  }, [id]);
 
-  async function fetchMember() {
+  async function fetchMember(): Promise<void> {
     try {
       const { data, error } = await supabase
         .from('members')
         .select('*')
-        .eq('id', params.id)
+        .eq('id', id)
         .single();
 
       if (error) throw error;
@@ -90,18 +95,24 @@ export default function EditMemberPage() {
     }
   }
 
-  async function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent): Promise<void> {
     e.preventDefault();
     setLoading(true);
 
     try {
       // Build social_media object from flattened fields
       const socialMedia: Record<string, string> = {};
-      if (formData.social_media_instagram) socialMedia.instagram = formData.social_media_instagram;
-      if (formData.social_media_linkedin) socialMedia.linkedin = formData.social_media_linkedin;
-      if (formData.social_media_twitter) socialMedia.twitter = formData.social_media_twitter;
+      if (formData.social_media_instagram) {
+        socialMedia.instagram = formData.social_media_instagram;
+      }
+      if (formData.social_media_linkedin) {
+        socialMedia.linkedin = formData.social_media_linkedin;
+      }
+      if (formData.social_media_twitter) {
+        socialMedia.twitter = formData.social_media_twitter;
+      }
 
-      const memberData = {
+      const memberData: MemberUpdateData = {
         name: formData.name,
         nim: formData.nim,
         email: formData.email,
@@ -116,26 +127,40 @@ export default function EditMemberPage() {
         bio: formData.bio || null,
         interests: formData.interests
           ? formData.interests.split(',').map((i) => i.trim())
-          : [],
+          : null,
         achievements: formData.achievements
           ? formData.achievements.split(',').map((a) => a.trim())
-          : [],
+          : null,
         social_media: Object.keys(socialMedia).length > 0 ? socialMedia : null,
       };
 
-      const { error } = await supabase
-        .from('members')
-        // @ts-ignore Supabase types not generated
-        .update(memberData)
-        .eq('id', params.id);
+      if (isCreateMode) {
+        // Create new member
+        const { error } = await supabase
+          .from('members')
+          // Supabase generated types don't match our MemberUpdateData structure
+          // Double assertion needed to bypass Supabase's strict typing
+          .insert(memberData as unknown as never);
 
-      if (error) throw error;
+        if (error) throw error;
+        toast.success('Member added successfully');
+      } else {
+        // Update existing member
+        const { error } = await supabase
+          .from('members')
+          // Supabase generated types don't match our MemberUpdateData structure
+          // Double assertion needed to bypass Supabase's strict typing
+          .update(memberData as unknown as never)
+          .eq('id', id);
 
-      toast.success('Member updated successfully');
+        if (error) throw error;
+        toast.success('Member updated successfully');
+      }
+
       router.push('/admin/members');
     } catch (error) {
-      console.error('Error updating member:', error);
-      const message = error instanceof Error ? error.message : 'Failed to update member';
+      console.error(`Error ${isCreateMode ? 'creating' : 'updating'} member:`, error);
+      const message = error instanceof Error ? error.message : `Failed to ${isCreateMode ? 'add' : 'update'} member`;
       toast.error(message);
     } finally {
       setLoading(false);
@@ -144,7 +169,7 @@ export default function EditMemberPage() {
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) {
+  ): void {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -163,8 +188,12 @@ export default function EditMemberPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Edit Member</h1>
-          <p className="text-gray-600 mt-1">Update member information</p>
+          <h1 className="text-2xl font-bold text-gray-900">
+            {isCreateMode ? 'Add New Member' : 'Edit Member'}
+          </h1>
+          <p className="text-gray-600 mt-1">
+            {isCreateMode ? 'Fill in the details to create a new member' : 'Update member information'}
+          </p>
         </div>
         <Link
           href="/admin/members"
@@ -425,12 +454,12 @@ export default function EditMemberPage() {
             {loading ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                Saving...
+                {isCreateMode ? 'Creating...' : 'Saving...'}
               </>
             ) : (
               <>
                 <Save className="w-4 h-4" />
-                Save Changes
+                {isCreateMode ? 'Create Member' : 'Save Changes'}
               </>
             )}
           </button>
