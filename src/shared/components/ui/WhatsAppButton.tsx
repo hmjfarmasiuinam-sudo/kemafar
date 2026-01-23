@@ -6,7 +6,7 @@
  */
 
 import { MessageCircle, X } from 'lucide-react';
-import { SITE_CONFIG } from '@/lib/constants';
+import { SITE_CONFIG } from '@/config/site.config';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 

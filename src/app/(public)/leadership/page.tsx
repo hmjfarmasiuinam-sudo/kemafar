@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { RepositoryFactory } from '@/infrastructure/repositories/RepositoryFactory';
-import { DIVISIONS } from '@/lib/constants';
+import { DIVISIONS } from '@/config/domain.config';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import type { LeadershipListItem } from '@/core/entities/Leadership';

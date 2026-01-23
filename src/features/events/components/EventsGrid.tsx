@@ -7,7 +7,7 @@ import { Calendar, MapPin } from 'lucide-react';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 import { EventListItem } from '@/core/entities/Event';
-import { EVENT_CATEGORIES } from '@/lib/constants';
+import { EVENT_CATEGORIES } from '@/config/domain.config';
 
 interface EventsGridProps {
   events: EventListItem[];

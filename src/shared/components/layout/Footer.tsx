@@ -6,7 +6,8 @@
 'use client';
 
 import Link from 'next/link';
-import { SITE_CONFIG, ROUTES } from '@/lib/constants';
+import { SITE_CONFIG } from '@/config/site.config';
+import { ROUTES } from '@/config/navigation.config';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
