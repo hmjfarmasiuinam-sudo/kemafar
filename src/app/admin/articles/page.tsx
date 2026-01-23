@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase/client';
+import { useAdminTable } from '@/shared/hooks/useAdminTable';
 import { useAuth } from '@/lib/auth/AuthContext';
+import { supabase } from '@/lib/supabase/client';
 import { toast } from 'sonner';
 import { Search, Plus, Edit, Trash2, Eye, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Article } from '@/types/article';
+import { ITEMS_PER_PAGE, STATUS_COLORS } from '@/lib/constants/admin';
 
 interface ArticleListItem {
   id: string;
@@ -22,106 +23,34 @@ interface ArticleListItem {
   published_at: string;
 }
 
-type StatusFilter = 'all' | 'draft' | 'pending' | 'published' | 'archived';
-type CategoryFilter = 'all' | 'post' | 'blog' | 'opinion' | 'publication' | 'info';
-
-const ITEMS_PER_PAGE = 20;
-
 export default function ArticlesPage() {
   const { user, profile, hasPermission, canEditOwnContent, canPublishArticles } = useAuth();
-  const [articles, setArticles] = useState<ArticleListItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
-  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
 
-  // Initial fetch and refetch when filters/pagination change
-  useEffect(() => {
-    // Only fetch if we have profile loaded (avoid premature fetch)
-    if (!profile) return;
+  // All common CRUD logic handled by hook
+  const {
+    items: articles,
+    loading,
+    totalCount,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    searchQuery,
+    setSearchQuery,
+    filters,
+    setFilter,
+    deleteItem,
+    refetch,
+  } = useAdminTable<ArticleListItem>({
+    tableName: 'articles',
+    selectColumns: 'id, title, slug, category, status, author, author_id, published_at',
+    sortColumn: 'published_at',
+    sortAscending: false,
+    itemsPerPage: ITEMS_PER_PAGE,
+    filterByAuthor: true, // Kontributor sees only their articles
+    searchColumns: ['title', 'author->>name'], // Search in title and author name
+  });
 
-    const timer = setTimeout(() => {
-      fetchArticles();
-    }, searchQuery ? 300 : 0); // Debounce only for search
-
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchQuery, statusFilter, categoryFilter, currentPage, profile?.id]); // profile?.id ensures we refetch when profile loads
-
-  async function fetchArticles() {
-    try {
-      setLoading(true);
-
-      // Build query with server-side filtering
-      let query = supabase
-        .from('articles')
-        .select('id, title, slug, category, status, author, author_id, published_at', { count: 'exact' })
-        .order('published_at', { ascending: false });
-
-      // Kontributor can only see their own articles
-      if (profile?.role === 'kontributor' && user) {
-        query = query.eq('author_id', user.id);
-      }
-
-      // Server-side search filter
-      if (searchQuery) {
-        query = query.or(`title.ilike.%${searchQuery}%,author->>name.ilike.%${searchQuery}%`);
-      }
-
-      // Server-side status filter
-      if (statusFilter !== 'all') {
-        query = query.eq('status', statusFilter);
-      }
-
-      // Server-side category filter
-      if (categoryFilter !== 'all') {
-        query = query.eq('category', categoryFilter);
-      }
-
-      // Pagination
-      const from = (currentPage - 1) * ITEMS_PER_PAGE;
-      const to = from + ITEMS_PER_PAGE - 1;
-      query = query.range(from, to);
-
-      const { data, error, count } = await query;
-
-      if (error) throw error;
-
-      setArticles(data || []);
-      setTotalCount(count || 0);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to load articles';
-      toast.error(message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function handleDelete(id: string, title: string) {
-    if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
-
-    // Optimistic update
-    const previousArticles = [...articles];
-    setArticles(articles.filter((a) => a.id !== id));
-    setTotalCount((prev) => prev - 1);
-
-    try {
-      const { error } = await supabase.from('articles').delete().eq('id', id);
-
-      if (error) throw error;
-
-      toast.success('Article deleted successfully');
-    } catch (error) {
-      // Rollback on error
-      setArticles(previousArticles);
-      setTotalCount((prev) => prev + 1);
-      const message = error instanceof Error ? error.message : 'Failed to delete article';
-      toast.error(message);
-    }
-  }
-
+  // Custom actions (publish/unpublish) stay here
   async function handlePublish(id: string, title: string) {
     if (!canPublishArticles()) {
       toast.error('You do not have permission to publish articles');
@@ -131,27 +60,19 @@ export default function ArticlesPage() {
     if (!confirm(`Publish "${title}"?`)) return;
 
     // Optimistic update
-    const previousArticles = [...articles];
     const now = new Date().toISOString();
-    setArticles(
-      articles.map((a) =>
-        a.id === id ? { ...a, status: 'published' as const, published_at: now } : a
-      )
-    );
 
     try {
       const { error } = await supabase
         .from('articles')
-        // Supabase generated types require double assertion
         .update({ status: 'published' as const, published_at: now } as unknown as never)
         .eq('id', id);
 
       if (error) throw error;
 
       toast.success('Article published successfully');
+      await refetch();
     } catch (error) {
-      // Rollback on error
-      setArticles(previousArticles);
       const message = error instanceof Error ? error.message : 'Failed to publish article';
       toast.error(message);
     }
@@ -165,28 +86,25 @@ export default function ArticlesPage() {
 
     if (!confirm(`Unpublish "${title}"? It will be set to draft.`)) return;
 
-    // Optimistic update
-    const previousArticles = [...articles];
-    setArticles(
-      articles.map((a) => (a.id === id ? { ...a, status: 'draft' as const } : a))
-    );
-
     try {
       const { error } = await supabase
         .from('articles')
-        // Supabase generated types require double assertion
         .update({ status: 'draft' as const } as unknown as never)
         .eq('id', id);
 
       if (error) throw error;
 
       toast.success('Article unpublished successfully');
+      await refetch();
     } catch (error) {
-      // Rollback on error
-      setArticles(previousArticles);
       const message = error instanceof Error ? error.message : 'Failed to unpublish article';
       toast.error(message);
     }
+  }
+
+  async function handleDelete(id: string, title: string) {
+    if (!confirm(`Are you sure you want to delete "${title}"?`)) return;
+    await deleteItem(id);
   }
 
   function canEditArticle(article: ArticleListItem): boolean {
@@ -206,18 +124,10 @@ export default function ArticlesPage() {
   }
 
   function getStatusBadge(status: string) {
-    const styles = {
-      draft: 'bg-gray-100 text-gray-800',
-      pending: 'bg-yellow-100 text-yellow-800',
-      published: 'bg-green-100 text-green-800',
-      archived: 'bg-red-100 text-red-800',
-    };
+    const colorClass = STATUS_COLORS[status as keyof typeof STATUS_COLORS] || STATUS_COLORS.draft;
 
     return (
-      <span
-        className={`px-2 py-1 text-xs font-medium rounded-full ${styles[status as keyof typeof styles] || styles.draft
-          }`}
-      >
+      <span className={`px-2 py-1 text-xs font-medium rounded-full ${colorClass}`}>
         {status.charAt(0).toUpperCase() + status.slice(1)}
       </span>
     );
@@ -271,8 +181,8 @@ export default function ArticlesPage() {
           </div>
 
           <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as StatusFilter)}
+            value={filters.status || 'all'}
+            onChange={(e) => setFilter('status', e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
           >
             <option value="all">All Status</option>
@@ -283,8 +193,8 @@ export default function ArticlesPage() {
           </select>
 
           <select
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value as CategoryFilter)}
+            value={filters.category || 'all'}
+            onChange={(e) => setFilter('category', e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
           >
             <option value="all">All Categories</option>
@@ -396,20 +306,18 @@ export default function ArticlesPage() {
                 </div>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                    onClick={() => setCurrentPage(currentPage - 1)}
                     disabled={currentPage === 1}
                     className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     Previous
                   </button>
                   <span className="px-4 py-2 text-sm text-gray-600">
-                    Page {currentPage} of {Math.ceil(totalCount / ITEMS_PER_PAGE)}
+                    Page {currentPage} of {totalPages}
                   </span>
                   <button
-                    onClick={() =>
-                      setCurrentPage((p) => Math.min(Math.ceil(totalCount / ITEMS_PER_PAGE), p + 1))
-                    }
-                    disabled={currentPage >= Math.ceil(totalCount / ITEMS_PER_PAGE)}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={currentPage >= totalPages}
                     className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     Next
