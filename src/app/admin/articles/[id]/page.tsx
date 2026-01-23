@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { ArrowLeft, Save } from 'lucide-react';
 import Link from 'next/link';
-import { MarkdownEditor } from '@/shared/components/MarkdownEditor';
+import { RichTextEditor } from '@/shared/components/RichTextEditor';
 import { Article } from '@/types/article';
 
 interface ArticleFormData {
@@ -116,10 +116,10 @@ export default function ArticlePage() {
     });
   }
 
-  function handleEditorChange({ text }: { text: string; html: string }) {
+  function handleEditorChange(markdown: string) {
     setFormData({
       ...formData,
-      content: text,
+      content: markdown,
     });
   }
 
@@ -351,11 +351,12 @@ export default function ArticlePage() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Content <span className="text-red-500">*</span>
             </label>
-            <MarkdownEditor
+            <RichTextEditor
               value={formData.content}
               onChange={handleEditorChange}
-              placeholder="Write your article content in Markdown..."
+              placeholder="Write your article content..."
               height="500px"
+              showPreview={true}
             />
           </div>
         </div>

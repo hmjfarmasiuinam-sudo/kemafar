@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, Upload, X } from 'lucide-react';
 import Link from 'next/link';
+import { RichTextEditor } from '@/shared/components/RichTextEditor';
 import { LeadershipFormData } from '@/types';
 import { Leadership, LeadershipInsertData, LeadershipUpdateData } from '@/types/leadership';
 import { showError, showSuccess } from '@/lib/utils/error-handler';
@@ -469,12 +470,11 @@ export default function LeadershipFormPage() {
           {/* Bio */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
-            <textarea
-              name="bio"
+            <RichTextEditor
               value={formData.bio}
-              onChange={handleChange}
-              rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              onChange={(markdown) => setFormData((prev) => ({ ...prev, bio: markdown }))}
+              placeholder="Write leader bio..."
+              height="300px"
             />
           </div>
 
