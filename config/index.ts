@@ -27,26 +27,26 @@
  */
 export const SITE_CONFIG = {
   /** Site name shown in header and metadata */
-  name: process.env.NEXT_PUBLIC_SITE_NAME || 'HMJF UIN Alauddin',
+  name: process.env.NEXT_PUBLIC_SITE_NAME || 'Your Organization',
 
   /** Full organization name for formal contexts */
-  fullName: 'Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar',
+  fullName: 'Your Organization Full Name',
 
   /** Site URL - used for metadata and canonical URLs */
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
 
   /** Site description for SEO and metadata */
   description:
-    'Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar - Wadah organisasi mahasiswa farmasi untuk pengembangan akademik, soft skills, dan pengabdian masyarakat',
+    'Your Organization - A modern platform for community engagement, content management, and member collaboration',
 
   /** WhatsApp number for contact (format: 62812xxxxxxxx) */
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '6281234567890',
 
   /** Organization email address */
-  email: 'hmjf@uin-alauddin.ac.id',
+  email: 'contact@example.com',
 
   /** Instagram handle (with @) */
-  instagram: '@hmjf.uinalauddin',
+  instagram: '@yourorganization',
 
   /** Physical address of the organization */
   address: 'Jl. H.M. Yasin Limpo No. 36, Romangpolong, Gowa, Sulawesi Selatan',
@@ -310,34 +310,34 @@ export const HOME_CONTENT = {
  * Static content for the about page sections
  */
 export const ABOUT_CONTENT = {
-  story: 'Himpunan Mahasiswa Jurusan Farmasi (HMJF) UIN Alauddin Makassar adalah organisasi kemahasiswaan yang berperan sebagai wadah aspirasi, kreativitas, dan pengembangan diri mahasiswa Farmasi. Didirikan dengan semangat kekeluargaan dan profesionalisme, HMJF terus berkontribusi dalam mengembangkan potensi mahasiswa di bidang akademik, keprofesian, dan pengabdian masyarakat.',
+  story: 'Your Organization is a modern platform designed to bring communities together. We provide tools for content management, event organization, and member engagement. Founded with the vision of empowering communities through technology, we continue to innovate and serve our members with excellence.',
   mission: [
-    'Mewujudkan mahasiswa farmasi yang berilmu, berakhlak, dan profesional',
-    'Mengembangkan potensi akademik dan non-akademik mahasiswa',
-    'Membangun jaringan dan kerjasama dengan berbagai pihak',
-    'Memberikan kontribusi nyata kepada masyarakat',
+    'Empower communities through modern technology and collaboration',
+    'Foster growth and development of our members',
+    'Build strong networks and partnerships',
+    'Deliver meaningful value to the community',
   ],
   vision:
-    'Menjadi organisasi kemahasiswaan farmasi yang unggul, inovatif, dan berdaya saing',
+    'To be a leading platform for community engagement and digital collaboration',
   values: [
     {
-      title: 'Integritas',
-      description: 'Menjunjung tinggi kejujuran dan etika profesional',
+      title: 'Integrity',
+      description: 'Upholding honesty and professional ethics in everything we do',
       icon: 'BookOpen',
     },
     {
-      title: 'Kolaborasi',
-      description: 'Bekerjasama untuk mencapai tujuan bersama',
+      title: 'Collaboration',
+      description: 'Working together to achieve shared goals',
       icon: 'Users',
     },
     {
-      title: 'Inovasi',
-      description: 'Selalu berinovasi dalam setiap program dan kegiatan',
+      title: 'Innovation',
+      description: 'Continuously innovating in all our programs and activities',
       icon: 'HeartHandshake',
     },
     {
-      title: 'Dedikasi',
-      description: 'Berkomitmen penuh terhadap pengembangan organisasi',
+      title: 'Dedication',
+      description: 'Fully committed to organizational growth and excellence',
       icon: 'Briefcase',
     },
   ],
@@ -349,46 +349,46 @@ export const ABOUT_CONTENT = {
   },
   timeline: [
     {
-      year: '2015',
-      title: 'Pendirian HMJF',
-      description: 'HMJF UIN Alauddin Makassar resmi didirikan sebagai wadah mahasiswa Farmasi',
-    },
-    {
-      year: '2018',
-      title: 'Pengembangan Program',
-      description: 'Peluncuran program keilmuan dan keprofesian yang terstruktur',
-    },
-    {
       year: '2020',
-      title: 'Adaptasi Digital',
-      description: 'Transformasi digital dalam kegiatan organisasi di masa pandemi',
+      title: 'Organization Founded',
+      description: 'Officially established to serve our community',
+    },
+    {
+      year: '2021',
+      title: 'Program Expansion',
+      description: 'Launched structured programs and initiatives',
+    },
+    {
+      year: '2022',
+      title: 'Digital Transformation',
+      description: 'Embraced digital tools for better community engagement',
     },
     {
       year: '2024',
-      title: 'Inovasi Berkelanjutan',
-      description: 'Pengembangan program inovatif dan kolaborasi lintas institusi',
+      title: 'Continuous Innovation',
+      description: 'Developing innovative programs and cross-institutional collaboration',
     },
   ],
   affiliations: [
     {
-      name: 'Ikatan Senat Mahasiswa Farmasi Indonesia (ISMKI)',
-      type: 'Nasional',
-      description: 'Organisasi mahasiswa farmasi tingkat nasional',
+      name: 'Industry Association',
+      type: 'National',
+      description: 'National-level industry organization',
     },
     {
-      name: 'Ikatan Apoteker Indonesia (IAI)',
-      type: 'Profesional',
-      description: 'Organisasi profesi apoteker Indonesia',
+      name: 'Professional Network',
+      type: 'Professional',
+      description: 'Professional networking organization',
     },
     {
-      name: 'Fakultas Kedokteran dan Ilmu Kesehatan',
-      type: 'Institusi',
-      description: 'Fakultas induk di UIN Alauddin Makassar',
+      name: 'Partner Institution',
+      type: 'Institution',
+      description: 'Partner educational or business institution',
     },
   ],
   certifications: [
     {
-      name: 'Akreditasi A BAN-PT',
+      name: 'Quality Certification',
       year: '2023',
     },
     {

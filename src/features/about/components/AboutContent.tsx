@@ -32,7 +32,7 @@ export function AboutContent({ data }: AboutContentProps) {
                         Tentang Kami
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-light">
-                        Mengenal lebih dekat HMJF UIN Alauddin Makassar dan perjalanan kami dalam mengembangkan mahasiswa Farmasi yang profesional.
+                        Learn more about our organization and our journey in building a strong, engaged community.
                     </p>
                 </motion.div>
             </Section>

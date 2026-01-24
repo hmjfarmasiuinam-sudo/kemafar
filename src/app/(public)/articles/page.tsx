@@ -12,8 +12,8 @@ const ArticleCategorySchema = z.enum(['post', 'blog', 'opinion', 'publication', 
 const ITEMS_PER_PAGE = 12;
 
 export const metadata: Metadata = {
-  title: 'Artikel - HMJF UIN Alauddin',
-  description: 'Kumpulan artikel, blog, opini, publikasi, dan informasi dari Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar',
+  title: 'Articles - Your Organization',
+  description: 'Collection of articles, blog posts, opinions, publications, and latest information from Your Organization',
 };
 
 export default async function ArticlesPage({
@@ -46,7 +46,7 @@ export default async function ArticlesPage({
             Artikel
           </h1>
           <p className="text-2xl text-gray-300 max-w-3xl leading-relaxed">
-            Kumpulan artikel, blog, opini, publikasi ilmiah, dan informasi terkini dari HMJF
+            Collection of articles, blog posts, opinions, publications, and latest information
           </p>
         </div>
       </section>

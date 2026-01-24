@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   description: SITE_CONFIG.description,
   keywords: [
-    'HMJF',
+    'Your Organization',
     'himpunan mahasiswa farmasi',
     'farmasi UIN Alauddin',
     'mahasiswa farmasi Makassar',

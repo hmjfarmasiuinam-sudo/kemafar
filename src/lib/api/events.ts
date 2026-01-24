@@ -113,10 +113,10 @@ function transformEvent(raw: EventRaw): Event {
   }
 
   // Parse organizer - Supabase returns JSONB as object
-  let organizerData = { name: 'HMJF', contact: '' };
+  let organizerData = { name: 'Your Organization', contact: '' };
   if (typeof raw.organizer === 'object' && raw.organizer !== null) {
     organizerData = {
-      name: raw.organizer.name ?? 'HMJF',
+      name: raw.organizer.name ?? 'Your Organization',
       contact: raw.organizer.contact ?? raw.organizer.phone ?? raw.organizer.email ?? '',
     };
   } else if (typeof raw.organizer === 'string') {

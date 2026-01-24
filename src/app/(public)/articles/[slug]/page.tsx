@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${article.title} - HMJF UIN Alauddin`,
+    title: `${article.title} - Your Organization`,
     description: article.excerpt,
   };
 }

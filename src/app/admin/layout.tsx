@@ -16,6 +16,7 @@ import {
   UserCog,
   Settings
 } from 'lucide-react';
+import { SITE_CONFIG } from '@/config';
 
 interface AuthError extends Error {
   code?: string;
@@ -155,7 +156,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {/* Logo */}
           <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-xl font-bold text-emerald-600">Kemafar</span>
+              <span className="text-xl font-bold text-emerald-600">{SITE_CONFIG.name}</span>
             </Link>
             <button
               onClick={() => setSidebarOpen(false)}

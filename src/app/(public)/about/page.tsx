@@ -9,7 +9,7 @@ import { ABOUT_CONTENT } from '@/config';
 
 export const metadata: Metadata = {
   title: 'Tentang Kami',
-  description: 'Tentang HMJF UIN Alauddin Makassar - Himpunan Mahasiswa Jurusan Farmasi',
+  description: 'About Your Organization - Learn more about our mission and vision',
 };
 
 export default function AboutPage() {
