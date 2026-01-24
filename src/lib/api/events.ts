@@ -18,16 +18,15 @@ interface EventRaw {
   content: string;
   category: EventCategory;
   cover_image: string;
-  location: string;
-  location_type: 'online' | 'offline' | 'hybrid';
+  location: any; // JSONB - could be object or string
   start_date: string;
   end_date: string;
   registration_url: string | null;
   registration_deadline: string | null;
   max_participants: number | null;
   current_participants: number | null;
-  organizer_name: string | null;
-  organizer_contact: string | null;
+  organizer: any; // JSONB - could be object or string
+  creator_id: string | null;
   status: EventStatus;
   tags: string[];
   images: string[] | null;
@@ -73,16 +72,37 @@ export interface Event {
  * Transform raw database event to frontend format
  */
 function transformEvent(raw: EventRaw): Event {
-  // Parse location - could be just a string or JSON
+  // Parse location - Supabase returns JSONB as object, but handle legacy string format
   let locationData = { name: '', address: '' };
-  try {
-    if (raw.location.startsWith('{')) {
-      locationData = JSON.parse(raw.location);
-    } else {
+  if (typeof raw.location === 'object' && raw.location !== null) {
+    // Already an object from JSONB
+    locationData = {
+      name: raw.location.name || '',
+      address: raw.location.address || raw.location.city || '',
+    };
+  } else if (typeof raw.location === 'string') {
+    // Legacy string format
+    try {
+      if (raw.location.startsWith('{')) {
+        locationData = JSON.parse(raw.location);
+      } else {
+        locationData = { name: raw.location, address: '' };
+      }
+    } catch {
       locationData = { name: raw.location, address: '' };
     }
-  } catch {
-    locationData = { name: raw.location, address: '' };
+  }
+
+  // Parse organizer - Supabase returns JSONB as object
+  let organizerData = { name: 'HMJF', contact: '' };
+  if (typeof raw.organizer === 'object' && raw.organizer !== null) {
+    organizerData = {
+      name: raw.organizer.name || 'HMJF',
+      contact: raw.organizer.contact || '',
+    };
+  } else if (typeof raw.organizer === 'string') {
+    // Legacy format - shouldn't happen but handle it
+    organizerData = { name: raw.organizer, contact: '' };
   }
 
   return {
@@ -100,10 +120,7 @@ function transformEvent(raw: EventRaw): Event {
     registrationDeadline: raw.registration_deadline || undefined,
     maxParticipants: raw.max_participants || undefined,
     currentParticipants: raw.current_participants || undefined,
-    organizer: {
-      name: raw.organizer_name || 'HMJF UIN Alauddin',
-      contact: raw.organizer_contact || '',
-    },
+    organizer: organizerData,
     status: raw.status,
     tags: raw.tags || [],
     images: raw.images || undefined,
