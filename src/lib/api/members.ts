@@ -5,22 +5,34 @@
 import { supabase } from '@/lib/supabase/client';
 
 /**
+ * Social media JSONB structure
+ */
+interface SocialMediaRaw {
+  instagram?: string;
+  linkedin?: string;
+  twitter?: string;
+}
+
+/**
  * Member from database (raw snake_case)
  */
 interface MemberRaw {
   id: string;
   name: string;
   nim: string;
-  division: string;
-  position: string;
-  batch: string;
-  email: string | null;
+  email: string;
   phone: string | null;
-  avatar_url: string | null;
+  photo: string | null;
+  batch: string;
+  status: 'active' | 'inactive' | 'alumni';
+  division: string | null;
+  position: string | null;
+  joined_at: string;
+  graduated_at: string | null;
   bio: string | null;
-  instagram: string | null;
-  linkedin: string | null;
-  is_active: boolean;
+  interests: string[] | null;
+  achievements: string[] | null;
+  social_media: SocialMediaRaw | null;
   created_at: string;
   updated_at: string;
 }
@@ -32,19 +44,23 @@ export interface Member {
   id: string;
   name: string;
   nim: string;
-  division?: string;
-  position?: string;
-  batch: string;
-  email?: string;
+  email: string;
   phone?: string;
   photo?: string;
+  batch: string;
+  status: 'active' | 'inactive' | 'alumni';
+  division?: string;
+  position?: string;
+  joinedAt: string;
+  graduatedAt?: string;
   bio?: string;
+  interests?: string[];
+  achievements?: string[];
   socialMedia?: {
     instagram?: string;
     linkedin?: string;
+    twitter?: string;
   };
-  status: 'active' | 'inactive';
-  joinedAt: string;
 }
 
 /**
@@ -55,19 +71,23 @@ function transformMember(raw: MemberRaw): Member {
     id: raw.id,
     name: raw.name,
     nim: raw.nim,
-    division: raw.division || undefined,
-    position: raw.position || undefined,
+    email: raw.email,
+    phone: raw.phone ?? undefined,
+    photo: raw.photo ?? undefined,
     batch: raw.batch,
-    email: raw.email || undefined,
-    phone: raw.phone || undefined,
-    photo: raw.avatar_url || undefined,
-    bio: raw.bio || undefined,
-    socialMedia: {
-      instagram: raw.instagram || undefined,
-      linkedin: raw.linkedin || undefined,
-    },
-    status: raw.is_active ? 'active' : 'inactive',
-    joinedAt: raw.created_at,
+    status: raw.status,
+    division: raw.division ?? undefined,
+    position: raw.position ?? undefined,
+    joinedAt: raw.joined_at,
+    graduatedAt: raw.graduated_at ?? undefined,
+    bio: raw.bio ?? undefined,
+    interests: raw.interests ?? undefined,
+    achievements: raw.achievements ?? undefined,
+    socialMedia: raw.social_media ? {
+      instagram: raw.social_media.instagram,
+      linkedin: raw.social_media.linkedin,
+      twitter: raw.social_media.twitter,
+    } : undefined,
   };
 }
 
