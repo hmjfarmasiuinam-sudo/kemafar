@@ -540,72 +540,89 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO public.site_settings (key, content) VALUES
 ('home', '{
   "hero": {
-    "badge": "Website Resmi Himpunan Mahasiswa Farmasi",
-    "title": "Himpunan Mahasiswa",
-    "titleHighlight": "Jurusan Farmasi",
-    "description": "Organisasi mahasiswa farmasi yang berdedikasi mencetak farmasis unggul, berintegritas, dan berwawasan luas. Kami hadir sebagai wadah pengembangan potensi mahasiswa farmasi yang progresif dan berdaya saing.",
-    "primaryCTA": {"text": "Lihat Event Kami", "link": "/events"},
-    "secondaryCTA": {"text": "Tentang Kami", "link": "/about"},
+    "badge": "Student Organization",
+    "title": "Your Organization",
+    "titleHighlight": "Community",
+    "subtitle": "Building Together",
+    "description": "A platform for aspiration, creativity, and self-development for our community members",
+    "primaryCTA": {"text": "Learn More", "link": "/about"},
+    "secondaryCTA": {"text": "Our Programs", "link": "#features"},
+    "backgroundImage": "/images/hero-bg.jpg",
     "stats": [
-      {"value": "200+", "label": "Anggota Aktif"},
-      {"value": "50+", "label": "Event per Tahun"},
-      {"value": "8", "label": "Divisi"}
+      {"value": "150+", "label": "Active Members"},
+      {"value": "20+", "label": "Events / Year"},
+      {"value": "8", "label": "Divisions"}
     ]
   },
   "features": {
-    "title": "Apa yang Kami Lakukan?",
-    "description": "Berbagai program unggulan untuk mendukung pengembangan akademik dan profesionalisme mahasiswa farmasi",
+    "title": "Our Programs",
+    "description": "Various development programs for professional and high-integrity community members",
     "items": [
       {
-        "icon": "GraduationCap",
-        "title": "Pengembangan Akademik",
-        "description": "Menyelenggarakan kajian ilmiah dan workshop untuk meningkatkan kompetensi kefarmasian",
-        "color": "text-primary-700 bg-primary-50"
+        "title": "Academic Development",
+        "description": "Programs to enhance academic competence and research skills",
+        "icon": "GraduationCap"
       },
       {
-        "icon": "Users",
-        "title": "Kepemimpinan",
-        "description": "Membentuk karakter pemimpin masa depan melalui regenerasi dan kaderisasi terstruktur",
-        "color": "text-primary-700 bg-primary-50"
+        "title": "Professional Training",
+        "description": "Training and certification for career preparation",
+        "icon": "Leaf"
       },
       {
-        "icon": "Heart",
-        "title": "Pengabdian Masyarakat",
-        "description": "Terjun langsung memberikan kontribusi nyata bagi kesehatan masyarakat",
-        "color": "text-primary-700 bg-primary-50"
+        "title": "Leadership",
+        "description": "Character building and leadership development",
+        "icon": "Users"
       },
       {
-        "icon": "Sparkles",
-        "title": "Networking",
-        "description": "Membangun jejaring dengan alumni, praktisi, dan mahasiswa farmasi se-Indonesia",
-        "color": "text-primary-700 bg-primary-50"
+        "title": "Community Service",
+        "description": "Real contributions to society and the environment",
+        "icon": "Heart"
       }
     ]
   },
   "cta": {
-    "title": "Kenali Lebih Dekat",
-    "description": "Mari bersinergi membangun farmasis profesional yang berakhlak mulia melalui pengembangan akademik dan pengabdian masyarakat.",
-    "primaryCTA": {"text": "Lihat Kepengurusan", "link": "/leadership"},
-    "secondaryCTA": {"text": "Hubungi Kami", "phone": "+6281234567890"}
+    "title": "Join Us Today",
+    "description": "Be part of our growing community and make an impact",
+    "primaryCTA": {"text": "Contact Us", "link": "/contact"},
+    "secondaryCTA": {"text": "WhatsApp", "phone": "628123456789"}
   }
 }'::jsonb),
 
 ('about', '{
-  "mission": "Mengembangkan potensi mahasiswa farmasi melalui kegiatan akademik, pengabdian masyarakat, dan peningkatan soft skills untuk menjadi farmasis profesional yang berintegritas dan berkontribusi bagi kesehatan masyarakat.",
-  "vision": "Menjadi organisasi mahasiswa farmasi yang unggul, inovatif, dan terdepan dalam pengembangan kompetensi akademik dan non-akademik mahasiswa farmasi di tingkat regional dan nasional.",
-  "story": "Himpunan Mahasiswa Jurusan Farmasi adalah organisasi intra kampus yang mewadahi seluruh mahasiswa jurusan farmasi. Didirikan dengan semangat pengabdian dan pengembangan ilmu kefarmasian, organisasi ini telah menjadi rumah kedua bagi mahasiswa untuk mengembangkan potensi akademik dan non-akademik.",
-  "values": [
-    {"title": "Akademik", "description": "Mendorong keunggulan akademik melalui kajian ilmiah, seminar, dan workshop kefarmasian", "icon": "BookOpen"},
-    {"title": "Kepemimpinan", "description": "Membentuk jiwa kepemimpinan yang amanah, profesional, dan bertanggung jawab", "icon": "Users"},
-    {"title": "Pengabdian", "description": "Berkontribusi aktif dalam kegiatan sosial dan kesehatan masyarakat", "icon": "HeartHandshake"},
-    {"title": "Profesionalisme", "description": "Mempersiapkan mahasiswa menjadi farmasis yang kompeten dan berintegritas", "icon": "Briefcase"}
+  "story": "Your Organization is a modern platform designed to bring communities together. We provide tools for content management, event organization, and member engagement. Founded with the vision of empowering communities through technology, we continue to innovate and serve our members with excellence.",
+  "mission": [
+    "Empower communities through modern technology and collaboration",
+    "Foster growth and development of our members",
+    "Build strong networks and partnerships",
+    "Deliver meaningful value to the community"
   ],
+  "vision": "To be a leading platform for community engagement and digital collaboration",
+  "values": [
+    {"title": "Integrity", "description": "Upholding honesty and professional ethics in everything we do", "icon": "BookOpen"},
+    {"title": "Collaboration", "description": "Working together to achieve shared goals", "icon": "Users"},
+    {"title": "Innovation", "description": "Continuously innovating in all our programs and activities", "icon": "HeartHandshake"},
+    {"title": "Dedication", "description": "Fully committed to organizational growth and excellence", "icon": "Briefcase"}
+  ],
+  "statistics": {
+    "activeMembers": "150+",
+    "eventsPerYear": "20+",
+    "divisions": "8",
+    "yearsActive": "2015"
+  },
   "timeline": [
-    {"year": "2015", "title": "Pendirian Himpunan", "description": "Resmi berdiri sebagai wadah mahasiswa farmasi"},
-    {"year": "2017", "title": "Program Unggulan Pertama", "description": "Menyelenggarakan program pengembangan soft skills"},
-    {"year": "2019", "title": "Kolaborasi Nasional", "description": "Menjalin kerjasama dengan berbagai organisasi farmasi nasional"},
-    {"year": "2021", "title": "Digitalisasi Program", "description": "Adaptasi digital dalam kegiatan organisasi dan pelayanan anggota"},
-    {"year": "2023", "title": "Prestasi Nasional", "description": "Meraih penghargaan di berbagai kompetisi farmasi"}
+    {"year": "2020", "title": "Organization Founded", "description": "Officially established to serve our community"},
+    {"year": "2021", "title": "Program Expansion", "description": "Launched structured programs and initiatives"},
+    {"year": "2022", "title": "Digital Transformation", "description": "Embraced digital tools for better community engagement"},
+    {"year": "2024", "title": "Continuous Innovation", "description": "Developing innovative programs and cross-institutional collaboration"}
+  ],
+  "affiliations": [
+    {"name": "Industry Association", "type": "National", "description": "National-level industry organization"},
+    {"name": "Professional Network", "type": "Professional", "description": "Professional networking organization"},
+    {"name": "Partner Institution", "type": "Institution", "description": "Partner educational or business institution"}
+  ],
+  "certifications": [
+    {"name": "Quality Certification", "year": "2023"},
+    {"name": "ISO 9001:2015", "year": "2022"}
   ]
 }'::jsonb)
 ON CONFLICT (key) DO UPDATE SET

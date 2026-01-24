@@ -377,3 +377,46 @@ CREATE POLICY "Admin full access leadership"
 CREATE TRIGGER update_leadership_updated_at
   BEFORE UPDATE ON leadership
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- =============================================
+-- 7. SITE SETTINGS TABLE
+-- =============================================
+-- Store site-wide settings (home, about, etc.)
+-- =============================================
+
+CREATE TABLE public.site_settings (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  key TEXT NOT NULL UNIQUE CHECK (key IN ('home', 'about')),
+  content JSONB NOT NULL,
+  updated_by UUID REFERENCES auth.users,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Indexes
+CREATE UNIQUE INDEX idx_site_settings_key ON site_settings(key);
+CREATE INDEX idx_site_settings_updated_at ON site_settings(updated_at DESC);
+
+-- Enable RLS
+ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies
+CREATE POLICY "Public can view site settings"
+  ON site_settings FOR SELECT
+  USING (true);
+
+CREATE POLICY "Admin can update site settings"
+  ON site_settings FOR UPDATE
+  USING (is_admin())
+  WITH CHECK (is_admin());
+
+CREATE POLICY "Admin can insert site settings"
+  ON site_settings FOR INSERT
+  WITH CHECK (is_admin());
+
+-- Trigger for updated_at
+CREATE TRIGGER update_site_settings_updated_at
+  BEFORE UPDATE ON site_settings
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- NOTE: Initial data is in /supabase/seed.sql
