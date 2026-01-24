@@ -7,6 +7,7 @@ import { FormInput } from '@/shared/components/FormInput';
 import { FormSelect } from '@/shared/components/FormSelect';
 import { FormActions } from '@/shared/components/FormActions';
 import { MemberFormData } from '@/types/forms';
+import { MemberStatus } from '@/lib/constants/admin';
 
 const STATUSES = [
   { value: 'active', label: 'Active' },
@@ -160,7 +161,7 @@ export default function MemberFormPage() {
               label="Status"
               id="status"
               value={formData.status}
-              onChange={(value) => setFormData({ ...formData, status: value as any })}
+              onChange={(value) => setFormData({ ...formData, status: value as MemberStatus })}
               options={STATUSES}
               required
             />

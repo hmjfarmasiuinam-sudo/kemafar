@@ -10,6 +10,7 @@ import { FormActions } from '@/shared/components/FormActions';
 import { generateSlug } from '@/lib/utils/slug';
 import { EventFormData } from '@/types/forms';
 import { EventLocation, EventOrganizer } from '@/types/event';
+import { EventStatus } from '@/lib/constants/admin';
 
 const CATEGORIES = [
   { value: 'seminar', label: 'Seminar' },
@@ -44,7 +45,6 @@ export default function EventFormPage() {
     fetching,
     isCreateMode,
     handleSubmit,
-    updateField,
   } = useAdminForm<EventFormData>({
     tableName: 'events',
     id,
@@ -156,7 +156,7 @@ export default function EventFormPage() {
               label="Category"
               id="category"
               value={formData.category}
-              onChange={(value) => setFormData({ ...formData, category: value as any })}
+              onChange={(value) => setFormData({ ...formData, category: value as EventFormData['category'] })}
               options={CATEGORIES}
               required
             />
@@ -165,7 +165,7 @@ export default function EventFormPage() {
               label="Status"
               id="status"
               value={formData.status}
-              onChange={(value) => setFormData({ ...formData, status: value as any })}
+              onChange={(value) => setFormData({ ...formData, status: value as EventStatus })}
               options={STATUSES}
               required
             />
