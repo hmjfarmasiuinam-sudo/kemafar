@@ -55,7 +55,7 @@ export default function MembersPage({
             Anggota
           </h1>
           <p className="text-2xl text-gray-300 max-w-3xl leading-relaxed">
-            Daftar anggota aktif HMJF UIN Alauddin Makassar
+            List of active members of Your Organization
           </p>
         </div>
       </section>

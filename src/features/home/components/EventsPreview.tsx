@@ -48,7 +48,7 @@ export function EventsPreview() {
             <span className="text-primary-600">Mendatang</span>
           </h2>
           <div className="flex items-center justify-between">
-            <p className="text-xl text-gray-600">Jangan lewatkan kegiatan seru dari HMJF</p>
+            <p className="text-xl text-gray-600">Don't miss our exciting upcoming events</p>
             <Link
               href="/events"
               className="hidden md:inline-flex items-center gap-2 text-gray-900 font-semibold hover:gap-3 transition-all"

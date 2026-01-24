@@ -110,7 +110,7 @@ export function StatsSection() {
           className="text-center mb-24"
         >
           <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            HMJF dalam <span className="text-primary-400">Angka</span>
+            Our Community in <span className="text-primary-400">Numbers</span>
           </h2>
         </motion.div>
 

@@ -45,7 +45,7 @@ export function ArticlesPreview() {
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
               Artikel <span className="text-primary-600">Terbaru</span>
             </h2>
-            <p className="text-xl text-gray-600">Bacaan terkini dari HMJF</p>
+            <p className="text-xl text-gray-600">Latest articles and insights</p>
           </div>
           <div className="flex justify-start lg:justify-end">
             <Link

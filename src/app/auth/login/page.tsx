@@ -4,6 +4,7 @@ import { useState, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth/AuthContext';
 import Link from 'next/link';
+import { SITE_CONFIG } from '@/config';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -59,7 +60,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
-            <h1 className="text-3xl font-bold text-emerald-600">Kemafar</h1>
+            <h1 className="text-3xl font-bold text-emerald-600">{SITE_CONFIG.name}</h1>
             <p className="text-sm text-gray-600 mt-1">Admin Panel</p>
           </Link>
         </div>

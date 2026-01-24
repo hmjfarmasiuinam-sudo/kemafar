@@ -9,7 +9,7 @@ import { EVENT_STATUS_COLORS, EVENT_STATUS_LABELS } from '@/lib/constants/event'
 const EventStatusSchema = z.enum(['upcoming', 'ongoing', 'completed', 'cancelled']);
 
 export const metadata: Metadata = {
-  title: 'Event - HMJF UIN Alauddin',
+  title: 'Events - Your Organization',
   description: 'Daftar event dan kegiatan dari Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar',
 };
 
@@ -42,7 +42,7 @@ export default async function EventsPage({
             Event
           </h1>
           <p className="text-2xl text-gray-300 max-w-3xl leading-relaxed">
-            Kegiatan dan acara terkini dari HMJF UIN Alauddin Makassar
+            Latest activities and events from Your Organization
           </p>
         </div>
       </section>
