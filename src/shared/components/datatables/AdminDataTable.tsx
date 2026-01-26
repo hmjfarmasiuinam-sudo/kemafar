@@ -311,7 +311,7 @@ export function AdminDataTable({
             </div>
 
             {/* Pagination */}
-            {table.getPageCount() > 1 && (
+            {((manualPagination ? manualPagination.totalRecords > 0 : table.getFilteredRowModel().rows.length > 0)) && (
               <div className={dataTableClasses.paginationWrapper}>
                 <div className={dataTableClasses.paginationInfo}>
                   Showing {table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1} to{' '}
@@ -328,25 +328,29 @@ export function AdminDataTable({
                   )}{' '}
                   of {manualPagination ? manualPagination.totalRecords : table.getFilteredRowModel().rows.length} entries
                 </div>
-                <div className={dataTableClasses.paginationButtons}>
-                  <button
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                    className={dataTableClasses.paginationButton}
-                  >
-                    Previous
-                  </button>
-                  <span className={dataTableClasses.paginationPageInfo}>
-                    Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-                  </span>
-                  <button
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                    className={dataTableClasses.paginationButton}
-                  >
-                    Next
-                  </button>
-                </div>
+
+                {/* Only show buttons if more than 1 page */}
+                {table.getPageCount() > 1 && (
+                  <div className={dataTableClasses.paginationButtons}>
+                    <button
+                      onClick={() => table.previousPage()}
+                      disabled={!table.getCanPreviousPage()}
+                      className={dataTableClasses.paginationButton}
+                    >
+                      Previous
+                    </button>
+                    <span className={dataTableClasses.paginationPageInfo}>
+                      Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                    </span>
+                    <button
+                      onClick={() => table.nextPage()}
+                      disabled={!table.getCanNextPage()}
+                      className={dataTableClasses.paginationButton}
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </>
