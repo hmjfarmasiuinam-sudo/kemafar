@@ -89,6 +89,19 @@ export default function MemberFormPage() {
     },
   });
 
+  const handleNameChange = (value: string) => {
+    const isPhotoEmptyOrAuto = !formData.photo || formData.photo.includes('ui-avatars.com');
+    const newPhoto = isPhotoEmptyOrAuto && value.trim()
+      ? `https://ui-avatars.com/api/?name=${encodeURIComponent(value)}&background=random`
+      : formData.photo;
+
+    setFormData({
+      ...formData,
+      name: value,
+      photo: newPhoto || '',
+    });
+  };
+
   if (fetching) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -115,7 +128,7 @@ export default function MemberFormPage() {
               label="Full Name"
               id="name"
               value={formData.name}
-              onChange={(value) => setFormData({ ...formData, name: value })}
+              onChange={handleNameChange}
               required
             />
 
