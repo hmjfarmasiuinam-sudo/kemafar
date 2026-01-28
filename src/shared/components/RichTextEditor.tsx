@@ -30,8 +30,6 @@ import {
   FileText,
 } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { MarkdownContent } from './ui/MarkdownContent';
 
 interface RichTextEditorProps {
