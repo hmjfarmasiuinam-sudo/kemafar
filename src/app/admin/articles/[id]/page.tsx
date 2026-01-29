@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useAdminForm } from '@/shared/hooks/useAdminForm';
-import { RichTextEditor } from '@/shared/components/RichTextEditor';
+import { RichTextEditor } from '@/shared/components/RichTextEditorDynamic';
 import { FormInput } from '@/shared/components/FormInput';
 import { FormTextarea } from '@/shared/components/FormTextarea';
 import { FormSelect } from '@/shared/components/FormSelect';

@@ -23,7 +23,7 @@ export async function GET() {
       .eq('featured', true)
       .eq('status', 'published')
       .order('published_at', { ascending: false })
-      .limit(3)
+      .limit(5)
       .returns<any[]>();
 
     if (error) {

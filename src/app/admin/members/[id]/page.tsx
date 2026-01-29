@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useAdminForm } from '@/shared/hooks/useAdminForm';
-import { RichTextEditor } from '@/shared/components/RichTextEditor';
+import { RichTextEditor } from '@/shared/components/RichTextEditorDynamic';
 import { FormInput } from '@/shared/components/FormInput';
 import { FormSelect } from '@/shared/components/FormSelect';
 import { FormActions } from '@/shared/components/FormActions';

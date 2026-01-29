@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
 import { Settings, Home, Info, Save } from 'lucide-react';
-import { RichTextEditor } from '@/shared/components/RichTextEditor';
+import { RichTextEditor } from '@/shared/components/RichTextEditorDynamic';
 
 type TabType = 'home' | 'about';
 
@@ -201,22 +201,20 @@ export default function SettingsPage() {
         <nav className="flex gap-4">
           <button
             onClick={() => setActiveTab('home')}
-            className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium transition-colors ${
-              activeTab === 'home'
+            className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium transition-colors ${activeTab === 'home'
                 ? 'border-green-600 text-green-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             <Home className="w-4 h-4" />
             Home Settings
           </button>
           <button
             onClick={() => setActiveTab('about')}
-            className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium transition-colors ${
-              activeTab === 'about'
+            className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium transition-colors ${activeTab === 'about'
                 ? 'border-green-600 text-green-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             <Info className="w-4 h-4" />
             About Settings

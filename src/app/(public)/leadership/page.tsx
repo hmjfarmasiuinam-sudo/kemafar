@@ -63,12 +63,22 @@ function DivisionSection({
   return (
     <motion.div
       ref={ref}
-      style={{ x, opacity, scale, filter: blur }}
+      style={{
+        x,
+        opacity,
+        scale,
+        filter: blur,
+        willChange: 'transform, opacity, filter',
+        transform: 'translateZ(0)', // Force GPU acceleration
+      }}
       className="mb-48 py-12 last:mb-0 relative"
     >
       {/* Active State Backdrop Glow */}
       <motion.div
-        style={{ opacity: bgOpacity }}
+        style={{
+          opacity: bgOpacity,
+          willChange: 'opacity',
+        }}
         className="absolute -inset-8 bg-gradient-to-r from-transparent via-primary-900/30 to-transparent rounded-3xl -z-10 blur-xl transition-all duration-500"
       />
 
@@ -175,7 +185,13 @@ export default function LeadershipPage() {
       */}
       <div className="fixed inset-0 z-0 flex items-start pt-32 justify-center pointer-events-none">
         <motion.div
-          style={{ y, opacity, filter: blur }}
+          style={{
+            y,
+            opacity,
+            filter: blur,
+            willChange: 'transform, opacity, filter',
+            transform: 'translateZ(0)', // Force GPU acceleration
+          }}
           className="text-center"
         >
           <h1 className="text-6xl sm:text-8xl md:text-9xl font-black uppercase tracking-tighter text-white mb-4">
@@ -208,10 +224,17 @@ export default function LeadershipPage() {
               {coreLeadership.map((member, index) => (
                 <motion.div
                   key={member.id}
-                  initial={{ opacity: 0, y: 100 }}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.1, duration: 0.8 }}
+                  viewport={{ once: true, margin: "-50px", amount: 0.3 }}
+                  transition={{
+                    delay: index * 0.08,
+                    duration: 0.6,
+                    ease: "easeOut"
+                  }}
+                  style={{
+                    willChange: 'transform, opacity',
+                  }}
                   className="group relative"
                 >
                   {/* Poster Image */}

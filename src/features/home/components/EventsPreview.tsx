@@ -8,6 +8,24 @@ import { id } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
 import type { Event as EventListItem } from '@/lib/api/events';
 
+function EventsSkeleton() {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {[1, 2].map((i) => (
+        <div key={i} className="relative overflow-hidden rounded-3xl bg-gray-100">
+          <div className="relative aspect-[16/9] bg-gray-200 animate-pulse" />
+          <div className="p-8 space-y-4">
+            <div className="h-12 w-48 bg-gray-200 rounded-2xl animate-pulse" />
+            <div className="h-8 w-3/4 bg-gray-200 rounded animate-pulse" />
+            <div className="h-6 w-full bg-gray-200 rounded animate-pulse" />
+            <div className="h-6 w-2/3 bg-gray-200 rounded animate-pulse" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function EventsPreview() {
   const [events, setEvents] = useState<EventListItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -30,10 +48,6 @@ export function EventsPreview() {
 
     fetchEvents();
   }, []);
-
-  if (loading) {
-    return <div className="text-center py-12">Loading...</div>;
-  }
 
   return (
     <section className="relative py-32 overflow-hidden bg-white">
@@ -59,7 +73,9 @@ export function EventsPreview() {
           </div>
         </div>
 
-        {events.length === 0 ? (
+        {loading ? (
+          <EventsSkeleton />
+        ) : events.length === 0 ? (
           <div className="text-center py-24 text-gray-500 text-xl">
             Belum ada event mendatang
           </div>
