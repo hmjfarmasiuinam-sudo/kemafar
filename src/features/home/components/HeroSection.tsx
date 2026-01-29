@@ -63,18 +63,36 @@ export function HeroSection({ data }: HeroSectionProps) {
               <span className="text-sm font-medium text-secondary-600 tracking-wide uppercase">{data.badge}</span>
             </motion.div>
 
-            {/* Headline - Massive & Tight - LCP Element Optimized */}
-            <motion.h1
-              variants={item}
-              className="text-6xl md:text-7xl lg:text-8xl font-black text-primary-600 leading-[1.1] md:leading-[1] tracking-tighter mb-8"
-              style={{ contentVisibility: 'auto', minHeight: '200px' }}
-            >
-              {data.title}
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
-                {data.titleHighlight}
-              </span>
-            </motion.h1>
+            {/* Headline with Logo - Mobile inline, Desktop separate */}
+            <div className="flex flex-col lg:block gap-6 mb-8">
+              {/* Mobile Logo - Inline with heading */}
+              <motion.div
+                variants={item}
+                className="lg:hidden w-32 h-32 bg-white rounded-3xl shadow-xl p-4 flex items-center justify-center"
+              >
+                <Image
+                  src="/images/logo-hero.jpeg"
+                  alt="Logo HMJF"
+                  width={128}
+                  height={128}
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
+
+              {/* Headline - Massive & Tight - LCP Element Optimized */}
+              <motion.h1
+                variants={item}
+                className="text-6xl md:text-7xl lg:text-8xl font-black text-primary-600 leading-[1.1] md:leading-[1] tracking-tighter"
+                style={{ contentVisibility: 'auto', minHeight: '200px' }}
+              >
+                {data.title}
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                  {data.titleHighlight}
+                </span>
+              </motion.h1>
+            </div>
 
             {/* Description - Reader friendly */}
             <motion.p variants={item} className="text-lg md:text-xl text-secondary-600 leading-relaxed max-w-2xl border-l-4 border-primary-200 pl-6 mb-10">
@@ -115,13 +133,13 @@ export function HeroSection({ data }: HeroSectionProps) {
             </motion.div>
           </motion.div>
 
-          {/* Visual - Editorial Image Composition (No Card Box) */}
+          {/* Visual - Editorial Image Composition (Desktop Only) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0 }}
-            className="lg:col-span-5 relative h-[400px] lg:h-[600px]"
-            style={{ minHeight: '400px' }}
+            className="hidden lg:block lg:col-span-5 relative h-[600px]"
+            style={{ minHeight: '600px' }}
           >
             {/* Main Hero Image - Organic Shape */}
             <div className="relative z-10 w-full h-full">
