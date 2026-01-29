@@ -125,30 +125,32 @@ export function HeroSection({ data }: HeroSectionProps) {
           >
             {/* Main Hero Image - Organic Shape */}
             <div className="relative z-10 w-full h-full">
-              <div className="absolute right-0 top-0 w-4/5 h-4/5 rounded-[4rem] rounded-tr-[10rem] overflow-hidden shadow-2xl shadow-primary-900/10" style={{ transform: 'rotate(3deg)' }}>
-                <Image
-                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=2070"
-                  alt="Mahasiswa Farmasi"
-                  fill
-                  className="object-cover"
-                  priority
-                  fetchPriority="high"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent" />
+              <div className="absolute right-0 top-0 w-4/5 h-4/5 rounded-[4rem] rounded-tr-[10rem] overflow-hidden shadow-2xl shadow-primary-900/10 bg-white p-6 flex items-center justify-center" style={{ transform: 'rotate(3deg)' }}>
+                <div className="relative w-full h-full" style={{ transform: 'rotate(-3deg)' }}>
+                  <Image
+                    src="/images/logo-hero.jpeg"
+                    alt="HIMPUNAN MAHASISWA JURUSAN FARMASI UIN ALAUDDIN MAKASSAR"
+                    fill
+                    className="object-contain p-4"
+                    priority
+                    fetchPriority="high"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/5 to-transparent pointer-events-none" />
               </div>
 
               {/* Floating Accent Image */}
-              <div className="absolute left-0 bottom-20 w-3/5 h-2/5 rounded-[3rem] rounded-bl-[6rem] overflow-hidden shadow-xl shadow-secondary-900/10 border-4 border-white" style={{ transform: 'rotate(-6deg)' }}>
-                <Image
-                  src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?auto=format&fit=crop&q=80&w=2079"
-                  alt="Kerja Laboratorium"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 30vw"
-                />
+              <div className="absolute left-0 bottom-20 w-3/5 h-2/5 rounded-[3rem] rounded-bl-[6rem] overflow-hidden shadow-xl shadow-secondary-900/10 border-4 border-white bg-white p-4 flex items-center justify-center" style={{ transform: 'rotate(-6deg)' }}>
+                <div className="relative w-full h-full" style={{ transform: 'rotate(6deg)' }}>
+                  <Image
+                    src="/images/logo-hero.jpeg"
+                    alt="Logo HMJF"
+                    fill
+                    className="object-contain p-2"
+                    sizes="(max-width: 768px) 100vw, 30vw"
+                  />
+                </div>
               </div>
 
               {/* Minimal floating elements */}

@@ -7,15 +7,18 @@
  */
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ROUTES } from '@/config/navigation.config';
 import { cn } from '@/shared/utils/cn';
 import { motion } from 'framer-motion';
-import { Home, Info, Users, Mic, Calendar, UserCircle } from 'lucide-react';
+import { Info, Users, Mic, Calendar, UserCircle, type LucideIcon } from 'lucide-react';
 import { useSectionDetection } from '@/shared/hooks/useSectionDetection';
 
-const NAV_ITEMS = [
-    { label: 'Beranda', href: ROUTES.home, icon: Home },
+type NavIcon = LucideIcon | 'custom-logo';
+
+const NAV_ITEMS: Array<{ label: string; href: string; icon: NavIcon }> = [
+    { label: 'Beranda', href: ROUTES.home, icon: 'custom-logo' },
     { label: 'Tentang', href: ROUTES.about, icon: Info },
     { label: 'Event', href: ROUTES.events, icon: Calendar },
     { label: 'Artikel', href: ROUTES.articles, icon: Mic },
@@ -51,6 +54,7 @@ export function FloatingDock() {
                     {NAV_ITEMS.map((item) => {
                         const isActive = pathname === item.href;
                         const Icon = item.icon;
+                        const isCustomLogo = Icon === 'custom-logo';
 
                         return (
                             <Link
@@ -78,13 +82,31 @@ export function FloatingDock() {
                                     {/* Icon */}
                                     <div className={cn(
                                         "relative z-10 flex items-center justify-center transition-colors duration-200",
-                                        isActive
+                                        !isCustomLogo && (isActive
                                             ? "text-white"
                                             : sectionType === 'light'
                                                 ? "text-white/90 group-hover:text-white"
-                                                : "text-gray-600 group-hover:text-gray-800"
+                                                : "text-gray-600 group-hover:text-gray-800")
                                     )}>
-                                        <Icon className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2} />
+                                        {isCustomLogo ? (
+                                            <div className={cn(
+                                                "relative w-6 h-6 md:w-7 md:h-7 transition-all duration-200",
+                                                !isActive && "opacity-70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]"
+                                            )}>
+                                                <Image
+                                                    src={isActive ? "/icons/logo-active.webp" : "/icons/logo-inactive.webp"}
+                                                    alt="Home"
+                                                    fill
+                                                    className={cn(
+                                                        "object-contain transition-all duration-200",
+                                                        !isActive && "brightness-90 contrast-125"
+                                                    )}
+                                                    sizes="32px"
+                                                />
+                                            </div>
+                                        ) : (
+                                            <Icon className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2} />
+                                        )}
                                     </div>
 
                                     {/* Tooltip (Desktop) */}
