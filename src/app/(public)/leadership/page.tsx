@@ -75,11 +75,21 @@ function DivisionSection({
     offset: ["start end", "end start"]
   });
 
-  // Parallax transforms with mobile optimization
+  // Scroll Down:
+  // 0.0 - 0.35: Enter from Right (250px -> 0)
+  // 0.35 - 0.65: STABLE CENTER (0 -> 0) - This gives the "Auto Center" feel
+  // 0.65 - 1.0: Exit to Left (0 -> -250px)
   const x = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [250, 0, 0, -250]);
+
+  // Spotlight Effects:
+  // Opacity: Fade in/out
   const opacity = useTransform(scrollYProgress, [0, 0.25, 0.8, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.95, 1, 1, 0.95]);
-  const blur = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], ["blur(3px)", "blur(0px)", "blur(0px)", "blur(3px)"]);
+  // Scale: Popping effect in center
+  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.85, 1, 1, 0.85]);
+  // Blur: Blur edges to focus center
+  const blur = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], ["blur(4px)", "blur(0px)", "blur(0px)", "blur(4px)"]);
+  // Background Highlight: Subtle glow when active
+  const bgOpacity = useTransform(scrollYProgress, [0.2, 0.4, 0.6, 0.8], [0, 0.1, 0.1, 0]);
 
   return (
     <motion.div
@@ -90,9 +100,19 @@ function DivisionSection({
         scale,
         filter: blur,
         willChange: 'transform, opacity, filter',
+        transform: 'translateZ(0)', // Force GPU acceleration
       }}
       className="mb-48 py-12 last:mb-0 relative"
     >
+      {/* Active State Backdrop Glow */}
+      <motion.div
+        style={{
+          opacity: bgOpacity,
+          willChange: 'opacity',
+        }}
+        className="absolute -inset-8 bg-gradient-to-r from-transparent via-primary-900/30 to-transparent rounded-3xl -z-10 blur-xl transition-all duration-500"
+      />
+
       {/* Division Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-700/50 pb-6 mb-12">
         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white shadow-black drop-shadow-2xl break-words">
@@ -151,12 +171,12 @@ export default function LeadershipPage() {
 
   // Parallax Setup
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
+  const { scrollY } = useScroll(); // Use global scroll for sticky effect
 
-  // Hero parallax transforms
-  const y = useTransform(scrollY, [0, 1000], [0, 400]);
-  const opacity = useTransform(scrollY, [0, 500], [1, 0.3]);
-  const blur = useTransform(scrollY, [0, 400], ["blur(0px)", "blur(10px)"]);
+  // Parallax transforms for the Hero Title
+  const y = useTransform(scrollY, [0, 1000], [0, 400]); // Moves down slower than scroll to create parallax
+  const opacity = useTransform(scrollY, [0, 500], [1, 0.3]); // Fade partially but stay visible
+  const blur = useTransform(scrollY, [0, 400], ["blur(0px)", "blur(20px)"]); // Stronger blur effect
 
   useEffect(() => {
     const fetchData = async () => {
@@ -203,7 +223,7 @@ export default function LeadershipPage() {
           }}
           className="text-center w-full max-w-4xl"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-white mb-4 break-words">
+          <h1 className="text-[2.5rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-white mb-4 break-words hyphens-auto">
             Kepengurusan
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-400 font-light tracking-wide max-w-2xl mx-auto px-4">
@@ -211,9 +231,9 @@ export default function LeadershipPage() {
           </p>
         </motion.div>
 
-        {/* Ambient Glows - Desktop only */}
-        <div className="hidden md:block absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-primary-900/20 rounded-full blur-[80px] -z-10" />
-        <div className="hidden md:block absolute bottom-1/4 right-1/4 w-[25rem] h-[25rem] bg-secondary-900/20 rounded-full blur-[80px] -z-10" />
+        {/* Ambient Background Glows */}
+        <div className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-primary-900/20 rounded-full blur-[100px] -z-10 animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-[25rem] h-[25rem] bg-secondary-900/20 rounded-full blur-[100px] -z-10 animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
       {/* Scrollable Content */}
@@ -237,12 +257,12 @@ export default function LeadershipPage() {
                 {coreLeadership.map((member, index) => (
                   <motion.div
                     key={member.id}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px", amount: 0.3 }}
+                    viewport={{ once: true, margin: "-100px", amount: 0.2 }}
                     transition={{
-                      delay: index * 0.05,
-                      duration: 0.4,
+                      delay: index * 0.03,
+                      duration: 0.3,
                       ease: "easeOut"
                     }}
                     className="group relative"
@@ -258,9 +278,9 @@ export default function LeadershipPage() {
                             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                             priority={index < 4}
                             loading={index < 4 ? "eager" : "lazy"}
-                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 ease-out"
+                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300 ease-out"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                         </>
                       ) : (
                         <div className="flex flex-col items-center justify-center text-gray-700 group-hover:text-primary-500 transition-colors">
@@ -271,8 +291,8 @@ export default function LeadershipPage() {
                     </div>
 
                     {/* Typography */}
-                    <div className="border-t border-gray-800 pt-4 group-hover:border-white transition-colors duration-300">
-                      <h3 className="text-xl font-bold mb-1 tracking-tight text-white group-hover:text-primary-400 transition-colors">{member.name}</h3>
+                    <div className="border-t border-gray-800 pt-4 group-hover:border-white transition-colors duration-200">
+                      <h3 className="text-xl font-bold mb-1 tracking-tight text-white group-hover:text-primary-400 transition-colors duration-200">{member.name}</h3>
                       <p className="text-gray-500 text-xs font-mono tracking-widest uppercase">
                         {formatPosition(member.position)}
                       </p>
