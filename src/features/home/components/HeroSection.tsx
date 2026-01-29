@@ -68,13 +68,13 @@ export function HeroSection({ data }: HeroSectionProps) {
               {/* Mobile Logo - Same height as text */}
               <motion.div
                 variants={item}
-                className="lg:hidden flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 bg-white rounded-2xl shadow-xl p-3 flex items-center justify-center"
+                className="lg:hidden flex-shrink-0 w-28 h-32 sm:w-32 sm:h-36 bg-white rounded-2xl shadow-xl p-3 flex items-center justify-center"
               >
                 <Image
                   src="/images/logo-hero.jpeg"
                   alt="Logo HMJF"
-                  width={112}
-                  height={112}
+                  width={128}
+                  height={128}
                   className="object-contain"
                   priority
                 />
@@ -83,7 +83,7 @@ export function HeroSection({ data }: HeroSectionProps) {
               {/* Headline - Same height container on mobile */}
               <motion.h1
                 variants={item}
-                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-primary-600 leading-tight tracking-tighter flex-1 h-24 sm:h-28 lg:h-auto flex lg:block items-center"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-primary-600 leading-tight tracking-tighter flex-1 h-32 sm:h-36 lg:h-auto flex lg:block items-center"
                 style={{ contentVisibility: 'auto' }}
               >
                 <span className="block lg:inline">
