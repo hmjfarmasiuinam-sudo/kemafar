@@ -77,10 +77,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="scroll-smooth">
-      <head>
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-      </head>
       <body className={`${plusJakarta.variable} ${poppins.variable} font-sans antialiased`}>
         {children}
         <Toaster position="top-right" richColors />

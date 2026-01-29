@@ -59,7 +59,7 @@ export function Footer() {
             className="md:col-span-5 pr-8"
           >
             <h2 className="text-3xl font-black tracking-tight mb-6">{SITE_CONFIG.name}</h2>
-            <p className="text-gray-400 leading-relaxed mb-8 text-lg font-light">
+            <p className="text-gray-300 leading-relaxed mb-8 text-lg font-light">
               Kami adalah wadah pengembangan mahasiswa farmasi yang berkomitmen mencetak profesional berintegritas dan berwawasan luas.
             </p>
 
@@ -135,7 +135,7 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+        <div className="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <p>&copy; {currentYear} {SITE_CONFIG.name}.</p>
           <p className="mt-2 md:mt-0">Farmasi UIN Alauddin Makassar</p>
         </div>

@@ -57,6 +57,7 @@ export function FloatingDock() {
                                 key={item.href}
                                 href={item.href}
                                 className="relative"
+                                aria-label={item.label}
                             >
                                 <div
                                     className={cn(
