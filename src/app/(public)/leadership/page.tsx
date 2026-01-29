@@ -39,7 +39,13 @@ function DivisionSection({
   members: LeadershipMember[]
 }) {
   return (
-    <div className="mb-32 py-12 last:mb-0 relative">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px", amount: 0.2 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="mb-32 py-12 last:mb-0 relative"
+    >
       {/* Division Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-700/50 pb-6 mb-12">
         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white shadow-black drop-shadow-2xl">
@@ -52,9 +58,13 @@ function DivisionSection({
 
       {/* Division Members Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
-        {members.map((member) => (
-          <div
+        {members.map((member, idx) => (
+          <motion.div
             key={member.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: idx * 0.05, duration: 0.4 }}
             className="flex items-center gap-6 group"
           >
             {/* Avatar */}
@@ -82,10 +92,10 @@ function DivisionSection({
                 {formatPosition(member.position)}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 
