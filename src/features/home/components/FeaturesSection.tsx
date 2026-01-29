@@ -34,10 +34,10 @@ export function FeaturesSection({ data }: FeaturesSectionProps) {
               viewport={{ once: true }}
               className="max-w-xl"
             >
-              <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-8 leading-[0.9] tracking-tighter">
+              <h2 className="text-5xl md:text-6xl font-black text-primary-600 mb-8 leading-[0.9] tracking-tighter">
                 {data.title}
               </h2>
-              <p className="text-xl text-gray-500 leading-relaxed border-l-2 border-primary-500 pl-6">
+              <p className="text-xl text-secondary-600 leading-relaxed border-l-2 border-primary-600 pl-6">
                 {data.description}
               </p>
             </motion.div>
@@ -59,15 +59,15 @@ export function FeaturesSection({ data }: FeaturesSectionProps) {
                 >
                   <div className="flex gap-6 items-start">
                     {/* Icon - No box, just icon */}
-                    <div className="mt-1 p-3 rounded-2xl bg-gray-50 group-hover:bg-primary-50 transition-colors duration-300">
-                      <Icon className="w-8 h-8 text-gray-900 group-hover:text-primary-600 transition-colors duration-300" />
+                    <div className="mt-1 p-3 rounded-2xl bg-white group-hover:bg-primary-600 transition-colors duration-300 shadow-sm">
+                      <Icon className="w-8 h-8 text-primary-600 group-hover:text-accent-100 transition-colors duration-300" />
                     </div>
 
-                    <div className="border-b border-gray-100 pb-12 w-full group-last:border-0">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary-700 transition-colors">
+                    <div className="border-b border-primary-100 pb-12 w-full group-last:border-0">
+                      <h3 className="text-2xl font-bold text-primary-600 mb-3 group-hover:text-primary-800 transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-lg text-gray-500 leading-relaxed font-light">
+                      <p className="text-lg text-secondary-600 leading-relaxed font-light">
                         {feature.description}
                       </p>
                     </div>

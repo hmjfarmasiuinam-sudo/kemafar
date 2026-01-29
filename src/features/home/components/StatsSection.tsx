@@ -96,10 +96,10 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export function StatsSection() {
   return (
-    <section className="relative py-40 overflow-hidden bg-gray-900">
+    <section className="relative py-40 overflow-hidden bg-primary-600">
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/50 via-gray-900 to-gray-900" />
-      <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-primary-600/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/50 via-primary-700 to-primary-800" />
+      <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-accent-100/5 to-transparent" />
 
       <div className="container-custom relative z-10">
         {/* Simple centered header */}
@@ -110,7 +110,7 @@ export function StatsSection() {
           className="text-center mb-24"
         >
           <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Our Community in <span className="text-primary-400">Numbers</span>
+            Our Community in <span className="text-accent-200">Numbers</span>
           </h2>
         </motion.div>
 
@@ -128,7 +128,7 @@ export function StatsSection() {
                 className="text-center"
               >
                 {/* Icon - minimal */}
-                <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary-400 mx-auto mb-6" />
+                <Icon className="w-8 h-8 md:w-10 md:h-10 text-accent-100 mx-auto mb-6" />
 
                 {/* Big number - focus on data */}
                 <div className="text-white mb-4">
@@ -136,7 +136,7 @@ export function StatsSection() {
                 </div>
 
                 {/* Label */}
-                <p className="text-gray-400 font-medium text-sm md:text-base">
+                <p className="text-primary-100 font-medium text-sm md:text-base">
                   {stat.label}
                 </p>
               </motion.div>
@@ -145,14 +145,14 @@ export function StatsSection() {
         </div>
 
         {/* Optional divider */}
-        <div className="mt-24 pt-16 border-t border-gray-800">
+        <div className="mt-24 pt-16 border-t border-primary-500/30">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-primary-100 text-lg max-w-2xl mx-auto">
               Organisasi mahasiswa farmasi yang aktif mengembangkan akademik, soft skills, dan pengabdian masyarakat
             </p>
           </motion.div>

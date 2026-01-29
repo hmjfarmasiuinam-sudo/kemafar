@@ -1,0 +1,539 @@
+
+> nextjs-supabase-starterkit@1.0.0 lint
+> next lint
+
+
+./src/app/(public)/about/page.tsx
+15:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/articles/[slug]/error.tsx
+5:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/articles/[slug]/loading.tsx
+3:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/articles/[slug]/not-found.tsx
+4:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+17:26  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+17:47  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/(public)/articles/[slug]/page.tsx
+31:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/articles/error.tsx
+5:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/articles/loading.tsx
+3:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/articles/page.tsx
+19:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/events/[slug]/error.tsx
+5:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/events/[slug]/loading.tsx
+3:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/events/[slug]/not-found.tsx
+4:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+17:24  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+17:45  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/app/(public)/events/[slug]/page.tsx
+32:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+140:81  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+144:78  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/(public)/events/error.tsx
+5:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/events/loading.tsx
+3:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/events/page.tsx
+16:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/layout.tsx
+4:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/leadership/error.tsx
+5:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/leadership/loading.tsx
+3:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/leadership/page.tsx
+34:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+48:32  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/members/error.tsx
+5:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/members/loading.tsx
+3:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/members/page.tsx
+9:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+20:32  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/(public)/page.tsx
+25:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/admin/articles/[id]/page.tsx
+27:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+87:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+146:32  Warning: Expected { after 'if' condition.  curly
+147:24  Error: Forbidden non-null assertion.  @typescript-eslint/no-non-null-assertion
+167:30  Warning: Expected { after 'if' condition.  curly
+168:22  Error: Forbidden non-null assertion.  @typescript-eslint/no-non-null-assertion
+
+./src/app/admin/articles/page.tsx
+29:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+49:27  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+78:45  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+86:18  Warning: Expected { after 'if' condition.  curly
+96:47  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+103:18  Warning: Expected { after 'if' condition.  curly
+113:44  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+117:18  Warning: Expected { after 'if' condition.  curly
+142:6  Warning: React Hook useCallback has a missing dependency: 'executePublish'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+158:6  Warning: React Hook useCallback has a missing dependency: 'executeUnpublish'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+169:6  Warning: React Hook useCallback has a missing dependency: 'executeDelete'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+172:35  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+180:50  Warning: Expected { after 'if' condition.  curly
+188:50  Warning: Expected { after 'if' condition.  curly
+
+./src/app/admin/dashboard/page.tsx
+16:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+30:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+40:35  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+41:37  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+42:33  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+43:41  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+65:45  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/admin/events/[id]/page.tsx
+39:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+110:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/admin/events/page.tsx
+30:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+50:27  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+91:35  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+98:50  Warning: Expected { after 'if' condition.  curly
+106:50  Warning: Expected { after 'if' condition.  curly
+122:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+162:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/admin/layout.tsx
+51:1  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+91:34  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+106:45  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+175:63  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+180:38  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+256:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/admin/leadership/[id]/page.tsx
+31:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+99:44  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/admin/leadership/page.tsx
+32:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+50:27  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+86:35  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+108:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+111:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+146:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+158:47  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/admin/members/[id]/page.tsx
+18:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+92:44  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/admin/members/page.tsx
+34:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+57:27  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+61:22  Warning: Expected { after 'if' condition.  curly
+75:18  Warning: Expected { after 'if' condition.  curly
+86:66  Warning: Expected { after 'if' condition.  curly
+142:35  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/admin/settings/page.tsx
+56:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+76:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+99:21  Warning: Expected { after 'if' condition.  curly
+100:22  Warning: Expected { after 'if' condition.  curly
+109:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+110:24  Warning: Expected { after 'if' condition.  curly
+131:39  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+143:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+144:25  Warning: Expected { after 'if' condition.  curly
+165:39  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/admin/users/[id]/page.tsx
+20:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+50:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+77:31  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+79:39  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+80:29  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+81:41  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+92:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+104:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+153:39  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+174:39  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/admin/users/page.tsx
+27:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+39:22  Warning: Expected { after 'if' condition.  curly
+64:24  Warning: Expected { after 'if' condition.  curly
+65:33  Warning: Expected { after 'if' condition.  curly
+76:29  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+77:39  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+88:22  Warning: Expected { after 'if' condition.  curly
+91:42  Warning: Expected { after 'if' condition.  curly
+106:10  Warning: Unexpected confirm.  no-alert
+106:64  Warning: Expected { after 'if' condition.  curly
+114:21  Warning: Expected { after 'if' condition.  curly
+216:29  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+218:51  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+224:50  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+230:47  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/api/admin/settings/about/route.ts
+41:74  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/api/admin/settings/home/route.ts
+41:74  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/api/admin/settings/route.ts
+41:74  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/api/admin/users/[id]/route.ts
+5:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+59:16  Warning: Expected { after 'if' condition.  curly
+80:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+160:32  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+165:22  Warning: Expected { after 'if' condition.  curly
+179:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+237:22  Warning: Expected { after 'if' condition.  curly
+
+./src/app/api/admin/users/route.ts
+50:52  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+51:49  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+52:52  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+53:54  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+78:16  Warning: Expected { after 'if' condition.  curly
+82:25  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/api/articles/featured/route.ts
+7:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+10:25  Error: Forbidden non-null assertion.  @typescript-eslint/no-non-null-assertion
+11:29  Error: Forbidden non-null assertion.  @typescript-eslint/no-non-null-assertion
+27:16  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+42:22  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+46:32  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+47:33  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/app/api/datatables/[tableName]/route.ts
+81:11  Warning: Prefer using an optional chain expression instead, as it's more concise and easier to read.  @typescript-eslint/prefer-optional-chain
+
+./src/app/api/events/upcoming/route.ts
+6:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/auth/layout.tsx
+5:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/auth/login/page.tsx
+9:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+41:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/app/layout.tsx
+73:16  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/about/components/AboutContent.tsx
+20:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/about/components/Timeline.tsx
+20:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/articles/components/ArticlesGrid.tsx
+15:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/events/components/EventsGrid.tsx
+18:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/home/components/ArticlesPreview.tsx
+12:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+17:36  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/home/components/CTASection.tsx
+18:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/home/components/EventsPreview.tsx
+11:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+16:34  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+51:53  Warning: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+./src/features/home/components/FeaturesSection.tsx
+24:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/home/components/HeroSection.tsx
+43:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/features/home/components/StatsSection.tsx
+56:1  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+72:42  Warning: Expected { after 'if' condition.  curly
+97:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/lib/api/articles.ts
+82:24  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/lib/api/leadership.ts
+66:13  Warning: Expected { after 'if' condition.  curly
+67:31  Warning: Expected { after 'if' condition.  curly
+68:26  Warning: Expected { after 'if' condition.  curly
+70:81  Warning: Expected { after 'if' condition.  curly
+
+./src/lib/api/members.ts
+70:13  Warning: Expected { after 'if' condition.  curly
+71:31  Warning: Expected { after 'if' condition.  curly
+72:26  Warning: Expected { after 'if' condition.  curly
+86:41  Error: Forbidden non-null assertion.  @typescript-eslint/no-non-null-assertion
+
+./src/lib/auth/AuthContext.tsx
+57:64  Warning: Expected { after 'if' condition.  curly
+65:31  Warning: Expected { after 'if' condition.  curly
+72:5  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+73:32  Warning: Expected { after 'if' condition.  curly
+77:59  Warning: Expected { after 'if' condition.  curly
+82:95  Warning: Expected { after 'if' condition.  curly
+94:31  Warning: Expected { after 'if' condition.  curly
+101:33  Warning: Expected { after 'if' condition.  curly
+120:16  Warning: Expected { after 'if' condition.  curly
+143:31  Warning: Expected { after 'if' condition.  curly
+
+./src/lib/auth/auth.service.ts
+4:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+22:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+22:8  Warning: Async function 'signInService' has no 'await' expression.  require-await
+29:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+29:8  Warning: Async function 'signOutService' has no 'await' expression.  require-await
+
+./src/lib/auth/auth.utils.ts
+4:19  Warning: Expected { after 'if' condition.  curly
+9:16  Warning: Expected { after 'if' condition.  curly
+
+./src/lib/storage/storage.service.ts
+7:77  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+47:30  Warning: Expected { after 'if' condition.  curly
+107:35  Warning: Expected { after 'if' condition.  curly
+108:30  Warning: Expected { after 'else'.  curly
+129:24  Warning: Expected { after 'if' condition.  curly
+135:24  Warning: Expected { after 'if' condition.  curly
+
+./src/lib/supabase/server.ts
+81:58  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+82:66  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/lib/utils/error-handler.ts
+107:33  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+107:51  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/lib/utils.ts
+4:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/CategoryBadge.tsx
+6:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/FormActions.tsx
+10:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/FormCheckbox.tsx
+9:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/FormField.tsx
+9:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/FormInput.tsx
+15:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/FormSelect.tsx
+19:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/FormTextarea.tsx
+14:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/RichTextEditor.tsx
+150:17  Warning: Unexpected prompt.  no-alert
+172:17  Warning: Unexpected prompt.  no-alert
+201:20  Warning: Unexpected prompt.  no-alert
+
+./src/shared/components/StatusBadge.tsx
+8:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/datatables/AdminDataTable.tsx
+37:44  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+117:46  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/layout/FloatingDock.tsx
+25:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/layout/Footer.tsx
+15:25  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+21:26  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+27:24  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+33:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/layout/Header.tsx
+18:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+24:29  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/layout/MobileMenu.tsx
+31:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/layout/Navigation.tsx
+23:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/ArticleGallery.tsx
+13:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+18:41  Warning: Expected { after 'if' condition.  curly
+
+./src/shared/components/ui/Button.tsx
+48:28  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/shared/components/ui/CountingNumber.tsx
+14:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/CreateableSelect.tsx
+13:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+22:64  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+31:23  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+42:39  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/EmptyState.tsx
+46:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+55:21  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+56:30  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+57:34  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/shared/components/ui/ErrorState.tsx
+16:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+35:27  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+44:28  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/shared/components/ui/FileUpload.tsx
+17:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+30:43  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+61:13  Warning: Prefer using an optional chain expression instead, as it's more concise and easier to read.  @typescript-eslint/prefer-optional-chain
+77:67  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+78:13  Warning: Prefer using an optional chain expression instead, as it's more concise and easier to read.  @typescript-eslint/prefer-optional-chain
+83:29  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/Input.tsx
+19:30  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+19:44  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+44:22  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/shared/components/ui/MarkdownContent.tsx
+45:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+79:19  Error: 'node' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+80:13  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+83:30  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+
+./src/shared/components/ui/Modal.tsx
+16:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+31:49  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+32:37  Warning: Expected { after 'if' condition.  curly
+
+./src/shared/components/ui/MultipleFileUpload.tsx
+18:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+32:47  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+52:38  Warning: Expected { after 'if' condition.  curly
+89:67  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+95:50  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/PageSkeletons.tsx
+11:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+25:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+49:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+75:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+95:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+114:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+140:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/Pagination.tsx
+14:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+20:26  Warning: Expected { after 'if' condition.  curly
+22:37  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+27:24  Warning: Expected { after 'if' condition.  curly
+42:31  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/ParallaxHero.tsx
+11:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/ScrollReveal.tsx
+13:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/Section.tsx
+11:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/SegmentedControl.tsx
+66:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+75:37  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+76:17  Warning: Expected { after 'if' condition.  curly
+80:36  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+81:17  Warning: Expected { after 'if' condition.  curly
+85:41  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/Select.tsx
+21:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+29:56  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+38:48  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/Skeleton.tsx
+9:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+22:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+66:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/SpotlightCard.tsx
+12:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+22:67  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+31:28  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+35:27  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+39:33  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+43:33  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/TiltCard.tsx
+13:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+23:67  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+41:33  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/components/ui/WhatsAppButton.tsx
+13:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+16:26  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/hooks/useAdminForm.ts
+200:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+209:18  Warning: Expected { after 'if' condition.  curly
+247:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+274:20  Warning: Expected { after 'if' condition.  curly
+284:20  Warning: Expected { after 'if' condition.  curly
+298:3  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/hooks/useAdminTable.ts
+139:18  Warning: Expected { after 'if' condition.  curly
+142:27  Warning: Prefer using nullish coalescing operator (`??`) instead of a logical or (`||`), as it is a safer operator.  @typescript-eslint/prefer-nullish-coalescing
+149:6  Warning: React Hook useCallback has an unnecessary dependency: 'profile.id'. Either exclude it or remove the dependency array.  react-hooks/exhaustive-deps
+170:19  Warning: Expected { after 'if' condition.  curly
+181:41  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+188:18  Warning: Expected { after 'if' condition.  curly
+205:50  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/providers/PageTransition.tsx
+6:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./src/shared/utils/cn.ts
+8:8  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules

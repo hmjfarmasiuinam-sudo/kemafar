@@ -12,30 +12,43 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-          950: '#052e16',
+          50: '#eaebf0',
+          100: '#cdd0da',
+          200: '#a3a6b8',
+          300: '#757891',
+          400: '#5F6074', // Payne's Gray (Secondary Level 2)
+          500: '#40415a',
+          600: '#1D1D44', // Space Cadet (Base/Identity Level 1)
+          700: '#171739',
+          800: '#12122e',
+          900: '#0c0c24',
+          950: '#070718',
         },
         secondary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
+          50: '#f4f4f6', // Very light gray tint
+          100: '#e4e4e7', // Light gray
+          200: '#c8c8ce', // Soft gray
+          300: '#a5a6b0', // Mid gray
+          400: '#828392', // Darker gray
+          500: '#5F6074', // Payne's Gray (Base)
+          600: '#4a4b5d',
+          700: '#383949',
+          800: '#282936',
+          900: '#1D1D44', // Merges towards Primary at darkest
+          950: '#111126',
+        },
+        accent: {
+          50: '#fafaf6',
+          100: '#F5F5DC', // Beige (Base)
+          200: '#e9e0c6',
+          300: '#dcd1a7',
+          400: '#cfc089',
+          500: '#c2af6b',
+          600: '#9b8c56',
+          700: '#746940',
+          800: '#4d462b',
+          900: '#262315',
+          950: '#13110a',
         },
       },
       fontFamily: {

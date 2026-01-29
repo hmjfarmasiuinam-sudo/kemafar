@@ -16,6 +16,7 @@ export interface Profile {
     updated_at: string;
     raw_app_meta_data?: {
         role?: UserRole;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [key: string]: any;
     };
 }
