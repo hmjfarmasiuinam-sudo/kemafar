@@ -6,21 +6,24 @@
  */
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ROUTES } from '@/config/navigation.config';
 import { SITE_CONFIG } from '@/config/site.config';
 import { cn } from '@/shared/utils/cn';
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Info, FileText, Calendar, Users, UserCircle, X } from 'lucide-react';
+import { Info, FileText, Calendar, Users, UserCircle, X, type LucideIcon } from 'lucide-react';
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const navItems = [
-  { label: 'Beranda', href: ROUTES.home, icon: Home },
+type NavIcon = LucideIcon | 'custom-logo';
+
+const navItems: Array<{ label: string; href: string; icon: NavIcon }> = [
+  { label: 'Beranda', href: ROUTES.home, icon: 'custom-logo' },
   { label: 'Tentang', href: ROUTES.about, icon: Info },
   { label: 'Artikel', href: ROUTES.articles, icon: FileText },
   { label: 'Event', href: ROUTES.events, icon: Calendar },
@@ -91,6 +94,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               {navItems.map((item, index) => {
                 const isActive = pathname === item.href;
                 const Icon = item.icon;
+                const isCustomLogo = Icon === 'custom-logo';
 
                 return (
                   <motion.div
@@ -102,14 +106,28 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     <Link
                       href={item.href}
                       className={cn(
-                        'flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-medium transition-all',
+                        'flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all',
                         isActive
-                          ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 text-primary-700 shadow-sm'
-                          : 'text-gray-700 hover:bg-gray-50 active:bg-gray-100'
+                          ? 'bg-gradient-to-r from-primary-50 to-primary-100/50 shadow-sm'
+                          : 'hover:bg-gray-50 active:bg-gray-100'
                       )}
                     >
-                      <Icon className={cn('w-5 h-5', isActive ? 'text-primary-600' : 'text-gray-400')} />
-                      <span>{item.label}</span>
+                      {isCustomLogo ? (
+                        <div className="relative w-5 h-5 flex-shrink-0">
+                          <Image
+                            src={isActive ? "/icons/logo-active.webp" : "/icons/logo-inactive.webp"}
+                            alt="Home"
+                            fill
+                            className="object-contain"
+                            sizes="20px"
+                          />
+                        </div>
+                      ) : (
+                        <Icon className={cn('w-5 h-5 flex-shrink-0', isActive ? 'text-primary-600' : 'text-gray-400')} strokeWidth={2} />
+                      )}
+                      <span className={cn('text-base font-medium', isActive ? 'text-primary-700' : 'text-gray-700')}>
+                        {item.label}
+                      </span>
                       {isActive && (
                         <motion.div
                           layoutId="activeMobile"

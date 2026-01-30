@@ -37,18 +37,18 @@ export function FloatingDock() {
                 <div
                     className={cn(
                         "flex items-center gap-1 md:gap-2 px-2 py-2 md:px-3 md:py-2.5",
-                        "backdrop-blur-xl shadow-2xl",
+                        "backdrop-blur-2xl shadow-2xl",
                         "rounded-full transition-all duration-300",
                         "hover:scale-[1.02]",
                         // Adaptive based on section detection
                         sectionType === 'light'
-                            ? "bg-gray-900/30 border border-white/30 shadow-black/10 hover:bg-gray-900/40"
-                            : "bg-white/20 border border-white/40 shadow-white/5 hover:bg-white/30"
+                            ? "bg-gray-900/40 border border-white/40 shadow-black/20 hover:bg-gray-900/50"
+                            : "bg-white/30 border border-white/50 shadow-white/10 hover:bg-white/40"
                     )}
                     style={{
                         boxShadow: sectionType === 'light'
-                            ? '0 8px 32px 0 rgba(0, 0, 0, 0.15)'
-                            : '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                            ? '0 8px 32px 0 rgba(0, 0, 0, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
+                            : '0 8px 32px 0 rgba(31, 38, 135, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)',
                     }}
                 >
                     {NAV_ITEMS.map((item) => {
@@ -89,38 +89,40 @@ export function FloatingDock() {
                                         !isCustomLogo && (isActive
                                             ? "text-white"
                                             : sectionType === 'light'
-                                                ? "text-white/90 group-hover:text-white"
-                                                : "text-gray-600 group-hover:text-gray-800")
+                                                ? "text-white group-hover:text-white"
+                                                : "text-gray-800 group-hover:text-gray-950")
                                     )}>
                                         {isCustomLogo ? (
                                             <>
                                                 <motion.div
                                                     className={cn(
-                                                        "relative flex-shrink-0 transition-all duration-200 rounded-lg flex items-center justify-center",
-                                                        !isActive
-                                                            ? "w-6 h-6 md:w-7 md:h-7 bg-white/90 shadow-md p-0.5 backdrop-blur-sm"
-                                                            : "w-6 h-6 md:w-7 md:h-7"
+                                                        "relative w-6 h-6 md:w-7 md:h-7 flex-shrink-0 transition-all duration-200 rounded-lg flex items-center justify-center",
+                                                        !isActive && "bg-white/90 shadow-md backdrop-blur-sm"
                                                     )}
                                                     whileHover={!isActive ? { scale: 1.05 } : {}}
                                                     whileTap={!isActive ? { scale: 0.95 } : {}}
                                                 >
-                                                    <Image
-                                                        src={isActive ? "/icons/logo-active.webp" : "/icons/logo-inactive.webp"}
-                                                        alt="Home"
-                                                        fill
-                                                        className={cn(
-                                                            "object-contain transition-all duration-200",
-                                                            !isActive && "p-0.5"
-                                                        )}
-                                                        sizes="32px"
-                                                    />
+                                                    <div className="relative w-full h-full p-1">
+                                                        <Image
+                                                            src={isActive ? "/icons/logo-active.webp" : "/icons/logo-inactive.webp"}
+                                                            alt="Home"
+                                                            fill
+                                                            className="object-contain transition-all duration-200"
+                                                            sizes="32px"
+                                                        />
+                                                    </div>
                                                 </motion.div>
                                                 {!isActive && (
                                                     <motion.span
                                                         initial={{ opacity: 0, width: 0 }}
                                                         animate={{ opacity: 1, width: "auto" }}
                                                         exit={{ opacity: 0, width: 0 }}
-                                                        className="text-xs md:text-sm font-bold text-primary-600 whitespace-nowrap"
+                                                        className={cn(
+                                                            "text-xs md:text-sm font-bold whitespace-nowrap transition-colors duration-200",
+                                                            sectionType === 'light'
+                                                                ? "text-white group-hover:text-white"
+                                                                : "text-gray-800 group-hover:text-gray-950"
+                                                        )}
                                                     >
                                                         Beranda
                                                     </motion.span>

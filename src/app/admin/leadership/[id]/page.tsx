@@ -1,7 +1,9 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import { useAdminForm } from '@/shared/hooks/useAdminForm';
+import { useParams, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase/client';
+import { toast } from 'sonner';
 import { RichTextEditor } from '@/shared/components/RichTextEditorDynamic';
 import { FormInput } from '@/shared/components/FormInput';
 import { FormSelect } from '@/shared/components/FormSelect';
@@ -30,37 +32,90 @@ const DIVISIONS = [
 
 export default function LeadershipFormPage() {
   const params = useParams();
+  const router = useRouter();
   const id = params.id as string;
+  const isCreateMode = id === 'new';
 
-  const {
-    formData,
-    setFormData,
-    loading,
-    fetching,
-    isCreateMode,
-    handleSubmit,
-  } = useAdminForm<LeadershipFormData>({
-    tableName: 'leadership',
-    id,
-    initialData: {
-      name: '',
-      position: '',
-      division: '',
-      photo: '',
-      email: '',
-      phone: '',
-      nim: '',
-      batch: '',
-      bio: '',
-      social_media_instagram: '',
-      social_media_linkedin: '',
-      social_media_twitter: '',
-      period_start: '',
-      period_end: '',
-      order: 1,
-    },
-    redirectPath: '/admin/leadership',
-    onBeforeSave: (data) => {
+  const [formData, setFormData] = useState<LeadershipFormData>({
+    name: '',
+    position: '',
+    division: '',
+    photo: '',
+    email: '',
+    phone: '',
+    nim: '',
+    batch: '',
+    bio: '',
+    social_media_instagram: '',
+    social_media_linkedin: '',
+    social_media_twitter: '',
+    period_start: '',
+    period_end: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
+
+  useEffect(() => {
+    if (!isCreateMode) {
+      fetchData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  async function fetchData(): Promise<void> {
+    setFetching(true);
+    try {
+      const { data, error } = await supabase
+        .from('leadership')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      if (!data) {
+        toast.error('Data not found');
+        router.push('/admin/leadership');
+        return;
+      }
+
+      // Transform social_media from JSONB to form fields
+      const record = data as Record<string, unknown>;
+      const socialMedia = record.social_media as Record<string, string> | null | undefined;
+
+      setFormData({
+        name: record.name as string,
+        position: record.position as string,
+        division: (record.division as string) || '',
+        photo: (record.photo as string) || '',
+        email: (record.email as string) || '',
+        phone: (record.phone as string) || '',
+        nim: (record.nim as string) || '',
+        batch: (record.batch as string) || '',
+        bio: (record.bio as string) || '',
+        period_start: (record.period_start as string) || '',
+        period_end: (record.period_end as string) || '',
+        social_media_instagram: socialMedia?.instagram ?? '',
+        social_media_linkedin: socialMedia?.linkedin ?? '',
+        social_media_twitter: socialMedia?.twitter ?? '',
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to load data';
+      toast.error(message);
+      router.push('/admin/leadership');
+    } finally {
+      setFetching(false);
+    }
+  }
+
+  async function handleSubmit(e: React.FormEvent): Promise<void> {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const data = formData;
       const socialMedia: Record<string, string> = {};
       if (data.social_media_instagram) {
         socialMedia.instagram = data.social_media_instagram;
@@ -76,9 +131,10 @@ export default function LeadershipFormPage() {
       const photoPlaceholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23f3f4f6" width="100" height="100"/%3E%3C/svg%3E';
 
       // Default period untuk field NOT NULL
-      const currentYear = new Date().getFullYear().toString();
+      const currentYear = new Date().getFullYear();
+      const defaultDate = `${currentYear}-01-01`;
 
-      return {
+      const dataToSave = {
         name: data.name,
         position: data.position,
         division: data.division || null,
@@ -89,14 +145,42 @@ export default function LeadershipFormPage() {
         batch: data.batch || null,
         bio: data.bio || null,
         social_media: Object.keys(socialMedia).length > 0 ? socialMedia : null,
-        period_start: data.period_start || currentYear,
-        period_end: data.period_end || currentYear,
-        order: data.order,
+        period_start: data.period_start || defaultDate,
+        period_end: data.period_end || defaultDate,
+        order: 1, // Default order value (field required by database but not used in UI)
       };
-    },
-  });
 
-  const handleNameChange = (value: string) => {
+      if (isCreateMode) {
+        const { error } = await supabase
+          .from('leadership')
+          .insert(dataToSave as never);
+
+        if (error) {
+          throw error;
+        }
+        toast.success('Created successfully');
+      } else {
+        const { error } = await supabase
+          .from('leadership')
+          .update(dataToSave as never)
+          .eq('id', id);
+
+        if (error) {
+          throw error;
+        }
+        toast.success('Updated successfully');
+      }
+
+      router.push('/admin/leadership');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to save';
+      toast.error(message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const handleNameChange = (value: string): void => {
     setFormData({
       ...formData,
       name: value,
@@ -148,19 +232,25 @@ export default function LeadershipFormPage() {
               label="Position"
               id="position"
               value={formData.position}
-              onChange={(value) => setFormData({ ...formData, position: value })}
+              onChange={(value) => {
+                // Reset division jika posisi bukan coordinator atau member
+                const newDivision = (value === 'coordinator' || value === 'member') ? formData.division : '';
+                setFormData({ ...formData, position: value, division: newDivision });
+              }}
               options={POSITIONS}
               required
             />
 
-            <FormSelect
-              label="Division"
-              id="division"
-              value={formData.division}
-              onChange={(value) => setFormData({ ...formData, division: value })}
-              options={DIVISIONS}
-              required
-            />
+            {(formData.position === 'coordinator' || formData.position === 'member') && (
+              <FormSelect
+                label="Division"
+                id="division"
+                value={formData.division}
+                onChange={(value) => setFormData({ ...formData, division: value })}
+                options={DIVISIONS}
+                required
+              />
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -205,31 +295,23 @@ export default function LeadershipFormPage() {
             <FormInput
               label="Period Start"
               id="period_start"
+              type="date"
               value={formData.period_start || ''}
               onChange={(value) => setFormData({ ...formData, period_start: value })}
               required
-              placeholder="2024"
             />
 
             <FormInput
               label="Period End"
               id="period_end"
+              type="date"
               value={formData.period_end || ''}
               onChange={(value) => setFormData({ ...formData, period_end: value })}
               required
-              placeholder="2025"
             />
           </div>
 
-          <FormInput
-            label="Order"
-            id="order"
-            type="number"
-            value={(formData.order || 1).toString()}
-            onChange={(value) => setFormData({ ...formData, order: parseInt(value) || 1 })}
-            required
-            placeholder="1"
-          />
+          
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">

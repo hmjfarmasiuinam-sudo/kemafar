@@ -80,6 +80,15 @@ function DivisionSection({
   const x = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [200, 0, 0, -200]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
+  // Sort members: Coordinator first, then Member
+  const sortedMembers = [...members].sort((a, b) => {
+    const positionOrder: Record<string, number> = {
+      'coordinator': 1,
+      'member': 2,
+    };
+    return (positionOrder[a.position] || 999) - (positionOrder[b.position] || 999);
+  });
+
   return (
     <motion.div
       ref={ref}
@@ -102,7 +111,7 @@ function DivisionSection({
 
       {/* Division Members Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
-        {members.map((member) => (
+        {sortedMembers.map((member) => (
           <div
             key={member.id}
             className="flex items-center gap-6 group"
@@ -200,10 +209,10 @@ export default function LeadershipPage() {
           }}
           className="text-center w-full max-w-4xl"
         >
-          <h1 className="text-[2.5rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter text-white mb-4 break-words hyphens-auto">
+          <h1 className="text-[2.5rem] leading-tight sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-white mb-4 break-words hyphens-auto">
             Kepengurusan
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 font-light tracking-wide max-w-2xl mx-auto px-4">
+          <p className="text-lg sm:text-xl md:text-xl text-gray-400 font-light tracking-wide max-w-2xl mx-auto px-4">
             Visi di balik gerakan.
           </p>
         </motion.div>

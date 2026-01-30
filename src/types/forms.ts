@@ -38,7 +38,6 @@ export interface LeadershipFormData {
   social_media_twitter: string;
   period_start: string;
   period_end: string;
-  order: number;
 }
 
 // Member Forms
