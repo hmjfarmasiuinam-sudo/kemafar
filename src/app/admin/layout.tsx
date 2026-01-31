@@ -7,7 +7,6 @@ import Link from 'next/link';
 
 import {
   LayoutDashboard,
-  Users,
   FileText,
   Calendar,
   Award,
@@ -16,7 +15,8 @@ import {
   X,
   UserCog,
   Settings,
-  Clock
+  Clock,
+  Eye
 } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site.config';
 
@@ -41,10 +41,10 @@ interface AuthError extends Error {
 
 const navigation: NavItem[] = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard, roles: ['super_admin', 'admin', 'kontributor'] },
-  { name: 'Members', href: '/admin/members', icon: Users, roles: ['super_admin', 'admin'] },
   { name: 'Articles', href: '/admin/articles', icon: FileText, roles: ['super_admin', 'admin', 'kontributor'] },
   { name: 'Events', href: '/admin/events', icon: Calendar, roles: ['super_admin', 'admin', 'kontributor'] },
   { name: 'Leadership', href: '/admin/leadership', icon: Award, roles: ['super_admin', 'admin'] },
+  { name: 'Alumni', href: '/admin/members', icon: Eye, roles: ['super_admin', 'admin'] },
   { name: 'Timeline', href: '/admin/timeline', icon: Clock, roles: ['super_admin', 'admin'] },
   { name: 'Users', href: '/admin/users', icon: UserCog, roles: ['super_admin'] },
   { name: 'Settings', href: '/admin/settings', icon: Settings, roles: ['super_admin', 'admin'] },

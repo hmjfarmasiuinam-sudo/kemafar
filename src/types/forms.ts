@@ -5,7 +5,6 @@
 
 import { UserRole } from '@/lib/auth/AuthContext';
 import type {
-  MemberStatus,
   ArticleStatus,
   EventStatus,
 } from '@/lib/constants/admin';
@@ -38,27 +37,6 @@ export interface LeadershipFormData {
   social_media_twitter: string;
   period_start: string;
   period_end: string;
-}
-
-// Member Forms
-export interface MemberFormData {
-  name: string;
-  nim: string;
-  email: string;
-  phone: string;
-  photo: string;
-  batch: string;
-  status: MemberStatus;
-  division: string;
-  position: string;
-  joined_at: string;
-  graduated_at: string;
-  bio: string;
-  interests: string;
-  achievements: string;
-  social_media_instagram: string;
-  social_media_linkedin: string;
-  social_media_twitter: string;
 }
 
 // Article Forms

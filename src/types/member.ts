@@ -1,63 +1,62 @@
 /**
- * Member types
- * Used in admin panel and public pages
+ * Member types - Auto-populated from expired Leadership records
+ * Members are alumni who served in leadership but whose term has ended
  */
 
 /**
- * Member interests structure stored as JSONB
- * Can be either array of strings or structured object
+ * Position history for a member
+ * Represents one leadership term they held
  */
-export type MemberInterests = string[] | {
-  categories?: string[];
-  skills?: string[];
-  topics?: string[];
-};
+export interface PositionHistory {
+  position: string;
+  division: string | null;
+  periodStart: string; // ISO date string
+  periodEnd: string; // ISO date string
+}
 
 /**
- * Member achievements structure stored as JSONB
- * Can be either array of strings or structured objects
- */
-export type MemberAchievements = string[] | Array<{
-  title: string;
-  date?: string;
-  description?: string;
-  category?: string;
-}>;
-
-/**
- * Member social media links stored as JSONB
+ * Social media links structure (same as Leadership)
  */
 export interface MemberSocialMedia {
   instagram?: string;
   linkedin?: string;
   twitter?: string;
-  github?: string;
-  website?: string;
-}
-
-export interface Member {
-  id: string;
-  name: string;
-  nim: string;
-  email: string;
-  phone: string | null;
-  photo: string | null;
-  batch: string;
-  status: 'active' | 'inactive' | 'alumni';
-  division: string | null;
-  position: string | null;
-  joined_at: string | null;
-  graduated_at: string | null;
-  bio: string | null;
-  interests: MemberInterests | null;
-  achievements: MemberAchievements | null;
-  social_media: MemberSocialMedia | null;
-  created_at: string;
-  updated_at: string;
+  facebook?: string;
 }
 
 /**
- * Member update data type
- * Omits id, created_at, updated_at which are managed by the database
+ * Member - Alumni who served in leadership
+ * Auto-populated by grouping expired leadership records by NIM
  */
-export type MemberUpdateData = Omit<Member, 'id' | 'created_at' | 'updated_at'>;
+export interface Member {
+  nim: string; // Primary grouping key (NOT NULL)
+  name: string; // From most recent record
+  email: string | null; // From most recent record
+  phone: string | null; // From most recent record
+  photo: string | null; // From most recent record
+  batch: string | null; // From most recent record
+  bio: string | null; // From most recent record
+  social_media: MemberSocialMedia | null; // From most recent record
+  positions: PositionHistory[]; // All positions held (ordered by period_end DESC)
+  lastPeriodEnd: string; // Most recent period_end (for sorting)
+}
+
+/**
+ * Raw database row from leadership table (internal use)
+ */
+export interface LeadershipRaw {
+  id: string;
+  name: string;
+  position: string;
+  division: string | null;
+  photo: string;
+  email: string | null;
+  phone: string | null;
+  nim: string | null;
+  batch: string | null;
+  bio: string | null;
+  social_media: MemberSocialMedia | null;
+  period_start: string;
+  period_end: string;
+  order: number;
+}

@@ -1,67 +1,10 @@
 /**
- * Members API - Simplified data fetching
+ * Members API - Auto-populated from expired Leadership records
+ * Members are alumni who served in leadership positions
  */
 
 import { supabase } from '@/lib/supabase/client';
-
-/**
- * Social media JSONB structure
- */
-interface SocialMediaRaw {
-  instagram?: string;
-  linkedin?: string;
-  twitter?: string;
-}
-
-/**
- * Member from database (raw snake_case)
- */
-interface MemberRaw {
-  id: string;
-  name: string;
-  nim: string;
-  email: string;
-  phone: string | null;
-  photo: string | null;
-  batch: string;
-  status: 'active' | 'inactive' | 'alumni';
-  division: string | null;
-  position: string | null;
-  joined_at: string;
-  graduated_at: string | null;
-  bio: string | null;
-  interests: string[] | null;
-  achievements: string[] | null;
-  social_media: SocialMediaRaw | null;
-  created_at: string;
-  updated_at: string;
-}
-
-/**
- * Member with camelCase fields (for frontend)
- */
-export interface Member {
-  id: string;
-  name: string;
-  nim: string;
-  email: string;
-  phone?: string;
-  photo?: string;
-  batch: string;
-  status: 'active' | 'inactive' | 'alumni';
-  division?: string;
-  position?: string;
-  joinedAt: string;
-  graduatedAt?: string;
-  bio?: string;
-  interests?: string[];
-  achievements?: string[];
-  socialMedia?: {
-    instagram?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
-}
+import type { Member, PositionHistory, LeadershipRaw } from '@/types/member';
 
 /**
  * Check if photo URL is valid
@@ -70,127 +13,176 @@ function isValidPhotoUrl(url: string | null): boolean {
   if (!url) return false;
   if (url.includes('w3.org')) return false;
   if (url.trim() === '') return false;
+  if (url.startsWith('data:image/svg+xml') && url.includes('fill="%23f3f4f6"')) return false;
   return true;
 }
 
 /**
- * Transform raw database member to frontend format
+ * Group expired leadership records by NIM
+ * Returns members (alumni who served but term ended)
  */
-function transformMember(raw: MemberRaw): Member {
-  return {
-    id: raw.id,
-    name: raw.name,
-    nim: raw.nim,
-    email: raw.email,
-    phone: raw.phone ?? undefined,
-    photo: isValidPhotoUrl(raw.photo) ? raw.photo! : undefined,
-    batch: raw.batch,
-    status: raw.status,
-    division: raw.division ?? undefined,
-    position: raw.position ?? undefined,
-    joinedAt: raw.joined_at,
-    graduatedAt: raw.graduated_at ?? undefined,
-    bio: raw.bio ?? undefined,
-    interests: raw.interests ?? undefined,
-    achievements: raw.achievements ?? undefined,
-    socialMedia: raw.social_media ? {
-      instagram: raw.social_media.instagram,
-      linkedin: raw.social_media.linkedin,
-      twitter: raw.social_media.twitter,
-    } : undefined,
-  };
+async function groupLeadershipByNIM(records: LeadershipRaw[]): Promise<Member[]> {
+  // Group by NIM
+  const grouped = records.reduce((acc, record) => {
+    const nim = record.nim!; // Already filtered for NOT NULL
+    if (!acc[nim]) {
+      acc[nim] = [];
+    }
+    acc[nim].push(record);
+    return acc;
+  }, {} as Record<string, LeadershipRaw[]>);
+
+  // Transform each group into a Member
+  return Object.entries(grouped).map(([nim, records]) => {
+    // Sort by period_end DESC to get most recent first
+    const sorted = records.sort((a, b) =>
+      new Date(b.period_end).getTime() - new Date(a.period_end).getTime()
+    );
+
+    // Get personal data from most recent record
+    const latest = sorted[0];
+
+    // Build position history from all records
+    const positions: PositionHistory[] = sorted.map(r => ({
+      position: r.position,
+      division: r.division,
+      periodStart: r.period_start,
+      periodEnd: r.period_end,
+    }));
+
+    return {
+      nim,
+      name: latest.name,
+      email: latest.email,
+      phone: latest.phone,
+      photo: isValidPhotoUrl(latest.photo) ? latest.photo : null,
+      batch: latest.batch,
+      bio: latest.bio,
+      social_media: latest.social_media,
+      positions,
+      lastPeriodEnd: latest.period_end,
+    };
+  });
 }
 
 /**
- * Get all members
+ * Get all members (alumni from expired leadership)
+ * Filters: period_end < today AND nim IS NOT NULL
  */
 export async function getMembers(): Promise<Member[]> {
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
   const { data, error } = await supabase
-    .from('members')
+    .from('leadership')
     .select('*')
-    .order('name', { ascending: true });
+    .lt('period_end', today)        // Expired leadership
+    .not('nim', 'is', null)          // Only records with NIM
+    .order('period_end', { ascending: false });
 
   if (error) {
     console.error('Error fetching members:', error);
     throw new Error('Failed to fetch members');
   }
 
-  return (data ?? []).map(transformMember);
+  const members = await groupLeadershipByNIM(data as LeadershipRaw[]);
+
+  // Sort by most recent period_end DESC (newest alumni first)
+  return members.sort((a, b) =>
+    new Date(b.lastPeriodEnd).getTime() - new Date(a.lastPeriodEnd).getTime()
+  );
 }
 
 /**
- * Get active members only
+ * Get member by NIM
  */
-export async function getActiveMembers(): Promise<Member[]> {
+export async function getMemberByNIM(nim: string): Promise<Member | null> {
+  const today = new Date().toISOString().split('T')[0];
+
   const { data, error } = await supabase
-    .from('members')
+    .from('leadership')
     .select('*')
-    .eq('status', 'active')
-    .order('name', { ascending: true });
+    .eq('nim', nim)
+    .lt('period_end', today)
+    .order('period_end', { ascending: false });
 
   if (error) {
-    console.error('Error fetching active members:', error);
-    throw new Error('Failed to fetch active members');
+    console.error('Error fetching member by NIM:', error);
+    throw new Error('Failed to fetch member');
   }
 
-  return (data ?? []).map(transformMember);
-}
-
-/**
- * Get members by division
- */
-export async function getMembersByDivision(division: string): Promise<Member[]> {
-  const { data, error } = await supabase
-    .from('members')
-    .select('*')
-    .eq('division', division)
-    .eq('status', 'active')
-    .order('name', { ascending: true });
-
-  if (error) {
-    console.error('Error fetching members by division:', error);
-    throw new Error('Failed to fetch members by division');
+  if (!data || data.length === 0) {
+    return null;
   }
 
-  return (data ?? []).map(transformMember);
+  const members = await groupLeadershipByNIM(data as LeadershipRaw[]);
+  return members[0] || null;
 }
 
 /**
  * Get members by batch
  */
 export async function getMembersByBatch(batch: string): Promise<Member[]> {
+  const today = new Date().toISOString().split('T')[0];
+
   const { data, error } = await supabase
-    .from('members')
+    .from('leadership')
     .select('*')
     .eq('batch', batch)
-    .eq('status', 'active')
-    .order('name', { ascending: true });
+    .lt('period_end', today)
+    .not('nim', 'is', null)
+    .order('period_end', { ascending: false });
 
   if (error) {
     console.error('Error fetching members by batch:', error);
     throw new Error('Failed to fetch members by batch');
   }
 
-  return (data ?? []).map(transformMember);
+  return groupLeadershipByNIM(data as LeadershipRaw[]);
 }
 
 /**
- * Get member by ID
+ * Get members who served in a specific division
  */
-export async function getMemberById(id: string): Promise<Member | null> {
+export async function getMembersByDivision(division: string): Promise<Member[]> {
+  const today = new Date().toISOString().split('T')[0];
+
   const { data, error } = await supabase
-    .from('members')
+    .from('leadership')
     .select('*')
-    .eq('id', id)
-    .single();
+    .eq('division', division)
+    .lt('period_end', today)
+    .not('nim', 'is', null)
+    .order('period_end', { ascending: false });
 
   if (error) {
-    if (error.code === 'PGRST116') {
-      return null;
-    }
-    console.error('Error fetching member by ID:', error);
-    throw new Error('Failed to fetch member');
+    console.error('Error fetching members by division:', error);
+    throw new Error('Failed to fetch members by division');
   }
 
-  return data ? transformMember(data) : null;
+  return groupLeadershipByNIM(data as LeadershipRaw[]);
+}
+
+/**
+ * Get unique batches from members
+ */
+export async function getMemberBatches(): Promise<string[]> {
+  const today = new Date().toISOString().split('T')[0];
+
+  const { data, error} = await supabase
+    .from('leadership')
+    .select('batch')
+    .lt('period_end', today)
+    .not('nim', 'is', null)
+    .not('batch', 'is', null);
+
+  if (error) {
+    console.error('Error fetching member batches:', error);
+    return [];
+  }
+
+  if (!data) return [];
+
+  // Get unique batches and sort
+  const batches = [...new Set(data.map((d: { batch: string | null }) => d.batch).filter((b): b is string => b !== null))];
+  return batches.sort();
 }
