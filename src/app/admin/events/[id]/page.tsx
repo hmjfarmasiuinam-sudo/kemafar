@@ -9,6 +9,8 @@ import { FormCheckbox } from '@/shared/components/FormCheckbox';
 import { FormActions } from '@/shared/components/FormActions';
 import { FormField } from '@/shared/components/FormField';
 import { CreateableSelect } from '@/shared/components/ui/CreateableSelect';
+import { FileUpload } from '@/shared/components/ui/FileUpload';
+import { StorageService } from '@/lib/storage/storage.service';
 import { generateSlug } from '@/lib/utils/slug';
 import { EventFormData } from '@/types/forms';
 import { EventLocation, EventOrganizer } from '@/types/event';
@@ -242,14 +244,15 @@ export default function EventFormPage() {
             required
           />
 
-          <FormInput
-            label="Cover Image URL"
-            id="cover_image"
-            type="url"
+          <FileUpload
+            label="Cover Image"
             value={formData.cover_image || ''}
-            onChange={(value) => setFormData({ ...formData, cover_image: value })}
-            required
-            placeholder="https://example.com/image.jpg"
+            onChange={(url) => setFormData({ ...formData, cover_image: url })}
+            onUpload={(file) => StorageService.uploadFile(file, 'events').then(res => {
+              if (res.error) throw res.error;
+              return res.url!;
+            })}
+            accept="image/*"
           />
 
           <div>

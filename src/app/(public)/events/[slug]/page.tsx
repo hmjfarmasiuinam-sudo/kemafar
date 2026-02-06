@@ -10,6 +10,9 @@ import { Calendar, MapPin, Users, ArrowLeft, ExternalLink, Clock, User } from 'l
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 
+// Force dynamic rendering to avoid build-time data fetching
+export const dynamic = 'force-dynamic';
+
 type Props = {
   params: { slug: string };
 };
