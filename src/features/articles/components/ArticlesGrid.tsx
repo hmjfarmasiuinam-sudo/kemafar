@@ -125,8 +125,11 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   />
                 </div>
 
-                {/* Simplified overlay - single layer */}
-                <div className="absolute inset-0 bg-primary-600/80 mix-blend-multiply" />
+                {/* Color overlay KUAT - warna biru jenuh */}
+                <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
+
+                {/* Layer untuk saturasi warna lebih tinggi */}
+                <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
 
                 {/* Content - Centered - optimized */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
