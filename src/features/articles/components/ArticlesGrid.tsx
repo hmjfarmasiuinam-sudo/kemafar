@@ -21,11 +21,44 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
     );
   }
 
+  // Calculate column span untuk setiap artikel agar tidak ada space kosong
+  // Golden ratio inspired: 8:5 ≈ 1.6 (mendekati golden 1.618)
+  const calculateColSpan = (index: number, remaining: number): number => {
+    // Cek sisa artikel yang belum di-render
+    const articlesLeft = articles.length - index;
+    
+    // Kalau sisa artikel cuma 1, ambil semua space yang tersisa
+    if (articlesLeft === 1) return remaining;
+    
+    // Pattern golden ratio: 8, 4, 5, 7, 6, 6, 4, 4, 4
+    // Tidak ada yang full 12 cols - semua berbagi layar
+    const patterns = [8, 4, 5, 7, 6, 6, 4, 4, 4];
+    const patternIndex = index % patterns.length;
+    const idealSpan = patterns[patternIndex];
+    
+    // Kalau ideal span lebih besar dari remaining, ambil remaining saja
+    if (idealSpan > remaining) return remaining;
+    
+    return idealSpan;
+  };
+
+  // Track remaining columns in current row
+  let remainingCols = 0;
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3 lg:gap-4">
       {articles.map((article, index) => {
-        const isFeatured = index === 0;
-        const isLarge = index % 5 === 0;
+        // Reset to 12 if starting new row
+        if (remainingCols === 0) {
+          remainingCols = 12;
+        }
+        
+        const colSpan = calculateColSpan(index, remainingCols);
+        remainingCols -= colSpan;
+        
+        // Determine size category based on col span
+        const isLarge = colSpan >= 7;
+        const isMedium = colSpan >= 5 && colSpan < 7;
 
         return (
           <motion.article
@@ -37,17 +70,27 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
               duration: 0.3,
               ease: [0.25, 0.1, 0.25, 1],
             }}
-            className={`group relative ${isFeatured
-              ? 'md:col-span-8 md:row-span-2'
-              : isLarge
-                ? 'md:col-span-7'
-                : 'md:col-span-5'
-              }`}
+            className={`group relative ${
+              colSpan === 8
+                ? 'col-span-1 md:col-span-8'
+                : colSpan === 7
+                ? 'col-span-1 md:col-span-7'
+                : colSpan === 6
+                ? 'col-span-1 md:col-span-6'
+                : colSpan === 5
+                ? 'col-span-1 md:col-span-5'
+                : 'col-span-1 md:col-span-4'
+            }`}
           >
             <Link href={`/articles/${article.slug}`} className="block">
               {/* Image with overlay - no card container */}
-              <div className={`relative overflow-hidden rounded-3xl ${isFeatured ? 'aspect-[4/5]' : 'aspect-[16/10]'
-                }`}>
+              <div className={`relative overflow-hidden rounded-3xl ${
+                isLarge
+                  ? 'aspect-[4/3] md:aspect-[3/2]'
+                  : isMedium
+                  ? 'aspect-[4/3] md:aspect-[1/1]'
+                  : 'aspect-[4/3] md:aspect-[3/4]'
+              }`}>
                 <div className="w-full h-full transition-transform duration-300 group-hover:scale-105">
                   <Image
                     src={article.coverImage}
@@ -70,9 +113,9 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                 </div>
 
                 {/* Content overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
                   {/* Author */}
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
                     {article.author.avatar && (
                       <Image
                         src={article.author.avatar}
@@ -94,18 +137,19 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   </div>
 
                   {/* Title - varying sizes */}
-                  <h2 className={`font-bold text-white mb-3 line-clamp-2 ${isFeatured
-                    ? 'text-3xl md:text-4xl'
-                    : isLarge
-                      ? 'text-2xl md:text-3xl'
-                      : 'text-xl md:text-2xl'
-                    }`}>
+                  <h2 className={`font-bold text-white mb-3 line-clamp-2 ${
+                    isLarge
+                      ? 'text-lg md:text-2xl'
+                      : isMedium
+                      ? 'text-lg md:text-xl'
+                      : 'text-lg md:text-base'
+                  }`}>
                     {article.title}
                   </h2>
 
-                  {/* Excerpt - only for featured/large */}
-                  {(isFeatured || isLarge) && (
-                    <p className="text-white/90 line-clamp-2 mb-4 text-base md:text-lg">
+                  {/* Excerpt - only for large */}
+                  {isLarge && (
+                    <p className="hidden md:block text-white/90 line-clamp-2 mb-4 text-sm">
                       {article.excerpt}
                     </p>
                   )}
