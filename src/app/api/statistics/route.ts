@@ -44,7 +44,7 @@ export async function GET() {
     }
 
     const uniqueDivisions = divisionsData
-      ? new Set(divisionsData.map((m) => m.division)).size
+      ? new Set(divisionsData.map((m: { division: string }) => m.division)).size
       : 0;
 
     // 4. Get earliest year from about_settings timeline
@@ -58,9 +58,10 @@ export async function GET() {
     }
 
     let yearFounded = 2015; // Default fallback
-    if (aboutData?.timeline && Array.isArray(aboutData.timeline)) {
-      const years = aboutData.timeline
-        .map((item: any) => parseInt(item.year))
+    const timelineData = aboutData as { timeline?: Array<{ year: string }> } | null;
+    if (timelineData?.timeline && Array.isArray(timelineData.timeline)) {
+      const years = timelineData.timeline
+        .map((item) => parseInt(item.year))
         .filter((year: number) => !isNaN(year));
 
       if (years.length > 0) {
