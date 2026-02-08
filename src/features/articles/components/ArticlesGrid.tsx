@@ -84,14 +84,18 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
         return (
           <motion.article
             key={article.id}
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px", amount: 0.05 }}
+            viewport={{ once: true, margin: "0px", amount: 0 }}
             transition={{
-              duration: 0.5,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 0.3,
+              ease: "easeOut",
             }}
-            style={{ willChange: 'transform, opacity' }}
+            style={{
+              willChange: 'auto',
+              contentVisibility: 'auto',
+              containIntrinsicSize: 'auto 400px'
+            }}
             className={`group relative ${
               colSpan === 8
                 ? 'col-span-1 md:col-span-8'
@@ -113,12 +117,10 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   ? 'aspect-[4/3] md:aspect-[1/1]'
                   : 'aspect-[4/3] md:aspect-[3/4]'
               }`}
-                style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}
+                style={{ transform: 'translateZ(0)' }}
               >
-                {/* Background Image - optimized with GPU acceleration */}
-                <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105"
-                  style={{ willChange: 'transform' }}
-                >
+                {/* Background Image - optimized */}
+                <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105">
                   <Image
                     src={article.coverImage}
                     alt={article.title}

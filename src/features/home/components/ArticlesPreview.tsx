@@ -37,27 +37,26 @@ function ArticlesSkeleton() {
   );
 }
 
-// Smooth stagger animation variants
+// Lightweight animation variants for smooth scroll
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
+      staggerChildren: 0.05,
+      delayChildren: 0,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1], // Custom easeOutExpo
+      duration: 0.3,
+      ease: "easeOut",
     },
   },
 };
@@ -87,7 +86,7 @@ export function ArticlesPreview() {
   }, []);
 
   return (
-    <section className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white" style={{ willChange: 'scroll-position' }}>
+    <section className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
         {/* Header - Bold & Asymmetric */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
@@ -116,7 +115,7 @@ export function ArticlesPreview() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "0px", amount: 0 }}
             className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6"
           >
             {articles.map((article, index) => {
@@ -135,7 +134,11 @@ export function ArticlesPreview() {
                   key={article.id}
                   variants={itemVariants}
                   className={`${gridClass}`}
-                  style={{ willChange: 'transform, opacity' }}
+                  style={{
+                    willChange: 'auto',
+                    contentVisibility: 'auto',
+                    containIntrinsicSize: 'auto 500px'
+                  }}
                 >
                   <Link
                     href={`/articles/${article.slug}`}
@@ -143,12 +146,10 @@ export function ArticlesPreview() {
                   >
                     {/* Image with duotone effect */}
                     <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl ${isFeatured ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}
-                      style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}
+                      style={{ transform: 'translateZ(0)' }}
                     >
-                      {/* Background Image - optimized with GPU acceleration */}
-                      <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105"
-                        style={{ willChange: 'transform' }}
-                      >
+                      {/* Background Image - optimized */}
+                      <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105">
                         <Image
                           src={article.coverImage}
                           alt={article.title}

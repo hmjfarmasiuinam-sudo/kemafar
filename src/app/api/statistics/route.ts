@@ -1,7 +1,8 @@
 import { createServerSupabase } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-dynamic';
+// Revalidate setiap 5 menit untuk statistics (data jarang berubah)
+export const revalidate = 300;
 
 /**
  * GET /api/statistics
@@ -69,12 +70,17 @@ export async function GET() {
       }
     }
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       activeMembers: membersCount || 0,
       eventsCount: eventsCount || 0,
       divisionsCount: uniqueDivisions,
       yearFounded: yearFounded,
     });
+
+    // Cache untuk 5 menit dengan stale-while-revalidate 10 menit
+    response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+
+    return response;
   } catch (error) {
     console.error('Error in statistics API:', error);
     return NextResponse.json(

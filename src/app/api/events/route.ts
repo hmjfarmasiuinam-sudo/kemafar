@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPaginatedEvents, EventCategory } from '@/lib/api/events';
 
-export const dynamic = 'force-dynamic';
+// Revalidate setiap 2 menit untuk events list
+export const revalidate = 120;
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,7 +17,12 @@ export async function GET(request: NextRequest) {
 
     const result = await getPaginatedEvents(validPage, validLimit, category);
 
-    return NextResponse.json(result);
+    const response = NextResponse.json(result);
+
+    // Cache untuk 2 menit dengan stale-while-revalidate 5 menit
+    response.headers.set('Cache-Control', 'public, s-maxage=120, stale-while-revalidate=300');
+
+    return response;
   } catch (error) {
     console.error('Error fetching paginated events:', error);
     return NextResponse.json(

@@ -1,13 +1,19 @@
 import { NextResponse } from 'next/server';
 import { getUpcomingEvents } from '@/lib/api/events';
 
-export const dynamic = 'force-dynamic';
+// Revalidate setiap 2 menit untuk upcoming events
+export const revalidate = 120;
 
 export async function GET() {
   try {
     const events = await getUpcomingEvents(3);
 
-    return NextResponse.json(events);
+    const response = NextResponse.json(events);
+
+    // Cache untuk 2 menit dengan stale-while-revalidate 5 menit
+    response.headers.set('Cache-Control', 'public, s-maxage=120, stale-while-revalidate=300');
+
+    return response;
   } catch (error) {
     console.error('Error fetching upcoming events:', error);
     return NextResponse.json(

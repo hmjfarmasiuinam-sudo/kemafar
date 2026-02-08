@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPaginatedArticles, ArticleCategory } from '@/lib/api/articles';
 
-export const dynamic = 'force-dynamic';
+// Revalidate setiap 2 menit untuk articles list
+export const revalidate = 120;
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,7 +18,12 @@ export async function GET(request: NextRequest) {
 
     const result = await getPaginatedArticles(validPage, validLimit, category, search);
 
-    return NextResponse.json(result);
+    const response = NextResponse.json(result);
+
+    // Cache untuk 2 menit dengan stale-while-revalidate 5 menit
+    response.headers.set('Cache-Control', 'public, s-maxage=120, stale-while-revalidate=300');
+
+    return response;
   } catch (error) {
     console.error('Error fetching paginated articles:', error);
     return NextResponse.json(

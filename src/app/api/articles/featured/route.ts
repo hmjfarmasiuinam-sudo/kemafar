@@ -3,21 +3,18 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from '@/lib/supabase/database.types';
 import type { AuthorJson } from '@/types/database-json';
 
-export const dynamic = 'force-dynamic';
+// Revalidate setiap 60 detik untuk featured articles
+export const revalidate = 60;
 
 type Article = Database['public']['Tables']['articles']['Row'];
 
 export async function GET() {
   try {
-    // Create a fresh client for this request to bypass any shared instance caching
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
     const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
       auth: { persistSession: false },
-      global: {
-        fetch: (url, options) => fetch(url, { ...options, cache: 'no-store' }),
-      },
     });
 
     const { data: articles, error } = await supabase
@@ -61,7 +58,12 @@ export async function GET() {
       };
     });
 
-    return NextResponse.json(transformedArticles);
+    const response = NextResponse.json(transformedArticles);
+
+    // Add cache headers
+    response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=120');
+
+    return response;
   } catch (error) {
     console.error('Error fetching featured articles:', error);
     return NextResponse.json(
