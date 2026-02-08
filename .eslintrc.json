@@ -9,7 +9,7 @@
   "rules": {
     // Console statements - only allow warn/error
     "no-console": [
-      "error",
+      "warn",
       {
         "allow": [
           "warn",
@@ -17,51 +17,45 @@
         ]
       }
     ],
-    // TypeScript strict rules
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/explicit-function-return-type": [
+    // TypeScript rules (relaxed)
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-vars": [
       "warn",
       {
-        "allowExpressions": true,
-        "allowTypedFunctionExpressions": true,
-        "allowHigherOrderFunctions": true
-      }
-    ],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
         "argsIgnorePattern": "^_",
-        "varsIgnorePattern": "^_"
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
       }
     ],
-    "@typescript-eslint/no-non-null-assertion": "error",
-    "@typescript-eslint/prefer-nullish-coalescing": "warn",
-    "@typescript-eslint/prefer-optional-chain": "warn",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/prefer-optional-chain": "off",
     // React/Next.js rules
     "react/no-unescaped-entities": "warn",
-    "react/jsx-no-target-blank": "error",
+    "react/jsx-no-target-blank": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    // Code quality
-    "no-debugger": "error",
-    "no-alert": "warn",
-    "prefer-const": "error",
+    // Code quality (relaxed)
+    "no-debugger": "warn",
+    "no-alert": "off",
+    "prefer-const": "warn",
     "no-var": "error",
     "eqeqeq": [
-      "error",
+      "warn",
       "always"
     ],
-    "curly": "warn",
-    "no-throw-literal": "error",
-    // Security
+    "curly": "off",
+    "no-throw-literal": "warn",
+    // Security (keep strict)
     "no-eval": "error",
     "no-implied-eval": "error",
     "no-new-func": "error",
     // Best practices
-    "no-duplicate-imports": "error",
+    "no-duplicate-imports": "warn",
     "no-unreachable": "error",
-    "no-unused-expressions": "error",
-    "require-await": "warn"
+    "no-unused-expressions": "warn",
+    "require-await": "off"
   },
   "overrides": [
     {

@@ -2,32 +2,13 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import { useAdminTable } from '@/shared/hooks/useAdminTable';
-import { Edit, Trash2, Calendar } from 'lucide-react';
+import { Edit, Trash2, Calendar, CheckCircle } from 'lucide-react';
 import { Modal } from '@/shared/components/ui/Modal';
 import Link from 'next/link';
 import { Leadership } from '@/types/leadership';
 import { ITEMS_PER_PAGE } from '@/lib/constants/admin';
 import { AdminDataTable } from '@/shared/components/datatables/AdminDataTable';
-
-const POSITION_LABELS: Record<string, string> = {
-  'ketua': 'Ketua',
-  'wakil-ketua': 'Wakil Ketua',
-  'sekretaris': 'Sekretaris',
-  'bendahara': 'Bendahara',
-  'coordinator': 'Koordinator',
-  'member': 'Anggota',
-};
-
-const DIVISION_LABELS: Record<string, string> = {
-  'internal-affairs': 'Internal Affairs',
-  'external-affairs': 'External Affairs',
-  'academic': 'Academic',
-  'student-development': 'Student Development',
-  'entrepreneurship': 'Entrepreneurship',
-  'media-information': 'Media & Information',
-  'sports-arts': 'Sports & Arts',
-  'islamic-spirituality': 'Islamic Spirituality',
-};
+import { POSITION_LABELS, DIVISION_LABELS } from '@/lib/constants/leadership';
 
 export default function LeadershipPage() {
   // Confirmation Modal State
@@ -105,27 +86,30 @@ export default function LeadershipPage() {
         title: 'Name',
         sortable: true,
         responsivePriority: 1,
-        render: (_: unknown, __: string, row: any) => (
-          <div className="flex items-center gap-3">
-            {row.photo ? (
-              <img
-                src={row.photo}
-                alt={row.name}
-                className="w-10 h-10 rounded-full object-cover"
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-semibold text-sm">
-                {row.name.charAt(0)}
-              </div>
-            )}
-            <div>
-              <div className="font-medium text-gray-900">{row.name}</div>
-              {row.email && (
-                <div className="text-sm text-gray-500">{row.email}</div>
+        render: (_: unknown, __: string, row: Record<string, unknown>) => {
+          const leader = row as unknown as Leadership;
+          return (
+            <div className="flex items-center gap-3">
+              {leader.photo ? (
+                <img
+                  src={leader.photo}
+                  alt={leader.name}
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-semibold text-sm">
+                  {leader.name.charAt(0)}
+                </div>
               )}
+              <div>
+                <div className="font-medium text-gray-900">{leader.name}</div>
+                {leader.email && (
+                  <div className="text-sm text-gray-500">{leader.email}</div>
+                )}
+              </div>
             </div>
-          </div>
-        ),
+          );
+        },
       },
       {
         data: 'position',
@@ -143,36 +127,42 @@ export default function LeadershipPage() {
         data: 'period_start', // Using period_start as key
         title: 'Period',
         sortable: true,
-        render: (_: unknown, __: string, row: any) => (
-          <div className="flex items-center gap-1 text-sm text-gray-700">
-            <Calendar className="w-4 h-4" />
-            {new Date(row.period_start).getFullYear()} - {new Date(row.period_end).getFullYear()}
-          </div>
-        ),
+        render: (_: unknown, __: string, row: Record<string, unknown>) => {
+          const leader = row as unknown as Leadership;
+          return (
+            <div className="flex items-center gap-1 text-sm text-gray-700">
+              <Calendar className="w-4 h-4" />
+              {new Date(leader.period_start).getFullYear()} - {new Date(leader.period_end).getFullYear()}
+            </div>
+          );
+        },
       },
       {
         data: 'id',
         title: 'Actions',
         sortable: false,
         className: 'text-right',
-        render: (id: unknown, _: string, row: any) => (
-          <div className="flex items-center justify-end gap-2">
-            <Link
-              href={`/admin/leadership/${id}`}
-              className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-              title="Edit"
-            >
-              <Edit className="w-4 h-4" />
-            </Link>
-            <button
-              onClick={() => handleDelete(id as string, row.name)}
-              className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-              title="Delete"
-            >
-              <Trash2 className="w-4 h-4" />
-            </button>
-          </div>
-        ),
+        render: (id: unknown, _: string, row: Record<string, unknown>) => {
+          const leader = row as unknown as Leadership;
+          return (
+            <div className="flex items-center justify-end gap-2">
+              <Link
+                href={`/admin/leadership/${id}`}
+                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                title="Edit"
+              >
+                <Edit className="w-4 h-4" />
+              </Link>
+              <button
+                onClick={() => handleDelete(id as string, leader.name)}
+                className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                title="Delete"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+          );
+        },
       },
     ],
     pageLength: ITEMS_PER_PAGE,
@@ -183,6 +173,44 @@ export default function LeadershipPage() {
 
   return (
     <div className="space-y-6">
+      {/* Info Banner - Alumni System */}
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-5">
+        <div className="flex gap-4">
+          <div className="flex-shrink-0">
+            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <Calendar className="w-5 h-5 text-blue-600" />
+            </div>
+          </div>
+          <div className="flex-1 space-y-3">
+            <h3 className="text-sm font-semibold text-gray-900">
+              Sistem Alumni & Multiple Jabatan
+            </h3>
+            <div className="text-sm text-gray-600 space-y-2">
+              <p>
+                <strong>Satu orang bisa punya beberapa record Leadership</strong> dengan NIM yang sama.
+                Setiap record merepresentasikan 1 periode jabatan.
+              </p>
+              <div className="bg-white rounded border border-blue-100 p-3">
+                <p className="font-medium text-gray-700 mb-1.5">Contoh: Budi Santoso</p>
+                <ul className="text-xs space-y-1 text-gray-600">
+                  <li>• Record 1: NIM 60200121001 → Sekretaris (2020-2021)</li>
+                  <li>• Record 2: NIM 60200121001 → Ketua (2021-2022)</li>
+                </ul>
+                <p className="mt-2 text-xs text-blue-700">
+                  → Di halaman Alumni: Budi muncul 1x dengan 2 riwayat jabatan
+                </p>
+              </div>
+              <div className="flex items-start gap-2 text-xs">
+                <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                <p>
+                  <strong>Otomatis jadi Alumni jika:</strong> period_end sudah lewat + NIM terisi
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <AdminDataTable
         config={tableConfig}
         data={leaders}

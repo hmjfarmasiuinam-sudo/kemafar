@@ -11,5 +11,8 @@ export * from './article';
 export * from './event';
 export * from './common';
 
+// Database JSON types
+export * from './database-json';
+
 // Forms
 export * from './forms';

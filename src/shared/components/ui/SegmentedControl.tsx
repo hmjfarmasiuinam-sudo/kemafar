@@ -84,13 +84,8 @@ export function SegmentedControl({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Visibility state - visible saat scrolling, faded saat berhenti
-  const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Check horizontal scroll capability
   const checkScroll = () => {
@@ -101,43 +96,27 @@ export function SegmentedControl({
     }
   };
 
-  // Horizontal scroll handler (untuk scroll indicators)
-  const handleHorizontalScroll = () => {
+  // Handle any interaction (scroll, touch, hover)
+  const handleInteraction = () => {
+    setIsInteracting(true);
     checkScroll();
-    setIsScrolling(true);
 
-    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    scrollTimeoutRef.current = setTimeout(() => setIsScrolling(false), 150);
+    if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+    interactionTimeoutRef.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, hideDelay);
   };
 
-  // Window scroll handler - show saat scrolling, fade saat berhenti
+  // Setup event listeners
   useEffect(() => {
-    const handleWindowScroll = () => {
-      // Show immediately saat scrolling
-      setIsVisible(true);
-
-      // Clear timeout sebelumnya
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-      }
-
-      // Set timeout untuk fade setelah berhenti scrolling
-      hideTimeoutRef.current = setTimeout(() => {
-        setIsVisible(false);
-      }, hideDelay);
-    };
-
-    window.addEventListener('scroll', handleWindowScroll, { passive: true });
+    window.addEventListener('scroll', handleInteraction, { passive: true });
     window.addEventListener('resize', checkScroll);
-
-    // Initial check
     checkScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleWindowScroll);
+      window.removeEventListener('scroll', handleInteraction);
       window.removeEventListener('resize', checkScroll);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+      if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
     };
   }, [hideDelay]);
 
@@ -177,22 +156,25 @@ export function SegmentedControl({
         className
       )}
       style={{
-        opacity: sticky ? (isVisible || isHovered ? 1 : 0) : 1,
+        opacity: sticky ? (isInteracting ? 1 : 0) : 1,
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleInteraction}
+      onMouseLeave={() => {
+        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+        interactionTimeoutRef.current = setTimeout(() => setIsInteracting(false), hideDelay);
+      }}
+      onTouchStart={handleInteraction}
+      onTouchEnd={() => {
+        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+        interactionTimeoutRef.current = setTimeout(() => setIsInteracting(false), hideDelay);
+      }}
     >
       <div className="container-custom flex justify-center">
         {/* Pill Container (Liquid Glass) */}
         <div className="relative group rounded-full bg-white/30 backdrop-blur-md border border-white/20 shadow-lg p-1.5 inline-flex max-w-full overflow-hidden supports-[backdrop-filter]:bg-white/10">
 
-          {/* Scroll Indicators - Hide saat horizontal scrolling */}
-          <div
-            className={cn(
-              "transition-opacity duration-300",
-              isScrolling ? "opacity-0 pointer-events-none" : "opacity-100"
-            )}
-          >
+          {/* Scroll Indicators */}
+          <div>
             {/* Left Scroll Button */}
             {canScrollLeft && (
               <button
@@ -227,7 +209,7 @@ export function SegmentedControl({
           {/* Scrollable Content Area */}
           <div
             ref={scrollRef}
-            onScroll={handleHorizontalScroll}
+            onScroll={handleInteraction}
             className="flex overflow-x-auto scrollbar-hide relative z-0"
           >
             {/* "All" option */}

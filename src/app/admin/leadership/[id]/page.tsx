@@ -9,26 +9,9 @@ import { FormInput } from '@/shared/components/FormInput';
 import { FormSelect } from '@/shared/components/FormSelect';
 import { FormActions } from '@/shared/components/FormActions';
 import { LeadershipFormData } from '@/types/forms';
-
-const POSITIONS = [
-  { value: 'ketua', label: 'Ketua' },
-  { value: 'wakil-ketua', label: 'Wakil Ketua' },
-  { value: 'sekretaris', label: 'Sekretaris' },
-  { value: 'bendahara', label: 'Bendahara' },
-  { value: 'coordinator', label: 'Koordinator' },
-  { value: 'member', label: 'Anggota' },
-];
-
-const DIVISIONS = [
-  { value: 'internal-affairs', label: 'Internal Affairs' },
-  { value: 'external-affairs', label: 'External Affairs' },
-  { value: 'academic', label: 'Academic' },
-  { value: 'student-development', label: 'Student Development' },
-  { value: 'entrepreneurship', label: 'Entrepreneurship' },
-  { value: 'media-information', label: 'Media & Information' },
-  { value: 'sports-arts', label: 'Sports & Arts' },
-  { value: 'islamic-spirituality', label: 'Islamic Spirituality' },
-];
+import { Info, CheckCircle } from 'lucide-react';
+import { getImageUrl } from '@/lib/utils/image';
+import { POSITIONS, DIVISIONS } from '@/lib/constants/leadership';
 
 export default function LeadershipFormPage() {
   const params = useParams();
@@ -54,6 +37,7 @@ export default function LeadershipFormPage() {
   });
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(false);
+  const [existingRecords, setExistingRecords] = useState<number>(0);
 
   useEffect(() => {
     if (!isCreateMode) {
@@ -61,6 +45,33 @@ export default function LeadershipFormPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  // Check for duplicate NIM
+  useEffect(() => {
+    if (formData.nim && formData.nim.trim() !== '') {
+      checkExistingNIM(formData.nim);
+    } else {
+      setExistingRecords(0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.nim]);
+
+  async function checkExistingNIM(nim: string): Promise<void> {
+    try {
+      const { data, error } = await supabase
+        .from('leadership')
+        .select('id, position, period_start, period_end')
+        .eq('nim', nim)
+        .neq('id', id || 'new'); // Exclude current record if editing
+
+      if (!error && data) {
+        setExistingRecords(data.length);
+      }
+    } catch (error) {
+      // Silently fail - not critical
+      console.error('Failed to check existing NIM:', error);
+    }
+  }
 
   async function fetchData(): Promise<void> {
     setFetching(true);
@@ -134,11 +145,16 @@ export default function LeadershipFormPage() {
       const currentYear = new Date().getFullYear();
       const defaultDate = `${currentYear}-01-01`;
 
+      // Convert Google Drive URL to direct image URL if needed
+      const photoUrl = data.photo && data.photo.trim() !== ''
+        ? getImageUrl(data.photo)
+        : photoPlaceholder;
+
       const dataToSave = {
         name: data.name,
         position: data.position,
         division: data.division || null,
-        photo: data.photo && data.photo.trim() !== '' ? data.photo : photoPlaceholder,
+        photo: photoUrl,
         email: data.email || null,
         phone: data.phone || null,
         nim: data.nim || null,
@@ -206,6 +222,22 @@ export default function LeadershipFormPage() {
         </p>
       </div>
 
+      {/* Single Info Banner */}
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
+        <div className="flex">
+          <Info className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+          <div className="ml-3">
+            <h3 className="text-sm font-medium text-blue-900 mb-1">
+              Tentang Sistem Alumni
+            </h3>
+            <p className="text-sm text-blue-700 leading-relaxed">
+              Satu orang bisa punya beberapa record dengan <strong>NIM yang sama</strong> untuk multiple periode jabatan.
+              Records dengan period_end yang sudah lewat akan otomatis muncul di halaman Alumni dan digabung berdasarkan NIM.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -254,13 +286,24 @@ export default function LeadershipFormPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FormInput
-              label="NIM"
-              id="nim"
-              value={formData.nim || ''}
-              onChange={(value) => setFormData({ ...formData, nim: value })}
-              required
-            />
+            <div>
+              <FormInput
+                label="NIM"
+                id="nim"
+                value={formData.nim || ''}
+                onChange={(value) => setFormData({ ...formData, nim: value })}
+                required
+              />
+              <p className="mt-1.5 text-xs text-gray-500">
+                NIM digunakan untuk grouping di halaman Alumni
+              </p>
+              {existingRecords > 0 && (
+                <div className="mt-2 flex items-center gap-1.5 text-xs text-green-700">
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span>NIM ini sudah memiliki {existingRecords} record lain</span>
+                </div>
+              )}
+            </div>
 
             <FormInput
               label="Batch"
@@ -301,14 +344,19 @@ export default function LeadershipFormPage() {
               required
             />
 
-            <FormInput
-              label="Period End"
-              id="period_end"
-              type="date"
-              value={formData.period_end || ''}
-              onChange={(value) => setFormData({ ...formData, period_end: value })}
-              required
-            />
+            <div>
+              <FormInput
+                label="Period End"
+                id="period_end"
+                type="date"
+                value={formData.period_end || ''}
+                onChange={(value) => setFormData({ ...formData, period_end: value })}
+                required
+              />
+              <p className="mt-1.5 text-xs text-gray-500">
+                Jika tanggal sudah lewat, otomatis muncul di Alumni
+              </p>
+            </div>
           </div>
 
           

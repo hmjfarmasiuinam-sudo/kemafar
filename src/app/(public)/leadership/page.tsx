@@ -5,28 +5,7 @@ import { User } from 'lucide-react';
 import { getActiveLeadership, type LeadershipMember } from '@/lib/api/leadership';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-
-/**
- * Format position string for display
- * Examples: 'ketua' → 'Ketua', 'wakil-ketua' → 'Wakil Ketua'
- */
-function formatPosition(position: string): string {
-  return position
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
-
-/**
- * Format division string for display
- * Examples: 'internal-affairs' → 'Internal Affairs'
- */
-function formatDivision(division: string): string {
-  return division
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
+import { getPositionLabel, getDivisionLabel } from '@/lib/constants/leadership';
 
 // Core positions
 const corePositions = ['ketua', 'wakil-ketua', 'sekretaris', 'bendahara'];
@@ -102,7 +81,7 @@ function DivisionSection({
       {/* Division Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-700/50 pb-6 mb-12">
         <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white shadow-black drop-shadow-2xl break-words">
-          {formatDivision(division)}
+          {getDivisionLabel(division)}
         </h2>
         <span className="text-2xl font-mono text-primary-400 mt-4 md:mt-0 font-bold">
           {String(members.length).padStart(2, '0')}
@@ -125,7 +104,7 @@ function DivisionSection({
                   fill
                   sizes="80px"
                   loading="lazy"
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="object-cover transition-all duration-300"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
@@ -140,7 +119,7 @@ function DivisionSection({
                 {member.name}
               </h4>
               <p className="text-xs sm:text-sm text-primary-300 font-mono mt-1 uppercase tracking-wider group-hover:text-primary-200 transition-colors font-semibold">
-                {formatPosition(member.position)}
+                {getPositionLabel(member.position)}
               </p>
             </div>
           </div>
@@ -264,7 +243,7 @@ export default function LeadershipPage() {
                             sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                             priority={index < 4}
                             loading={index < 4 ? "eager" : "lazy"}
-                            className="object-cover grayscale group-hover:grayscale-0 transition-[filter] duration-200"
+                            className="object-cover transition-[filter] duration-200"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-150" />
                         </>
@@ -280,7 +259,7 @@ export default function LeadershipPage() {
                     <div className="border-t border-gray-800 pt-4 group-hover:border-white transition-colors duration-150">
                       <h3 className="text-xl font-bold mb-1 tracking-tight text-white group-hover:text-primary-400 transition-colors duration-150">{member.name}</h3>
                       <p className="text-gray-500 text-xs font-mono tracking-widest uppercase">
-                        {formatPosition(member.position)}
+                        {getPositionLabel(member.position)}
                       </p>
                     </div>
                   </motion.div>

@@ -6,6 +6,7 @@ import type { Member } from '@/types/member';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { SegmentedControl } from '@/shared/components/ui/SegmentedControl';
+import { getPositionLabel, getDivisionLabel } from '@/lib/constants/leadership';
 
 export default function MembersPage({
   searchParams,
@@ -148,11 +149,11 @@ export default function MembersPage({
                     {member.positions.slice(0, 2).map((pos, idx) => (
                       <div key={idx} className="text-xs">
                         <p className="font-semibold text-gray-700 line-clamp-1">
-                          {pos.position}
+                          {getPositionLabel(pos.position)}
                         </p>
                         {pos.division && (
                           <p className="text-gray-500 line-clamp-1">
-                            {pos.division}
+                            {getDivisionLabel(pos.division)}
                           </p>
                         )}
                         <p className="text-gray-400 text-[10px]">

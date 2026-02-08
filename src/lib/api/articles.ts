@@ -176,7 +176,8 @@ export async function getArticlesByCategory(category: ArticleCategory): Promise<
 export async function getPaginatedArticles(
   page: number,
   limit: number,
-  category?: ArticleCategory
+  category?: ArticleCategory,
+  search?: string
 ): Promise<PaginatedResult<Article>> {
   const supabase = createServerSupabase();
   const from = (page - 1) * limit;
@@ -190,6 +191,11 @@ export async function getPaginatedArticles(
 
   if (category) {
     query = query.eq('category', category);
+  }
+
+  if (search) {
+    const lowerQuery = search.toLowerCase();
+    query = query.or(`title.ilike.%${lowerQuery}%,excerpt.ilike.%${lowerQuery}%,content.ilike.%${lowerQuery}%`);
   }
 
   const { data, count, error } = await query.range(from, to);

@@ -36,9 +36,7 @@ export default function TimelineFormPage() {
       }
 
       return {
-        year: data.year,
-        title: data.title,
-        description: data.description,
+        ...data,
         order_index: orderIndex,
       };
     },

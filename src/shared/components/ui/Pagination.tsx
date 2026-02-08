@@ -41,47 +41,50 @@ export function Pagination({
     // Generate page numbers to show
     const getPageNumbers = () => {
         const pages: (number | 'ellipsis')[] = [];
-        const showEllipsis = totalPages > 7;
+        const maxVisible = 5; // Maximum number of page buttons to show
 
-        if (!showEllipsis) {
-            // Show all pages if 7 or fewer
+        if (totalPages <= maxVisible) {
+            // Show all pages if total is 5 or fewer
             for (let i = 1; i <= totalPages; i++) {
                 pages.push(i);
             }
         } else {
-            // Always show first page
-            pages.push(1);
+            // Show current page as first, then next 4 pages
+            const start = currentPage;
+            const end = Math.min(currentPage + maxVisible - 1, totalPages);
 
-            if (currentPage > 3) {
-                pages.push('ellipsis');
+            // Add ellipsis before if not starting from page 1
+            if (start > 1) {
+                pages.push(1);
+                if (start > 2) {
+                    pages.push('ellipsis');
+                }
             }
 
-            // Show pages around current
-            const start = Math.max(2, currentPage - 1);
-            const end = Math.min(totalPages - 1, currentPage + 1);
-
+            // Add the range of pages
             for (let i = start; i <= end; i++) {
                 pages.push(i);
             }
 
-            if (currentPage < totalPages - 2) {
-                pages.push('ellipsis');
+            // Add ellipsis after if not ending at last page
+            if (end < totalPages) {
+                if (end < totalPages - 1) {
+                    pages.push('ellipsis');
+                }
+                pages.push(totalPages);
             }
-
-            // Always show last page
-            pages.push(totalPages);
         }
 
         return pages;
     };
 
     return (
-        <nav className="flex items-center justify-center gap-1 py-8" aria-label="Pagination">
+        <nav className="flex flex-wrap items-center justify-center gap-2 py-8 px-4" aria-label="Pagination">
             {/* Previous Button */}
             <Link
                 href={buildUrl(currentPage - 1)}
                 className={cn(
-                    'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                    'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap',
                     currentPage === 1
                         ? 'pointer-events-none text-gray-300'
                         : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
@@ -89,14 +92,15 @@ export function Pagination({
                 aria-disabled={currentPage === 1}
             >
                 <ChevronLeft className="w-4 h-4" />
-                Sebelumnya
+                <span className="hidden sm:inline">Sebelumnya</span>
+                <span className="sm:hidden">Prev</span>
             </Link>
 
             {/* Page Numbers */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 flex-wrap justify-center">
                 {getPageNumbers().map((page, index) =>
                     page === 'ellipsis' ? (
-                        <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-400">
+                        <span key={`ellipsis-${index}`} className="px-2 py-2 text-gray-400">
                             ...
                         </span>
                     ) : (
@@ -104,7 +108,7 @@ export function Pagination({
                             key={page}
                             href={buildUrl(page)}
                             className={cn(
-                                'min-w-[40px] px-3 py-2 rounded-lg text-sm font-medium text-center transition-colors',
+                                'min-w-[36px] px-2 sm:px-3 py-2 rounded-lg text-sm font-medium text-center transition-colors',
                                 currentPage === page
                                     ? 'bg-primary-600 text-white'
                                     : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
@@ -121,14 +125,15 @@ export function Pagination({
             <Link
                 href={buildUrl(currentPage + 1)}
                 className={cn(
-                    'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                    'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap',
                     currentPage === totalPages
                         ? 'pointer-events-none text-gray-300'
                         : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                 )}
                 aria-disabled={currentPage === totalPages}
             >
-                Berikutnya
+                <span className="hidden sm:inline">Berikutnya</span>
+                <span className="sm:hidden">Next</span>
                 <ChevronRight className="w-4 h-4" />
             </Link>
         </nav>

@@ -1,13 +1,14 @@
 -- =============================================
 -- ARTICLES FROM KEMAFAR.ORG
 -- Auto-generated with Supabase Storage Integration
--- Total: 53 articles
+-- Total: 54 articles
 -- Images uploaded to: article-images
--- Generated: 2026-02-06T05:34:17.307Z
+-- Author: HMJ Farmasi UINAM (16bc2e11-06d0-48cd-a720-4634bbf14783)
+-- Generated: 2026-02-07T14:51:46.914Z
 -- =============================================
 
 -- Article 1: Aksi Nyata Mahasiswa FKIK dalam Volun-Tour Camp 2025
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Aksi Nyata Mahasiswa FKIK dalam Volun-Tour Camp 2025',
   'aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025',
@@ -37,9 +38,10 @@ Kegiatan ini tidak hanya bermanfaat bagi masyarakat dan lingkungan, tetapi juga 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/17/aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/17/aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025/&text=Aksi%20Nyata%20Mahasiswa%20FKIK%20dalam%20Volun-Tour%20Camp%202025)[](mailto:?subject=Aksi%20Nyata%20Mahasiswa%20FKIK%20dalam%20Volun-Tour%20Camp%202025&body=https://kemafar.org/2025/12/17/aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/17/aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025/&title=Aksi%20Nyata%20Mahasiswa%20FKIK%20dalam%20Volun-Tour%20Camp%202025)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/17/aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025/&title=Aksi%20Nyata%20Mahasiswa%20FKIK%20dalam%20Volun-Tour%20Camp%202025)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/17/aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025/&title=Aksi%20Nyata%20Mahasiswa%20FKIK%20dalam%20Volun-Tour%20Camp%202025)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/17/aksi-nyata-mahasiswa-fkik-dalam-volun-tour-camp-2025/&title=Aksi%20Nyata%20Mahasiswa%20FKIK%20dalam%20Volun-Tour%20Camp%202025)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/eb639c0d-47f7-4d54-b8eb-8ab7e6af0faa.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/330f980b-2fb4-44ff-8dca-0972e0cad150.webp',
   '2025-12-17T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   true
 )
@@ -47,10 +49,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 2: Pemilma 2025 Menetapkan Formatur Ketua HMJ Farmasi 2026
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Pemilma 2025 Menetapkan Formatur Ketua HMJ Farmasi 2026',
   'pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026',
@@ -80,9 +83,10 @@ Sebagai Formatur Ketua, A. Athallah Iman Aflah memiliki harapan besar agar HMJ F
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/16/pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/16/pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026/&text=Pemilma%202025%20Menetapkan%20Formatur%20Ketua%20HMJ%20Farmasi%202026)[](mailto:?subject=Pemilma%202025%20Menetapkan%20Formatur%20Ketua%20HMJ%20Farmasi%202026&body=https://kemafar.org/2025/12/16/pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/16/pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026/&title=Pemilma%202025%20Menetapkan%20Formatur%20Ketua%20HMJ%20Farmasi%202026)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/16/pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026/&title=Pemilma%202025%20Menetapkan%20Formatur%20Ketua%20HMJ%20Farmasi%202026)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/16/pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026/&title=Pemilma%202025%20Menetapkan%20Formatur%20Ketua%20HMJ%20Farmasi%202026)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/16/pemilma-2025-menetapkan-formatur-ketua-hmj-farmasi-2026/&title=Pemilma%202025%20Menetapkan%20Formatur%20Ketua%20HMJ%20Farmasi%202026)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/ccc5a285-f266-41e5-8a14-42e84b2a6fe2.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/7f9c4fcc-d994-4696-80e0-09d0925b6d1c.webp',
   '2025-12-16T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   true
 )
@@ -90,10 +94,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 3: Melalui Program Kerja Eksternal Relation, HMJ Farmasi UINAM Kunjungi BPOM
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Melalui Program Kerja Eksternal Relation, HMJ Farmasi UINAM Kunjungi BPOM',
   'melalui-program-kerja-eksternal-relation-hmj-farmasi-uinam-kunjungi-bpom',
@@ -123,9 +128,10 @@ Pelaksanaan program kerja Divisi Eksternal ini dapat menambah wawasan yang berma
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/16/melalui-program-kerja-eksternal-relation-hmj-farmasi-kunjungi-bpom/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/16/melalui-program-kerja-eksternal-relation-hmj-farmasi-kunjungi-bpom/&text=Melalui%20Program%20Kerja%20Eksternal%20Relation%2C%20HMJ%20Farmasi%20UINAM%20Kunjungi%20BPOM)[](mailto:?subject=Melalui%20Program%20Kerja%20Eksternal%20Relation,%20HMJ%20Farmasi%20UINAM%20Kunjungi%20BPOM&body=https://kemafar.org/2025/12/16/melalui-program-kerja-eksternal-relation-hmj-farmasi-kunjungi-bpom/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/16/melalui-program-kerja-eksternal-relation-hmj-farmasi-kunjungi-bpom/&title=Melalui%20Program%20Kerja%20Eksternal%20Relation%2C%20HMJ%20Farmasi%20UINAM%20Kunjungi%20BPOM)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/16/melalui-program-kerja-eksternal-relation-hmj-farmasi-kunjungi-bpom/&title=Melalui%20Program%20Kerja%20Eksternal%20Relation%2C%20HMJ%20Farmasi%20UINAM%20Kunjungi%20BPOM)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/16/melalui-program-kerja-eksternal-relation-hmj-farmasi-kunjungi-bpom/&title=Melalui%20Program%20Kerja%20Eksternal%20Relation%2C%20HMJ%20Farmasi%20UINAM%20Kunjungi%20BPOM)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/16/melalui-program-kerja-eksternal-relation-hmj-farmasi-kunjungi-bpom/&title=Melalui%20Program%20Kerja%20Eksternal%20Relation%2C%20HMJ%20Farmasi%20UINAM%20Kunjungi%20BPOM)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/835a2311-78b4-4325-9eb6-1100158ee864.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/b202dc83-5ae3-423c-9f0e-27528ef2b7e0.webp',
   '2025-12-16T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   true
 )
@@ -133,10 +139,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 4: “From Stress to Bless”: Seminar Keislaman HMJ Farmasi Disambut Antusias Peserta
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   '“From Stress to Bless”: Seminar Keislaman HMJ Farmasi Disambut Antusias Peserta',
   'from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta',
@@ -164,9 +171,10 @@ Melalui kegiatan ini, HMJ Farmasi Kabinet Inklusif berharap seminar keislaman da
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/16/from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/16/from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta/&text=%E2%80%9CFrom%20Stress%20to%20Bless%E2%80%9D%3A%20Seminar%20Keislaman%20HMJ%20Farmasi%20Disambut%20Antusias%20Peserta)[](mailto:?subject=“From%20Stress%20to%20Bless”:%20Seminar%20Keislaman%20HMJ%20Farmasi%20Disambut%20Antusias%20Peserta&body=https://kemafar.org/2025/12/16/from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/16/from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta/&title=%E2%80%9CFrom%20Stress%20to%20Bless%E2%80%9D%3A%20Seminar%20Keislaman%20HMJ%20Farmasi%20Disambut%20Antusias%20Peserta)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/16/from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta/&title=%E2%80%9CFrom%20Stress%20to%20Bless%E2%80%9D%3A%20Seminar%20Keislaman%20HMJ%20Farmasi%20Disambut%20Antusias%20Peserta)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/16/from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta/&title=%E2%80%9CFrom%20Stress%20to%20Bless%E2%80%9D%3A%20Seminar%20Keislaman%20HMJ%20Farmasi%20Disambut%20Antusias%20Peserta)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/16/from-stress-to-bless-seminar-keislaman-hmj-farmasi-disambut-antusias-peserta/&title=%E2%80%9CFrom%20Stress%20to%20Bless%E2%80%9D%3A%20Seminar%20Keislaman%20HMJ%20Farmasi%20Disambut%20Antusias%20Peserta)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/10a73343-007f-4bc5-96a1-85ca9e5008fc.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/4caa88ef-9006-4105-aa41-114dd7202df8.webp',
   '2025-12-16T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   true
 )
@@ -174,10 +182,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 5: Pharmacy Event 2025 Tutup Rangkaian Kegiatan dengan Malam Puncak yang Meriah di Khas Hotel Makassar
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Pharmacy Event 2025 Tutup Rangkaian Kegiatan dengan Malam Puncak yang Meriah di Khas Hotel Makassar',
   'pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar',
@@ -203,9 +212,10 @@ Malam puncak juga dirangkaikan dengan penyerahan hadiah yang didukung dari para 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/16/pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/16/pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar/&text=Pharmacy%20Event%202025%20Tutup%20Rangkaian%20Kegiatan%20dengan%20Malam%20Puncak%20yang%20Meriah%20di%20Khas%20Hotel%20Makassar)[](mailto:?subject=Pharmacy%20Event%202025%20Tutup%20Rangkaian%20Kegiatan%20dengan%20Malam%20Puncak%20yang%20Meriah%20di%20Khas%20Hotel%20Makassar&body=https://kemafar.org/2025/12/16/pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/16/pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar/&title=Pharmacy%20Event%202025%20Tutup%20Rangkaian%20Kegiatan%20dengan%20Malam%20Puncak%20yang%20Meriah%20di%20Khas%20Hotel%20Makassar)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/16/pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar/&title=Pharmacy%20Event%202025%20Tutup%20Rangkaian%20Kegiatan%20dengan%20Malam%20Puncak%20yang%20Meriah%20di%20Khas%20Hotel%20Makassar)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/16/pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar/&title=Pharmacy%20Event%202025%20Tutup%20Rangkaian%20Kegiatan%20dengan%20Malam%20Puncak%20yang%20Meriah%20di%20Khas%20Hotel%20Makassar)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/16/pharmacy-event-2025-tutup-rangkaian-kegiatan-dengan-malam-puncak-yang-meriah-di-khas-hotel-makassar/&title=Pharmacy%20Event%202025%20Tutup%20Rangkaian%20Kegiatan%20dengan%20Malam%20Puncak%20yang%20Meriah%20di%20Khas%20Hotel%20Makassar)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/1ca38548-605c-46d1-be8b-9e29ef9d183b.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/842a0a68-d46a-46fa-804f-d651dde2c696.webp',
   '2025-12-16T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   true
 )
@@ -213,10 +223,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 6: Prestasi Tak Terbatas: Pengurus HMJ Farmasi 2025 Bersinar di Kompetisi Nasional
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Prestasi Tak Terbatas: Pengurus HMJ Farmasi 2025 Bersinar di Kompetisi Nasional',
   'prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional',
@@ -240,9 +251,10 @@ HMJ Farmasi mengucapkan terima kasih yang sebesar-besarnya kepada seluruh pihak 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/15/prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/15/prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional/&text=Prestasi%20Tak%20Terbatas%3A%20Pengurus%20HMJ%20Farmasi%202025%20Bersinar%20di%20Kompetisi%20Nasional)[](mailto:?subject=Prestasi%20Tak%20Terbatas:%20Pengurus%20HMJ%20Farmasi%202025%20Bersinar%20di%20Kompetisi%20Nasional&body=https://kemafar.org/2025/12/15/prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/15/prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional/&title=Prestasi%20Tak%20Terbatas%3A%20Pengurus%20HMJ%20Farmasi%202025%20Bersinar%20di%20Kompetisi%20Nasional)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/15/prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional/&title=Prestasi%20Tak%20Terbatas%3A%20Pengurus%20HMJ%20Farmasi%202025%20Bersinar%20di%20Kompetisi%20Nasional)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/15/prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional/&title=Prestasi%20Tak%20Terbatas%3A%20Pengurus%20HMJ%20Farmasi%202025%20Bersinar%20di%20Kompetisi%20Nasional)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/15/prestasi-tak-terbatas-pengurus-hmj-farmasi-2025-bersinar-di-kompetisi-nasional/&title=Prestasi%20Tak%20Terbatas%3A%20Pengurus%20HMJ%20Farmasi%202025%20Bersinar%20di%20Kompetisi%20Nasional)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/a6438910-8eba-45e4-a6e1-710f0ebf226e.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/54950cfd-c3ca-4ded-a974-b84ea98f621f.webp',
   '2025-12-15T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -250,10 +262,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 7: “Empowering Future Leaders: HMJ Farmasi UIN Alauddin Makassar Gelar Latihan Kepemimpinan Dasar 2025”
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   '“Empowering Future Leaders: HMJ Farmasi UIN Alauddin Makassar Gelar Latihan Kepemimpinan Dasar 2025”',
   'empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025',
@@ -279,9 +292,10 @@ Melalui terselenggaranya Latihan Kepemimpinan Dasar ini, diharapkan HMJ Farmasi 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/15/empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/15/empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025/&text=%E2%80%9CEmpowering%20Future%20Leaders%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Latihan%20Kepemimpinan%20Dasar%202025%E2%80%9D)[](mailto:?subject=“Empowering%20Future%20Leaders:%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Latihan%20Kepemimpinan%20Dasar%202025”&body=https://kemafar.org/2025/12/15/empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/15/empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025/&title=%E2%80%9CEmpowering%20Future%20Leaders%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Latihan%20Kepemimpinan%20Dasar%202025%E2%80%9D)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/15/empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025/&title=%E2%80%9CEmpowering%20Future%20Leaders%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Latihan%20Kepemimpinan%20Dasar%202025%E2%80%9D)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/15/empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025/&title=%E2%80%9CEmpowering%20Future%20Leaders%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Latihan%20Kepemimpinan%20Dasar%202025%E2%80%9D)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/15/empowering-future-leaders-hmj-farmasi-uin-alauddin-makassar-gelar-latihan-kepemimpinan-dasar-2025/&title=%E2%80%9CEmpowering%20Future%20Leaders%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Latihan%20Kepemimpinan%20Dasar%202025%E2%80%9D)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/7a1e313d-e848-401d-9e11-11aa77624793.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/f5a60485-aacc-47e4-ba8a-c09f03490853.webp',
   '2025-12-15T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -289,10 +303,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 8: PHARMACY VAGANZA 2025 “Liminal World: What If?”,
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PHARMACY VAGANZA 2025 “Liminal World: What If?”,',
   'pharmacy-vaganza-2025-liminal-world-what-if',
@@ -326,9 +341,10 @@ Selamat kepada HMJ Farmasi UINAM dan kepada Mahasiswa Angkatan 2024 yang telah m
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/12/15/pharmacy-vaganza-2025-liminal-world-what-if/)[](http://twitter.com/share?url=https://kemafar.org/2025/12/15/pharmacy-vaganza-2025-liminal-world-what-if/&text=PHARMACY%20VAGANZA%202025%20%E2%80%9CLiminal%20World%3A%20What%20If%3F%E2%80%9D%2C)[](mailto:?subject=PHARMACY%20VAGANZA%202025%20“Liminal%20World:%20What%20If?”,&body=https://kemafar.org/2025/12/15/pharmacy-vaganza-2025-liminal-world-what-if/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/12/15/pharmacy-vaganza-2025-liminal-world-what-if/&title=PHARMACY%20VAGANZA%202025%20%E2%80%9CLiminal%20World%3A%20What%20If%3F%E2%80%9D%2C)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/12/15/pharmacy-vaganza-2025-liminal-world-what-if/&title=PHARMACY%20VAGANZA%202025%20%E2%80%9CLiminal%20World%3A%20What%20If%3F%E2%80%9D%2C)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/12/15/pharmacy-vaganza-2025-liminal-world-what-if/&title=PHARMACY%20VAGANZA%202025%20%E2%80%9CLiminal%20World%3A%20What%20If%3F%E2%80%9D%2C)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/12/15/pharmacy-vaganza-2025-liminal-world-what-if/&title=PHARMACY%20VAGANZA%202025%20%E2%80%9CLiminal%20World%3A%20What%20If%3F%E2%80%9D%2C)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/8ae5c9e5-0b6f-4c11-ae35-b6ce6e289c6c.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/cf4636cf-0f15-4af8-9a74-31ffb9bddc7d.webp',
   '2025-12-15T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -336,10 +352,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 9: Attention, HMJ Farmasi hadir sebagai penyedia dan fasilitator kebutuhan mahasiswa dalam menjalani perkuliahan.
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Attention, HMJ Farmasi hadir sebagai penyedia dan fasilitator kebutuhan mahasiswa dalam menjalani perkuliahan.',
   'attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan',
@@ -368,9 +385,10 @@ Dengan demikian, HMJ Farmasi hadir bukan hanya sebagai penyedia, tetapi juga seb
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/09/30/attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan/)[](http://twitter.com/share?url=https://kemafar.org/2025/09/30/attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan/&text=Attention%2C%20HMJ%20Farmasi%20hadir%20sebagai%20penyedia%20dan%20fasilitator%20kebutuhan%20mahasiswa%20dalam%20menjalani%20perkuliahan.)[](mailto:?subject=Attention,%20HMJ%20Farmasi%20hadir%20sebagai%20penyedia%20dan%20fasilitator%20kebutuhan%20mahasiswa%20dalam%20menjalani%20perkuliahan.&body=https://kemafar.org/2025/09/30/attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/09/30/attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan/&title=Attention%2C%20HMJ%20Farmasi%20hadir%20sebagai%20penyedia%20dan%20fasilitator%20kebutuhan%20mahasiswa%20dalam%20menjalani%20perkuliahan.)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/09/30/attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan/&title=Attention%2C%20HMJ%20Farmasi%20hadir%20sebagai%20penyedia%20dan%20fasilitator%20kebutuhan%20mahasiswa%20dalam%20menjalani%20perkuliahan.)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/09/30/attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan/&title=Attention%2C%20HMJ%20Farmasi%20hadir%20sebagai%20penyedia%20dan%20fasilitator%20kebutuhan%20mahasiswa%20dalam%20menjalani%20perkuliahan.)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/09/30/attention-hmj-farmasi-hadir-sebagai-penyedia-dan-fasilitator-kebutuhan-mahasiswa-dalam-menjalani-perkuliahan/&title=Attention%2C%20HMJ%20Farmasi%20hadir%20sebagai%20penyedia%20dan%20fasilitator%20kebutuhan%20mahasiswa%20dalam%20menjalani%20perkuliahan.)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/d784e00f-304a-42fa-840b-373b9d34d56a.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c369da28-ad97-46b3-8121-360d52a78c77.webp',
   '2025-09-30T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -378,10 +396,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 10: World Invention and Technology Expo (WINTEX) at Indonesia Inventors Day 2025 by Innopa
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'World Invention and Technology Expo (WINTEX) at Indonesia Inventors Day 2025 by Innopa',
   'world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa',
@@ -413,9 +432,10 @@ Dalam rangka mendukung pengembangan riset dan inovasi di bidang kesehatan, khusu
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/09/19/world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa/)[](http://twitter.com/share?url=https://kemafar.org/2025/09/19/world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa/&text=World%20Invention%20and%20Technology%20Expo%20%28WINTEX%29%20at%20Indonesia%20Inventors%20Day%202025%20by%20Innopa)[](mailto:?subject=World%20Invention%20and%20Technology%20Expo%20\(WINTEX\)%20at%20Indonesia%20Inventors%20Day%202025%20by%20Innopa&body=https://kemafar.org/2025/09/19/world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/09/19/world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa/&title=World%20Invention%20and%20Technology%20Expo%20%28WINTEX%29%20at%20Indonesia%20Inventors%20Day%202025%20by%20Innopa)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/09/19/world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa/&title=World%20Invention%20and%20Technology%20Expo%20%28WINTEX%29%20at%20Indonesia%20Inventors%20Day%202025%20by%20Innopa)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/09/19/world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa/&title=World%20Invention%20and%20Technology%20Expo%20%28WINTEX%29%20at%20Indonesia%20Inventors%20Day%202025%20by%20Innopa)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/09/19/world-invention-and-technology-expo-wintex-at-indonesia-inventors-day-2025-by-innopa/&title=World%20Invention%20and%20Technology%20Expo%20%28WINTEX%29%20at%20Indonesia%20Inventors%20Day%202025%20by%20Innopa)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/eef8a9b2-0f57-46b7-a9cd-1009c46ab6b2.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/f3c86e1f-a14e-43a1-9909-417d3c144128.webp',
   '2025-09-19T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -423,10 +443,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 11: Latihan Kepemimpinan Dasar (LKD) 2025 HMJ Farmasi UIN Alauddin Makassar
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Latihan Kepemimpinan Dasar (LKD) 2025 HMJ Farmasi UIN Alauddin Makassar',
   'latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar',
@@ -458,9 +479,10 @@ Kegiatan LKD 2025 Farmasi UIN Alauddin Makassar berlangsung dengan lancar, penuh
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/09/16/latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar/)[](http://twitter.com/share?url=https://kemafar.org/2025/09/16/latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar/&text=Latihan%20Kepemimpinan%20Dasar%20%28LKD%29%202025%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar)[](mailto:?subject=Latihan%20Kepemimpinan%20Dasar%20\(LKD\)%202025%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar&body=https://kemafar.org/2025/09/16/latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/09/16/latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar/&title=Latihan%20Kepemimpinan%20Dasar%20%28LKD%29%202025%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/09/16/latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar/&title=Latihan%20Kepemimpinan%20Dasar%20%28LKD%29%202025%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/09/16/latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar/&title=Latihan%20Kepemimpinan%20Dasar%20%28LKD%29%202025%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/09/16/latihan-kepemimpinan-dasar-lkd-2025-hmj-farmasi-uin-alauddin-makassar/&title=Latihan%20Kepemimpinan%20Dasar%20%28LKD%29%202025%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/3b4033b3-725a-4cfe-b756-2862380ecb7c.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/edb2bb08-e17c-4ff0-bfcf-7681136d994f.webp',
   '2025-09-16T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -468,10 +490,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 12: Warisan Pengobatan Bugis Kuno “Lasa Makkunrai” dipresentasikan dalam Konferensi Internasional di Thailand
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Warisan Pengobatan Bugis Kuno “Lasa Makkunrai” dipresentasikan dalam Konferensi Internasional di Thailand',
   'warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand',
@@ -501,9 +524,10 @@ Kakanda junaedi Demisioner ketua HMJ farmasi priode 2020-2021 UINAM berharap pen
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/08/22/warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand/)[](http://twitter.com/share?url=https://kemafar.org/2025/08/22/warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand/&text=Warisan%20Pengobatan%20Bugis%20Kuno%20%E2%80%9CLasa%20Makkunrai%E2%80%9D%20dipresentasikan%20dalam%20Konferensi%20Internasional%20di%20Thailand)[](mailto:?subject=Warisan%20Pengobatan%20Bugis%20Kuno%20“Lasa%20Makkunrai”%20dipresentasikan%20dalam%20Konferensi%20Internasional%20di%20Thailand&body=https://kemafar.org/2025/08/22/warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/08/22/warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand/&title=Warisan%20Pengobatan%20Bugis%20Kuno%20%E2%80%9CLasa%20Makkunrai%E2%80%9D%20dipresentasikan%20dalam%20Konferensi%20Internasional%20di%20Thailand)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/08/22/warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand/&title=Warisan%20Pengobatan%20Bugis%20Kuno%20%E2%80%9CLasa%20Makkunrai%E2%80%9D%20dipresentasikan%20dalam%20Konferensi%20Internasional%20di%20Thailand)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/08/22/warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand/&title=Warisan%20Pengobatan%20Bugis%20Kuno%20%E2%80%9CLasa%20Makkunrai%E2%80%9D%20dipresentasikan%20dalam%20Konferensi%20Internasional%20di%20Thailand)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/08/22/warisan-pengobatan-bugis-kuno-lasa-makkunrai-dipresentasikan-dalam-konferensi-internasional-di-thailand/&title=Warisan%20Pengobatan%20Bugis%20Kuno%20%E2%80%9CLasa%20Makkunrai%E2%80%9D%20dipresentasikan%20dalam%20Konferensi%20Internasional%20di%20Thailand)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/228d6ff4-3d93-4a71-adc2-a81678616ecb.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/7b118dee-74e2-4863-b6c1-7cfbfce48206.webp',
   '2025-08-22T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -511,10 +535,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 13: Pencapaian Luar Biasa: HMJ Farmasi UIN Alauddin Makassar Sukses Selenggarakan Tiga Kegiatan Nasional Secara Bersamaan!
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Pencapaian Luar Biasa: HMJ Farmasi UIN Alauddin Makassar Sukses Selenggarakan Tiga Kegiatan Nasional Secara Bersamaan!',
   'pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan',
@@ -548,9 +573,10 @@ Kami mengucapkan terima kasih sebesar-besarnya kepada seluruh pihak yang telah m
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/08/22/pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan/)[](http://twitter.com/share?url=https://kemafar.org/2025/08/22/pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan/&text=Pencapaian%20Luar%20Biasa%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Sukses%20Selenggarakan%20Tiga%20Kegiatan%20Nasional%20Secara%20Bersamaan%21)[](mailto:?subject=Pencapaian%20Luar%20Biasa:%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Sukses%20Selenggarakan%20Tiga%20Kegiatan%20Nasional%20Secara%20Bersamaan!&body=https://kemafar.org/2025/08/22/pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/08/22/pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan/&title=Pencapaian%20Luar%20Biasa%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Sukses%20Selenggarakan%20Tiga%20Kegiatan%20Nasional%20Secara%20Bersamaan%21)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/08/22/pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan/&title=Pencapaian%20Luar%20Biasa%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Sukses%20Selenggarakan%20Tiga%20Kegiatan%20Nasional%20Secara%20Bersamaan%21)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/08/22/pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan/&title=Pencapaian%20Luar%20Biasa%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Sukses%20Selenggarakan%20Tiga%20Kegiatan%20Nasional%20Secara%20Bersamaan%21)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/08/22/pencapaian-luar-biasa-hmj-farmasi-uin-alauddin-makassar-sukses-selenggarakan-tiga-kegiatan-nasional-secara-bersamaan/&title=Pencapaian%20Luar%20Biasa%3A%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Sukses%20Selenggarakan%20Tiga%20Kegiatan%20Nasional%20Secara%20Bersamaan%21)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/410f6b6b-a778-4b8e-851f-7675f3662bc6.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/35261964-5583-4838-a90b-e20497019f40.webp',
   '2025-08-22T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -558,10 +584,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 14: HMJ Farmasi UINAM Jadi Tuan Rumah RAKORNAS 2025, Suara Timur yang Menggema Nasional
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'HMJ Farmasi UINAM Jadi Tuan Rumah RAKORNAS 2025, Suara Timur yang Menggema Nasional',
   'hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional',
@@ -591,9 +618,10 @@ Dengan semangat Viva La Vida, RAKORNAS ISMAFARSI 2025 diharapkan menjadi ruang t
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/07/29/hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional/)[](http://twitter.com/share?url=https://kemafar.org/2025/07/29/hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional/&text=HMJ%20Farmasi%20UINAM%20Jadi%20Tuan%20Rumah%20RAKORNAS%202025%2C%20Suara%20Timur%20yang%20Menggema%20Nasional)[](mailto:?subject=HMJ%20Farmasi%20UINAM%20Jadi%20Tuan%20Rumah%20RAKORNAS%202025,%20Suara%20Timur%20yang%20Menggema%20Nasional&body=https://kemafar.org/2025/07/29/hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/07/29/hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional/&title=HMJ%20Farmasi%20UINAM%20Jadi%20Tuan%20Rumah%20RAKORNAS%202025%2C%20Suara%20Timur%20yang%20Menggema%20Nasional)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/07/29/hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional/&title=HMJ%20Farmasi%20UINAM%20Jadi%20Tuan%20Rumah%20RAKORNAS%202025%2C%20Suara%20Timur%20yang%20Menggema%20Nasional)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/07/29/hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional/&title=HMJ%20Farmasi%20UINAM%20Jadi%20Tuan%20Rumah%20RAKORNAS%202025%2C%20Suara%20Timur%20yang%20Menggema%20Nasional)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/07/29/hmj-farmasi-uinam-jadi-tuan-rumah-rakornas-2025-suara-timur-yang-menggema-nasional/&title=HMJ%20Farmasi%20UINAM%20Jadi%20Tuan%20Rumah%20RAKORNAS%202025%2C%20Suara%20Timur%20yang%20Menggema%20Nasional)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/4ef767c0-56e8-40cd-8fb7-4ef1b55e02e3.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/ac00bb15-1507-4e6f-a945-d15f9ab36463.webp',
   '2025-07-29T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -601,10 +629,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 15: Keseruan Pharmacy Camp 2025: Membangun Karakter dan Solidaritas di Malino
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Keseruan Pharmacy Camp 2025: Membangun Karakter dan Solidaritas di Malino',
   'keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino',
@@ -630,9 +659,10 @@ Melalui rangkaian kegiatan ini, Pharmacy Camp diharapkan dapat menjadi ruang pem
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/05/24/keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino/)[](http://twitter.com/share?url=https://kemafar.org/2025/05/24/keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino/&text=Keseruan%20Pharmacy%20Camp%202025%3A%20Membangun%20Karakter%20dan%20Solidaritas%20di%20Malino)[](mailto:?subject=Keseruan%20Pharmacy%20Camp%202025:%20Membangun%20Karakter%20dan%20Solidaritas%20di%20Malino&body=https://kemafar.org/2025/05/24/keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/05/24/keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino/&title=Keseruan%20Pharmacy%20Camp%202025%3A%20Membangun%20Karakter%20dan%20Solidaritas%20di%20Malino)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/05/24/keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino/&title=Keseruan%20Pharmacy%20Camp%202025%3A%20Membangun%20Karakter%20dan%20Solidaritas%20di%20Malino)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/05/24/keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino/&title=Keseruan%20Pharmacy%20Camp%202025%3A%20Membangun%20Karakter%20dan%20Solidaritas%20di%20Malino)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/05/24/keseruan-pharmacy-camp-2025-membangun-karakter-dan-solidaritas-di-malino/&title=Keseruan%20Pharmacy%20Camp%202025%3A%20Membangun%20Karakter%20dan%20Solidaritas%20di%20Malino)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/65fcd14e-6907-482d-8cc7-8b5d1781ea15.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/dd2b7a01-8e40-4ef7-99f0-d28a86bcc9b7.webp',
   '2025-05-24T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -640,10 +670,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 16: Kolaborasi HMJ & IKA Farmasi UINAM Menghadirkan Pengabdian Masyarakat: Cek Kesehatan Gratis, Penyuluhan Kesehatan, dan sunatan  gratis di Villa Gaharu, Kecamatan Tinggimoncong
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Kolaborasi HMJ & IKA Farmasi UINAM Menghadirkan Pengabdian Masyarakat: Cek Kesehatan Gratis, Penyuluhan Kesehatan, dan sunatan  gratis di Villa Gaharu, Kecamatan Tinggimoncong',
   'kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong',
@@ -669,9 +700,10 @@ Kegiatan ini dilaksanakan oleh HMJ FARMASI yang bekerjasama dengan IKA FARMASI d
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/04/23/kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong/)[](http://twitter.com/share?url=https://kemafar.org/2025/04/23/kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong/&text=Kolaborasi%20HMJ%20%26%20IKA%20Farmasi%20UINAM%20Menghadirkan%20Pengabdian%20Masyarakat%3A%20Cek%20Kesehatan%20Gratis%2C%20Penyuluhan%20Kesehatan%2C%20dan%20sunatan%20%20gratis%20di%20Villa%20Gaharu%2C%20Kecamatan%20Tinggimoncong)[](mailto:?subject=Kolaborasi%20HMJ%20%26amp;%20IKA%20Farmasi%20UINAM%20Menghadirkan%20Pengabdian%20Masyarakat:%20Cek%20Kesehatan%20Gratis,%20Penyuluhan%20Kesehatan,%20dan%20sunatan%20%20gratis%20di%20Villa%20Gaharu,%20Kecamatan%20Tinggimoncong&body=https://kemafar.org/2025/04/23/kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/04/23/kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong/&title=Kolaborasi%20HMJ%20%26%20IKA%20Farmasi%20UINAM%20Menghadirkan%20Pengabdian%20Masyarakat%3A%20Cek%20Kesehatan%20Gratis%2C%20Penyuluhan%20Kesehatan%2C%20dan%20sunatan%20%20gratis%20di%20Villa%20Gaharu%2C%20Kecamatan%20Tinggimoncong)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/04/23/kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong/&title=Kolaborasi%20HMJ%20%26%20IKA%20Farmasi%20UINAM%20Menghadirkan%20Pengabdian%20Masyarakat%3A%20Cek%20Kesehatan%20Gratis%2C%20Penyuluhan%20Kesehatan%2C%20dan%20sunatan%20%20gratis%20di%20Villa%20Gaharu%2C%20Kecamatan%20Tinggimoncong)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/04/23/kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong/&title=Kolaborasi%20HMJ%20%26%20IKA%20Farmasi%20UINAM%20Menghadirkan%20Pengabdian%20Masyarakat%3A%20Cek%20Kesehatan%20Gratis%2C%20Penyuluhan%20Kesehatan%2C%20dan%20sunatan%20%20gratis%20di%20Villa%20Gaharu%2C%20Kecamatan%20Tinggimoncong)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/04/23/kolaborasi-hmj-ika-farmasi-uinam-menghadirkan-pengabdian-masyarakat-cek-kesehatan-gratis-penyuluhan-kesehatan-dan-sunatan-gratis-di-villa-gaharu-kecamatan-tinggimoncong/&title=Kolaborasi%20HMJ%20%26%20IKA%20Farmasi%20UINAM%20Menghadirkan%20Pengabdian%20Masyarakat%3A%20Cek%20Kesehatan%20Gratis%2C%20Penyuluhan%20Kesehatan%2C%20dan%20sunatan%20%20gratis%20di%20Villa%20Gaharu%2C%20Kecamatan%20Tinggimoncong)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/d4cda7cb-bb50-4242-98ed-6b6482fc6d75.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/424a7b32-67d1-488b-a3ac-0f901b81b6c4.webp',
   '2025-04-23T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -679,10 +711,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
 -- Article 17: DPR SAHKAN RUU TNI!! DWIFUNGSI ABRI PART 2?
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'DPR SAHKAN RUU TNI!! DWIFUNGSI ABRI PART 2?',
   'dpr-sahkan-ruu-tni-dwifungsi-abri-part-2',
@@ -708,9 +741,10 @@ Menteri Pertahanan menegaskan bahwa revisi UU TNI tidak akan mengarah pada pener
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/03/21/dpr-sahkan-ruu-tni-dwifungsi-abri-part-2/)[](http://twitter.com/share?url=https://kemafar.org/2025/03/21/dpr-sahkan-ruu-tni-dwifungsi-abri-part-2/&text=DPR%20SAHKAN%20RUU%20TNI%21%21%20DWIFUNGSI%20ABRI%20PART%202%3F)[](mailto:?subject=DPR%20SAHKAN%20RUU%20TNI!!%20DWIFUNGSI%20ABRI%20PART%202?&body=https://kemafar.org/2025/03/21/dpr-sahkan-ruu-tni-dwifungsi-abri-part-2/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/03/21/dpr-sahkan-ruu-tni-dwifungsi-abri-part-2/&title=DPR%20SAHKAN%20RUU%20TNI%21%21%20DWIFUNGSI%20ABRI%20PART%202%3F)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/03/21/dpr-sahkan-ruu-tni-dwifungsi-abri-part-2/&title=DPR%20SAHKAN%20RUU%20TNI%21%21%20DWIFUNGSI%20ABRI%20PART%202%3F)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/03/21/dpr-sahkan-ruu-tni-dwifungsi-abri-part-2/&title=DPR%20SAHKAN%20RUU%20TNI%21%21%20DWIFUNGSI%20ABRI%20PART%202%3F)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/03/21/dpr-sahkan-ruu-tni-dwifungsi-abri-part-2/&title=DPR%20SAHKAN%20RUU%20TNI%21%21%20DWIFUNGSI%20ABRI%20PART%202%3F)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/e512940c-1d3f-48fb-bb69-972a0caa9114.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/22f275b7-2748-4685-b0bd-e82d3a79c682.webp',
   '2025-03-21T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -718,10 +752,53 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 18: Selamat & Sukses | Perwakilan HMJ Farmasi UIN Alauddin Makassar Telah Mengikuti Kegiatan LKMMF II 2025
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 18: Penyerahan Hasil Kajian: “DAMPAK EFISIENSI ANGGARAN TERHADAP PTKIN UIN ALAUDDIN MAKASSAR DAN ANCAMAN TERHADAP KENAIKKAN UKT T.A 2025”
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
+VALUES (
+  'Penyerahan Hasil Kajian: “DAMPAK EFISIENSI ANGGARAN TERHADAP PTKIN UIN ALAUDDIN MAKASSAR DAN ANCAMAN TERHADAP KENAIKKAN UKT T.A 2025”',
+  'penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-ta-2025',
+  'Uncategorized(https://kemafar.org/category/uncategorized/)
+
+ Penyerahan Hasil Kajian: “DAMPAK EFISIENSI ANGGARAN TERHADAP PTKIN UIN ALAUDDIN MAKASSAR DAN ANCAMAN TERHADAP KENAIKKAN UKT T.A 2025”(https...',
+  '[Uncategorized](https://kemafar.org/category/uncategorized/)
+
+# [Penyerahan Hasil Kajian: “DAMPAK EFISIENSI ANGGARAN TERHADAP PTKIN UIN ALAUDDIN MAKASSAR DAN ANCAMAN TERHADAP KENAIKKAN UKT T.A 2025”](https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/ "Permalink to: Penyerahan Hasil Kajian: “DAMPAK EFISIENSI ANGGARAN TERHADAP PTKIN UIN ALAUDDIN MAKASSAR DAN ANCAMAN TERHADAP KENAIKKAN UKT T.A 2025”")
+
+[](https://kemafar.org/author/kemafar-org/)By [kemafar.org](https://kemafar.org/author/kemafar-org/) [Maret 10, 2025](https://kemafar.org/2025/03/)
+
+_Gowa, 10 Maret 2025_
+
+Himpunan Mahasiswa Jurusan (HMJ) Farmasi UIN Alauddin Makassar secara resmi menyerahkan hasil kajian kritis terkait kebijakan efisiensi anggaran yang berdampak langsung pada Perguruan Tinggi Keagamaan Islam Negeri (PTKIN), khususnya UIN Alauddin Makassar. Kajian ini juga menyoroti potensi ancaman kenaikan Uang Kuliah Tunggal (UKT) pada Tahun Akademik 2025 sebagai dampak dari kebijakan tersebut.
+
+Pemotongan anggaran pendidikan hanya akan memperburuk keadaan. Rakyat akan semakin miskin dan tidak memiliki akses ke pendidikan yang baik. Eksploitasi anggaran ini sangat mencekik rakyat, pengurangan program bagi mahasiswa yang kurang mampu, pemotongan anggaran Kemendiktiksaintek dan Kemenag. Tiba saatnya kemarahan rakyat atas adanya Instruksi Presiden Nomor 1 Tahun 2025, karena pemerintah sudah tidak melihat universitas atau pendidikan sebagai mitra tetapi melihat sebagai ancaman, dengan begitu besar adanya pemotongan.
+
+Kajian ini bertujuan untuk menganalisis dampak efisiensi anggaran terhadap PTKIN UIN Alauddin Makassar dan untuk mengidentifikasi ancaman terhadap kenaikan UKT T.A 2025. Hasil kajian ini menunjukkan bahwa dapat menimbulkan ancaman terhadap kenaikan UKT T.A 2025.
+
+“Kami berharap bahwa hasil kajian ini dapat menjadi acuan bagi pihak birokrasi dalam mengambil keputusan terkait dengan anggaran dan UKT,” ucap Ketua umum Himpunan Mahasiswa Jurusan (HMJ) Farmasi (Nurhidayat Asis).  
+Penyerahan hasil kajian ini dilakukan untuk menyampaikan hasil kajian kepada pihak birokrasi. Kami berharap bahwa hasil kajian ini dapat menjadi kontribusi bagi kemajuan dan peningkatan kualitas PTKIN UIN Alauddin Makassar.
+
+[](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/)[](http://twitter.com/share?url=https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/&text=Penyerahan%20Hasil%20Kajian%3A%20%E2%80%9CDAMPAK%20EFISIENSI%20ANGGARAN%20TERHADAP%20PTKIN%20UIN%20ALAUDDIN%20MAKASSAR%20DAN%20ANCAMAN%20TERHADAP%20KENAIKKAN%20UKT%20T.A%202025%E2%80%9D)[](mailto:?subject=Penyerahan%20Hasil%20Kajian:%20“DAMPAK%20EFISIENSI%20ANGGARAN%20TERHADAP%20PTKIN%20UIN%20ALAUDDIN%20MAKASSAR%20DAN%20ANCAMAN%20TERHADAP%20KENAIKKAN%20UKT%20T.A%202025”&body=https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/&title=Penyerahan%20Hasil%20Kajian%3A%20%E2%80%9CDAMPAK%20EFISIENSI%20ANGGARAN%20TERHADAP%20PTKIN%20UIN%20ALAUDDIN%20MAKASSAR%20DAN%20ANCAMAN%20TERHADAP%20KENAIKKAN%20UKT%20T.A%202025%E2%80%9D)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/&title=Penyerahan%20Hasil%20Kajian%3A%20%E2%80%9CDAMPAK%20EFISIENSI%20ANGGARAN%20TERHADAP%20PTKIN%20UIN%20ALAUDDIN%20MAKASSAR%20DAN%20ANCAMAN%20TERHADAP%20KENAIKKAN%20UKT%20T.A%202025%E2%80%9D)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/&title=Penyerahan%20Hasil%20Kajian%3A%20%E2%80%9CDAMPAK%20EFISIENSI%20ANGGARAN%20TERHADAP%20PTKIN%20UIN%20ALAUDDIN%20MAKASSAR%20DAN%20ANCAMAN%20TERHADAP%20KENAIKKAN%20UKT%20T.A%202025%E2%80%9D)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/03/10/penyerahan-hasil-kajian-dampak-efisiensi-anggaran-terhadap-ptkin-uin-alauddin-makassar-dan-ancaman-terhadap-kenaikkan-ukt-t-a-2025/&title=Penyerahan%20Hasil%20Kajian%3A%20%E2%80%9CDAMPAK%20EFISIENSI%20ANGGARAN%20TERHADAP%20PTKIN%20UIN%20ALAUDDIN%20MAKASSAR%20DAN%20ANCAMAN%20TERHADAP%20KENAIKKAN%20UKT%20T.A%202025%E2%80%9D)[](javascript:window.print\(\))',
+  'post',
+  'published',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/9e44cea6-135f-41fd-aa72-fc5d99f2b43c.webp',
+  '2025-03-10T00:00:00.000Z',
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
+  ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
+  false
+)
+ON CONFLICT (slug) DO UPDATE SET
+  content = EXCLUDED.content,
+  cover_image = EXCLUDED.cover_image,
+  excerpt = EXCLUDED.excerpt,
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
+
+-- Article 19: Selamat & Sukses | Perwakilan HMJ Farmasi UIN Alauddin Makassar Telah Mengikuti Kegiatan LKMMF II 2025
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Selamat & Sukses | Perwakilan HMJ Farmasi UIN Alauddin Makassar Telah Mengikuti Kegiatan LKMMF II 2025',
   'selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025',
@@ -747,9 +824,10 @@ Latihan Kepemimpinan Manajemen Mahasiswa Farmasi (LKMMF) II juga menjadi momen p
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/03/03/selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025/)[](http://twitter.com/share?url=https://kemafar.org/2025/03/03/selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025/&text=Selamat%20%26%20Sukses%20%7C%20Perwakilan%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Telah%20Mengikuti%20Kegiatan%20LKMMF%20II%202025)[](mailto:?subject=Selamat%20%26amp;%20Sukses%20|%20Perwakilan%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Telah%20Mengikuti%20Kegiatan%20LKMMF%20II%202025&body=https://kemafar.org/2025/03/03/selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/03/03/selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025/&title=Selamat%20%26%20Sukses%20%7C%20Perwakilan%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Telah%20Mengikuti%20Kegiatan%20LKMMF%20II%202025)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/03/03/selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025/&title=Selamat%20%26%20Sukses%20%7C%20Perwakilan%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Telah%20Mengikuti%20Kegiatan%20LKMMF%20II%202025)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/03/03/selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025/&title=Selamat%20%26%20Sukses%20%7C%20Perwakilan%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Telah%20Mengikuti%20Kegiatan%20LKMMF%20II%202025)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/03/03/selamat-sukses-perwakilan-hmj-farmasi-uin-alauddin-makassar-telah-mengikuti-kegiatan-lkmmf-ii-2025/&title=Selamat%20%26%20Sukses%20%7C%20Perwakilan%20HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Telah%20Mengikuti%20Kegiatan%20LKMMF%20II%202025)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/da6fd4b3-db85-4067-9ed8-89eb90537299.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/85cd76da-1967-4892-9c54-da4310b40690.webp',
   '2025-03-03T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -757,10 +835,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 19: HMJ Farmasi UINAM Goes To RAKERNAS XVII | Berlayar Sejajar Menggapai Cakrawala ISMAFARSI melalui RAKERNAS ke-XVII di Bumi Lancang Kuning
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 20: HMJ Farmasi UINAM Goes To RAKERNAS XVII | Berlayar Sejajar Menggapai Cakrawala ISMAFARSI melalui RAKERNAS ke-XVII di Bumi Lancang Kuning
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'HMJ Farmasi UINAM Goes To RAKERNAS XVII | Berlayar Sejajar Menggapai Cakrawala ISMAFARSI melalui RAKERNAS ke-XVII di Bumi Lancang Kuning',
   'hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning',
@@ -787,9 +866,10 @@ Rapat Kerja Nasional (Rakernas) juga menjadi kesempatan penting bagi HMJ FARMASI
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/02/06/hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning/)[](http://twitter.com/share?url=https://kemafar.org/2025/02/06/hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning/&text=HMJ%20Farmasi%20UINAM%20Goes%20To%20RAKERNAS%20XVII%20%7C%20Berlayar%20Sejajar%20Menggapai%20Cakrawala%20ISMAFARSI%20melalui%20RAKERNAS%20ke-XVII%20di%20Bumi%20Lancang%20Kuning)[](mailto:?subject=HMJ%20Farmasi%20UINAM%20Goes%20To%20RAKERNAS%20XVII%20|%20Berlayar%20Sejajar%20Menggapai%20Cakrawala%20ISMAFARSI%20melalui%20RAKERNAS%20ke-XVII%20di%20Bumi%20Lancang%20Kuning&body=https://kemafar.org/2025/02/06/hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/02/06/hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20RAKERNAS%20XVII%20%7C%20Berlayar%20Sejajar%20Menggapai%20Cakrawala%20ISMAFARSI%20melalui%20RAKERNAS%20ke-XVII%20di%20Bumi%20Lancang%20Kuning)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/02/06/hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20RAKERNAS%20XVII%20%7C%20Berlayar%20Sejajar%20Menggapai%20Cakrawala%20ISMAFARSI%20melalui%20RAKERNAS%20ke-XVII%20di%20Bumi%20Lancang%20Kuning)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/02/06/hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20RAKERNAS%20XVII%20%7C%20Berlayar%20Sejajar%20Menggapai%20Cakrawala%20ISMAFARSI%20melalui%20RAKERNAS%20ke-XVII%20di%20Bumi%20Lancang%20Kuning)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/02/06/hmj-farmasi-uinam-goes-to-rakernas-xvii-berlayar-sejajar-menggapai-cakrawala-ismafarsi-melalui-rakernas-ke-xvii-di-bumi-lancang-kuning/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20RAKERNAS%20XVII%20%7C%20Berlayar%20Sejajar%20Menggapai%20Cakrawala%20ISMAFARSI%20melalui%20RAKERNAS%20ke-XVII%20di%20Bumi%20Lancang%20Kuning)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/48475004-3775-49d1-a4a8-b810394df1f8.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/bd9ff978-6349-4dfa-8e77-2b310a1d834e.webp',
   '2025-02-06T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -797,10 +877,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 20: MAHASISWA FARMASI UINAM BORONG MEDALI DI AJANG SONATA DAN PESONA 2025
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 21: MAHASISWA FARMASI UINAM BORONG MEDALI DI AJANG SONATA DAN PESONA 2025
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'MAHASISWA FARMASI UINAM BORONG MEDALI DI AJANG SONATA DAN PESONA 2025',
   'mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025',
@@ -886,9 +967,10 @@ Selamat kepada seluruh pemenang! Teruslah berprestasi dan menjadi inspirasi bagi
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/01/16/hanya-dalam-waktu-1-minggu-mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025/)[](http://twitter.com/share?url=https://kemafar.org/2025/01/16/hanya-dalam-waktu-1-minggu-mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025/&text=MAHASISWA%20FARMASI%20UINAM%20BORONG%20MEDALI%20DI%20AJANG%20SONATA%20DAN%20PESONA%202025)[](mailto:?subject=MAHASISWA%20FARMASI%20UINAM%20BORONG%20MEDALI%20DI%20AJANG%20SONATA%20DAN%20PESONA%202025&body=https://kemafar.org/2025/01/16/hanya-dalam-waktu-1-minggu-mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/01/16/hanya-dalam-waktu-1-minggu-mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025/&title=MAHASISWA%20FARMASI%20UINAM%20BORONG%20MEDALI%20DI%20AJANG%20SONATA%20DAN%20PESONA%202025)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/01/16/hanya-dalam-waktu-1-minggu-mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025/&title=MAHASISWA%20FARMASI%20UINAM%20BORONG%20MEDALI%20DI%20AJANG%20SONATA%20DAN%20PESONA%202025)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/01/16/hanya-dalam-waktu-1-minggu-mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025/&title=MAHASISWA%20FARMASI%20UINAM%20BORONG%20MEDALI%20DI%20AJANG%20SONATA%20DAN%20PESONA%202025)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/01/16/hanya-dalam-waktu-1-minggu-mahasiswa-farmasi-uinam-borong-medali-di-ajang-sonata-dan-pesona-2025/&title=MAHASISWA%20FARMASI%20UINAM%20BORONG%20MEDALI%20DI%20AJANG%20SONATA%20DAN%20PESONA%202025)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/1dd447e0-9d22-4b8a-ad01-b0ea2784f98c.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/0da64c07-04ae-4041-9c83-4b71b03e4d05.webp',
   '2025-01-16T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -896,10 +978,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 21: RAPAT KERJA HMJ FARMASI UIN ALAUDDIN MAKASSAR 2025: MERANCANG MASA DEPAN ORGANISASI
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 22: RAPAT KERJA HMJ FARMASI UIN ALAUDDIN MAKASSAR 2025: MERANCANG MASA DEPAN ORGANISASI
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'RAPAT KERJA HMJ FARMASI UIN ALAUDDIN MAKASSAR 2025: MERANCANG MASA DEPAN ORGANISASI',
   'rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi',
@@ -926,11 +1009,11 @@ Tema ini diharapkan dapat mendorong HMJ Farmasi untuk menjadi organisasi yang pr
 
 ## Dukungan Penuh dari Pihak Jurusan dan Fakultas
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/7c88431c-3b10-4b88-8919-ef1b01aa554a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/f109af88-ad22-41f6-a0f2-c4ee8b93ff53.webp)
 
 Ketua Program Studi Farmasi, Bapak apt. Muh. Rusdi, S.Si., M.Si., menyampaikan dukungannya terhadap rencana program kerja yang akan dilaksanakan. Beliau juga menitipkan beberapa program unggulan, termasuk seminar internasional yang direncanakan menjadi bagian dari agenda tahun ini.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/57b5ee89-0030-473d-9d6f-34d50174f1b9.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/34a147c0-bf3d-4ed2-bc2f-02cb860e63d1.webp)
 
 Dalam sambutannya, Wakil Dekan III Fakultas Kedokteran dan Ilmu Kesehatan, Ibu Dr. Patima, S.Kep., Ns., M.Kep., menyatakan dukungannya terhadap HMJ Farmasi 2025, dan mengapresiasi pelaksanaan Raker ini karena merupakan Rapat Kerja tercepat yang dilaksanakan di FKIK di tahun 2025. Beliau mendorong pelaksanaan kegiatan berskala internasional serta program yang mengintegrasikan nilai-nilai moderasi beragama. “Saya sangat mendukung program yang akan dilaksanakan selama satu tahun ke depannya,” ujar beliau, sekaligus membuka secara resmi acara Rapat Kerja HMJ Farmasi periode 2025.
 
@@ -942,7 +1025,7 @@ Pada penutupan sidang, Nurhidayat Asis menegaskan komitmennya untuk menjalankan 
 
 ## Penutupan dan Awal Perjalanan Baru
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/cd544d5a-da86-4f2b-85fd-181136d47c5a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/63f0d2ce-9b07-4373-a6ad-e8a4efce8635.webp)
 
 Kegiatan Raker diakhiri dengan penyerahan hasil sidang kepada formatur ketua terpilih, menandai awal langkah HMJ Farmasi dalam menghadirkan inspirasi dan manfaat yang berkelanjutan bagi mahasiswa dan masyarakat.
 
@@ -953,9 +1036,10 @@ _Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar Periode 2025_
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2025/01/11/rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi/)[](http://twitter.com/share?url=https://kemafar.org/2025/01/11/rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi/&text=RAPAT%20KERJA%20HMJ%20FARMASI%20UIN%20ALAUDDIN%20MAKASSAR%202025%3A%20MERANCANG%20MASA%20DEPAN%20ORGANISASI)[](mailto:?subject=RAPAT%20KERJA%20HMJ%20FARMASI%20UIN%20ALAUDDIN%20MAKASSAR%202025:%20MERANCANG%20MASA%20DEPAN%20ORGANISASI&body=https://kemafar.org/2025/01/11/rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2025/01/11/rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi/&title=RAPAT%20KERJA%20HMJ%20FARMASI%20UIN%20ALAUDDIN%20MAKASSAR%202025%3A%20MERANCANG%20MASA%20DEPAN%20ORGANISASI)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2025/01/11/rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi/&title=RAPAT%20KERJA%20HMJ%20FARMASI%20UIN%20ALAUDDIN%20MAKASSAR%202025%3A%20MERANCANG%20MASA%20DEPAN%20ORGANISASI)[](https://api.whatsapp.com/send?text=https://kemafar.org/2025/01/11/rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi/&title=RAPAT%20KERJA%20HMJ%20FARMASI%20UIN%20ALAUDDIN%20MAKASSAR%202025%3A%20MERANCANG%20MASA%20DEPAN%20ORGANISASI)[](https://www.reddit.com/submit?url=https://kemafar.org/2025/01/11/rapat-kerja-hmj-farmasi-uin-alauddin-makassar-2025-merancang-masa-depan-organisasi/&title=RAPAT%20KERJA%20HMJ%20FARMASI%20UIN%20ALAUDDIN%20MAKASSAR%202025%3A%20MERANCANG%20MASA%20DEPAN%20ORGANISASI)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/a96b6b50-3714-4f36-9f5a-7a0d1d25fec2.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/a103bafc-3a49-4dd9-b153-11d8639cccd1.webp',
   '2025-01-11T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -963,10 +1047,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 22: Pelantikan dan Raker IKA Farmasi UIN Alauddin untuk Merajut Kebersamaan dan Mewujudkan Visi Bersama
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 23: Pelantikan dan Raker IKA Farmasi UIN Alauddin untuk Merajut Kebersamaan dan Mewujudkan Visi Bersama
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Pelantikan dan Raker IKA Farmasi UIN Alauddin untuk Merajut Kebersamaan dan Mewujudkan Visi Bersama',
   'pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama',
@@ -983,19 +1068,19 @@ Pelantikan pengurus Ikatan Alumni Farmasi UIN Alauddin Makassar yang dirangkai d
 
 Alumni Farmasi UIN telah terbentuk secara mandiri sejak tahun 2010, namun selama ini legalitas dan formalitasnya mengikut kepada Badan Pengurus Alumni Cabang Fakultas Ilmu Kesehatan. Pada tahun 2024, IKA Farmasi telah disahkan dengan SK dari pengurus pusat IKA, sehingga pelantikan ini dianggap penting untuk menetapkan program-program kerja yang akan dilaksanakan.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/6e082e6a-ba49-48bc-add8-02bb0c7b4b57.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/5cef8140-ffd1-4b13-bb12-401623ebe922.webp)
 
 Menurut Wakil Ketua BPP Prof. Dr. Saharuddin, M.Ag, yang juga melantik dan mengambil sumpah para pengurus di Hotel UIN, “Wadah IKA sebaiknya tidak hanya berorientasi pada pengembangan alumni semata, tetapi juga pada kontribusi akademik, kolaborasi prodi dan fakultas, khususnya dalam menghasilkan produk ilmu pengetahuan, salah satunya adalah publikasi jurnal terindeks Scopus.” Harapan ini sejalan dengan upaya agar seluruh stakeholder, termasuk alumni, dapat mendukung UIN Alauddin menjadi kampus yang bertaraf internasional.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/6791ea44-0478-45cc-83db-2dac803fc1f1.webp)
+![](https://kemafar.org/wp-content/uploads/2024/12/11E365CA-6C35-4A5B-BF0A-AB658C860A63-681x1024.jpeg)
 
 Harapan tersebut disambut baik oleh Ketua Prodi Farmasi Apt. Muh. Rusdi, S.Si., M.Si, yang turut hadir dan memberikan sambutan pada acara tersebut. Beliau menegaskan bahwa pihaknya sangat terbuka untuk berkolaborasi dengan IKA Farmasi dalam berbagai hal.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/0a3ddc23-4a27-4a56-88e2-533479c103d8.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/d12281a3-2df4-4170-9b82-2a3019a21c40.webp)
 
 Ketua IKA Farmasi Apt. Ahmad Irsyad Aliah, S.Si., M.Si, dalam berbagai kesempatan juga menekankan bahwa wadah ini akan selalu dimanfaatkan agar keberadaannya bisa dirasakan oleh siapa saja, termasuk mahasiswa, dosen, dan kampus. Program kerja yang disusun tidak hanya berorientasi pada alumni, tetapi juga akan disinkronkan dengan stakeholder lain. Namun, yang paling penting saat ini adalah bagaimana menyelesaikan data base alumni yang sudah mencapai hampir 2000 orang, sehingga segmentasi dan implementasi program dapat dijalankan dengan tepat dan maksimal.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/9bcb37a8-ea44-4057-8e6d-f5388538746a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/80794ac4-f8f4-4adc-98fe-3680ce075b84.webp)
 
 Melalui Ketua Panitia Apt. Muh. Akmal A. Sukara, S.Farm., M.Si, acara ini mengucapkan terima kasih kepada semua pihak yang telah mendukung acara ini baik secara material maupun moral. Permohonan maaf juga disampaikan apabila dalam pelaksanaannya terdapat kekurangan. “Semua sudah dimaksimalkan, yang sempurna datangnya hanya dari Allah SWT,” lanjutnya.
 
@@ -1006,9 +1091,10 @@ Melalui Ketua Panitia Apt. Muh. Akmal A. Sukara, S.Farm., M.Si, acara ini menguc
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/12/20/pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama/)[](http://twitter.com/share?url=https://kemafar.org/2024/12/20/pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama/&text=Pelantikan%20dan%20Raker%20IKA%20Farmasi%20UIN%20Alauddin%20untuk%20Merajut%20Kebersamaan%20dan%20Mewujudkan%20Visi%20Bersama)[](mailto:?subject=Pelantikan%20dan%20Raker%20IKA%20Farmasi%20UIN%20Alauddin%20untuk%20Merajut%20Kebersamaan%20dan%20Mewujudkan%20Visi%20Bersama&body=https://kemafar.org/2024/12/20/pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/12/20/pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama/&title=Pelantikan%20dan%20Raker%20IKA%20Farmasi%20UIN%20Alauddin%20untuk%20Merajut%20Kebersamaan%20dan%20Mewujudkan%20Visi%20Bersama)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/12/20/pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama/&title=Pelantikan%20dan%20Raker%20IKA%20Farmasi%20UIN%20Alauddin%20untuk%20Merajut%20Kebersamaan%20dan%20Mewujudkan%20Visi%20Bersama)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/12/20/pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama/&title=Pelantikan%20dan%20Raker%20IKA%20Farmasi%20UIN%20Alauddin%20untuk%20Merajut%20Kebersamaan%20dan%20Mewujudkan%20Visi%20Bersama)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/12/20/pelantikan-dan-raker-ika-farmasi-uin-alauddin-untuk-merajut-kebersamaan-dan-mewujudkan-visi-bersama/&title=Pelantikan%20dan%20Raker%20IKA%20Farmasi%20UIN%20Alauddin%20untuk%20Merajut%20Kebersamaan%20dan%20Mewujudkan%20Visi%20Bersama)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/1cc53b37-ea85-4752-94cc-3736076e6020.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/3a5b0398-fe03-41db-b67e-1b59d7f33413.webp',
   '2024-12-20T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1016,10 +1102,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 23: Jebakan Kecantikan: Maraknya Peredaran Kosmetik Ilegal di Indonesia
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 24: Jebakan Kecantikan: Maraknya Peredaran Kosmetik Ilegal di Indonesia
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Jebakan Kecantikan: Maraknya Peredaran Kosmetik Ilegal di Indonesia',
   'jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia',
@@ -1041,14 +1128,14 @@ Edukasi tentang bahaya kosmetik ilegal sangat penting. Masyarakat perlu mengetah
 Gambar 1. QR Code BPOM (A), Nomor Registrasi BPOM (B)  
 Sumber: Tya (2024, Juni) [https://vt.tiktok.com/ZS2SQos2x/](https://www.google.com/url?q=https://www.google.com/url?q%3Dhttps://vt.tiktok.com/ZS2SQos2x/%26amp;sa%3DD%26amp;source%3Deditors%26amp;ust%3D1734708064401370%26amp;usg%3DAOvVaw2QJJNNeKn7hUSjl0MWBG9x&sa=D&source=docs&ust=1734708064415034&usg=AOvVaw2X34y9SKrYT3_lTOfAyM3u)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/c69ae2cf-8126-48d2-9213-ac59f5b7daee.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/cc97d994-1a85-4998-8f67-7e19cc462a86.webp)
 
 Gambar 2. Batas Kadaluwarsa Produk (C)  
  Kumayyw. (2024, Juni). _Glad2glow asli vs palsu_. \[Video\]. [https://vt.tiktok.com/ZS2jUMRbo/](https://www.google.com/url?q=https://www.google.com/url?q%3Dhttps://vt.tiktok.com/ZS2jUMRbo/%26amp;sa%3DD%26amp;source%3Deditors%26amp;ust%3D1734708064401796%26amp;usg%3DAOvVaw0OYjue8Ji4mDVSBf7mz6e5&sa=D&source=docs&ust=1734708064415384&usg=AOvVaw13cRJjecYJ4mr0DwaQIMIs).  
   
 Gambar 2. Informasi Produsen, Nama dan Alamat Produsen/Importir/Distributor, dll. (D), Komposisi produk (E)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/e431bf32-a4ef-4512-9358-51c74a207824.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/6689e326-db7d-4852-b27e-66c389fa6811.webp)
 
 Sumber:  Kumayyw. (2024, Juni). _Glad2glow asli vs palsu_. \[Video\]. [https://vt.tiktok.com/ZS2jUMRbo/](https://www.google.com/url?q=https://www.google.com/url?q%3Dhttps://vt.tiktok.com/ZS2jUMRbo/%26amp;sa%3DD%26amp;source%3Deditors%26amp;ust%3D1734708064402086%26amp;usg%3DAOvVaw3ZpL2zIQWAFyQviLX_LTGl&sa=D&source=docs&ust=1734708064415646&usg=AOvVaw0FSc90whpnyA8O78WzAlpK).
 
@@ -1059,9 +1146,10 @@ Untuk mencegah maraknya kosmetik ilegal, diperlukan langkah-langkah komprehensif
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/12/20/jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia/)[](http://twitter.com/share?url=https://kemafar.org/2024/12/20/jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia/&text=Jebakan%20Kecantikan%3A%20Maraknya%20Peredaran%20Kosmetik%20Ilegal%20di%20Indonesia)[](mailto:?subject=Jebakan%20Kecantikan:%20Maraknya%20Peredaran%20Kosmetik%20Ilegal%20di%20Indonesia&body=https://kemafar.org/2024/12/20/jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/12/20/jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia/&title=Jebakan%20Kecantikan%3A%20Maraknya%20Peredaran%20Kosmetik%20Ilegal%20di%20Indonesia)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/12/20/jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia/&title=Jebakan%20Kecantikan%3A%20Maraknya%20Peredaran%20Kosmetik%20Ilegal%20di%20Indonesia)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/12/20/jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia/&title=Jebakan%20Kecantikan%3A%20Maraknya%20Peredaran%20Kosmetik%20Ilegal%20di%20Indonesia)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/12/20/jebakan-kecantikan-maraknya-peredaran-kosmetik-ilegal-di-indonesia/&title=Jebakan%20Kecantikan%3A%20Maraknya%20Peredaran%20Kosmetik%20Ilegal%20di%20Indonesia)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/9b13f2cb-8c2f-4c96-93d3-dc97dd95abaf.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/029bf830-8bcd-480e-bcdd-9169c1127d2d.webp',
   '2024-12-20T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1069,10 +1157,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 24: Malam Puncak Pharmacy Event 2024: Perayaan Harmoni, Kreativitas, dan Prestasi
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 25: Malam Puncak Pharmacy Event 2024: Perayaan Harmoni, Kreativitas, dan Prestasi
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Malam Puncak Pharmacy Event 2024: Perayaan Harmoni, Kreativitas, dan Prestasi',
   'malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi',
@@ -1089,27 +1178,27 @@ Makassar, 7 Desember 2024 –
 
 Malam puncak Pharmacy Event 2024 berlangsung dengan penuh kemeriahan di D’Edelweiss Ballroom UNIFA, menjadi momen puncak dari serangkaian kegiatan yang telah diselenggarakan sebelumnya. Acara ini menghadirkan final dari tiga cabang lomba utama yang paling dinantikan, yaitu Tari Kreasi, Farmasi Idol, dan Putra Putri Farmasi, serta penyerahan hadiah untuk seluruh pemenang dari 23 cabang lomba.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/b270a74d-c8db-4f1a-a352-503c03796515.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/55619e19-1257-47e2-a030-286bb0ea11db.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/7a2b9378-361e-4bc1-9dac-631cbb043a4c.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/d5eff3df-f61c-4957-b76c-fa2af28d0c2b.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/ba089b9b-d8bf-42e0-bae3-e3805a979ecf.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/27a6f485-1cfc-4ec3-a757-af100cf128e6.webp)
 
 Malam dimulai dengan lomba Tari Kreasi, yang memikat seluruh audiens dengan gerakan indah, kostum menawan, dan koreografi kreatif yang mencerminkan keberagaman budaya dan semangat kebersamaan. Penampilan ini berhasil menghadirkan nuansa seni yang memukau.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/2ea1b1ad-8320-4a0e-9de8-f44bbde9b652.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/26fffb49-8386-4f6b-8b13-69588e189e84.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/28772837-b945-4586-9aea-5ebc6975327e.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/773a1c6f-b1f8-4959-a9c5-a694e35032d8.webp)
 
 Berlanjut ke final Farmasi Idol, para peserta menunjukkan kemampuan vokal terbaik mereka, menyajikan lagu-lagu penuh penghayatan dan energi yang membuat penonton terpukau. Sorak sorai memenuhi ballroom, memberikan dukungan luar biasa kepada para finalis.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/c9551d8f-a8c4-4cc9-904c-bf01c7750fac.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/f445a7ad-ca8d-485f-a259-99d023738e95.webp)
 
 Sorotan lainnya adalah kompetisi Putra Putri Farmasi, di mana para peserta menunjukkan bakat, wawasan, dan kepribadian mereka yang luar biasa. Ajang ini tidak hanya menjadi simbol kecantikan dan ketampanan, tetapi juga kecerdasan, kepercayaan diri, serta semangat mahasiswa Farmasi UIN Alauddin Makassar.
 
 Selain itu, malam puncak ini juga menjadi momen istimewa untuk penyerahan hadiah dari berbagai sponsor ternama, seperti Make Over, Wardah, Emina, Kahf, Mugen Computer, Yakult, Hydrococo, Fitbar, dan lainnya, yang mendukung penuh jalannya acara. Hadiah ini diberikan kepada para pemenang dari 23 cabang lomba, memberikan apresiasi atas usaha dan prestasi mereka selama kompetisi berlangsung.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/f74ce8d0-0e13-4b4a-823f-38b38f76ff8a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/6b6f272b-8fd5-45e7-9244-27ae805999d0.webp)
 
 Dalam sambutannya, Nurul Fadiah Reskyanti, Ketua Panitia Pharmacy Event 2024, menyampaikan rasa terima kasih dan kebanggaannya. “Malam ini adalah bukti nyata semangat kebersamaan dan kreativitas kita semua. Dari awal hingga akhir, Pharmacy Event 2024 berhasil menjadi wadah yang luar biasa untuk mengembangkan potensi, menjalin solidaritas, dan menunjukkan inovasi kita bersama. Saya ucapkan terima kasih kepada seluruh peserta, panitia, steering committee, sponsor, dan semua pihak yang telah mendukung acara ini,” ujarnya.
 
@@ -1120,9 +1209,10 @@ Sampai jumpa di Pharmacy Event berikutnya, dengan semangat yang lebih besar dan 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/12/08/malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi/)[](http://twitter.com/share?url=https://kemafar.org/2024/12/08/malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi/&text=Malam%20Puncak%20Pharmacy%20Event%202024%3A%20Perayaan%20Harmoni%2C%20Kreativitas%2C%20dan%20Prestasi)[](mailto:?subject=Malam%20Puncak%20Pharmacy%20Event%202024:%20Perayaan%20Harmoni,%20Kreativitas,%20dan%20Prestasi&body=https://kemafar.org/2024/12/08/malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/12/08/malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi/&title=Malam%20Puncak%20Pharmacy%20Event%202024%3A%20Perayaan%20Harmoni%2C%20Kreativitas%2C%20dan%20Prestasi)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/12/08/malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi/&title=Malam%20Puncak%20Pharmacy%20Event%202024%3A%20Perayaan%20Harmoni%2C%20Kreativitas%2C%20dan%20Prestasi)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/12/08/malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi/&title=Malam%20Puncak%20Pharmacy%20Event%202024%3A%20Perayaan%20Harmoni%2C%20Kreativitas%2C%20dan%20Prestasi)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/12/08/malam-puncak-pharmacy-event-2024-perayaan-harmoni-kreativitas-dan-prestasi/&title=Malam%20Puncak%20Pharmacy%20Event%202024%3A%20Perayaan%20Harmoni%2C%20Kreativitas%2C%20dan%20Prestasi)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/6c7e1dbc-cdbc-4265-933e-575fe5432007.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/075d20ae-5879-49eb-96fe-45775e844fb2.webp',
   '2024-12-08T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1130,10 +1220,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 25: Semangat Kreativitas dan Spiritualitas Warnai Semi-Final Pharmacy Event 2024 di UIN Alauddin Makassar
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 26: Semangat Kreativitas dan Spiritualitas Warnai Semi-Final Pharmacy Event 2024 di UIN Alauddin Makassar
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Semangat Kreativitas dan Spiritualitas Warnai Semi-Final Pharmacy Event 2024 di UIN Alauddin Makassar',
   'semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar',
@@ -1163,9 +1254,10 @@ Dengan semangat kolaborasi yang tetap terjaga, Pharmacy Event 2024 terus menjadi
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/12/01/semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar/)[](http://twitter.com/share?url=https://kemafar.org/2024/12/01/semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar/&text=Semangat%20Kreativitas%20dan%20Spiritualitas%20Warnai%20Semi-Final%20Pharmacy%20Event%202024%20di%20UIN%20Alauddin%20Makassar)[](mailto:?subject=Semangat%20Kreativitas%20dan%20Spiritualitas%20Warnai%20Semi-Final%20Pharmacy%20Event%202024%20di%20UIN%20Alauddin%20Makassar&body=https://kemafar.org/2024/12/01/semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/12/01/semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar/&title=Semangat%20Kreativitas%20dan%20Spiritualitas%20Warnai%20Semi-Final%20Pharmacy%20Event%202024%20di%20UIN%20Alauddin%20Makassar)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/12/01/semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar/&title=Semangat%20Kreativitas%20dan%20Spiritualitas%20Warnai%20Semi-Final%20Pharmacy%20Event%202024%20di%20UIN%20Alauddin%20Makassar)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/12/01/semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar/&title=Semangat%20Kreativitas%20dan%20Spiritualitas%20Warnai%20Semi-Final%20Pharmacy%20Event%202024%20di%20UIN%20Alauddin%20Makassar)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/12/01/semangat-kreativitas-dan-spiritualitas-warnai-semi-final-pharmacy-event-2024-di-uin-alauddin-makassar/&title=Semangat%20Kreativitas%20dan%20Spiritualitas%20Warnai%20Semi-Final%20Pharmacy%20Event%202024%20di%20UIN%20Alauddin%20Makassar)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/c4d48dc0-a314-44ae-92d4-6e902f74b067.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/470c1394-11d0-4f12-8a17-20d0c54f32df.webp',
   '2024-12-01T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1173,10 +1265,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 26: “Pharmacy Event 2024: Saatnya Mahasiswa, Dosen, dan Alumni Farmasi UIN Alauddin Unjuk Potensi dan Kebersamaan!”
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 27: “Pharmacy Event 2024: Saatnya Mahasiswa, Dosen, dan Alumni Farmasi UIN Alauddin Unjuk Potensi dan Kebersamaan!”
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   '“Pharmacy Event 2024: Saatnya Mahasiswa, Dosen, dan Alumni Farmasi UIN Alauddin Unjuk Potensi dan Kebersamaan!”',
   'pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan',
@@ -1195,7 +1288,7 @@ Pharmacy Event 2024 menawarkan 23 cabang kompetisi, mulai dari olahraga seperti 
 
 Wakil Dekan III Bidang Kemahasiswaan Fakultas Kedokteran dan Ilmu Kesehatan, Dr. Patima, S.Kep., Ns., M.Kep., secara resmi membuka acara ini. “Pharmacy Event tahun ini terasa lima kali lebih meriah dibandingkan tahun-tahun sebelumnya. Semoga kegiatan ini dapat terus menjadi wadah untuk menumbuhkan semangat berkompetisi yang sehat dan memperkuat ikatan kekeluargaan di antara kita semua,” ujarnya penuh antusias.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/63b7c27d-c361-4f90-8d77-3d9347cd813a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/e029a9be-d4b9-4a80-9755-01678bec70db.webp)
 
 Selain itu, Dr. Haeria, S.Si., M.Si., selaku perwakilan dari Ketua Jurusan Farmasi, menyampaikan sambutannya yang penuh apresiasi. “Kami berharap Pharmacy Event 2024 menjadi momentum yang memacu mahasiswa untuk mengembangkan potensi di berbagai bidang, baik akademik, seni, olahraga, hingga tradisional. Kegiatan ini menjadi simbol harmoni di tengah perbedaan,” ungkapnya.
 
@@ -1208,9 +1301,10 @@ Pharmacy Event 2024 siap melanjutkan rangkaian kompetisi yang dijadwalkan berlan
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/11/05/pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan/)[](http://twitter.com/share?url=https://kemafar.org/2024/11/05/pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan/&text=%E2%80%9CPharmacy%20Event%202024%3A%20Saatnya%20Mahasiswa%2C%20Dosen%2C%20dan%20Alumni%20Farmasi%20UIN%20Alauddin%20Unjuk%20Potensi%20dan%20Kebersamaan%21%E2%80%9D)[](mailto:?subject=%26#8220;Pharmacy%20Event%202024:%20Saatnya%20Mahasiswa,%20Dosen,%20dan%20Alumni%20Farmasi%20UIN%20Alauddin%20Unjuk%20Potensi%20dan%20Kebersamaan!%26#8221;&body=https://kemafar.org/2024/11/05/pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/11/05/pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan/&title=%E2%80%9CPharmacy%20Event%202024%3A%20Saatnya%20Mahasiswa%2C%20Dosen%2C%20dan%20Alumni%20Farmasi%20UIN%20Alauddin%20Unjuk%20Potensi%20dan%20Kebersamaan%21%E2%80%9D)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/11/05/pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan/&title=%E2%80%9CPharmacy%20Event%202024%3A%20Saatnya%20Mahasiswa%2C%20Dosen%2C%20dan%20Alumni%20Farmasi%20UIN%20Alauddin%20Unjuk%20Potensi%20dan%20Kebersamaan%21%E2%80%9D)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/11/05/pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan/&title=%E2%80%9CPharmacy%20Event%202024%3A%20Saatnya%20Mahasiswa%2C%20Dosen%2C%20dan%20Alumni%20Farmasi%20UIN%20Alauddin%20Unjuk%20Potensi%20dan%20Kebersamaan%21%E2%80%9D)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/11/05/pharmacy-event-2024-saatnya-mahasiswa-dosen-dan-alumni-farmasi-uin-alauddin-unjuk-potensi-dan-kebersamaan/&title=%E2%80%9CPharmacy%20Event%202024%3A%20Saatnya%20Mahasiswa%2C%20Dosen%2C%20dan%20Alumni%20Farmasi%20UIN%20Alauddin%20Unjuk%20Potensi%20dan%20Kebersamaan%21%E2%80%9D)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1920&q=80',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c6e90242-0a27-4235-955c-b40beab4b293.webp',
   '2024-11-05T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1218,10 +1312,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 27: Samudra Kehidupan: Seminar Keislaman Bersama Ustadz Icuk Rifai Al-Azhary di UIN Alauddin
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 28: Samudra Kehidupan: Seminar Keislaman Bersama Ustadz Icuk Rifai Al-Azhary di UIN Alauddin
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Samudra Kehidupan: Seminar Keislaman Bersama Ustadz Icuk Rifai Al-Azhary di UIN Alauddin',
   'samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin',
@@ -1249,9 +1344,10 @@ Seminar ini tidak hanya menjadi ajang silaturahmi, tetapi juga menjadi momen pen
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/10/28/samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin/)[](http://twitter.com/share?url=https://kemafar.org/2024/10/28/samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin/&text=Samudra%20Kehidupan%3A%20Seminar%20Keislaman%20Bersama%20Ustadz%20Icuk%20Rifai%20Al-Azhary%20di%20UIN%20Alauddin)[](mailto:?subject=Samudra%20Kehidupan:%20Seminar%20Keislaman%20Bersama%20Ustadz%20Icuk%20Rifai%20Al-Azhary%20di%20UIN%20Alauddin&body=https://kemafar.org/2024/10/28/samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/10/28/samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin/&title=Samudra%20Kehidupan%3A%20Seminar%20Keislaman%20Bersama%20Ustadz%20Icuk%20Rifai%20Al-Azhary%20di%20UIN%20Alauddin)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/10/28/samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin/&title=Samudra%20Kehidupan%3A%20Seminar%20Keislaman%20Bersama%20Ustadz%20Icuk%20Rifai%20Al-Azhary%20di%20UIN%20Alauddin)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/10/28/samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin/&title=Samudra%20Kehidupan%3A%20Seminar%20Keislaman%20Bersama%20Ustadz%20Icuk%20Rifai%20Al-Azhary%20di%20UIN%20Alauddin)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/10/28/samudra-kehidupan-seminar-keislaman-bersama-ustadz-icuk-rifai-al-azhary-di-uin-alauddin/&title=Samudra%20Kehidupan%3A%20Seminar%20Keislaman%20Bersama%20Ustadz%20Icuk%20Rifai%20Al-Azhary%20di%20UIN%20Alauddin)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/cbdf7b61-8330-4bc7-8302-17ff6e6a5850.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/1ebe1e20-9fef-424a-b0e5-0565c92641fd.webp',
   '2024-10-28T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1259,10 +1355,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 28: LKD HMJ Farmasi UIN Alauddin: Membangun Karakter, Menyiapkan Pemimpin Berintegritas
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 29: LKD HMJ Farmasi UIN Alauddin: Membangun Karakter, Menyiapkan Pemimpin Berintegritas
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'LKD HMJ Farmasi UIN Alauddin: Membangun Karakter, Menyiapkan Pemimpin Berintegritas',
   'lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas',
@@ -1277,7 +1374,7 @@ VALUES (
 
 Pengkaderan dalam organisasi mahasiswa memegang peran penting dalam mencetak generasi penerus yang siap memimpin dan berkontribusi, baik di lingkungan kampus maupun di masyarakat. Salah satu upaya dalam membentuk karakter tersebut adalah melalui Latihan Kepemimpinan Dasar (LKD), sebuah program pengembangan kepemimpinan yang diadakan oleh Himpunan Mahasiswa Jurusan (HMJ) Farmasi UIN Alauddin Makassar. Kegiatan ini bertujuan untuk memberikan pemahaman dasar tentang keilmuan, keorganisasian, serta membangun nilai-nilai kepemimpinan dalam diri mahasiswa baru.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/bf85c1d0-8ce2-406a-9ecb-7aac63df4747.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/1b0d5552-b473-4b49-9677-7106e53ad6a6.webp)
 
 Kegiatan LKD ini dilaksanakan pada tanggal 04 hingga 06 Oktober 2024 di Auditorium UIN Alauddin Makassar, dengan tema “Menumbuhkan Pentingnya Etika dan Integritas dalam Setiap Kehidupan serta Menerapkan dalam Kehidupan Nyata.” Tema ini dipilih dengan harapan agar peserta tidak hanya mampu menjadi pemimpin yang baik, tetapi juga memahami pentingnya etika dan integritas, baik dalam kehidupan akademik maupun sosial.
 
@@ -1287,35 +1384,35 @@ Selain Ketua Jurusan Farmasi, kegiatan ini juga dihadiri oleh Kakanda Ahmad Zaky
 
 Pada LKD 2024 ini, para peserta mendapat materi yang sangat beragam dari pemateri-pemateri yang berpengalaman di bidangnya, di antaranya:
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/5e991f32-b38d-4a9f-a744-109b8df21909.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/338e47de-1626-4c5f-9b60-2395fcc62aab.webp)
 
 Nur Kholiq Ramdhan – _Selayang Pandang_
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/14a225ed-016b-450b-a124-20cf618fe6a7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/d138edab-6800-4e14-84fc-9ce089afd9e8.webp)
 
 Salman Alfarizy – _Persidang_an
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/fecd2b74-7938-447a-b000-bf5ce5b2e560.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c736c8d7-0c2e-4510-9d19-38c67a10778d.webp)
 
 Andi Dian Juniar – _Analisis SWOT_
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/754f339a-d8c7-4254-b92d-ef8fff3c48cd.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/691080fe-8db5-4463-9998-3a49c126169b.webp)
 
 Andi Andriani Musfar, S.Farm – _Team Work Building_
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/c2231234-6a4a-4b04-98d9-b323c658c37d.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/4f151000-c9d7-428e-a947-61ff8737e9bf.webp)
 
 Muhammad Azzam, S.Farm – _Kemahasiswaa_
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/384186d1-cb03-4b92-89e2-62118b054108.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/0d74cf57-6006-4ed0-925f-a923e27ca873.webp)
 
 Andi Nabilatuzzahra, S.Farm – _Kepemimpinan_
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/495a6bf3-013d-414f-a48a-ce39b0c6054e.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/a7926d18-d8ca-4156-9809-82e71fd4cdd9.webp)
 
 Andi Mafthul Ridho – _Keorganisasian_
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/59114562-0cc8-43ee-af8c-ee60f740bd45.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/9d3abd95-1afb-485e-8a4d-4c86f31cfc86.webp)
 
 Syahrul Hidayaturrahman, S.Farm – _ISMAFARS_I
 
@@ -1326,9 +1423,10 @@ Dengan semangat yang tinggi dan komitmen dari para peserta, diharapkan Latihan K
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/10/18/lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas/)[](http://twitter.com/share?url=https://kemafar.org/2024/10/18/lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas/&text=LKD%20HMJ%20Farmasi%20UIN%20Alauddin%3A%20Membangun%20Karakter%2C%20Menyiapkan%20Pemimpin%20Berintegritas)[](mailto:?subject=LKD%20HMJ%20Farmasi%20UIN%20Alauddin:%20Membangun%20Karakter,%20Menyiapkan%20Pemimpin%20Berintegritas&body=https://kemafar.org/2024/10/18/lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/10/18/lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas/&title=LKD%20HMJ%20Farmasi%20UIN%20Alauddin%3A%20Membangun%20Karakter%2C%20Menyiapkan%20Pemimpin%20Berintegritas)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/10/18/lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas/&title=LKD%20HMJ%20Farmasi%20UIN%20Alauddin%3A%20Membangun%20Karakter%2C%20Menyiapkan%20Pemimpin%20Berintegritas)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/10/18/lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas/&title=LKD%20HMJ%20Farmasi%20UIN%20Alauddin%3A%20Membangun%20Karakter%2C%20Menyiapkan%20Pemimpin%20Berintegritas)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/10/18/lkd-hmj-farmasi-uin-alauddin-membangun-karakter-menyiapkan-pemimpin-berintegritas/&title=LKD%20HMJ%20Farmasi%20UIN%20Alauddin%3A%20Membangun%20Karakter%2C%20Menyiapkan%20Pemimpin%20Berintegritas)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/064157b0-4f83-4e85-9be8-889a60177d7a.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/303e63af-7e09-48a5-8c39-81a075835b62.webp',
   '2024-10-18T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1336,10 +1434,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 29: Pelaksanaan ALPHA-C 2024 Sukses Terselenggara! 150+ Peserta Berhasil Memperebutkan Juara!
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 30: Pelaksanaan ALPHA-C 2024 Sukses Terselenggara! 150+ Peserta Berhasil Memperebutkan Juara!
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Pelaksanaan ALPHA-C 2024 Sukses Terselenggara! 150+ Peserta Berhasil Memperebutkan Juara!',
   'pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara',
@@ -1358,7 +1457,7 @@ Ketua Panitia ALPHA-C 2024, Regita Cahyani, menyampaikan rasa syukur dan banggan
 
 Senada dengan Nur Kholiq Ramdhan, Ketua HMJ Farmasi UIN Alauddin Makassar, juga mengungkapkan rasa terima kasihnya kepada seluruh peserta dan panitia yang telah bekerja keras. “ALPHA-C 2024 tidak hanya menjadi ajang kompetisi, tetapi juga menjadi platform untuk berbagi ilmu dan menjalin silaturahmi antar mahasiswa farmasi se-Indonesia. Kami bangga bisa menghadirkan acara yang mampu menarik minat peserta dari luar Sulawesi dan kampus-kampus ternama di Indonesia,” tambahnya.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/a72957e5-39d4-434f-9407-a99a4a9768bc.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c417b987-45f2-4420-a64e-186465895cfa.webp)
 
 Berikut adalah daftar pemenang untuk lomba poster dan esai ALPHA-C 2024:
 
@@ -1409,9 +1508,10 @@ Keberhasilan ini tidak lepas dari dukungan dan partisipasi aktif dari seluruh el
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/08/03/pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara/)[](http://twitter.com/share?url=https://kemafar.org/2024/08/03/pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara/&text=Pelaksanaan%20ALPHA-C%202024%20Sukses%20Terselenggara%21%20150%2B%20Peserta%20Berhasil%20Memperebutkan%20Juara%21)[](mailto:?subject=Pelaksanaan%20ALPHA-C%202024%20Sukses%20Terselenggara!%20150+%20Peserta%20Berhasil%20Memperebutkan%20Juara!&body=https://kemafar.org/2024/08/03/pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/08/03/pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara/&title=Pelaksanaan%20ALPHA-C%202024%20Sukses%20Terselenggara%21%20150%2B%20Peserta%20Berhasil%20Memperebutkan%20Juara%21)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/08/03/pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara/&title=Pelaksanaan%20ALPHA-C%202024%20Sukses%20Terselenggara%21%20150%2B%20Peserta%20Berhasil%20Memperebutkan%20Juara%21)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/08/03/pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara/&title=Pelaksanaan%20ALPHA-C%202024%20Sukses%20Terselenggara%21%20150%2B%20Peserta%20Berhasil%20Memperebutkan%20Juara%21)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/08/03/pelaksanaan-alpha-c-2024-sukses-terselenggara-150-peserta-berhasil-memperebutkan-juara/&title=Pelaksanaan%20ALPHA-C%202024%20Sukses%20Terselenggara%21%20150%2B%20Peserta%20Berhasil%20Memperebutkan%20Juara%21)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/3af25016-dd40-465f-b08e-9451b4c71afd.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/91eed7d9-0a3c-42f2-977d-26632474d865.webp',
   '2024-08-03T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1419,10 +1519,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 30: “KERLIPAN CAHAYA” PHARMACY VAGANZA 2024
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 31: “KERLIPAN CAHAYA” PHARMACY VAGANZA 2024
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   '“KERLIPAN CAHAYA” PHARMACY VAGANZA 2024',
   'kerlipan-cahaya-pharmacy-vaganza-2024',
@@ -1476,9 +1577,10 @@ Selamat kepada HMJ farmasi serta angkatan 2023 atas keberhasilan acara Pharmacy 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/07/01/kerlipan-cahaya-pharmacy-vaganza-2024/)[](http://twitter.com/share?url=https://kemafar.org/2024/07/01/kerlipan-cahaya-pharmacy-vaganza-2024/&text=%E2%80%9CKERLIPAN%20CAHAYA%E2%80%9D%C2%A0PHARMACY%20VAGANZA%202024)[](mailto:?subject=“KERLIPAN%20CAHAYA” PHARMACY%20VAGANZA%202024&body=https://kemafar.org/2024/07/01/kerlipan-cahaya-pharmacy-vaganza-2024/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/07/01/kerlipan-cahaya-pharmacy-vaganza-2024/&title=%E2%80%9CKERLIPAN%20CAHAYA%E2%80%9D%C2%A0PHARMACY%20VAGANZA%202024)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/07/01/kerlipan-cahaya-pharmacy-vaganza-2024/&title=%E2%80%9CKERLIPAN%20CAHAYA%E2%80%9D%C2%A0PHARMACY%20VAGANZA%202024)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/07/01/kerlipan-cahaya-pharmacy-vaganza-2024/&title=%E2%80%9CKERLIPAN%20CAHAYA%E2%80%9D%C2%A0PHARMACY%20VAGANZA%202024)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/07/01/kerlipan-cahaya-pharmacy-vaganza-2024/&title=%E2%80%9CKERLIPAN%20CAHAYA%E2%80%9D%C2%A0PHARMACY%20VAGANZA%202024)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/7d1e1610-9813-4a45-821c-f70f576a6b21.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/1a0fa7bf-54bf-41aa-8ef9-701698f13e48.webp',
   '2024-07-01T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1486,10 +1588,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 31: 3 Hari Menuju Kerlipan Cahaya Megah Pharmacy Vaganza 2024
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 32: 3 Hari Menuju Kerlipan Cahaya Megah Pharmacy Vaganza 2024
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   '3 Hari Menuju Kerlipan Cahaya Megah Pharmacy Vaganza 2024',
   '3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024',
@@ -1523,9 +1626,10 @@ Tunggu dan Saksikanlah, PHARMACY VAGANZA 2024.
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/06/26/3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024-2/)[](http://twitter.com/share?url=https://kemafar.org/2024/06/26/3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024-2/&text=3%20Hari%C2%A0Menuju%C2%A0Kerlipan%C2%A0Cahaya%20Megah%C2%A0Pharmacy%20Vaganza%202024)[](mailto:?subject=3%20Hari Menuju Kerlipan Cahaya%20Megah Pharmacy%20Vaganza%202024&body=https://kemafar.org/2024/06/26/3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024-2/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/06/26/3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024-2/&title=3%20Hari%C2%A0Menuju%C2%A0Kerlipan%C2%A0Cahaya%20Megah%C2%A0Pharmacy%20Vaganza%202024)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/06/26/3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024-2/&title=3%20Hari%C2%A0Menuju%C2%A0Kerlipan%C2%A0Cahaya%20Megah%C2%A0Pharmacy%20Vaganza%202024)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/06/26/3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024-2/&title=3%20Hari%C2%A0Menuju%C2%A0Kerlipan%C2%A0Cahaya%20Megah%C2%A0Pharmacy%20Vaganza%202024)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/06/26/3-hari-menuju-kerlipan-cahaya-megah-pharmacy-vaganza-2024-2/&title=3%20Hari%C2%A0Menuju%C2%A0Kerlipan%C2%A0Cahaya%20Megah%C2%A0Pharmacy%20Vaganza%202024)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/19023e90-5d58-4db4-a9ec-c14b861d69ca.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/3b3ae9b5-5333-4f62-912d-e506ccdb5b41.webp',
   '2024-06-26T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1533,10 +1637,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 32: ALPHA C SEASON 4: Wadah Inovasi Ide Mahasiswa Farmasi Indonesia Akan Segera Diadakan! Siapkan dirimu!
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 33: ALPHA C SEASON 4: Wadah Inovasi Ide Mahasiswa Farmasi Indonesia Akan Segera Diadakan! Siapkan dirimu!
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'ALPHA C SEASON 4: Wadah Inovasi Ide Mahasiswa Farmasi Indonesia Akan Segera Diadakan! Siapkan dirimu!',
   'alpha-c-season-4-wadah-inovasi-ide-mahasiswa-farmasi-indonesia-akan-segera-diadakan-siapkan-dirimu',
@@ -1572,9 +1677,10 @@ Regita: 082187873519
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/05/26/get-ready-for-alpha-c-2024-saatnya-bersaing-berinovasi-dan-membuat-perbedaan-dalam-mengatasi-resistensi-antibiotik/)[](http://twitter.com/share?url=https://kemafar.org/2024/05/26/get-ready-for-alpha-c-2024-saatnya-bersaing-berinovasi-dan-membuat-perbedaan-dalam-mengatasi-resistensi-antibiotik/&text=ALPHA%20C%20SEASON%204%3A%20Wadah%20Inovasi%20Ide%20Mahasiswa%20Farmasi%20Indonesia%20Akan%20Segera%20Diadakan%21%20Siapkan%20dirimu%21)[](mailto:?subject=ALPHA%20C%20SEASON%204:%20Wadah%20Inovasi%20Ide%20Mahasiswa%20Farmasi%20Indonesia%20Akan%20Segera%20Diadakan!%20Siapkan%20dirimu!&body=https://kemafar.org/2024/05/26/get-ready-for-alpha-c-2024-saatnya-bersaing-berinovasi-dan-membuat-perbedaan-dalam-mengatasi-resistensi-antibiotik/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/05/26/get-ready-for-alpha-c-2024-saatnya-bersaing-berinovasi-dan-membuat-perbedaan-dalam-mengatasi-resistensi-antibiotik/&title=ALPHA%20C%20SEASON%204%3A%20Wadah%20Inovasi%20Ide%20Mahasiswa%20Farmasi%20Indonesia%20Akan%20Segera%20Diadakan%21%20Siapkan%20dirimu%21)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/05/26/get-ready-for-alpha-c-2024-saatnya-bersaing-berinovasi-dan-membuat-perbedaan-dalam-mengatasi-resistensi-antibiotik/&title=ALPHA%20C%20SEASON%204%3A%20Wadah%20Inovasi%20Ide%20Mahasiswa%20Farmasi%20Indonesia%20Akan%20Segera%20Diadakan%21%20Siapkan%20dirimu%21)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/05/26/get-ready-for-alpha-c-2024-saatnya-bersaing-berinovasi-dan-membuat-perbedaan-dalam-mengatasi-resistensi-antibiotik/&title=ALPHA%20C%20SEASON%204%3A%20Wadah%20Inovasi%20Ide%20Mahasiswa%20Farmasi%20Indonesia%20Akan%20Segera%20Diadakan%21%20Siapkan%20dirimu%21)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/05/26/get-ready-for-alpha-c-2024-saatnya-bersaing-berinovasi-dan-membuat-perbedaan-dalam-mengatasi-resistensi-antibiotik/&title=ALPHA%20C%20SEASON%204%3A%20Wadah%20Inovasi%20Ide%20Mahasiswa%20Farmasi%20Indonesia%20Akan%20Segera%20Diadakan%21%20Siapkan%20dirimu%21)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/d6d4e7e7-3f7c-4aeb-a8d2-9ad91b12fc19.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/24774849-6d92-4036-bcc7-b2e636479cd9.webp',
   '2024-05-26T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1582,10 +1688,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 33: Bersama FKIK UINAM: Membangun Kembali Harapan di Tengah Dampak Bencana Alam Luwu dan Palopo
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 34: Bersama FKIK UINAM: Membangun Kembali Harapan di Tengah Dampak Bencana Alam Luwu dan Palopo
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Bersama FKIK UINAM: Membangun Kembali Harapan di Tengah Dampak Bencana Alam Luwu dan Palopo',
   'bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo',
@@ -1606,7 +1713,7 @@ Kegiatan kemanusiaan yang dilakukan dipimpin oleh ketua dema FKIK (Ahmad zaki as
 
 Adapun kegiatan yang dilakukan pada aksi kemanusiaan ini yaitu, Pemkes (Pemeriksaan Kesehatan, Penyaluran Donasi, Healing Terapi, dan Edukasi Kesehatan.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/f321f996-e93e-4f74-b579-bbf563176d2e.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/70342647-8b78-4461-825a-790c82048492.webp)
 
 “Pada saat kami tiba di tempat kejadian bencana banjir didaerah luwu khususnya kec. Suli barat, saya selaku salah satu relawan kaget melihat situasi atau keaadaan di sana karena siapa sangka dataran tinggi bisa terjadi banjir bandang, serta berdasarkan hasil keterangan warga ada ibu dan anak yang jadi korban pada kejadian bencana alam tersebut dan itu dibenarkan oleh kepala lurah setempat, katanya betul” Ucap Dayat yang merupakan salah satu pengurus HMJ Farmasi yang ikut serta dalam kegiatan ini.
 
@@ -1617,9 +1724,10 @@ Semoga dengan adanya aksi kemanusiaan yang dilakukan oleh lembaga kemahasiswaan 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/05/20/bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo/)[](http://twitter.com/share?url=https://kemafar.org/2024/05/20/bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo/&text=Bersama%20FKIK%20UINAM%3A%20Membangun%20Kembali%20Harapan%20di%20Tengah%20Dampak%20Bencana%20Alam%20Luwu%20dan%20Palopo)[](mailto:?subject=Bersama%20FKIK%20UINAM:%20Membangun%20Kembali%20Harapan%20di%20Tengah%20Dampak%20Bencana%20Alam%20Luwu%20dan%20Palopo&body=https://kemafar.org/2024/05/20/bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/05/20/bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo/&title=Bersama%20FKIK%20UINAM%3A%20Membangun%20Kembali%20Harapan%20di%20Tengah%20Dampak%20Bencana%20Alam%20Luwu%20dan%20Palopo)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/05/20/bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo/&title=Bersama%20FKIK%20UINAM%3A%20Membangun%20Kembali%20Harapan%20di%20Tengah%20Dampak%20Bencana%20Alam%20Luwu%20dan%20Palopo)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/05/20/bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo/&title=Bersama%20FKIK%20UINAM%3A%20Membangun%20Kembali%20Harapan%20di%20Tengah%20Dampak%20Bencana%20Alam%20Luwu%20dan%20Palopo)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/05/20/bersama-fkik-uinam-membangun-kembali-harapan-di-tengah-dampak-bencana-alam-luwu-dan-palopo/&title=Bersama%20FKIK%20UINAM%3A%20Membangun%20Kembali%20Harapan%20di%20Tengah%20Dampak%20Bencana%20Alam%20Luwu%20dan%20Palopo)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/190440f6-a7d1-48bf-968f-ed55bf864b4d.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/edfe6f02-fbd9-4473-8275-bf62340cb905.webp',
   '2024-05-20T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1627,10 +1735,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 34: Meskipun Pharmacy Camp 2024 Dilaksanakan Di Bulan Ramadhan, Antusias dan Semangat Kader Tetap Tercipta
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 35: Meskipun Pharmacy Camp 2024 Dilaksanakan Di Bulan Ramadhan, Antusias dan Semangat Kader Tetap Tercipta
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Meskipun Pharmacy Camp 2024 Dilaksanakan Di Bulan Ramadhan, Antusias dan Semangat Kader Tetap Tercipta',
   'meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta',
@@ -1656,9 +1765,10 @@ Semoga tujuan dari kegiatan ini dapat tercapai dan Dinamika kampus di mahasiswa 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/04/09/meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta/)[](http://twitter.com/share?url=https://kemafar.org/2024/04/09/meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta/&text=Meskipun%20Pharmacy%20Camp%202024%20Dilaksanakan%20Di%20Bulan%20Ramadhan%2C%20Antusias%20dan%20Semangat%20Kader%20Tetap%20Tercipta)[](mailto:?subject=Meskipun%20Pharmacy%20Camp%202024%20Dilaksanakan%20Di%20Bulan%20Ramadhan,%20Antusias%20dan%20Semangat%20Kader%20Tetap%20Tercipta&body=https://kemafar.org/2024/04/09/meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/04/09/meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta/&title=Meskipun%20Pharmacy%20Camp%202024%20Dilaksanakan%20Di%20Bulan%20Ramadhan%2C%20Antusias%20dan%20Semangat%20Kader%20Tetap%20Tercipta)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/04/09/meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta/&title=Meskipun%20Pharmacy%20Camp%202024%20Dilaksanakan%20Di%20Bulan%20Ramadhan%2C%20Antusias%20dan%20Semangat%20Kader%20Tetap%20Tercipta)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/04/09/meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta/&title=Meskipun%20Pharmacy%20Camp%202024%20Dilaksanakan%20Di%20Bulan%20Ramadhan%2C%20Antusias%20dan%20Semangat%20Kader%20Tetap%20Tercipta)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/04/09/meskipun-pharmacy-camp-2024-dilaksanakan-di-bulan-ramadhan-antusias-dan-semangat-kader-tetap-tercipta/&title=Meskipun%20Pharmacy%20Camp%202024%20Dilaksanakan%20Di%20Bulan%20Ramadhan%2C%20Antusias%20dan%20Semangat%20Kader%20Tetap%20Tercipta)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/6d213be4-c923-4513-8b90-5606ba44ef21.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/4aeb2031-26d4-46de-8856-80e3fa4636b2.webp',
   '2024-04-09T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1666,10 +1776,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 35: Dewan Eksekutif Mahasiswa Fakultas Kedokteran dan Ilmu Kesehatan Tidak Terlibat dalam Deklarasi Pemilu Damai 2024
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 36: Dewan Eksekutif Mahasiswa Fakultas Kedokteran dan Ilmu Kesehatan Tidak Terlibat dalam Deklarasi Pemilu Damai 2024
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Dewan Eksekutif Mahasiswa Fakultas Kedokteran dan Ilmu Kesehatan Tidak Terlibat dalam Deklarasi Pemilu Damai 2024',
   'dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024',
@@ -1693,9 +1804,10 @@ Beliau juga menegaskan bahwa “Aksi ini sebetulnya simpang siur, kita tidak men
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/02/11/dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024/)[](http://twitter.com/share?url=https://kemafar.org/2024/02/11/dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024/&text=Dewan%20Eksekutif%20Mahasiswa%20Fakultas%20Kedokteran%20dan%20Ilmu%20Kesehatan%20Tidak%20Terlibat%20dalam%20Deklarasi%20Pemilu%20Damai%202024)[](mailto:?subject=Dewan%20Eksekutif%20Mahasiswa%20Fakultas%20Kedokteran%20dan%20Ilmu%20Kesehatan%20Tidak%20Terlibat%20dalam%20Deklarasi%20Pemilu%20Damai%202024&body=https://kemafar.org/2024/02/11/dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/02/11/dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024/&title=Dewan%20Eksekutif%20Mahasiswa%20Fakultas%20Kedokteran%20dan%20Ilmu%20Kesehatan%20Tidak%20Terlibat%20dalam%20Deklarasi%20Pemilu%20Damai%202024)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/02/11/dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024/&title=Dewan%20Eksekutif%20Mahasiswa%20Fakultas%20Kedokteran%20dan%20Ilmu%20Kesehatan%20Tidak%20Terlibat%20dalam%20Deklarasi%20Pemilu%20Damai%202024)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/02/11/dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024/&title=Dewan%20Eksekutif%20Mahasiswa%20Fakultas%20Kedokteran%20dan%20Ilmu%20Kesehatan%20Tidak%20Terlibat%20dalam%20Deklarasi%20Pemilu%20Damai%202024)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/02/11/dewan-eksekutif-mahasiswa-fakultas-kedokteran-dan-ilmu-kesehatan-tidak-terlibat-dalam-deklarasi-pemilu-damai-2024/&title=Dewan%20Eksekutif%20Mahasiswa%20Fakultas%20Kedokteran%20dan%20Ilmu%20Kesehatan%20Tidak%20Terlibat%20dalam%20Deklarasi%20Pemilu%20Damai%202024)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/0ab2bf33-1ff8-4b92-9f04-ac6709697e70.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/22594bf4-873e-499c-816d-37a4f85befe4.webp',
   '2024-02-11T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1703,10 +1815,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 36: NILAI ATAU TRANSAKSIONAL
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 37: NILAI ATAU TRANSAKSIONAL
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'NILAI ATAU TRANSAKSIONAL',
   'nilai-atau-transaksional',
@@ -1740,9 +1853,10 @@ Penulis : Anonim
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/01/27/nilai-atau-transaksional/)[](http://twitter.com/share?url=https://kemafar.org/2024/01/27/nilai-atau-transaksional/&text=NILAI%20ATAU%20TRANSAKSIONAL)[](mailto:?subject=NILAI%20ATAU%20TRANSAKSIONAL&body=https://kemafar.org/2024/01/27/nilai-atau-transaksional/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/01/27/nilai-atau-transaksional/&title=NILAI%20ATAU%20TRANSAKSIONAL)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/01/27/nilai-atau-transaksional/&title=NILAI%20ATAU%20TRANSAKSIONAL)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/01/27/nilai-atau-transaksional/&title=NILAI%20ATAU%20TRANSAKSIONAL)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/01/27/nilai-atau-transaksional/&title=NILAI%20ATAU%20TRANSAKSIONAL)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/471330e7-dd5e-40ba-9b54-37772d4f5e0e.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/efba8252-461f-4798-bb0d-04a36f8d749e.webp',
   '2024-01-27T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1750,10 +1864,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 37: HMJ Farmasi UINAM Goes To PRAMUNAS XX!
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 38: HMJ Farmasi UINAM Goes To PRAMUNAS XX!
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'HMJ Farmasi UINAM Goes To PRAMUNAS XX!',
   'hmj-farmasi-uinam-goes-to-pramunas-xx',
@@ -1781,9 +1896,10 @@ Selain untuk merumuskan strategi pengembangan organisasi ISMAFARSI selama satu p
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2024/01/23/hmj-farmasi-uinam-goes-to-pramunas-xxi/)[](http://twitter.com/share?url=https://kemafar.org/2024/01/23/hmj-farmasi-uinam-goes-to-pramunas-xxi/&text=HMJ%20Farmasi%20UINAM%20Goes%20To%20PRAMUNAS%20XX%21)[](mailto:?subject=HMJ%20Farmasi%20UINAM%20Goes%20To%20PRAMUNAS%20XX!&body=https://kemafar.org/2024/01/23/hmj-farmasi-uinam-goes-to-pramunas-xxi/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2024/01/23/hmj-farmasi-uinam-goes-to-pramunas-xxi/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20PRAMUNAS%20XX%21)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2024/01/23/hmj-farmasi-uinam-goes-to-pramunas-xxi/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20PRAMUNAS%20XX%21)[](https://api.whatsapp.com/send?text=https://kemafar.org/2024/01/23/hmj-farmasi-uinam-goes-to-pramunas-xxi/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20PRAMUNAS%20XX%21)[](https://www.reddit.com/submit?url=https://kemafar.org/2024/01/23/hmj-farmasi-uinam-goes-to-pramunas-xxi/&title=HMJ%20Farmasi%20UINAM%20Goes%20To%20PRAMUNAS%20XX%21)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/2ec58491-d5f6-43c8-a7c4-5d0809a57a85.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/0d07c8e0-b7d8-4528-8e3d-9ff13209c74a.webp',
   '2024-01-23T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1791,10 +1907,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 38: MALAM PUNCAK PHARACY EVENT 2023
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 39: MALAM PUNCAK PHARACY EVENT 2023
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'MALAM PUNCAK PHARACY EVENT 2023',
   'malam-puncak-pharacy-event-2023',
@@ -1807,7 +1924,7 @@ VALUES (
 
 [](https://kemafar.org/author/kemafar-org/)By [kemafar.org](https://kemafar.org/author/kemafar-org/) [Desember 25, 2023](https://kemafar.org/2023/12/)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/b8c65e7a-c2fd-4603-81e6-4767317b627e.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/f97740bc-4990-400f-bdca-5808bfb75ece.webp)
 
 HMJ Farmasi Menggelar Malam Puncak (Malam Final) Pharmacy Event 2023
 
@@ -1826,9 +1943,10 @@ SAMPAI JUMPA DI PHARMACY EVENT 2024
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2023/12/25/malam-puncak-pharacy-event-2023/)[](http://twitter.com/share?url=https://kemafar.org/2023/12/25/malam-puncak-pharacy-event-2023/&text=MALAM%20PUNCAK%20PHARACY%20EVENT%202023)[](mailto:?subject=MALAM%20PUNCAK%20PHARACY%20EVENT%202023&body=https://kemafar.org/2023/12/25/malam-puncak-pharacy-event-2023/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2023/12/25/malam-puncak-pharacy-event-2023/&title=MALAM%20PUNCAK%20PHARACY%20EVENT%202023)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2023/12/25/malam-puncak-pharacy-event-2023/&title=MALAM%20PUNCAK%20PHARACY%20EVENT%202023)[](https://api.whatsapp.com/send?text=https://kemafar.org/2023/12/25/malam-puncak-pharacy-event-2023/&title=MALAM%20PUNCAK%20PHARACY%20EVENT%202023)[](https://www.reddit.com/submit?url=https://kemafar.org/2023/12/25/malam-puncak-pharacy-event-2023/&title=MALAM%20PUNCAK%20PHARACY%20EVENT%202023)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/5497ba55-5670-4be1-ad82-5a9548d38a9d.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/a9ea5386-dd9c-4ed8-8040-6d092e218e5b.webp',
   '2023-12-25T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1836,10 +1954,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 39: SEMI FINAL PHARMACY EVENT 2023
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 40: SEMI FINAL PHARMACY EVENT 2023
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'SEMI FINAL PHARMACY EVENT 2023',
   'semi-final-pharmacy-event-2023',
@@ -1871,9 +1990,10 @@ Kegiatan ini berakhir dengan dilaksanakan nya Malam Puncak Pharmacy Event sebaga
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2023/12/18/semi-final-pharmacy-event-2023/)[](http://twitter.com/share?url=https://kemafar.org/2023/12/18/semi-final-pharmacy-event-2023/&text=SEMI%20FINAL%20PHARMACY%20EVENT%202023)[](mailto:?subject=SEMI%20FINAL%20PHARMACY%20EVENT%202023&body=https://kemafar.org/2023/12/18/semi-final-pharmacy-event-2023/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2023/12/18/semi-final-pharmacy-event-2023/&title=SEMI%20FINAL%20PHARMACY%20EVENT%202023)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2023/12/18/semi-final-pharmacy-event-2023/&title=SEMI%20FINAL%20PHARMACY%20EVENT%202023)[](https://api.whatsapp.com/send?text=https://kemafar.org/2023/12/18/semi-final-pharmacy-event-2023/&title=SEMI%20FINAL%20PHARMACY%20EVENT%202023)[](https://www.reddit.com/submit?url=https://kemafar.org/2023/12/18/semi-final-pharmacy-event-2023/&title=SEMI%20FINAL%20PHARMACY%20EVENT%202023)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/24337b93-8c29-47c3-b3df-d01fb419665e.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/04a290ba-e389-48b1-8b6e-df2959802304.webp',
   '2023-12-18T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1881,10 +2001,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 40: PEMBUKAAN PHARMACY EVENT 2023
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 41: PEMBUKAAN PHARMACY EVENT 2023
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PEMBUKAAN PHARMACY EVENT 2023',
   'pembukaan-pharmacy-event-2023',
@@ -1912,9 +2033,10 @@ Pada Pembukaan Pharmacy Event 2023 ini juga di rangkaikan langsung dengan lomba 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2023/12/18/pembukaan-pharmacy-event-2023/)[](http://twitter.com/share?url=https://kemafar.org/2023/12/18/pembukaan-pharmacy-event-2023/&text=PEMBUKAAN%20PHARMACY%20EVENT%202023)[](mailto:?subject=PEMBUKAAN%20PHARMACY%20EVENT%202023&body=https://kemafar.org/2023/12/18/pembukaan-pharmacy-event-2023/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2023/12/18/pembukaan-pharmacy-event-2023/&title=PEMBUKAAN%20PHARMACY%20EVENT%202023)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2023/12/18/pembukaan-pharmacy-event-2023/&title=PEMBUKAAN%20PHARMACY%20EVENT%202023)[](https://api.whatsapp.com/send?text=https://kemafar.org/2023/12/18/pembukaan-pharmacy-event-2023/&title=PEMBUKAAN%20PHARMACY%20EVENT%202023)[](https://www.reddit.com/submit?url=https://kemafar.org/2023/12/18/pembukaan-pharmacy-event-2023/&title=PEMBUKAAN%20PHARMACY%20EVENT%202023)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/649bff4e-4a29-458e-8080-54129e2e2b16.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c64f58b4-4ed9-4bf0-9b29-7ac691a70d3c.webp',
   '2023-12-18T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1922,10 +2044,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 41: PHARMACY VAGANZA 2023
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 42: PHARMACY VAGANZA 2023
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PHARMACY VAGANZA 2023',
   'pharmacy-vaganza-2023',
@@ -1946,30 +2069,31 @@ Kesuksesan acara ini tentunya karena adanya sumbangsih waktu, tenaga, dan juga p
 
 Adapun penampilan yang ditampilkan pada Pharmacy Vaganza tahun ini yaitu : Anggaru, Opening ceremony, Akustik, Tari, Stand Up Comedy, Drama, Padura, Musical Teater, dan Flashmob.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/9d44e12d-2af1-4535-9e14-3111f6251ee7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/b3def1b2-45bc-45c0-812c-27888d12a83a.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/3ba187c0-f1c7-4ed4-8286-387b54057cf7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/07654ee9-e66e-408c-bd77-9f195ef8ab95.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/d54f133f-fb88-48b0-b1f1-5e8b507960e7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/b9263ab4-9653-4267-a1f7-0e9fb39985a1.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/fda1d766-6ad8-46b5-a537-03e85365f6a9.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/a21dd2a8-f078-4685-8119-51372784e5f5.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/a3fbed40-ce2e-4505-b98d-ce807d146f7f.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/411b7ef3-9af7-4f6f-bfdd-5da030314d43.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/931eb11b-ea51-4554-ab23-944c684fc422.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c134a668-8f09-48c8-9d2a-7cca1e85aea5.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/e5ab4031-1902-48d5-b4f6-8a07a57f57f7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/032418d6-81c3-436b-9998-4e70cc90c105.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/cdb64e70-3ab8-4482-996b-46052c5567f7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/cba2a74b-e989-4025-85e2-7d3660a14dc3.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/bd0be86a-4728-4b9b-ac51-5b325ad3f960.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/63f12ef4-09d3-44f0-b5d9-aa188df9cb3c.webp)
 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2023/12/07/pharmacy-vaganza-2023/)[](http://twitter.com/share?url=https://kemafar.org/2023/12/07/pharmacy-vaganza-2023/&text=PHARMACY%20VAGANZA%202023)[](mailto:?subject=PHARMACY%20VAGANZA%202023&body=https://kemafar.org/2023/12/07/pharmacy-vaganza-2023/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2023/12/07/pharmacy-vaganza-2023/&title=PHARMACY%20VAGANZA%202023)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2023/12/07/pharmacy-vaganza-2023/&title=PHARMACY%20VAGANZA%202023)[](https://api.whatsapp.com/send?text=https://kemafar.org/2023/12/07/pharmacy-vaganza-2023/&title=PHARMACY%20VAGANZA%202023)[](https://www.reddit.com/submit?url=https://kemafar.org/2023/12/07/pharmacy-vaganza-2023/&title=PHARMACY%20VAGANZA%202023)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/e3701654-9356-4fd4-96e3-7a545b5ab838.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/38039409-d5d3-46c0-b7b6-8108af215314.webp',
   '2023-12-07T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -1977,10 +2101,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 42: PHARMACY CAMP 2023
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 43: PHARMACY CAMP 2023
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PHARMACY CAMP 2023',
   'pharmacy-camp-2023',
@@ -2001,14 +2126,15 @@ Kegiatan Pharmacy Camp ini di mulai pada tanggal 20 – 21 Mei 2023 di LT Fakult
 
 Kegiatan ini diikuti oleh 49 peserta dari angkatan 2022 Farmasi UINAM, dan dihadiri oleh Dosen dan Alumni dari Farmasi UINAM, serta tamu undangan dari SEMA dan DEMA, semoga tujuan dari kegiatan ini dapat tercapai dan Dinamika kampus di mahasiswa tetap terjalankan.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/9e6e3364-4ba2-4dd9-b167-7d606bf55665.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/74da70ed-b6f4-46f5-b516-fcdd1d18b681.webp)
 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2023/12/07/pharmacy-camp-2023/)[](http://twitter.com/share?url=https://kemafar.org/2023/12/07/pharmacy-camp-2023/&text=PHARMACY%20CAMP%202023)[](mailto:?subject=PHARMACY%20CAMP%202023&body=https://kemafar.org/2023/12/07/pharmacy-camp-2023/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2023/12/07/pharmacy-camp-2023/&title=PHARMACY%20CAMP%202023)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2023/12/07/pharmacy-camp-2023/&title=PHARMACY%20CAMP%202023)[](https://api.whatsapp.com/send?text=https://kemafar.org/2023/12/07/pharmacy-camp-2023/&title=PHARMACY%20CAMP%202023)[](https://www.reddit.com/submit?url=https://kemafar.org/2023/12/07/pharmacy-camp-2023/&title=PHARMACY%20CAMP%202023)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/40d6aadf-521e-4267-a1e3-826bdb50f1ed.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c7a5044a-445c-4d47-b562-216638287141.webp',
   '2023-12-07T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2016,10 +2142,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 43: Xternal Relation
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 44: Xternal Relation
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Xternal Relation',
   'xternal-relation',
@@ -2045,18 +2172,19 @@ Tujuan pelaksanaaan dari Xternal Relation ialah :
 
 Xternal vol. 1, dilaksanakan pada tanggal 9 – 11 Juni 2023 yang berlokasi di Desa Kale Ko’mara Kec. Polombangkeng Utara Kab. Takalar Sulawesi Selatan. Pada XR vol.1 ini HMJ Farmasi UINAM berkolaborasi dengan HMJ Hukum Tata Negara. Pada rangkaian kegiatan OBSERVASI HUKUM oleh HMJ HTN, HMJ Farmasi UINAM melakukan cek kesehatan gratis di sela-sela kegiatannya.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/8b53911f-2c58-4cdf-a982-9ce8d71bfc79.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/20ba899e-e37f-4416-adf0-d185123593b4.webp)
 
 Xternal vol. 2, dilaksanakan pada tanggal 8 Oktober 2023 yang berlokasi di LT FKIK UINAM. Pada kegiatan ini, HMJ Farmasi UINAM berkolaborasi langsung dengan dua HMJ sekaligus, yaitu HMJ Ekonomi Islam dan HMJ Hukum Ekonomi Syariah. Pada kegiatan ini, ketiga HMJ saling bertukar informasi mengenai tugas dari program kerja di setiap masing-masing divisi yang mungkin dapat menjadi bahan evaluasi dan motivasi untuk tiap hmj yang terlibat pada kegiatan ini.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/8f70c6be-5838-4453-aaff-ff73fe76ca11.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/06f8005d-329a-42f6-82e5-77a3a65a9189.webp)
 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2023/11/06/xternal-relation/)[](http://twitter.com/share?url=https://kemafar.org/2023/11/06/xternal-relation/&text=Xternal%20Relation)[](mailto:?subject=Xternal%20Relation&body=https://kemafar.org/2023/11/06/xternal-relation/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2023/11/06/xternal-relation/&title=Xternal%20Relation)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2023/11/06/xternal-relation/&title=Xternal%20Relation)[](https://api.whatsapp.com/send?text=https://kemafar.org/2023/11/06/xternal-relation/&title=Xternal%20Relation)[](https://www.reddit.com/submit?url=https://kemafar.org/2023/11/06/xternal-relation/&title=Xternal%20Relation)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/68331809-92e4-401e-982d-1f1259173727.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/e3cbf0d2-5f56-4d59-8172-12bf145204c0.webp',
   '2023-11-06T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2064,10 +2192,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 44: LATIHAN KEPEMIMPINAN DASAR 2023
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 45: LATIHAN KEPEMIMPINAN DASAR 2023
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'LATIHAN KEPEMIMPINAN DASAR 2023',
   'latihan-kepemimpinan-dasar-2023',
@@ -2088,52 +2217,53 @@ Adapun materi yang dibawakan pada kegiatan ini diantaranya
 
 1.  Materi Selayang Pandang oleh Kakanda Andi Ainul Iswandi
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/aca8de8b-371c-4469-8f73-e7a26e1c62a1.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/0d068471-d958-4f65-a1b6-4efde0e85d0b.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/cfc8de63-a1b5-4162-834b-bbd9e88f3557.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/eed3a6e9-7359-452e-aa3f-6fef928f8bd9.webp)
 
 2\. Materi Kepemimpinan oleh Kakanda Salman Alfarizy
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/3d84641e-8e9d-4f5d-ba02-5a83ac0179d7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/5186eece-3510-4120-812e-1306e0f4be13.webp)
 
 3\. Materi Kepemimpinan oleh Kakanda Muhammad Azzam
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/32a95b24-31fc-42f6-b854-68a9e611d9a8.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/d8ef123a-5400-4b5d-8e99-0d747357ca3e.webp)
 
 4\. Materi Tim Work Building oleh Ayunda Nurfahima Abbas
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/67a69560-4ee6-4ec0-a5e4-d31ae361222b.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/f5cad7a5-f178-470f-9bbc-96e0e0e85cd6.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/7b6de54b-2927-4e84-b225-1fe8244eb2d2.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/61fd2264-ba29-4ee3-ba34-574e5b1b9d04.webp)
 
 5\. Materi Kemahasiswaan oleh Kakanda Andi Dian Juniar
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/7b9a75ba-8dfb-445c-9687-63fc76a988f8.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/36688130-6cb2-45ca-854b-b739ff47c032.webp)
 
 6\. Materi Keorganisasian oleh Kakanda Arif Widodo, S. Farm
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/05d18edb-757a-4041-987e-5d95f1544cfa.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/9c96424f-f129-4dff-91c6-4bb327296fbc.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/03510c54-bc9e-438f-a090-7ed98f442549.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/373341ee-8e17-4677-b95c-4b35e2a8ed8a.webp)
 
 7\. Materi Analisis SWOT oleh Ayunda Andi Nabilatuzzahra, S. Farm
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/5dc6e93c-b07f-4b8e-ac7d-6e23f28a581c.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/3c69bfd0-06aa-4d19-a34a-547b8e4c0cf1.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/afc97349-89c0-4306-9da4-4a37f5dfe894.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/00345ac3-5806-482f-9837-ec8e0ef5a5e4.webp)
 
 8\. Materi Ismafarsi oleh Kakanda Syahrul Hidayaturrahman
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/eb3cbc2f-7666-48b2-814f-ef8f4140c265.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/4f6a46a3-01f1-4c80-9772-e93abddc938b.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/ab9638ad-9cc9-4489-bcba-46e27ea207a7.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/372197e5-6335-49f7-af1d-1c0e824e2cc3.webp)
 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2023/11/06/latihan-kepemimpinan-dasar-2023/)[](http://twitter.com/share?url=https://kemafar.org/2023/11/06/latihan-kepemimpinan-dasar-2023/&text=LATIHAN%20KEPEMIMPINAN%20DASAR%202023)[](mailto:?subject=LATIHAN%20KEPEMIMPINAN%20DASAR%202023&body=https://kemafar.org/2023/11/06/latihan-kepemimpinan-dasar-2023/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2023/11/06/latihan-kepemimpinan-dasar-2023/&title=LATIHAN%20KEPEMIMPINAN%20DASAR%202023)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2023/11/06/latihan-kepemimpinan-dasar-2023/&title=LATIHAN%20KEPEMIMPINAN%20DASAR%202023)[](https://api.whatsapp.com/send?text=https://kemafar.org/2023/11/06/latihan-kepemimpinan-dasar-2023/&title=LATIHAN%20KEPEMIMPINAN%20DASAR%202023)[](https://www.reddit.com/submit?url=https://kemafar.org/2023/11/06/latihan-kepemimpinan-dasar-2023/&title=LATIHAN%20KEPEMIMPINAN%20DASAR%202023)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/e1d354a0-4303-4a9c-bc67-c666a8f54349.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/df1cd722-d84d-409f-b45e-42b586b595dd.webp',
   '2023-11-06T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2141,10 +2271,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 45: PHARMACY EVENT 2022
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 46: PHARMACY EVENT 2022
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PHARMACY EVENT 2022',
   'pharmacy-event-2022',
@@ -2163,11 +2294,11 @@ Pharmacy Event merupakan salah satu program kerja HMJ Farmasi UIN Alauddin Makas
 
 Adapun cabang lomba yang diperlombakan pada Pharmacy event tahun ini diantaranya
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/c2a67331-4651-4eb9-b4a6-f3b99d94a737.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/ecebb291-ba5d-4f10-bcd7-514f8d1557fd.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/974034f0-2afc-43df-8142-955fbb150254.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/db14e08c-a0d9-42ce-8f24-9164ff607b46.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/db4c9bb3-89f9-4bae-bc8c-f5a0cd8e8b8c.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/0122c45c-a215-4fd8-b578-f387e33b1d9e.webp)
 
 1.  Padura
 2.  Bom
@@ -2195,34 +2326,35 @@ Adapun cabang lomba yang diperlombakan pada Pharmacy event tahun ini diantaranya
 24.  Ps
 25.  Tarik tambang
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/fcbcbabf-7068-4380-bffc-edc32c37e979.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/738952d5-66be-4bea-94f0-df25492e356e.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/0100e011-5030-4349-9228-28a077e48980.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/588bb212-5954-4bbf-a065-a24f62a8cf82.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/d56610a5-a310-4121-9bdc-4d9faddb27f5.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/ab1787a7-85a9-4c1d-8664-5bbdb10bca08.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/10b23bf3-37e9-4075-90dd-fdeb59596b2a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/80db9dcb-993a-437a-9f6d-54bbc825d7b2.webp)
 
 Dokumentasi Semi Final Pharmacy Event 2022
 
 Acara semi final yang dilaksanakan pada tanggal 22 November di Aula FEBI Uin Alauddin Makassar yang diisi dengan beberapa lomba yaitu Padura, Pharmacy Idol,Akustik,dan Tilawah.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/063de444-e2a9-4acc-b574-431f51d2ca5c.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/a23c25ee-f905-4840-92b8-c255ce35d7f8.webp)
 
 Pemilihan Putra-Putri Farmasi
 
 Kemudian acara penutupan atau malam puncak dilaksanakan pada tanggal 4 Desember 2022 di Gedung BPSDM ,Jl. Sultan Alauddin, Gn. Sari, Kec. Tamalate, Kota Makassar, Sulawesi Selatan 90221.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/d541690a-fca2-4073-8d46-222db014fd63.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/47077d8d-3a30-4552-a7e4-b084f5fad2dd.webp)
 
 Ketua HMJ Farmasi mengatakan bahwa tentunya kesuksesan kegiatan ini tidak terlepas dari kerja sama teman-teman panitia, arahan dari steering comite dan dukungan dari pihak birokrasi, Kegiatan ini diharapkan dapat berlanjut dan tetap menjaga keharmonisan dan silaturahmi antara mahasiswa aktif, alumni dan dosen di Farmasi UIN Alauddin Makassar.
 
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/12/10/pharmacy-event-2022/)[](http://twitter.com/share?url=https://kemafar.org/2022/12/10/pharmacy-event-2022/&text=PHARMACY%20EVENT%202022)[](mailto:?subject=PHARMACY%20EVENT%202022&body=https://kemafar.org/2022/12/10/pharmacy-event-2022/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/12/10/pharmacy-event-2022/&title=PHARMACY%20EVENT%202022)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/12/10/pharmacy-event-2022/&title=PHARMACY%20EVENT%202022)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/12/10/pharmacy-event-2022/&title=PHARMACY%20EVENT%202022)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/12/10/pharmacy-event-2022/&title=PHARMACY%20EVENT%202022)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/8ee4725e-4bb2-4a98-a6f1-df8d32fe85ff.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/ef6c4def-ce8f-4583-bdb7-a3656502f1bc.webp',
   '2022-12-10T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2230,10 +2362,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 46: PENYERANGAN DI FKIK (BANYAK HOAX YANG BEREDAR): PIMPINAN KAMPUS DIHARAPKAN UNTUK BERSIKAP TEGAS
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 47: PENYERANGAN DI FKIK (BANYAK HOAX YANG BEREDAR): PIMPINAN KAMPUS DIHARAPKAN UNTUK BERSIKAP TEGAS
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PENYERANGAN DI FKIK (BANYAK HOAX YANG BEREDAR): PIMPINAN KAMPUS DIHARAPKAN UNTUK BERSIKAP TEGAS',
   'penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas',
@@ -2246,7 +2379,7 @@ VALUES (
 
 [](https://kemafar.org/author/kemafar-org/)By [kemafar.org](https://kemafar.org/author/kemafar-org/) [September 27, 2022](https://kemafar.org/2022/09/)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/4fabe411-70f9-4560-b5be-2f650f80469a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/890c603e-3fa2-4746-8587-2e180b5401f2.webp)
 
 Selasa, 26 September 2022 (Pukul 13.00) kembali terjadi insiden penyerangan oleh beberapa oknum di lingkungan Fakultas Kedokteran dan Ilmu Kesehatan. Hal ini diduga dilatarbelakangi karena rentetan peristiwa yang telah terjadi sebelumnya,yakni adanya pungli oleh oknum mahasiswa kepada MABA FKIK yang berkedok “biaya parkir”. Berangkat dari awal mula kericuhan, diharapkan adanya tindakan tegas oleh pimpinan kampus sebagai pemangku jabatan untuk menyelesaikan persoalan tersebut. Namun sampai saat ini, tidak ada tindak lanjut dari pimpinan. Akibatnya, aksi pertikaian kembali terjadi dan konflik semakin berkepanjangan.
 
@@ -2259,9 +2392,10 @@ Selaku ketua HMJ Farmasi, Juniar berharap pimpinan segera menyikapi dengan teg
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/09/27/penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas/)[](http://twitter.com/share?url=https://kemafar.org/2022/09/27/penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas/&text=PENYERANGAN%20DI%20FKIK%20%28BANYAK%20HOAX%20YANG%20BEREDAR%29%3A%20PIMPINAN%20KAMPUS%20DIHARAPKAN%20UNTUK%20BERSIKAP%20TEGAS)[](mailto:?subject=PENYERANGAN%20DI%20FKIK%20\(BANYAK%20HOAX%20YANG%20BEREDAR\):%20PIMPINAN%20KAMPUS%20DIHARAPKAN%20UNTUK%20BERSIKAP%20TEGAS&body=https://kemafar.org/2022/09/27/penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/09/27/penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas/&title=PENYERANGAN%20DI%20FKIK%20%28BANYAK%20HOAX%20YANG%20BEREDAR%29%3A%20PIMPINAN%20KAMPUS%20DIHARAPKAN%20UNTUK%20BERSIKAP%20TEGAS)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/09/27/penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas/&title=PENYERANGAN%20DI%20FKIK%20%28BANYAK%20HOAX%20YANG%20BEREDAR%29%3A%20PIMPINAN%20KAMPUS%20DIHARAPKAN%20UNTUK%20BERSIKAP%20TEGAS)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/09/27/penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas/&title=PENYERANGAN%20DI%20FKIK%20%28BANYAK%20HOAX%20YANG%20BEREDAR%29%3A%20PIMPINAN%20KAMPUS%20DIHARAPKAN%20UNTUK%20BERSIKAP%20TEGAS)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/09/27/penyerangan-di-fkik-banyak-hoax-yang-beredar-pimpinan-kampus-diharapkan-untuk-bersikap-tegas/&title=PENYERANGAN%20DI%20FKIK%20%28BANYAK%20HOAX%20YANG%20BEREDAR%29%3A%20PIMPINAN%20KAMPUS%20DIHARAPKAN%20UNTUK%20BERSIKAP%20TEGAS)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/7f059aeb-7034-45ff-8f28-afc8930edebe.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/91172084-d704-4c5c-9bee-ba88d85ed09a.webp',
   '2022-09-27T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2269,10 +2403,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 47: DOSEN DAN MAHASISWA FARMASI LUKA AKIBAT PENYERANGAN DI FKIK
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 48: DOSEN DAN MAHASISWA FARMASI LUKA AKIBAT PENYERANGAN DI FKIK
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'DOSEN DAN MAHASISWA FARMASI LUKA AKIBAT PENYERANGAN DI FKIK',
   'dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik',
@@ -2300,9 +2435,10 @@ Dekan Fakultas Kedokteran dan Ilmu Kesehatan UIN Alauddin Makassar akhirnya meng
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/09/27/dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik/)[](http://twitter.com/share?url=https://kemafar.org/2022/09/27/dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik/&text=DOSEN%20DAN%20MAHASISWA%20FARMASI%20LUKA%20AKIBAT%20PENYERANGAN%20DI%20FKIK)[](mailto:?subject=DOSEN%20DAN%20MAHASISWA%20FARMASI%20LUKA%20AKIBAT%20PENYERANGAN%20DI%20FKIK&body=https://kemafar.org/2022/09/27/dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/09/27/dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik/&title=DOSEN%20DAN%20MAHASISWA%20FARMASI%20LUKA%20AKIBAT%20PENYERANGAN%20DI%20FKIK)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/09/27/dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik/&title=DOSEN%20DAN%20MAHASISWA%20FARMASI%20LUKA%20AKIBAT%20PENYERANGAN%20DI%20FKIK)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/09/27/dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik/&title=DOSEN%20DAN%20MAHASISWA%20FARMASI%20LUKA%20AKIBAT%20PENYERANGAN%20DI%20FKIK)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/09/27/dosen-dan-mahasiswa-farmasi-luka-akibat-penyerangan-di-fkik/&title=DOSEN%20DAN%20MAHASISWA%20FARMASI%20LUKA%20AKIBAT%20PENYERANGAN%20DI%20FKIK)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/ee72ef3e-5b08-4bf7-ade1-d54273b23e58.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/98477cdc-495f-49f5-9ed8-e82336635452.webp',
   '2022-09-27T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2310,10 +2446,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 48: PENGEROYOKAN DI FKIK : KETUA HMJ FARMASI UINAM TELAH MELAPORKAN KEPIHAK BERWAJIB
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 49: PENGEROYOKAN DI FKIK : KETUA HMJ FARMASI UINAM TELAH MELAPORKAN KEPIHAK BERWAJIB
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PENGEROYOKAN DI FKIK : KETUA HMJ FARMASI UINAM TELAH MELAPORKAN KEPIHAK BERWAJIB',
   'pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib',
@@ -2341,9 +2478,10 @@ Penulis : Mc
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/09/27/pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib/)[](http://twitter.com/share?url=https://kemafar.org/2022/09/27/pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib/&text=PENGEROYOKAN%20DI%20FKIK%20%3A%20KETUA%20HMJ%20FARMASI%20UINAM%20TELAH%20MELAPORKAN%20KEPIHAK%20BERWAJIB)[](mailto:?subject=PENGEROYOKAN%20DI%20FKIK%20:%20KETUA%20HMJ%20FARMASI%20UINAM%20TELAH%20MELAPORKAN%20KEPIHAK%20BERWAJIB&body=https://kemafar.org/2022/09/27/pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/09/27/pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib/&title=PENGEROYOKAN%20DI%20FKIK%20%3A%20KETUA%20HMJ%20FARMASI%20UINAM%20TELAH%20MELAPORKAN%20KEPIHAK%20BERWAJIB)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/09/27/pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib/&title=PENGEROYOKAN%20DI%20FKIK%20%3A%20KETUA%20HMJ%20FARMASI%20UINAM%20TELAH%20MELAPORKAN%20KEPIHAK%20BERWAJIB)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/09/27/pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib/&title=PENGEROYOKAN%20DI%20FKIK%20%3A%20KETUA%20HMJ%20FARMASI%20UINAM%20TELAH%20MELAPORKAN%20KEPIHAK%20BERWAJIB)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/09/27/pengeroyokan-di-fkik-ketua-hmj-farmasi-uinam-telah-melaporkan-kepihak-berwajib/&title=PENGEROYOKAN%20DI%20FKIK%20%3A%20KETUA%20HMJ%20FARMASI%20UINAM%20TELAH%20MELAPORKAN%20KEPIHAK%20BERWAJIB)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/061cd4a8-f1f7-4fdb-a609-769b6b5b9ae8.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/2ff2210d-e3d8-495f-b980-935ab4305e1b.webp',
   '2022-09-27T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2351,10 +2489,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 49: PEMALAKAN DI FKIK : AWAL MULA PENGEROYOKAN DAN SEBABKAN 1 ORANG MAHASISWA FARMASI UINAM LUKA-LUKA
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 50: PEMALAKAN DI FKIK : AWAL MULA PENGEROYOKAN DAN SEBABKAN 1 ORANG MAHASISWA FARMASI UINAM LUKA-LUKA
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'PEMALAKAN DI FKIK : AWAL MULA PENGEROYOKAN DAN SEBABKAN 1 ORANG MAHASISWA FARMASI UINAM LUKA-LUKA',
   'pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka',
@@ -2384,9 +2523,10 @@ Tindakan oleh oknum mahasiswa ini adalah tindakan yang tidak terpuji dan meceder
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/09/27/pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka/)[](http://twitter.com/share?url=https://kemafar.org/2022/09/27/pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka/&text=PEMALAKAN%20DI%20FKIK%20%3A%20AWAL%20MULA%20PENGEROYOKAN%20DAN%20SEBABKAN%201%20ORANG%20MAHASISWA%20FARMASI%20UINAM%20LUKA-LUKA)[](mailto:?subject=PEMALAKAN%20DI%20FKIK%20:%20AWAL%20MULA%20PENGEROYOKAN%20DAN%20SEBABKAN%201%20ORANG%20MAHASISWA%20FARMASI%20UINAM%20LUKA-LUKA&body=https://kemafar.org/2022/09/27/pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/09/27/pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka/&title=PEMALAKAN%20DI%20FKIK%20%3A%20AWAL%20MULA%20PENGEROYOKAN%20DAN%20SEBABKAN%201%20ORANG%20MAHASISWA%20FARMASI%20UINAM%20LUKA-LUKA)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/09/27/pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka/&title=PEMALAKAN%20DI%20FKIK%20%3A%20AWAL%20MULA%20PENGEROYOKAN%20DAN%20SEBABKAN%201%20ORANG%20MAHASISWA%20FARMASI%20UINAM%20LUKA-LUKA)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/09/27/pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka/&title=PEMALAKAN%20DI%20FKIK%20%3A%20AWAL%20MULA%20PENGEROYOKAN%20DAN%20SEBABKAN%201%20ORANG%20MAHASISWA%20FARMASI%20UINAM%20LUKA-LUKA)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/09/27/pemalakan-di-fkik-awal-mula-pengeroyokan-dan-sebabkan-1-orang-mahasiswa-farmasi-uinam-luka-luka/&title=PEMALAKAN%20DI%20FKIK%20%3A%20AWAL%20MULA%20PENGEROYOKAN%20DAN%20SEBABKAN%201%20ORANG%20MAHASISWA%20FARMASI%20UINAM%20LUKA-LUKA)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/1026923e-e4c7-4237-94f6-24864b04e825.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c94454a5-af37-4e24-bd1d-05f83522cf81.webp',
   '2022-09-27T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2394,10 +2534,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 50: ALPHA-C Season 3 Sukses Besar
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 51: ALPHA-C Season 3 Sukses Besar
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'ALPHA-C Season 3 Sukses Besar',
   'alpha-c-season-3-sukses-besar',
@@ -2414,7 +2555,7 @@ VALUES (
 
 Gowa (28/08)  – Alauddin’s Pharmaceutical Competition atau biasa disebut Alpha-C merupakan salah satu program kerja HMJ Farmasi UIN Alauddin Makassar yang  berskala Nasional tentunya untuk mewadahi mahasiswa farmasi dalam menuangkan ide  gagasan dan kreatifitasnya melalui sebuah karya berlandaskan ilmu kefarmasian.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/6fad72b7-fdba-402b-896b-f37b12d513d9.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/dbeee072-5e5b-4443-a8f5-00cef2d06ec7.webp)
 
 Pembukaan Alauddin Pharmaceutical Competition Season 3
 
@@ -2461,9 +2602,10 @@ Ketua HMJ Farmasi mengatakan bahwa tentunya kesuksesan kegiatan ini tidak terlep
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/08/29/alpha-c-season-3-sukses-besar/)[](http://twitter.com/share?url=https://kemafar.org/2022/08/29/alpha-c-season-3-sukses-besar/&text=ALPHA-C%20Season%203%20Sukses%20Besar)[](mailto:?subject=ALPHA-C%20Season%203%20Sukses%20Besar&body=https://kemafar.org/2022/08/29/alpha-c-season-3-sukses-besar/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/08/29/alpha-c-season-3-sukses-besar/&title=ALPHA-C%20Season%203%20Sukses%20Besar)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/08/29/alpha-c-season-3-sukses-besar/&title=ALPHA-C%20Season%203%20Sukses%20Besar)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/08/29/alpha-c-season-3-sukses-besar/&title=ALPHA-C%20Season%203%20Sukses%20Besar)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/08/29/alpha-c-season-3-sukses-besar/&title=ALPHA-C%20Season%203%20Sukses%20Besar)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/db4c0763-5d2b-4d48-9d2f-28d236cfcaab.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/aff3e66d-a56a-48e9-a14b-1c8c87e875ce.webp',
   '2022-08-29T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2471,10 +2613,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 51: HMJ Farmasi UIN Alauddin Makassar Gelar Pengabdian Masyarakat
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 52: HMJ Farmasi UIN Alauddin Makassar Gelar Pengabdian Masyarakat
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'HMJ Farmasi UIN Alauddin Makassar Gelar Pengabdian Masyarakat',
   'hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat',
@@ -2489,13 +2632,13 @@ VALUES (
 
 Gowa (11/08) – Pengabdian Masyarakat merupakan salah satu pilar Tri Dharma Perguruan Tinggi yang esensinya  bertujuan untuk meningkatkan keterampilan dan kepedulian civitas akademika. Demi mewujudkan Tri Dharma Perguruan Tinggi tersebut Himpunan Mahasiswa Jurusan (HMJ) Farmasi UIN Alauddin Makassar bekerja sama dengan Program studi jurusan Farmasi UIN Alauddin Makassar menggelar Pengabdian Masyarakat dengan tema “Cerdas Menggunakan Obat yang Baik dan Benar”.
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/f5c0141e-78ce-4719-8bdb-2349cedbb706.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/1a432760-b5cb-4799-8cf2-5964d047dc38.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/cb98c390-5db2-471f-a2ca-e075942f6000.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/5eba0256-a1f3-4795-8f5e-422412625b42.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/88b511c3-fb0b-4814-8d2a-0a94011e371e.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/c7631fee-0339-459f-8a25-11bd7cee1c22.webp)
 
-![](https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/33af75d0-4546-4ccc-b976-83e6613ffd4a.webp)
+![](https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/bc0ad3c8-259d-4538-be1a-77e9c95a4da8.webp)
 
 Dokumentasi kegiatan pengabdian masyarakat
 
@@ -2510,9 +2653,10 @@ Kegiatan ini diharapkan dapat terus berlanjut dan memberikan manfaat kepada masy
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/08/11/hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat/)[](http://twitter.com/share?url=https://kemafar.org/2022/08/11/hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat/&text=HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Pengabdian%20Masyarakat)[](mailto:?subject=HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Pengabdian%20Masyarakat&body=https://kemafar.org/2022/08/11/hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/08/11/hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat/&title=HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Pengabdian%20Masyarakat)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/08/11/hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat/&title=HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Pengabdian%20Masyarakat)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/08/11/hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat/&title=HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Pengabdian%20Masyarakat)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/08/11/hmj-farmasi-uin-alauddin-makassar-gelar-pengabdian-masyarakat/&title=HMJ%20Farmasi%20UIN%20Alauddin%20Makassar%20Gelar%20Pengabdian%20Masyarakat)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/2657b608-d01a-4a15-a0da-f877779cb301.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/d33bb2da-3037-4a2f-9325-c911fe44e5dc.webp',
   '2022-08-11T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2520,10 +2664,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 52: ALPHA-C tahun ini hadir dengan berbagai event lomba, Dapatkan Hadiah jutaan rupiah
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 53: ALPHA-C tahun ini hadir dengan berbagai event lomba, Dapatkan Hadiah jutaan rupiah
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'ALPHA-C tahun ini hadir dengan berbagai event lomba, Dapatkan Hadiah jutaan rupiah',
   'alpha-c-tahun-ini-hadir-dengan-berbagai-event-lomba-dapatkan-hadiah-jutaan-rupiah',
@@ -2561,9 +2706,10 @@ Cek this out
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/08/05/alpha-c-lomba-dengan-hadiah-jutaan/)[](http://twitter.com/share?url=https://kemafar.org/2022/08/05/alpha-c-lomba-dengan-hadiah-jutaan/&text=ALPHA-C%20tahun%20ini%20hadir%20dengan%20berbagai%20event%20lomba%2C%20Dapatkan%20Hadiah%20jutaan%20rupiah)[](mailto:?subject=ALPHA-C%20tahun%20ini%20hadir%20dengan%20berbagai%20event%20lomba,%20Dapatkan%20Hadiah%20jutaan%20rupiah&body=https://kemafar.org/2022/08/05/alpha-c-lomba-dengan-hadiah-jutaan/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/08/05/alpha-c-lomba-dengan-hadiah-jutaan/&title=ALPHA-C%20tahun%20ini%20hadir%20dengan%20berbagai%20event%20lomba%2C%20Dapatkan%20Hadiah%20jutaan%20rupiah)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/08/05/alpha-c-lomba-dengan-hadiah-jutaan/&title=ALPHA-C%20tahun%20ini%20hadir%20dengan%20berbagai%20event%20lomba%2C%20Dapatkan%20Hadiah%20jutaan%20rupiah)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/08/05/alpha-c-lomba-dengan-hadiah-jutaan/&title=ALPHA-C%20tahun%20ini%20hadir%20dengan%20berbagai%20event%20lomba%2C%20Dapatkan%20Hadiah%20jutaan%20rupiah)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/08/05/alpha-c-lomba-dengan-hadiah-jutaan/&title=ALPHA-C%20tahun%20ini%20hadir%20dengan%20berbagai%20event%20lomba%2C%20Dapatkan%20Hadiah%20jutaan%20rupiah)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/ca231efd-7243-469f-9128-92dd9daa68bc.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/e2307838-71a5-4528-8027-a824626143d5.webp',
   '2022-08-05T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2571,10 +2717,11 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
--- Article 53: Ketua HMJ Farmasi 2022 Tanggapi RKUHP membatasi  kebebasan berpendapat semua elemen bisa terjerat
-INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, tags, featured)
+-- Article 54: Ketua HMJ Farmasi 2022 Tanggapi RKUHP membatasi  kebebasan berpendapat semua elemen bisa terjerat
+INSERT INTO public.articles (title, slug, excerpt, content, category, status, cover_image, published_at, author, author_id, tags, featured)
 VALUES (
   'Ketua HMJ Farmasi 2022 Tanggapi RKUHP membatasi  kebebasan berpendapat semua elemen bisa terjerat',
   'ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat',
@@ -2610,9 +2757,10 @@ Hal inilah yang kemudian harus kita tolak secara tegas khususnya sebagai mahasis
 [](https://www.facebook.com/sharer.php?u=https://kemafar.org/2022/07/15/ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat/)[](http://twitter.com/share?url=https://kemafar.org/2022/07/15/ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat/&text=Ketua%20HMJ%20Farmasi%202022%20Tanggapi%20RKUHP%20membatasi%C2%A0%C2%A0kebebasan%20berpendapat%20semua%20elemen%20bisa%20terjerat%C2%A0)[](mailto:?subject=Ketua%20HMJ%20Farmasi%202022%20Tanggapi%20RKUHP%20membatasi  kebebasan%20berpendapat%20semua%20elemen%20bisa%20terjerat &body=https://kemafar.org/2022/07/15/ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat/)[](https://www.linkedin.com/sharing/share-offsite/?url=https://kemafar.org/2022/07/15/ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat/&title=Ketua%20HMJ%20Farmasi%202022%20Tanggapi%20RKUHP%20membatasi%C2%A0%C2%A0kebebasan%20berpendapat%20semua%20elemen%20bisa%20terjerat%C2%A0)[](javascript:pinIt\(\);)[](https://t.me/share/url?url=https://kemafar.org/2022/07/15/ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat/&title=Ketua%20HMJ%20Farmasi%202022%20Tanggapi%20RKUHP%20membatasi%C2%A0%C2%A0kebebasan%20berpendapat%20semua%20elemen%20bisa%20terjerat%C2%A0)[](https://api.whatsapp.com/send?text=https://kemafar.org/2022/07/15/ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat/&title=Ketua%20HMJ%20Farmasi%202022%20Tanggapi%20RKUHP%20membatasi%C2%A0%C2%A0kebebasan%20berpendapat%20semua%20elemen%20bisa%20terjerat%C2%A0)[](https://www.reddit.com/submit?url=https://kemafar.org/2022/07/15/ketua-hmj-farmasi-2022-tanggapi-rkuhp-membatasi-kebebasan-berpendapat-semua-elemen-bisa-terjerat/&title=Ketua%20HMJ%20Farmasi%202022%20Tanggapi%20RKUHP%20membatasi%C2%A0%C2%A0kebebasan%20berpendapat%20semua%20elemen%20bisa%20terjerat%C2%A0)[](javascript:window.print\(\))',
   'post',
   'published',
-  'https://qvglvkduvduockrsnqhs.supabase.co/storage/v1/object/public/article-images/articles/39765137-e827-4637-8fa7-8aa6c3f3c6ae.webp',
+  'https://ieshepdkmajrzompqhra.supabase.co/storage/v1/object/public/article-images/articles/f8fdf19a-432a-48ad-af02-8bedc9c461fb.webp',
   '2022-07-15T00:00:00.000Z',
-  '{"name":"Admin KEMAFAR","role":"admin","email":"admin@kemafar.org"}'::jsonb,
+  '{"name":"HMJ Farmasi UINAM","role":"admin","email":"hmjfarmasiuinam@gmail.com"}'::jsonb,
+  '16bc2e11-06d0-48cd-a720-4634bbf14783'::uuid,
   ARRAY['KEMAFAR', 'Farmasi', 'UIN Alauddin'],
   false
 )
@@ -2620,5 +2768,30 @@ ON CONFLICT (slug) DO UPDATE SET
   content = EXCLUDED.content,
   cover_image = EXCLUDED.cover_image,
   excerpt = EXCLUDED.excerpt,
-  category = EXCLUDED.category;
+  category = EXCLUDED.category,
+  author_id = EXCLUDED.author_id;
 
+
+-- =============================================
+-- AUTOMATIC CLEANUP & STANDARDIZATION
+-- =============================================
+
+-- Update all incorrect category variants to standardized 'post'
+UPDATE public.articles 
+SET category = 'post' 
+WHERE category IN ('uncategorized', 'pos', 'Pos', 'Post', 'Uncategorized', 'UNCATEGORIZED', 'POST');
+
+-- Remove category link text from excerpt and content
+UPDATE public.articles
+SET
+  excerpt = REGEXP_REPLACE(excerpt, '\[.*?\]\(https?://kemafar\.org/category/[^)]+\)', '', 'g'),
+  content = REGEXP_REPLACE(content, '\[.*?\]\(https?://kemafar\.org/category/[^)]+\)', '', 'g')
+WHERE
+  excerpt ~ '\[.*?\]\(https?://kemafar\.org/category/' OR
+  content ~ '\[.*?\]\(https?://kemafar\.org/category/';
+
+-- Verification: Check category distribution
+SELECT category, COUNT(*) as count 
+FROM public.articles 
+GROUP BY category 
+ORDER BY count DESC;

@@ -125,11 +125,13 @@ CREATE TABLE public.organization_timeline (
   title character varying NOT NULL,
   description text NOT NULL,
   order_index integer DEFAULT 0,
+  author_id uuid,
   created_at timestamp with time zone DEFAULT now(),
   updated_at timestamp with time zone DEFAULT now(),
   created_by uuid,
   updated_by uuid,
   CONSTRAINT organization_timeline_pkey PRIMARY KEY (id),
+  CONSTRAINT organization_timeline_author_id_fkey FOREIGN KEY (author_id) REFERENCES auth.users(id),
   CONSTRAINT organization_timeline_created_by_fkey FOREIGN KEY (created_by) REFERENCES auth.users(id),
   CONSTRAINT organization_timeline_updated_by_fkey FOREIGN KEY (updated_by) REFERENCES auth.users(id)
 );
@@ -379,21 +381,9 @@ CREATE POLICY "Public can view active members"
 -- RLS POLICIES - ORGANIZATION TIMELINE
 -- =====================================================
 
-CREATE POLICY "Admin can insert timeline"
+CREATE POLICY "Admin full access timeline"
   ON public.organization_timeline
-  FOR INSERT
-  TO public
-  WITH CHECK (
-    EXISTS (
-      SELECT 1 FROM public.profiles
-      WHERE profiles.id = auth.uid()
-      AND profiles.role IN ('super_admin', 'admin')
-    )
-  );
-
-CREATE POLICY "Admin can update timeline"
-  ON public.organization_timeline
-  FOR UPDATE
+  FOR ALL
   TO public
   USING (
     EXISTS (
@@ -403,19 +393,7 @@ CREATE POLICY "Admin can update timeline"
     )
   );
 
-CREATE POLICY "Admin can delete timeline"
-  ON public.organization_timeline
-  FOR DELETE
-  TO public
-  USING (
-    EXISTS (
-      SELECT 1 FROM public.profiles
-      WHERE profiles.id = auth.uid()
-      AND profiles.role IN ('super_admin', 'admin')
-    )
-  );
-
-CREATE POLICY "Anyone can view timeline"
+CREATE POLICY "Public can view timeline"
   ON public.organization_timeline
   FOR SELECT
   TO public
@@ -471,4 +449,91 @@ CREATE INDEX events_start_date_idx ON public.events(start_date);
 CREATE INDEX members_nim_idx ON public.members(nim);
 CREATE INDEX members_status_idx ON public.members(status);
 
+CREATE INDEX organization_timeline_author_id_idx ON public.organization_timeline(author_id);
 CREATE INDEX organization_timeline_year_idx ON public.organization_timeline(year);
+
+-- =====================================================
+-- STORAGE SETUP
+-- =====================================================
+
+-- Create article-images bucket
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('article-images', 'article-images', true)
+ON CONFLICT (id) DO UPDATE SET public = true;
+
+-- Enable RLS on storage.objects
+ALTER TABLE storage.objects ENABLE ROW LEVEL SECURITY;
+
+-- =====================================================
+-- STORAGE POLICIES
+-- =====================================================
+
+-- Allow PUBLIC READ access to article-images bucket
+CREATE POLICY "Public can view article images"
+ON storage.objects
+FOR SELECT
+TO public
+USING (bucket_id = 'article-images');
+
+-- Allow AUTHENTICATED users to INSERT images
+CREATE POLICY "Authenticated users can upload article images"
+ON storage.objects
+FOR INSERT
+TO authenticated
+WITH CHECK (bucket_id = 'article-images');
+
+-- Allow AUTHENTICATED users to UPDATE their own images
+CREATE POLICY "Authenticated users can update their article images"
+ON storage.objects
+FOR UPDATE
+TO authenticated
+USING (bucket_id = 'article-images');
+
+-- Allow AUTHENTICATED users to DELETE their own images
+CREATE POLICY "Authenticated users can delete their article images"
+ON storage.objects
+FOR DELETE
+TO authenticated
+USING (bucket_id = 'article-images');
+
+-- Grant necessary permissions
+GRANT ALL ON storage.objects TO authenticated;
+GRANT SELECT ON storage.objects TO anon;
+
+-- =====================================================
+-- FUNCTIONS & TRIGGERS
+-- =====================================================
+
+-- Function to handle new user profile creation
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS trigger
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+BEGIN
+  INSERT INTO public.profiles (id, email, full_name, role)
+  VALUES (
+    new.id,
+    new.email,
+    new.raw_user_meta_data->>'full_name',
+    'kontributor'
+  );
+  RETURN new;
+END;
+$$;
+
+-- Trigger to automatically create profile on user signup
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW
+  EXECUTE FUNCTION public.handle_new_user();
+
+-- =====================================================
+-- GRANTS
+-- =====================================================
+
+GRANT USAGE ON SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL ROUTINES IN SCHEMA public TO postgres, anon, authenticated, service_role;
