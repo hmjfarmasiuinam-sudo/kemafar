@@ -50,8 +50,8 @@ export function EventsGrid({ events, statusColors, statusLabels }: EventsGridPro
             href={`/events/${event.slug}`}
             className="group relative block transition-transform duration-300 hover:-translate-y-2"
           >
-            {/* Glassmorphism container */}
-            <div className="relative overflow-hidden rounded-3xl bg-white/40 backdrop-blur-sm hover:bg-white/60 transition-all duration-300 hover:shadow-2xl">
+            {/* Card dengan gradient biru primer */}
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-700 to-primary-900 hover:from-primary-600 hover:to-primary-800 transition-all duration-300 hover:shadow-2xl">
               {/* Image section */}
               <div className="relative aspect-[16/9] overflow-hidden">
                 <div className="w-full h-full transition-transform duration-500 group-hover:scale-105">
@@ -74,50 +74,50 @@ export function EventsGrid({ events, statusColors, statusLabels }: EventsGridPro
                   </span>
                   {event.featured && (
                     <span
-                      className="px-4 py-2 bg-secondary-500 text-white text-sm font-bold rounded-full shadow-lg transition-transform duration-200 hover:scale-105"
+                      className="px-4 py-2 bg-white text-primary-900 text-sm font-bold rounded-full shadow-lg transition-transform duration-200 hover:scale-105"
                     >
                       Unggulan
                     </span>
                   )}
                 </div>
 
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent" />
+                {/* Gradient overlay - transisi mulus dari transparan ke biru gelap */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-900/60 to-primary-900" />
               </div>
 
-              {/* Content - overlapping image */}
-              <div className="relative -mt-20 p-8">
-                {/* Date badge - prominent */}
-                <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-2xl mb-6 shadow-xl transition-transform duration-200 hover:scale-105">
+              {/* Content - langsung di bawah image tanpa overlap negatif */}
+              <div className="relative p-8 bg-gradient-to-b from-primary-900 to-primary-800">
+                {/* Date badge - prominent dengan warna putih */}
+                <div className="inline-flex items-center gap-3 px-6 py-3 bg-white text-primary-900 rounded-2xl mb-6 shadow-xl transition-transform duration-200 hover:scale-105">
                   <Calendar className="w-5 h-5" />
                   <time className="font-bold">
                     {format(new Date(event.startDate), 'd MMM yyyy', { locale: id })}
                   </time>
                 </div>
 
-                {/* Category */}
-                <div className="text-sm text-primary-600 font-bold mb-3">
+                {/* Category dengan warna putih/terang */}
+                <div className="text-sm text-primary-100 font-bold mb-3">
                   {EVENT_CATEGORIES[event.category]}
                 </div>
 
-                {/* Title - large and bold */}
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-primary-600 transition-colors duration-300">
+                {/* Title - large and bold dengan warna putih */}
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 line-clamp-2 group-hover:text-primary-100 transition-colors duration-300">
                   {event.title}
                 </h2>
 
-                {/* Description */}
-                <p className="text-gray-600 mb-6 line-clamp-2 text-base leading-relaxed">
+                {/* Description dengan warna putih/terang */}
+                <p className="text-primary-50 mb-6 line-clamp-2 text-base leading-relaxed">
                   {event.description}
                 </p>
 
-                {/* Location */}
-                <div className="flex items-center gap-2 text-gray-700 mb-4 transition-transform duration-200 group-hover:translate-x-1">
-                  <MapPin className="w-5 h-5 text-primary-600" />
+                {/* Location dengan warna putih */}
+                <div className="flex items-center gap-2 text-white mb-4 transition-transform duration-200 group-hover:translate-x-1">
+                  <MapPin className="w-5 h-5 text-primary-100" />
                   <span className="font-medium line-clamp-1">{event.location.name}</span>
                 </div>
 
-                {/* Read more indicator */}
-                <div className="flex items-center gap-2 text-gray-900 font-semibold">
+                {/* Read more indicator dengan warna putih */}
+                <div className="flex items-center gap-2 text-white font-semibold">
                   Lihat Detail
                   <ChevronRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>

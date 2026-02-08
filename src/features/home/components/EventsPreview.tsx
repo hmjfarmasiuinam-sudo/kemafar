@@ -6,19 +6,20 @@ import { ArrowRight, Calendar, MapPin } from 'lucide-react';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import type { Event as EventListItem } from '@/lib/api/events';
 
 function EventsSkeleton() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {[1, 2].map((i) => (
-        <div key={i} className="relative overflow-hidden rounded-3xl bg-gray-100">
-          <div className="relative aspect-[16/9] bg-gray-200 animate-pulse" />
-          <div className="p-8 space-y-4">
-            <div className="h-12 w-48 bg-gray-200 rounded-2xl animate-pulse" />
-            <div className="h-8 w-3/4 bg-gray-200 rounded animate-pulse" />
-            <div className="h-6 w-full bg-gray-200 rounded animate-pulse" />
-            <div className="h-6 w-2/3 bg-gray-200 rounded animate-pulse" />
+        <div key={i} className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-700 to-primary-900">
+          <div className="relative aspect-[16/9] bg-primary-800/50 animate-pulse" />
+          <div className="p-8 space-y-4 bg-gradient-to-b from-primary-900 to-primary-800">
+            <div className="h-12 w-48 bg-white/20 rounded-2xl animate-pulse" />
+            <div className="h-8 w-3/4 bg-white/10 rounded animate-pulse" />
+            <div className="h-6 w-full bg-white/10 rounded animate-pulse" />
+            <div className="h-6 w-2/3 bg-white/10 rounded animate-pulse" />
           </div>
         </div>
       ))}
@@ -29,6 +30,7 @@ function EventsSkeleton() {
 export function EventsPreview() {
   const [events, setEvents] = useState<EventListItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -48,6 +50,29 @@ export function EventsPreview() {
 
     fetchEvents();
   }, []);
+
+  // Animation variants untuk smooth entrance
+  const containerVariants = shouldReduceMotion ? undefined : {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      }
+    }
+  };
+
+  const itemVariants = shouldReduceMotion ? undefined : {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
+  };
 
   return (
     <section className="relative py-32 overflow-hidden bg-white">
@@ -80,15 +105,24 @@ export function EventsPreview() {
             Belum ada event mendatang
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            initial={shouldReduceMotion ? false : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+          >
             {events.map((event) => (
-              <Link
+              <motion.div
                 key={event.id}
-                href={`/events/${event.slug}`}
-                className="group relative"
+                variants={itemVariants}
               >
-                {/* Glassmorphism container */}
-                <div className="relative overflow-hidden rounded-3xl bg-white/40 backdrop-blur-sm hover:bg-white/60 transition-all duration-500">
+                <Link
+                  href={`/events/${event.slug}`}
+                  className="group relative block"
+                >
+                  {/* Card dengan gradient biru primer */}
+                  <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-700 to-primary-900 hover:from-primary-600 hover:to-primary-800 transition-all duration-500">
                   {/* Image section */}
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <Image
@@ -100,45 +134,46 @@ export function EventsPreview() {
                     />
                     {event.featured && (
                       <div className="absolute top-6 right-6">
-                        <span className="px-4 py-2 bg-secondary-500 text-white text-sm font-bold rounded-full shadow-lg">
+                        <span className="px-4 py-2 bg-white text-primary-900 text-sm font-bold rounded-full shadow-lg">
                           Unggulan
                         </span>
                       </div>
                     )}
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent" />
+                    {/* Gradient overlay - transisi mulus dari transparan ke biru gelap */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-900/60 to-primary-900" />
                   </div>
 
-                  {/* Content - overlapping image */}
-                  <div className="relative -mt-20 p-8">
-                    {/* Date badge - prominent */}
-                    <div className="inline-flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-2xl mb-6 shadow-xl">
+                  {/* Content - langsung di bawah image tanpa overlap negatif */}
+                  <div className="relative p-8 bg-gradient-to-b from-primary-900 to-primary-800">
+                    {/* Date badge - prominent dengan warna putih */}
+                    <div className="inline-flex items-center gap-3 px-6 py-3 bg-white text-primary-900 rounded-2xl mb-6 shadow-xl">
                       <Calendar className="w-5 h-5" />
                       <time className="font-bold">
                         {format(new Date(event.startDate), 'd MMMM yyyy', { locale: id })}
                       </time>
                     </div>
 
-                    {/* Title - large and bold */}
-                    <h3 className="text-3xl font-bold text-gray-900 mb-4 line-clamp-2 group-hover:text-primary-600 transition-colors">
+                    {/* Title - large and bold dengan warna putih */}
+                    <h3 className="text-3xl font-bold text-white mb-4 line-clamp-2 group-hover:text-primary-100 transition-colors">
                       {event.title}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-gray-600 mb-6 line-clamp-2 text-lg leading-relaxed">
+                    {/* Description dengan warna putih/terang */}
+                    <p className="text-primary-50 mb-6 line-clamp-2 text-lg leading-relaxed">
                       {event.description}
                     </p>
 
-                    {/* Location */}
-                    <div className="flex items-center gap-2 text-gray-700">
-                      <MapPin className="w-5 h-5 text-primary-600" />
+                    {/* Location dengan warna putih */}
+                    <div className="flex items-center gap-2 text-white">
+                      <MapPin className="w-5 h-5 text-primary-100" />
                       <span className="font-medium line-clamp-1">{event.location.name}</span>
                     </div>
                   </div>
                 </div>
-              </Link>
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {/* Mobile CTA */}

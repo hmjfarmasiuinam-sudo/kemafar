@@ -125,14 +125,11 @@ export function ArticlesPreview() {
                       />
                     </div>
 
-                    {/* Color overlay KUAT seperti referensi - warna biru sangat jenuh */}
-                    <div className="absolute inset-0 bg-primary-500 mix-blend-multiply" />
+                    {/* Color overlay KUAT - warna biru jenuh */}
+                    <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
 
                     {/* Layer untuk saturasi warna lebih tinggi */}
-                    <div className="absolute inset-0 bg-primary-400 mix-blend-color" />
-
-                    {/* Layer tambahan untuk brightness */}
-                    <div className="absolute inset-0 bg-primary-500/40 mix-blend-screen" />
+                    <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
 
                     {/* Content - Centered */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center">
