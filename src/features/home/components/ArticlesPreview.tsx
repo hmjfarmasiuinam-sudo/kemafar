@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { ArrowRight, Calendar, Eye, BookOpen, Newspaper, MessageSquare, FileText, Info } from 'lucide-react';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import type { Article as ArticleListItem } from '@/lib/api/articles';
 import { ARTICLE_CATEGORIES } from '@/config/domain.config';
@@ -18,6 +18,94 @@ const CATEGORY_ICONS = {
   publication: FileText,
   info: Info,
 } as const;
+
+// Memoized ArticleCard untuk prevent re-render saat scroll
+const ArticleCard = memo(({ article, index, gridClass, isFeatured }: {
+  article: ArticleListItem;
+  index: number;
+  gridClass: string;
+  isFeatured: boolean;
+}) => {
+  const CategoryIcon = CATEGORY_ICONS[article.category as keyof typeof CATEGORY_ICONS] || BookOpen;
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      className={`${gridClass}`}
+      style={{
+        willChange: 'auto',
+        contentVisibility: 'auto',
+        containIntrinsicSize: 'auto 500px'
+      }}
+    >
+      <Link
+        href={`/articles/${article.slug}`}
+        className="group relative block"
+      >
+        {/* Image with duotone effect */}
+        <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl ${isFeatured ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}
+          style={{ transform: 'translateZ(0)' }}
+        >
+          {/* Background Image - optimized */}
+          <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105">
+            <Image
+              src={article.coverImage}
+              alt={article.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+              className="object-cover"
+              priority={index === 0}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              quality={index === 0 ? 85 : 75}
+            />
+          </div>
+
+          {/* Color overlay - warna biru jenuh */}
+          <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
+
+          {/* Layer untuk saturasi warna lebih tinggi */}
+          <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
+
+          {/* Content - Centered - optimized */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
+            {/* Icon - responsive size */}
+            <div className="mb-3 md:mb-6 md:transform md:transition-transform md:duration-300 md:group-hover:scale-110">
+              <CategoryIcon className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
+            </div>
+
+            {/* Title - optimized font size */}
+            <h3 className="font-bold text-white text-lg md:text-2xl leading-tight px-2 md:px-4 line-clamp-3">
+              {article.title}
+            </h3>
+          </div>
+
+          {/* Category badge - top */}
+          <div className="absolute top-4 left-4">
+            <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-primary-900 text-xs font-bold rounded-full">
+              {ARTICLE_CATEGORIES[article.category]}
+            </span>
+          </div>
+
+          {/* Metadata - bottom - simplified on mobile */}
+          <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4 flex items-center justify-between text-white/90 text-xs">
+            <div className="flex items-center gap-1">
+              <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5" />
+              <time className="text-[10px] md:text-xs">{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
+            </div>
+            {article.views && (
+              <div className="hidden sm:flex items-center gap-1.5">
+                <Eye className="w-3.5 h-3.5" />
+                <span>{article.views}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+});
+
+ArticleCard.displayName = 'ArticleCard';
 
 function ArticlesSkeleton() {
   return (
@@ -61,7 +149,7 @@ const itemVariants = {
   },
 };
 
-export function ArticlesPreview() {
+export const ArticlesPreview = memo(function ArticlesPreview() {
   const [articles, setArticles] = useState<ArticleListItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -118,97 +206,18 @@ export function ArticlesPreview() {
             viewport={{ once: true, margin: "0px", amount: 0 }}
             className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6"
           >
-            {articles.map((article, index) => {
-              // Simplified grid: 3 columns on mobile, bento on desktop
-              const gridClass = index === 0
-                ? 'md:col-span-8 md:row-span-2'
-                : 'md:col-span-4';
-
-              const isFeatured = index === 0;
-
-              // Get icon untuk kategori (lazy load icons)
-              const CategoryIcon = CATEGORY_ICONS[article.category as keyof typeof CATEGORY_ICONS] || BookOpen;
-
-              return (
-                <motion.div
-                  key={article.id}
-                  variants={itemVariants}
-                  className={`${gridClass}`}
-                  style={{
-                    willChange: 'auto',
-                    contentVisibility: 'auto',
-                    containIntrinsicSize: 'auto 500px'
-                  }}
-                >
-                  <Link
-                    href={`/articles/${article.slug}`}
-                    className="group relative block"
-                  >
-                    {/* Image with duotone effect */}
-                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl ${isFeatured ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}
-                      style={{ transform: 'translateZ(0)' }}
-                    >
-                      {/* Background Image - optimized */}
-                      <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105">
-                        <Image
-                          src={article.coverImage}
-                          alt={article.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                          className="object-cover"
-                          priority={index === 0}
-                          loading={index === 0 ? 'eager' : 'lazy'}
-                          quality={index === 0 ? 85 : 75}
-                        />
-                      </div>
-
-                    {/* Color overlay - warna biru jenuh */}
-                    <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
-
-                    {/* Layer untuk saturasi warna lebih tinggi */}
-                    <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
-
-                    {/* Content - Centered - optimized */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
-                      {/* Icon - responsive size */}
-                      <div className="mb-3 md:mb-6 md:transform md:transition-transform md:duration-300 md:group-hover:scale-110">
-                        <CategoryIcon className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
-                      </div>
-
-                      {/* Title - optimized font size */}
-                      <h3 className="font-bold text-white text-lg md:text-2xl leading-tight px-2 md:px-4 line-clamp-3">
-                        {article.title}
-                      </h3>
-                    </div>
-
-                    {/* Category badge - top */}
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-primary-900 text-xs font-bold rounded-full">
-                        {ARTICLE_CATEGORIES[article.category]}
-                      </span>
-                    </div>
-
-                    {/* Metadata - bottom - simplified on mobile */}
-                    <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4 flex items-center justify-between text-white/90 text-xs">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5" />
-                        <time className="text-[10px] md:text-xs">{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
-                      </div>
-                      {article.views && (
-                        <div className="hidden sm:flex items-center gap-1.5">
-                          <Eye className="w-3.5 h-3.5" />
-                          <span>{article.views}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
+            {articles.map((article, index) => (
+              <ArticleCard
+                key={article.id}
+                article={article}
+                index={index}
+                gridClass={index === 0 ? 'md:col-span-8 md:row-span-2' : 'md:col-span-4'}
+                isFeatured={index === 0}
+              />
+            ))}
           </motion.div>
         )}
       </div>
     </section>
   );
-}
+});
