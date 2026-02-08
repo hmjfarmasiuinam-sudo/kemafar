@@ -18,40 +18,12 @@ interface Stat {
   color: string;
 }
 
-const stats: Stat[] = [
-  {
-    id: '1',
-    icon: Users,
-    value: 200,
-    suffix: '+',
-    label: 'Anggota Aktif',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    id: '2',
-    icon: Award,
-    value: 50,
-    suffix: '+',
-    label: 'Event per Tahun',
-    color: 'from-green-500 to-green-600',
-  },
-  {
-    id: '3',
-    icon: TrendingUp,
-    value: 8,
-    suffix: '',
-    label: 'Divisi Aktif',
-    color: 'from-amber-500 to-amber-600',
-  },
-  {
-    id: '4',
-    icon: Leaf,
-    value: 10,
-    suffix: ' Tahun',
-    label: 'Pengalaman Berorganisasi',
-    color: 'from-primary-500 to-primary-600',
-  },
-];
+interface Statistics {
+  activeMembers: number;
+  eventsCount: number;
+  divisionsCount: number;
+  yearFounded: number;
+}
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const count = useMotionValue(0);
@@ -98,6 +70,28 @@ export function StatsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll(); // Use global scroll like leadership page
   const [sectionTop, setSectionTop] = useState(0);
+  const [statistics, setStatistics] = useState<Statistics | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch statistics from API
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const response = await fetch('/api/statistics');
+        if (!response.ok) {
+          throw new Error('Failed to fetch statistics');
+        }
+        const data = await response.json();
+        setStatistics(data);
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
 
   // Get section position on mount
   useEffect(() => {
@@ -110,6 +104,42 @@ export function StatsSection() {
   const y = useTransform(scrollY, [sectionTop - 500, sectionTop + 500], [0, 200]);
   const opacity = useTransform(scrollY, [sectionTop - 300, sectionTop, sectionTop + 300], [0.2, 1, 0.2]);
   const blur = useTransform(scrollY, [sectionTop - 200, sectionTop, sectionTop + 200], ["blur(10px)", "blur(0px)", "blur(10px)"]);
+
+  // Generate stats from API data
+  const stats: Stat[] = statistics ? [
+    {
+      id: '1',
+      icon: Users,
+      value: statistics.activeMembers,
+      suffix: '+',
+      label: 'Anggota Aktif',
+      color: 'from-blue-500 to-blue-600',
+    },
+    {
+      id: '2',
+      icon: Award,
+      value: statistics.eventsCount,
+      suffix: '+',
+      label: 'Event per Tahun',
+      color: 'from-green-500 to-green-600',
+    },
+    {
+      id: '3',
+      icon: TrendingUp,
+      value: statistics.divisionsCount,
+      suffix: '',
+      label: 'Divisi Aktif',
+      color: 'from-amber-500 to-amber-600',
+    },
+    {
+      id: '4',
+      icon: Leaf,
+      value: statistics.yearFounded,
+      suffix: '',
+      label: 'Tahun Berdiri',
+      color: 'from-primary-500 to-primary-600',
+    },
+  ] : [];
 
   return (
     <section ref={sectionRef} className="relative py-40 overflow-hidden bg-primary-600">
@@ -150,7 +180,7 @@ export function StatsSection() {
 
         {/* Minimal stats - no cards, just numbers */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-          {stats.map((stat, index) => {
+          {!loading && stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <motion.div

@@ -10,12 +10,43 @@ import { Button } from '@/shared/components/ui/Button';
 import { Phone, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { HomeSettings } from '@/config';
+import { useState, useEffect } from 'react';
 
 interface CTASectionProps {
   data: HomeSettings['cta'];
 }
 
+interface Statistics {
+  activeMembers: number;
+  eventsCount: number;
+  divisionsCount: number;
+  yearFounded: number;
+}
+
 export function CTASection({ data }: CTASectionProps) {
+  const [statistics, setStatistics] = useState<Statistics | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch statistics from API
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const response = await fetch('/api/statistics');
+        if (!response.ok) {
+          throw new Error('Failed to fetch statistics');
+        }
+        const statsData = await response.json();
+        setStatistics(statsData);
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
+
   return (
     <section className="relative py-40 overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900">
       {/* Gradient overlays */}
@@ -66,20 +97,22 @@ export function CTASection({ data }: CTASectionProps) {
             </div>
 
             {/* Simple stats - no cards */}
-            <div className="flex flex-wrap justify-center gap-12 pt-12 border-t border-white/20">
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-white mb-2">200+</p>
-                <p className="text-white/80">Anggota Aktif</p>
+            {!loading && statistics && (
+              <div className="flex flex-wrap justify-center gap-12 pt-12 border-t border-white/20">
+                <div className="text-center">
+                  <p className="text-4xl md:text-5xl font-bold text-white mb-2">{statistics.activeMembers}+</p>
+                  <p className="text-white/80">Anggota Aktif</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-4xl md:text-5xl font-bold text-white mb-2">{statistics.eventsCount}+</p>
+                  <p className="text-white/80">Event per Tahun</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-4xl md:text-5xl font-bold text-white mb-2">{statistics.divisionsCount}</p>
+                  <p className="text-white/80">Divisi Aktif</p>
+                </div>
               </div>
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-white mb-2">50+</p>
-                <p className="text-white/80">Event per Tahun</p>
-              </div>
-              <div className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-white mb-2">8</p>
-                <p className="text-white/80">Divisi Aktif</p>
-              </div>
-            </div>
+            )}
           </motion.div>
         </div>
       </div>

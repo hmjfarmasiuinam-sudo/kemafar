@@ -18,9 +18,38 @@ interface AboutContentProps {
     data: AboutSettings;
 }
 
+interface Statistics {
+    activeMembers: number;
+    eventsCount: number;
+    divisionsCount: number;
+    yearFounded: number;
+}
+
 export function AboutContent({ data }: AboutContentProps): JSX.Element {
     const scrollRef = useRef<HTMLDivElement>(null);
     const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+    const [statistics, setStatistics] = useState<Statistics | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    // Fetch statistics from API
+    useEffect(() => {
+        const fetchStatistics = async () => {
+            try {
+                const response = await fetch('/api/statistics');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch statistics');
+                }
+                const statsData = await response.json();
+                setStatistics(statsData);
+            } catch (error) {
+                console.error('Error fetching statistics:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchStatistics();
+    }, []);
 
     useEffect(() => {
         const checkScroll = (): void => {
@@ -168,23 +197,42 @@ export function AboutContent({ data }: AboutContentProps): JSX.Element {
             </Section>
 
             {/* Statistics - Bold Numbers */}
-            {data.statistics && (
+            {!loading && statistics && (
                 <Section className="py-24 bg-primary-50">
                     <div className="container-custom">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                            {Object.entries(data.statistics).map(([key, value]) => (
-                                <div key={key} className="text-center">
-                                    <div className="text-4xl md:text-6xl font-black text-gray-900 mb-2 tracking-tighter">
-                                        {value}
-                                    </div>
-                                    <div className="text-sm font-bold text-primary-600 uppercase tracking-widest">
-                                        {key === 'activeMembers' && 'Anggota Aktif'}
-                                        {key === 'eventsPerYear' && 'Event / Tahun'}
-                                        {key === 'divisions' && 'Divisi'}
-                                        {key === 'yearsActive' && 'Tahun Berdiri'}
-                                    </div>
+                            <div className="text-center">
+                                <div className="text-4xl md:text-6xl font-black text-gray-900 mb-2 tracking-tighter">
+                                    {statistics.activeMembers}+
                                 </div>
-                            ))}
+                                <div className="text-sm font-bold text-primary-600 uppercase tracking-widest">
+                                    Anggota Aktif
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-4xl md:text-6xl font-black text-gray-900 mb-2 tracking-tighter">
+                                    {statistics.eventsCount}+
+                                </div>
+                                <div className="text-sm font-bold text-primary-600 uppercase tracking-widest">
+                                    Event / Tahun
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-4xl md:text-6xl font-black text-gray-900 mb-2 tracking-tighter">
+                                    {statistics.divisionsCount}
+                                </div>
+                                <div className="text-sm font-bold text-primary-600 uppercase tracking-widest">
+                                    Divisi
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-4xl md:text-6xl font-black text-gray-900 mb-2 tracking-tighter">
+                                    {statistics.yearFounded}
+                                </div>
+                                <div className="text-sm font-bold text-primary-600 uppercase tracking-widest">
+                                    Tahun Berdiri
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Section>

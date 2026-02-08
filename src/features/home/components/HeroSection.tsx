@@ -11,6 +11,7 @@ import { Sparkles, Activity } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { CountingNumber } from '@/shared/components/ui/CountingNumber';
 import { HomeSettings } from '@/config';
+import { useState, useEffect } from 'react';
 
 // Optimized animation variants for better performance
 const container = {
@@ -40,7 +41,36 @@ interface HeroSectionProps {
   data: HomeSettings['hero'];
 }
 
+interface Statistics {
+  activeMembers: number;
+  eventsCount: number;
+  divisionsCount: number;
+  yearFounded: number;
+}
+
 export function HeroSection({ data }: HeroSectionProps) {
+  const [statistics, setStatistics] = useState<Statistics | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch statistics from API
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const response = await fetch('/api/statistics');
+        if (!response.ok) {
+          throw new Error('Failed to fetch statistics');
+        }
+        const statsData = await response.json();
+        setStatistics(statsData);
+      } catch (error) {
+        console.error('Error fetching statistics:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
   return (
     <div className="relative min-h-[90vh] flex items-center bg-white overflow-hidden pt-20">
       {/* Abstract Background Shapes - Clean & Modern */}
@@ -117,20 +147,40 @@ export function HeroSection({ data }: HeroSectionProps) {
             </motion.div>
 
             {/* Stats - Horizontal minimalist */}
-            <motion.div variants={item} className="flex items-center gap-12 mt-16 pt-8 border-t border-accent-300">
-              {data.stats.map((stat, index) => (
-                <div key={index}>
+            {!loading && statistics && (
+              <motion.div variants={item} className="flex items-center gap-12 mt-16 pt-8 border-t border-accent-300">
+                <div>
                   <p className="text-3xl font-black text-primary-600">
                     <CountingNumber
-                      value={parseInt(stat.value.replace(/\D/g, ''))}
-                      suffix={stat.value.replace(/[0-9]/g, '')}
+                      value={statistics.activeMembers}
+                      suffix="+"
                       duration={2.5}
                     />
                   </p>
-                  <p className="text-sm text-secondary-600 font-medium uppercase tracking-wider">{stat.label}</p>
+                  <p className="text-sm text-secondary-600 font-medium uppercase tracking-wider">Anggota Aktif</p>
                 </div>
-              ))}
-            </motion.div>
+                <div>
+                  <p className="text-3xl font-black text-primary-600">
+                    <CountingNumber
+                      value={statistics.eventsCount}
+                      suffix="+"
+                      duration={2.5}
+                    />
+                  </p>
+                  <p className="text-sm text-secondary-600 font-medium uppercase tracking-wider">Event per Tahun</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-black text-primary-600">
+                    <CountingNumber
+                      value={statistics.divisionsCount}
+                      suffix=""
+                      duration={2.5}
+                    />
+                  </p>
+                  <p className="text-sm text-secondary-600 font-medium uppercase tracking-wider">Divisi Aktif</p>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Visual - Editorial Image Composition (Desktop Only) */}
