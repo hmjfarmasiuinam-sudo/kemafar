@@ -139,7 +139,7 @@ CREATE TABLE public.organization_timeline (
 -- Site settings table
 CREATE TABLE public.site_settings (
   id uuid NOT NULL DEFAULT uuid_generate_v4(),
-  key text NOT NULL UNIQUE CHECK (key = ANY (ARRAY['home'::text, 'about'::text])),
+  key text NOT NULL UNIQUE CHECK (key = ANY (ARRAY['home'::text, 'about'::text, 'contact'::text])),
   content jsonb NOT NULL,
   updated_by uuid,
   created_at timestamp with time zone DEFAULT now(),

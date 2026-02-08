@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
-import { Settings, Home, Info, Save } from 'lucide-react';
+import { Settings, Home, Info, Save, Phone } from 'lucide-react';
 import { RichTextEditor } from '@/shared/components/RichTextEditorDynamic';
 
-type TabType = 'home' | 'about';
+type TabType = 'home' | 'about' | 'contact';
 
 interface HomeSettings {
   hero: {
@@ -53,6 +53,21 @@ interface AboutSettings {
   }>;
 }
 
+interface ContactSettings {
+  phone: string;
+  whatsapp: string;
+  email: string;
+  address: string;
+  socialMedia: {
+    facebook: string;
+    instagram: string;
+    youtube: string;
+    twitter?: string;
+    linkedin?: string;
+  };
+  footerDescription: string;
+}
+
 export default function SettingsPage() {
   const { hasPermission } = useAuth();
   const [activeTab, setActiveTab] = useState<TabType>('home');
@@ -65,6 +80,22 @@ export default function SettingsPage() {
 
   // About settings state
   const [aboutSettings, setAboutSettings] = useState<AboutSettings | null>(null);
+
+  // Contact settings state
+  const [contactSettings, setContactSettings] = useState<ContactSettings>({
+    phone: '',
+    whatsapp: '',
+    email: '',
+    address: '',
+    socialMedia: {
+      facebook: '',
+      instagram: '',
+      youtube: '',
+      twitter: '',
+      linkedin: '',
+    },
+    footerDescription: '',
+  });
 
   useEffect(() => {
     if (!hasPermission(['super_admin', 'admin'])) {
@@ -88,16 +119,18 @@ export default function SettingsPage() {
       // Type the data
       const settings = data as Array<{
         key: string;
-        content: HomeSettings | AboutSettings;
+        content: HomeSettings | AboutSettings | ContactSettings;
       }>;
 
-      // Find home and about settings from database
+      // Find home, about, and contact settings from database
       const homeData = settings?.find(s => s.key === 'home');
       const aboutData = settings?.find(s => s.key === 'about');
+      const contactData = settings?.find(s => s.key === 'contact');
 
       // Set state with new data
       if (homeData) setHomeSettings(homeData.content as HomeSettings);
       if (aboutData) setAboutSettings(aboutData.content as AboutSettings);
+      if (contactData) setContactSettings(contactData.content as ContactSettings);
 
       // Force component re-mount by changing key
       setRefreshKey(prev => prev + 1);
@@ -183,6 +216,41 @@ export default function SettingsPage() {
     }
   }
 
+  async function handleSaveContact() {
+    setLoading(true);
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast.error('Not authenticated');
+        return;
+      }
+
+      // Direct upsert to Supabase
+      const { error } = await supabase
+        .from('site_settings')
+        .upsert({
+          key: 'contact',
+          content: contactSettings as unknown as Record<string, unknown>,
+          updated_by: user.id,
+          updated_at: new Date().toISOString(),
+        } as never, {
+          onConflict: 'key'
+        });
+
+      if (error) throw error;
+
+      toast.success('Contact settings saved successfully');
+
+      // Refetch to sync UI with database
+      await fetchSettings();
+    } catch (error) {
+      console.error('Error saving contact settings:', error);
+      toast.error(error instanceof Error ? error.message : 'Failed to save settings');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   if (fetching) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -206,27 +274,37 @@ export default function SettingsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200">
-        <nav className="flex gap-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-2">
+        <nav className="flex gap-2 justify-center">
           <button
             onClick={() => setActiveTab('home')}
-            className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium transition-colors ${activeTab === 'home'
-                ? 'border-green-600 text-green-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${activeTab === 'home'
+                ? 'bg-green-600 text-white shadow-md'
+                : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
               }`}
           >
             <Home className="w-4 h-4" />
-            Home Settings
+            Home
           </button>
           <button
             onClick={() => setActiveTab('about')}
-            className={`flex items-center gap-2 px-4 py-3 border-b-2 font-medium transition-colors ${activeTab === 'about'
-                ? 'border-green-600 text-green-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${activeTab === 'about'
+                ? 'bg-green-600 text-white shadow-md'
+                : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
               }`}
           >
             <Info className="w-4 h-4" />
-            About Settings
+            About
+          </button>
+          <button
+            onClick={() => setActiveTab('contact')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${activeTab === 'contact'
+                ? 'bg-green-600 text-white shadow-md'
+                : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+              }`}
+          >
+            <Phone className="w-4 h-4" />
+            Contact
           </button>
         </nav>
       </div>
@@ -439,6 +517,221 @@ export default function SettingsPage() {
                   <>
                     <Save className="w-4 h-4" />
                     Save About Settings
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Contact Tab Content */}
+      {activeTab === 'contact' && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="space-y-6">
+            <h2 className="text-xl font-bold text-gray-900">Contact Information</h2>
+
+            {/* Contact Details */}
+            <div className="space-y-4 border-b pb-6">
+              <h3 className="text-lg font-semibold text-gray-800">Contact Details</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="text"
+                    value={contactSettings.phone}
+                    onChange={(e) =>
+                      setContactSettings({ ...contactSettings, phone: e.target.value })
+                    }
+                    placeholder="628123456789"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    WhatsApp Number
+                  </label>
+                  <input
+                    type="text"
+                    value={contactSettings.whatsapp}
+                    onChange={(e) =>
+                      setContactSettings({ ...contactSettings, whatsapp: e.target.value })
+                    }
+                    placeholder="628123456789"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  value={contactSettings.email}
+                  onChange={(e) =>
+                    setContactSettings({ ...contactSettings, email: e.target.value })
+                  }
+                  placeholder="contact@kemafar.org"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Address
+                </label>
+                <textarea
+                  value={contactSettings.address}
+                  onChange={(e) =>
+                    setContactSettings({ ...contactSettings, address: e.target.value })
+                  }
+                  rows={3}
+                  placeholder="Jl. H.M. Yasin Limpo No. 36, Romangpolong, Gowa, Sulawesi Selatan"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="space-y-4 border-b pb-6">
+              <h3 className="text-lg font-semibold text-gray-800">Social Media Links</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Facebook URL
+                  </label>
+                  <input
+                    type="url"
+                    value={contactSettings.socialMedia.facebook}
+                    onChange={(e) =>
+                      setContactSettings({
+                        ...contactSettings,
+                        socialMedia: { ...contactSettings.socialMedia, facebook: e.target.value },
+                      })
+                    }
+                    placeholder="https://facebook.com/kemafar"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Instagram URL
+                  </label>
+                  <input
+                    type="url"
+                    value={contactSettings.socialMedia.instagram}
+                    onChange={(e) =>
+                      setContactSettings({
+                        ...contactSettings,
+                        socialMedia: { ...contactSettings.socialMedia, instagram: e.target.value },
+                      })
+                    }
+                    placeholder="https://instagram.com/kemafar"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    YouTube URL
+                  </label>
+                  <input
+                    type="url"
+                    value={contactSettings.socialMedia.youtube}
+                    onChange={(e) =>
+                      setContactSettings({
+                        ...contactSettings,
+                        socialMedia: { ...contactSettings.socialMedia, youtube: e.target.value },
+                      })
+                    }
+                    placeholder="https://youtube.com/@kemafar"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Twitter URL (Optional)
+                  </label>
+                  <input
+                    type="url"
+                    value={contactSettings.socialMedia.twitter || ''}
+                    onChange={(e) =>
+                      setContactSettings({
+                        ...contactSettings,
+                        socialMedia: { ...contactSettings.socialMedia, twitter: e.target.value },
+                      })
+                    }
+                    placeholder="https://twitter.com/kemafar"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    LinkedIn URL (Optional)
+                  </label>
+                  <input
+                    type="url"
+                    value={contactSettings.socialMedia.linkedin || ''}
+                    onChange={(e) =>
+                      setContactSettings({
+                        ...contactSettings,
+                        socialMedia: { ...contactSettings.socialMedia, linkedin: e.target.value },
+                      })
+                    }
+                    placeholder="https://linkedin.com/company/kemafar"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Description */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-gray-800">Footer Content</h3>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Footer Description
+                </label>
+                <textarea
+                  value={contactSettings.footerDescription}
+                  onChange={(e) =>
+                    setContactSettings({ ...contactSettings, footerDescription: e.target.value })
+                  }
+                  rows={4}
+                  placeholder="Brief description about your organization for the footer..."
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            {/* Save Button */}
+            <div className="flex justify-end pt-6 border-t">
+              <button
+                type="button"
+                onClick={handleSaveContact}
+                disabled={loading}
+                className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <Save className="w-4 h-4" />
+                    Save Contact Settings
                   </>
                 )}
               </button>

@@ -67,6 +67,24 @@ export interface HomeSettings {
 }
 
 /**
+ * Contact Settings Type Definition
+ */
+export interface ContactSettings {
+  phone: string;
+  whatsapp: string;
+  email: string;
+  address: string;
+  socialMedia: {
+    facebook: string;
+    instagram: string;
+    youtube: string;
+    twitter?: string;
+    linkedin?: string;
+  };
+  footerDescription: string;
+}
+
+/**
  * About Settings Type Definition
  */
 export interface AboutSettings {
@@ -279,3 +297,22 @@ export const ABOUT_CONTENT = {
     },
   ],
 } as const;
+
+/**
+ * Contact Content (Default)
+ */
+export const CONTACT_CONTENT: ContactSettings = {
+  phone: '628123456789',
+  whatsapp: '628123456789',
+  email: 'contact@kemafar.org',
+  address: 'Jl. H.M. Yasin Limpo No. 36, Romangpolong, Gowa, Sulawesi Selatan',
+  socialMedia: {
+    facebook: 'https://facebook.com/kemafar',
+    instagram: 'https://instagram.com/kemafar',
+    youtube: 'https://youtube.com/@kemafar',
+    twitter: '',
+    linkedin: '',
+  },
+  footerDescription:
+    'Kami adalah wadah pengembangan mahasiswa farmasi yang berkomitmen mencetak profesional berintegritas dan berwawasan luas.',
+};

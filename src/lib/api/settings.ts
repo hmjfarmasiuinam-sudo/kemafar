@@ -1,6 +1,6 @@
 import { unstable_noStore as noStore } from 'next/cache';
 import { createServerSupabase } from '@/lib/supabase/server';
-import { HOME_CONTENT, ABOUT_CONTENT, HomeSettings, AboutSettings } from '@/config';
+import { HOME_CONTENT, ABOUT_CONTENT, CONTACT_CONTENT, HomeSettings, AboutSettings, ContactSettings } from '@/config';
 import { getTimeline } from './timeline';
 
 /**
@@ -9,7 +9,7 @@ import { getTimeline } from './timeline';
 interface SiteSettingsRaw {
   id: string;
   key: string;
-  content: HomeSettings | AboutSettings; // JSONB column
+  content: HomeSettings | AboutSettings | ContactSettings; // JSONB column
   created_at: string;
   updated_at: string;
   updated_by: string | null;
@@ -104,4 +104,36 @@ export async function getAboutSettings(): Promise<AboutSettings> {
 
   // Return settings (either from config or database, without timeline override)
   return baseSettings;
+}
+
+/**
+ * Fetch contact settings from database with fallback to config
+ */
+export async function getContactSettings(): Promise<ContactSettings> {
+  // Disable Next.js caching - always fetch fresh data
+  noStore();
+
+  // Check if we should use database for settings
+  const useSupabaseSettings = process.env.NEXT_PUBLIC_USE_SUPABASE_SETTINGS === 'true';
+
+  // If flag is disabled, return config immediately
+  if (!useSupabaseSettings) {
+    return CONTACT_CONTENT;
+  }
+
+  // Fetch from database
+  const supabase = createServerSupabase();
+  const { data, error } = await supabase
+    .from('site_settings')
+    .select('*')
+    .eq('key', 'contact')
+    .single();
+
+  // If error or no data, use fallback from config
+  if (error || !data) {
+    return CONTACT_CONTENT;
+  }
+
+  // Return content from database
+  return (data as SiteSettingsRaw).content as ContactSettings;
 }
