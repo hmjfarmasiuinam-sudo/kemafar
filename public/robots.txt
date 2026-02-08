@@ -1,0 +1,28 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kemafar.org
+
+# Sitemaps
+Sitemap: https://kemafar.org/sitemap.xml
+Sitemap: https://kemafar.org/sitemap-articles.xml
+Sitemap: https://kemafar.org/sitemap-events.xml
+
+# Disallow admin pages
+User-agent: *
+Disallow: /admin
+Disallow: /api
+Disallow: /auth
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /articles
+Allow: /events
+Allow: /leadership
+Allow: /members
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1

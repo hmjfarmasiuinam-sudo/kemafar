@@ -25,9 +25,45 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kemafar.org';
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'HMJ Farmasi';
+  const articleUrl = `${siteUrl}/articles/${article.slug}`;
+
   return {
-    title: `${article.title} - Your Organization`,
+    title: article.title,
     description: article.excerpt,
+    authors: [{ name: article.author.name }],
+    openGraph: {
+      type: 'article',
+      url: articleUrl,
+      title: article.title,
+      description: article.excerpt,
+      siteName: siteName,
+      locale: 'id_ID',
+      images: [
+        {
+          url: article.coverImage,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+          type: 'image/jpeg',
+        },
+      ],
+      publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt || article.publishedAt,
+      authors: [article.author.name],
+      tags: article.tags,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [article.coverImage],
+      creator: article.author.name,
+    },
+    alternates: {
+      canonical: articleUrl,
+    },
   };
 }
 
@@ -44,8 +80,45 @@ export default async function ArticleDetailPage({ params }: Props) {
     .filter((a) => a.id !== article.id)
     .slice(0, 3);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kemafar.org';
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'HMJ Farmasi';
+
+  // JSON-LD Structured Data untuk SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    image: article.coverImage,
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt || article.publishedAt,
+    author: {
+      '@type': 'Person',
+      name: article.author.name,
+      ...(article.author.avatar && { image: article.author.avatar }),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteName,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/icons/logo-active.webp`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/articles/${article.slug}`,
+    },
+    keywords: article.tags.join(', '),
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Back Button */}
       <div className="bg-white border-b">
         <div className="container-custom py-4">

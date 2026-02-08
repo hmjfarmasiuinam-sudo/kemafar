@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   description: SITE_CONFIG.description,
   keywords: [
-    'Your Organization',
-    'himpunan mahasiswa farmasi',
+    'HMJ Farmasi',
+    'Himpunan Mahasiswa Jurusan Farmasi',
     'farmasi UIN Alauddin',
     'mahasiswa farmasi Makassar',
     'organisasi mahasiswa farmasi',
@@ -41,9 +41,12 @@ export const metadata: Metadata = {
     'UIN Alauddin Makassar',
     'farmasi',
     'kesehatan',
+    'kefarmasian',
+    'KEMAFAR',
   ],
   authors: [{ name: SITE_CONFIG.name }],
   creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.name,
   openGraph: {
     type: 'website',
     locale: 'id_ID',
@@ -51,11 +54,20 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
+    images: [
+      {
+        url: `${SITE_CONFIG.url}/icons/logo-active.webp`,
+        width: 800,
+        height: 800,
+        alt: SITE_CONFIG.name,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
+    images: [`${SITE_CONFIG.url}/icons/logo-active.webp`],
   },
   robots: {
     index: true,
@@ -67,6 +79,12 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  verification: {
+    google: 'google-site-verification-code', // Ganti dengan kode verifikasi Google Search Console
+  },
+  alternates: {
+    canonical: SITE_CONFIG.url,
   },
 };
 

@@ -26,9 +26,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kemafar.org';
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'HMJ Farmasi';
+  const eventUrl = `${siteUrl}/events/${event.slug}`;
+
   return {
-    title: `${event.title} - Your Organization`,
+    title: event.title,
     description: event.description,
+    openGraph: {
+      type: 'website',
+      url: eventUrl,
+      title: event.title,
+      description: event.description,
+      siteName: siteName,
+      locale: 'id_ID',
+      images: [
+        {
+          url: event.coverImage,
+          width: 1200,
+          height: 630,
+          alt: event.title,
+          type: 'image/jpeg',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: event.title,
+      description: event.description,
+      images: [event.coverImage],
+    },
+    alternates: {
+      canonical: eventUrl,
+    },
   };
 }
 
@@ -42,8 +72,47 @@ export default async function EventDetailPage({ params }: Props) {
   const relatedEvents = await getEventsByCategory(event.category);
   const filteredRelated = relatedEvents.filter((e) => e.id !== event.id).slice(0, 3);
 
+  // JSON-LD Structured Data untuk SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.title,
+    description: event.description,
+    image: event.coverImage,
+    startDate: event.startDate,
+    endDate: event.endDate,
+    location: {
+      '@type': 'Place',
+      name: event.location.name,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: event.location.address,
+      },
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: event.organizer.name,
+      ...(event.organizer.contact && { telephone: event.organizer.contact }),
+    },
+    ...(event.maxParticipants && {
+      maximumAttendeeCapacity: event.maxParticipants,
+      remainingAttendeeCapacity: event.maxParticipants - (event.currentParticipants || 0),
+    }),
+    eventStatus: event.status === 'completed'
+      ? 'https://schema.org/EventScheduled'
+      : event.status === 'upcoming'
+      ? 'https://schema.org/EventScheduled'
+      : 'https://schema.org/EventCancelled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Back Button */}
       <div className="bg-white border-b">
         <div className="container-custom py-4">
