@@ -2,12 +2,21 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, Calendar, Eye, BookOpen, Newspaper, MessageSquare, FileText, Info } from 'lucide-react';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
 import type { Article as ArticleListItem } from '@/lib/api/articles';
 import { ARTICLE_CATEGORIES } from '@/config/domain.config';
+
+// Icon mapping untuk setiap kategori
+const CATEGORY_ICONS = {
+  article: BookOpen,
+  blog: Newspaper,
+  opinion: MessageSquare,
+  publication: FileText,
+  info: Info,
+} as const;
 
 function ArticlesSkeleton() {
   return (
@@ -93,47 +102,70 @@ export function ArticlesPreview() {
               const isFeatured = index === 0;
               const isLarge = index === 0 || index === 1;
 
+              // Get icon untuk kategori
+              const CategoryIcon = CATEGORY_ICONS[article.category as keyof typeof CATEGORY_ICONS] || BookOpen;
+
               return (
                 <Link
                   key={article.id}
                   href={`/articles/${article.slug}`}
                   className={`group relative ${gridClass}`}
                 >
-                  {/* Image - larger, more prominent */}
+                  {/* Image with duotone effect */}
                   <div className={`relative overflow-hidden rounded-3xl ${isFeatured ? 'aspect-[4/5]' : isLarge ? 'aspect-[3/4]' : 'aspect-[16/10]'}`}>
-                    <Image
-                      src={article.coverImage}
-                      alt={article.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    {/* Gradient overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    {/* Background Image - tidak full grayscale */}
+                    <div className="w-full h-full transition-transform duration-700 group-hover:scale-105">
+                      <Image
+                        src={article.coverImage}
+                        alt={article.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover"
+                        loading="lazy"
+                      />
+                    </div>
 
-                    {/* Category badge - floating */}
-                    <div className="absolute top-6 left-6">
-                      <span className="px-4 py-2 bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-semibold rounded-full">
+                    {/* Color overlay KUAT seperti referensi - warna biru sangat jenuh */}
+                    <div className="absolute inset-0 bg-primary-500 mix-blend-multiply" />
+
+                    {/* Layer untuk saturasi warna lebih tinggi */}
+                    <div className="absolute inset-0 bg-primary-400 mix-blend-color" />
+
+                    {/* Layer tambahan untuk brightness */}
+                    <div className="absolute inset-0 bg-primary-500/40 mix-blend-screen" />
+
+                    {/* Content - Centered */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center">
+                      {/* Icon - Large & Bold */}
+                      <div className="mb-4 md:mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                        <CategoryIcon className="text-white w-12 h-12 md:w-16 md:h-16" strokeWidth={1.5} />
+                      </div>
+
+                      {/* Title - Ukuran font KONSISTEN */}
+                      <h3 className="font-bold text-white text-xl md:text-2xl leading-tight px-4 line-clamp-3">
+                        {article.title}
+                      </h3>
+                    </div>
+
+                    {/* Category badge - top */}
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-primary-900 text-xs font-bold rounded-full">
                         {ARTICLE_CATEGORIES[article.category]}
                       </span>
                     </div>
 
-                    {/* Content overlay - on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                      <div className="flex items-center gap-2 text-white/80 text-sm mb-3">
-                        <Calendar className="w-4 h-4" />
+                    {/* Metadata - bottom */}
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3.5 h-3.5" />
                         <time>{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
                       </div>
-                      <h3 className={`font-bold text-white mb-3 line-clamp-2 ${isFeatured ? 'text-2xl md:text-3xl' : isLarge ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'}`}>
-                        {article.title}
-                      </h3>
-                      {isFeatured && (
-                        <p className="text-white/90 line-clamp-2 mb-4">{article.excerpt}</p>
+                      {article.views && (
+                        <div className="flex items-center gap-1.5">
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>{article.views}</span>
+                        </div>
                       )}
-                      <div className="flex items-center gap-2 text-white font-medium group-hover:gap-3 transition-all">
-                        Baca Selengkapnya
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
                     </div>
                   </div>
                 </Link>

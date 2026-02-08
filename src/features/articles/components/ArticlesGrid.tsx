@@ -7,10 +7,28 @@ import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 import { Article as ArticleListItem } from '@/lib/api/articles';
 import { ARTICLE_CATEGORIES } from '@/config/domain.config';
+import {
+  BookOpen,
+  Newspaper,
+  MessageSquare,
+  FileText,
+  Info,
+  Calendar,
+  Eye
+} from 'lucide-react';
 
 interface ArticlesGridProps {
   articles: ArticleListItem[];
 }
+
+// Icon mapping untuk setiap kategori
+const CATEGORY_ICONS = {
+  article: BookOpen,
+  blog: Newspaper,
+  opinion: MessageSquare,
+  publication: FileText,
+  info: Info,
+} as const;
 
 export function ArticlesGrid({ articles }: ArticlesGridProps) {
   if (articles.length === 0) {
@@ -60,6 +78,9 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
         const isLarge = colSpan >= 7;
         const isMedium = colSpan >= 5 && colSpan < 7;
 
+        // Get icon untuk kategori
+        const CategoryIcon = CATEGORY_ICONS[article.category as keyof typeof CATEGORY_ICONS] || BookOpen;
+
         return (
           <motion.article
             key={article.id}
@@ -83,7 +104,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
             }`}
           >
             <Link href={`/articles/${article.slug}`} className="block">
-              {/* Image with overlay - no card container */}
+              {/* Image with duotone effect */}
               <div className={`relative overflow-hidden rounded-3xl ${
                 isLarge
                   ? 'aspect-[4/3] md:aspect-[3/2]'
@@ -91,6 +112,7 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   ? 'aspect-[4/3] md:aspect-[1/1]'
                   : 'aspect-[4/3] md:aspect-[3/4]'
               }`}>
+                {/* Background Image - tidak full grayscale */}
                 <div className="w-full h-full transition-transform duration-300 group-hover:scale-105">
                   <Image
                     src={article.coverImage}
@@ -102,69 +124,45 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   />
                 </div>
 
-                {/* Gradient for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                {/* Color overlay KUAT seperti referensi - warna biru sangat jenuh */}
+                <div className="absolute inset-0 bg-primary-500 mix-blend-multiply" />
 
-                {/* Category badge - minimal */}
-                <div className="absolute top-6 left-6">
-                  <span className="px-4 py-2 bg-white text-gray-900 text-sm font-bold rounded-full shadow-lg inline-block">
+                {/* Layer untuk saturasi warna lebih tinggi */}
+                <div className="absolute inset-0 bg-primary-400 mix-blend-color" />
+
+                {/* Layer tambahan untuk brightness */}
+                <div className="absolute inset-0 bg-primary-500/40 mix-blend-screen" />
+
+                {/* Content - Centered */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center">
+                  {/* Icon - Large & Bold */}
+                  <div className="mb-4 md:mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                    <CategoryIcon className="text-white w-12 h-12 md:w-16 md:h-16" strokeWidth={1.5} />
+                  </div>
+
+                  {/* Title - Ukuran font KONSISTEN */}
+                  <h2 className="font-bold text-white text-xl md:text-2xl leading-tight px-4 line-clamp-3">
+                    {article.title}
+                  </h2>
+                </div>
+
+                {/* Category badge - top */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-primary-900 text-xs font-bold rounded-full">
                     {ARTICLE_CATEGORIES[article.category]}
                   </span>
                 </div>
 
-                {/* Content overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
-                  {/* Author */}
-                  <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                    {article.author.avatar && (
-                      <Image
-                        src={article.author.avatar}
-                        alt={article.author.name}
-                        width={40}
-                        height={40}
-                        className="rounded-full border-2 border-white/50"
-                      />
-                    )}
-                    <div>
-                      <p className="text-sm font-semibold text-white">
-                        {article.author.name}
-                      </p>
-                      <div className="flex items-center gap-3 text-xs text-white/80">
-                        <time>{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
-                        {article.views && <span>• {article.views} views</span>}
-                      </div>
-                    </div>
+                {/* Metadata - bottom */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <time>{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
                   </div>
-
-                  {/* Title - varying sizes */}
-                  <h2 className={`font-bold text-white mb-3 line-clamp-2 ${
-                    isLarge
-                      ? 'text-lg md:text-2xl'
-                      : isMedium
-                      ? 'text-lg md:text-xl'
-                      : 'text-lg md:text-base'
-                  }`}>
-                    {article.title}
-                  </h2>
-
-                  {/* Excerpt - only for large */}
-                  {isLarge && (
-                    <p className="hidden md:block text-white/90 line-clamp-2 mb-4 text-sm">
-                      {article.excerpt}
-                    </p>
-                  )}
-
-                  {/* Tags - minimal */}
-                  {article.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {article.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 bg-white/20 text-white text-xs font-medium rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                  {article.views && (
+                    <div className="flex items-center gap-1.5">
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>{article.views}</span>
                     </div>
                   )}
                 </div>
