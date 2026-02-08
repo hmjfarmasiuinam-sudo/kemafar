@@ -86,11 +86,12 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
             key={article.id}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px", amount: 0.1 }}
+            viewport={{ once: true, margin: "-80px", amount: 0.05 }}
             transition={{
-              duration: 0.25,
-              ease: "easeOut",
+              duration: 0.5,
+              ease: [0.22, 1, 0.36, 1],
             }}
+            style={{ willChange: 'transform, opacity' }}
             className={`group relative ${
               colSpan === 8
                 ? 'col-span-1 md:col-span-8'
@@ -111,9 +112,13 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   : isMedium
                   ? 'aspect-[4/3] md:aspect-[1/1]'
                   : 'aspect-[4/3] md:aspect-[3/4]'
-              }`}>
-                {/* Background Image - optimized */}
-                <div className="w-full h-full md:transition-transform md:duration-300 md:group-hover:scale-105">
+              }`}
+                style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}
+              >
+                {/* Background Image - optimized with GPU acceleration */}
+                <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105"
+                  style={{ willChange: 'transform' }}
+                >
                   <Image
                     src={article.coverImage}
                     alt={article.title}

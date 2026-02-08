@@ -6,6 +6,7 @@ import { ArrowRight, Calendar, Eye, BookOpen, Newspaper, MessageSquare, FileText
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import type { Article as ArticleListItem } from '@/lib/api/articles';
 import { ARTICLE_CATEGORIES } from '@/config/domain.config';
 
@@ -36,6 +37,31 @@ function ArticlesSkeleton() {
   );
 }
 
+// Smooth stagger animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1], // Custom easeOutExpo
+    },
+  },
+};
+
 export function ArticlesPreview() {
   const [articles, setArticles] = useState<ArticleListItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,7 +87,7 @@ export function ArticlesPreview() {
   }, []);
 
   return (
-    <section className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+    <section className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white" style={{ willChange: 'scroll-position' }}>
       <div className="container-custom">
         {/* Header - Bold & Asymmetric */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
@@ -85,8 +111,14 @@ export function ArticlesPreview() {
         {loading ? (
           <ArticlesSkeleton />
         ) : (
-          /* Bento Grid - Simplified for mobile */
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+          /* Bento Grid - Simplified for mobile with smooth animations */
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6"
+          >
             {articles.map((article, index) => {
               // Simplified grid: 3 columns on mobile, bento on desktop
               const gridClass = index === 0
@@ -99,26 +131,35 @@ export function ArticlesPreview() {
               const CategoryIcon = CATEGORY_ICONS[article.category as keyof typeof CATEGORY_ICONS] || BookOpen;
 
               return (
-                <Link
+                <motion.div
                   key={article.id}
-                  href={`/articles/${article.slug}`}
-                  className={`group relative ${gridClass}`}
+                  variants={itemVariants}
+                  className={`${gridClass}`}
+                  style={{ willChange: 'transform, opacity' }}
                 >
-                  {/* Image with duotone effect */}
-                  <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl ${isFeatured ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}>
-                    {/* Background Image - optimized */}
-                    <div className="w-full h-full md:transition-transform md:duration-700 md:group-hover:scale-105">
-                      <Image
-                        src={article.coverImage}
-                        alt={article.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                        className="object-cover"
-                        priority={index === 0}
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        quality={index === 0 ? 85 : 75}
-                      />
-                    </div>
+                  <Link
+                    href={`/articles/${article.slug}`}
+                    className="group relative block"
+                  >
+                    {/* Image with duotone effect */}
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl ${isFeatured ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}
+                      style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}
+                    >
+                      {/* Background Image - optimized with GPU acceleration */}
+                      <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105"
+                        style={{ willChange: 'transform' }}
+                      >
+                        <Image
+                          src={article.coverImage}
+                          alt={article.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
+                          className="object-cover"
+                          priority={index === 0}
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          quality={index === 0 ? 85 : 75}
+                        />
+                      </div>
 
                     {/* Color overlay - warna biru jenuh */}
                     <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
@@ -160,10 +201,11 @@ export function ArticlesPreview() {
                       )}
                     </div>
                   </div>
-                </Link>
+                  </Link>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
