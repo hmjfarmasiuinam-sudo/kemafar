@@ -20,23 +20,17 @@ const CATEGORY_ICONS = {
 
 function ArticlesSkeleton() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
       {/* Featured skeleton */}
       <div className="md:col-span-8 md:row-span-2">
-        <div className="relative aspect-[4/5] bg-gray-200 rounded-3xl animate-pulse" />
+        <div className="relative aspect-[4/5] bg-gray-200 rounded-2xl md:rounded-3xl animate-pulse" />
       </div>
-      {/* Regular skeletons */}
+      {/* Regular skeletons - only show 2 more on mobile */}
       <div className="md:col-span-4">
-        <div className="relative aspect-[16/10] bg-gray-200 rounded-3xl animate-pulse" />
+        <div className="relative aspect-[16/10] bg-gray-200 rounded-2xl md:rounded-3xl animate-pulse" />
       </div>
       <div className="md:col-span-4">
-        <div className="relative aspect-[16/10] bg-gray-200 rounded-3xl animate-pulse" />
-      </div>
-      <div className="md:col-span-6">
-        <div className="relative aspect-[16/10] bg-gray-200 rounded-3xl animate-pulse" />
-      </div>
-      <div className="md:col-span-6">
-        <div className="relative aspect-[16/10] bg-gray-200 rounded-3xl animate-pulse" />
+        <div className="relative aspect-[16/10] bg-gray-200 rounded-2xl md:rounded-3xl animate-pulse" />
       </div>
     </div>
   );
@@ -54,7 +48,8 @@ export function ArticlesPreview() {
           throw new Error('Failed to fetch articles');
         }
         const data = await response.json();
-        setArticles(data);
+        // Limit to 3 articles on mobile for better performance
+        setArticles(data.slice(0, 3));
       } catch (error) {
         console.error('Failed to fetch articles:', error);
       } finally {
@@ -90,19 +85,17 @@ export function ArticlesPreview() {
         {loading ? (
           <ArticlesSkeleton />
         ) : (
-          /* Bento Grid - Balanced Pattern */
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          /* Bento Grid - Simplified for mobile */
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
             {articles.map((article, index) => {
-              // Better bento grid pattern: Featured (7 cols, 2 rows), Small (5 cols), then 3x Medium (4 cols each)
-              const gridClass =
-                index === 0 ? 'md:col-span-7 md:row-span-2' :
-                  index === 1 ? 'md:col-span-5 md:row-span-2' :
-                    'md:col-span-4';
+              // Simplified grid: 3 columns on mobile, bento on desktop
+              const gridClass = index === 0
+                ? 'md:col-span-8 md:row-span-2'
+                : 'md:col-span-4';
 
               const isFeatured = index === 0;
-              const isLarge = index === 0 || index === 1;
 
-              // Get icon untuk kategori
+              // Get icon untuk kategori (lazy load icons)
               const CategoryIcon = CATEGORY_ICONS[article.category as keyof typeof CATEGORY_ICONS] || BookOpen;
 
               return (
@@ -112,34 +105,33 @@ export function ArticlesPreview() {
                   className={`group relative ${gridClass}`}
                 >
                   {/* Image with duotone effect */}
-                  <div className={`relative overflow-hidden rounded-3xl ${isFeatured ? 'aspect-[4/5]' : isLarge ? 'aspect-[3/4]' : 'aspect-[16/10]'}`}>
-                    {/* Background Image - tidak full grayscale */}
-                    <div className="w-full h-full transition-transform duration-700 group-hover:scale-105">
+                  <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl ${isFeatured ? 'aspect-[4/5]' : 'aspect-[16/10]'}`}>
+                    {/* Background Image - optimized */}
+                    <div className="w-full h-full md:transition-transform md:duration-700 md:group-hover:scale-105">
                       <Image
                         src={article.coverImage}
                         alt={article.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                         className="object-cover"
-                        loading="lazy"
+                        priority={index === 0}
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        quality={index === 0 ? 85 : 75}
                       />
                     </div>
 
-                    {/* Color overlay KUAT - warna biru jenuh */}
-                    <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
+                    {/* Simplified overlay - single layer */}
+                    <div className="absolute inset-0 bg-primary-600/80 mix-blend-multiply" />
 
-                    {/* Layer untuk saturasi warna lebih tinggi */}
-                    <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
-
-                    {/* Content - Centered */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center">
-                      {/* Icon - Large & Bold */}
-                      <div className="mb-4 md:mb-6 transform transition-transform duration-300 group-hover:scale-110">
-                        <CategoryIcon className="text-white w-12 h-12 md:w-16 md:h-16" strokeWidth={1.5} />
+                    {/* Content - Centered - optimized */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
+                      {/* Icon - responsive size */}
+                      <div className="mb-3 md:mb-6 md:transform md:transition-transform md:duration-300 md:group-hover:scale-110">
+                        <CategoryIcon className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
                       </div>
 
-                      {/* Title - Ukuran font KONSISTEN */}
-                      <h3 className="font-bold text-white text-xl md:text-2xl leading-tight px-4 line-clamp-3">
+                      {/* Title - optimized font size */}
+                      <h3 className="font-bold text-white text-lg md:text-2xl leading-tight px-2 md:px-4 line-clamp-3">
                         {article.title}
                       </h3>
                     </div>
@@ -151,14 +143,14 @@ export function ArticlesPreview() {
                       </span>
                     </div>
 
-                    {/* Metadata - bottom */}
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs">
-                      <div className="flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5" />
-                        <time>{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
+                    {/* Metadata - bottom - simplified on mobile */}
+                    <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4 flex items-center justify-between text-white/90 text-xs">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                        <time className="text-[10px] md:text-xs">{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
                       </div>
                       {article.views && (
-                        <div className="flex items-center gap-1.5">
+                        <div className="hidden sm:flex items-center gap-1.5">
                           <Eye className="w-3.5 h-3.5" />
                           <span>{article.views}</span>
                         </div>

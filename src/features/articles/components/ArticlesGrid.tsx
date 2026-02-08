@@ -86,10 +86,10 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
             key={article.id}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px", amount: 0.1 }}
+            viewport={{ once: true, margin: "-50px", amount: 0.1 }}
             transition={{
-              duration: 0.3,
-              ease: [0.25, 0.1, 0.25, 1],
+              duration: 0.25,
+              ease: "easeOut",
             }}
             className={`group relative ${
               colSpan === 8
@@ -105,15 +105,15 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
           >
             <Link href={`/articles/${article.slug}`} className="block">
               {/* Image with duotone effect */}
-              <div className={`relative overflow-hidden rounded-3xl ${
+              <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl ${
                 isLarge
                   ? 'aspect-[4/3] md:aspect-[3/2]'
                   : isMedium
                   ? 'aspect-[4/3] md:aspect-[1/1]'
                   : 'aspect-[4/3] md:aspect-[3/4]'
               }`}>
-                {/* Background Image - tidak full grayscale */}
-                <div className="w-full h-full transition-transform duration-300 group-hover:scale-105">
+                {/* Background Image - optimized */}
+                <div className="w-full h-full md:transition-transform md:duration-300 md:group-hover:scale-105">
                   <Image
                     src={article.coverImage}
                     alt={article.title}
@@ -121,24 +121,22 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                     loading="lazy"
+                    quality={75}
                   />
                 </div>
 
-                {/* Color overlay KUAT - warna biru jenuh */}
-                <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
+                {/* Simplified overlay - single layer */}
+                <div className="absolute inset-0 bg-primary-600/80 mix-blend-multiply" />
 
-                {/* Layer untuk saturasi warna lebih tinggi */}
-                <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
-
-                {/* Content - Centered */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 md:p-8 text-center">
-                  {/* Icon - Large & Bold */}
-                  <div className="mb-4 md:mb-6 transform transition-transform duration-300 group-hover:scale-110">
-                    <CategoryIcon className="text-white w-12 h-12 md:w-16 md:h-16" strokeWidth={1.5} />
+                {/* Content - Centered - optimized */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
+                  {/* Icon - responsive size */}
+                  <div className="mb-3 md:mb-6 md:transform md:transition-transform md:duration-300 md:group-hover:scale-110">
+                    <CategoryIcon className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
                   </div>
 
-                  {/* Title - Ukuran font KONSISTEN */}
-                  <h2 className="font-bold text-white text-xl md:text-2xl leading-tight px-4 line-clamp-3">
+                  {/* Title - optimized font size */}
+                  <h2 className="font-bold text-white text-lg md:text-2xl leading-tight px-2 md:px-4 line-clamp-3">
                     {article.title}
                   </h2>
                 </div>
@@ -150,14 +148,14 @@ export function ArticlesGrid({ articles }: ArticlesGridProps) {
                   </span>
                 </div>
 
-                {/* Metadata - bottom */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-xs">
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <time>{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
+                {/* Metadata - bottom - simplified on mobile */}
+                <div className="absolute bottom-3 md:bottom-4 left-3 md:left-4 right-3 md:right-4 flex items-center justify-between text-white/90 text-xs">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                    <time className="text-[10px] md:text-xs">{format(new Date(article.publishedAt), 'd MMM yyyy', { locale: id })}</time>
                   </div>
                   {article.views && (
-                    <div className="flex items-center gap-1.5">
+                    <div className="hidden sm:flex items-center gap-1.5">
                       <Eye className="w-3.5 h-3.5" />
                       <span>{article.views}</span>
                     </div>
