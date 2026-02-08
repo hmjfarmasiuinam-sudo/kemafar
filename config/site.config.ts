@@ -20,7 +20,7 @@ export const SITE_CONFIG = {
 
   /** Site description for SEO and metadata */
   description:
-    'Your Organization - A modern platform for community engagement, content management, and member collaboration',
+    'Himpunan Mahasiswa Jurusan Farmasi UIN Alauddin Makassar - Organisasi mahasiswa yang bergerak di bidang kefarmasian, kesehatan, dan pengembangan kompetensi mahasiswa farmasi',
 
   /** WhatsApp number for contact (format: 62812xxxxxxxx) */
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '6281234567890',

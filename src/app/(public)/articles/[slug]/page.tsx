@@ -102,7 +102,7 @@ export default async function ArticleDetailPage({ params }: Props) {
       name: siteName,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/icons/logo-active.webp`,
+        url: `${siteUrl}/images/logo-hero.jpeg`,
       },
     },
     mainEntityOfPage: {
