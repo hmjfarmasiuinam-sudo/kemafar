@@ -5,17 +5,18 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { id } from 'date-fns/locale';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { Article as ArticleListItem } from '@/lib/api/articles';
 import { ARTICLE_CATEGORIES } from '@/config/domain.config';
-import {
-  BookOpen,
-  Newspaper,
-  MessageSquare,
-  FileText,
-  Info,
-  Calendar,
-  Eye
+// Tree-shaking optimization: import only needed icons
+import { 
+  BookOpen, 
+  Newspaper, 
+  MessageSquare, 
+  FileText, 
+  Info, 
+  Calendar, 
+  Eye 
 } from 'lucide-react';
 
 interface ArticlesGridProps {
@@ -36,25 +37,31 @@ const ArticleCard = memo(({
   article,
   colSpan,
   isLarge,
-  isMedium
+  isMedium,
+  index
 }: {
   article: ArticleListItem;
   colSpan: number;
   isLarge: boolean;
   isMedium: boolean;
+  index: number;
 }) => {
   const CategoryIcon = CATEGORY_ICONS[article.category as keyof typeof CATEGORY_ICONS] || BookOpen;
+  
+  // Priority loading untuk 3 artikel pertama (faster LCP)
+  const isPriority = index < 3;
 
   return (
     <motion.article
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-50px", amount: 0.1 }}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px", amount: 0 }}
       transition={{
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1],
+        duration: 0.3,
+        ease: "easeOut",
       }}
       style={{
+        willChange: 'auto',
         contentVisibility: 'auto',
         containIntrinsicSize: 'auto 400px'
       }}
@@ -78,29 +85,33 @@ const ArticleCard = memo(({
             : isMedium
             ? 'aspect-[4/3] md:aspect-[1/1]'
             : 'aspect-[4/3] md:aspect-[3/4]'
-        }`}>
+        }`}
+          style={{ transform: 'translateZ(0)' }}
+        >
           {/* Background Image - optimized */}
-          <div className="w-full h-full md:transition-transform md:duration-700 md:ease-out md:group-hover:scale-105 will-change-auto">
+          <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105">
             <Image
               src={article.coverImage}
               alt={article.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
-              loading="lazy"
+              loading={isPriority ? 'eager' : 'lazy'}
+              priority={isPriority}
               quality={75}
-              placeholder="blur"
-              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjQ3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
             />
           </div>
 
-          {/* Single optimized overlay - lebih ringan */}
-          <div className="absolute inset-0 bg-primary-600/80 mix-blend-multiply" />
+          {/* Color overlay KUAT - warna biru jenuh */}
+          <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
+
+          {/* Layer untuk saturasi warna lebih tinggi */}
+          <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
 
           {/* Content - Centered - optimized */}
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
-            {/* Icon - responsive size, no animation on mobile */}
-            <div className="mb-3 md:mb-6 md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-110">
+            {/* Icon - responsive size */}
+            <div className="mb-3 md:mb-6 md:transform md:transition-transform md:duration-300 md:group-hover:scale-110">
               <CategoryIcon className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
             </div>
 
@@ -134,12 +145,71 @@ const ArticleCard = memo(({
       </Link>
     </motion.article>
   );
+}, (prevProps, nextProps) => {
+  // Custom comparison: only re-render if article data actually changed
+  return (
+    prevProps.article.id === nextProps.article.id &&
+    prevProps.colSpan === nextProps.colSpan &&
+    prevProps.article.coverImage === nextProps.article.coverImage &&
+    prevProps.article.title === nextProps.article.title
+  );
 });
 
 ArticleCard.displayName = 'ArticleCard';
 
 export const ArticlesGrid = memo(function ArticlesGrid({ articles }: ArticlesGridProps) {
-  if (articles.length === 0) {
+  // Memoize calculated layout untuk prevent recalculation on every render
+  // Hook must be called before any early returns
+  const articleLayout = useMemo(() => {
+    if (articles.length === 0) return [];
+    // Calculate column span untuk setiap artikel agar tidak ada space kosong
+    // Golden ratio inspired: 8:5 ≈ 1.6 (mendekati golden 1.618)
+    const calculateColSpan = (index: number, remaining: number): number => {
+      // Cek sisa artikel yang belum di-render
+      const articlesLeft = articles.length - index;
+
+      // Kalau sisa artikel cuma 1, ambil semua space yang tersisa
+      if (articlesLeft === 1) return remaining;
+
+      // Pattern golden ratio: 8, 4, 5, 7, 6, 6, 4, 4, 4
+      // Tidak ada yang full 12 cols - semua berbagi layar
+      const patterns = [8, 4, 5, 7, 6, 6, 4, 4, 4];
+      const patternIndex = index % patterns.length;
+      const idealSpan = patterns[patternIndex];
+
+      // Kalau ideal span lebih besar dari remaining, ambil remaining saja
+      if (idealSpan > remaining) return remaining;
+
+      return idealSpan;
+    };
+
+    // Track remaining columns in current row
+    let remainingCols = 0;
+
+    return articles.map((article, index) => {
+      // Reset to 12 if starting new row
+      if (remainingCols === 0) {
+        remainingCols = 12;
+      }
+
+      const colSpan = calculateColSpan(index, remainingCols);
+      remainingCols -= colSpan;
+
+      // Determine size category based on col span
+      const isLarge = colSpan >= 7;
+      const isMedium = colSpan >= 5 && colSpan < 7;
+
+      return {
+        article,
+        colSpan,
+        isLarge,
+        isMedium,
+        index
+      };
+    });
+  }, [articles]);
+
+  if (articleLayout.length === 0) {
     return (
       <div className="text-center py-32">
         <p className="text-gray-500 text-xl">Belum ada artikel tersedia</p>
@@ -147,54 +217,17 @@ export const ArticlesGrid = memo(function ArticlesGrid({ articles }: ArticlesGri
     );
   }
 
-  // Calculate column span untuk setiap artikel agar tidak ada space kosong
-  // Golden ratio inspired: 8:5 ≈ 1.6 (mendekati golden 1.618)
-  const calculateColSpan = (index: number, remaining: number): number => {
-    // Cek sisa artikel yang belum di-render
-    const articlesLeft = articles.length - index;
-
-    // Kalau sisa artikel cuma 1, ambil semua space yang tersisa
-    if (articlesLeft === 1) return remaining;
-
-    // Pattern golden ratio: 8, 4, 5, 7, 6, 6, 4, 4, 4
-    // Tidak ada yang full 12 cols - semua berbagi layar
-    const patterns = [8, 4, 5, 7, 6, 6, 4, 4, 4];
-    const patternIndex = index % patterns.length;
-    const idealSpan = patterns[patternIndex];
-
-    // Kalau ideal span lebih besar dari remaining, ambil remaining saja
-    if (idealSpan > remaining) return remaining;
-
-    return idealSpan;
-  };
-
-  // Track remaining columns in current row
-  let remainingCols = 0;
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3 lg:gap-4" style={{ contentVisibility: 'auto' }}>
-      {articles.map((article, index) => {
-        // Reset to 12 if starting new row
-        if (remainingCols === 0) {
-          remainingCols = 12;
-        }
-
-        const colSpan = calculateColSpan(index, remainingCols);
-        remainingCols -= colSpan;
-
-        // Determine size category based on col span
-        const isLarge = colSpan >= 7;
-        const isMedium = colSpan >= 5 && colSpan < 7;
-
-        return (
-          <ArticleCard
-            key={article.id}
-            article={article}
-            colSpan={colSpan}
-            isLarge={isLarge}
-            isMedium={isMedium}
-          />
-        );
-      })}</div>
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3 lg:gap-4">
+      {articleLayout.map(({ article, colSpan, isLarge, isMedium, index }) => (
+        <ArticleCard
+          key={article.id}
+          article={article}
+          colSpan={colSpan}
+          isLarge={isLarge}
+          isMedium={isMedium}
+          index={index}
+        />
+      ))}</div>
   );
 });

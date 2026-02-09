@@ -11,38 +11,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    /* Optimize scroll performance on mobile */
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
   }
 
   body {
     @apply bg-accent-100 text-primary-600;
     min-height: 100vh;
-    /* GPU acceleration for smoother scrolling */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
   }
 
   * {
     -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Optimize image and media rendering */
-  img, video, iframe {
-    will-change: auto;
-  }
-
-  /* Reduce motion for users who prefer it */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
   }
 }
 

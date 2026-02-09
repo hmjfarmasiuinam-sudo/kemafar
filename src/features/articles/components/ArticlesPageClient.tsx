@@ -12,10 +12,20 @@ import { Search } from 'lucide-react';
 const ITEMS_PER_PAGE = 10;
 
 function ArticlesSkeleton() {
+  // Match actual grid structure untuk prevent CLS (Cumulative Layout Shift)
+  const skeletonPattern = [8, 4, 5, 7, 6, 6, 4, 4, 4, 8];
+  
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="relative aspect-[4/3] bg-gray-200 rounded-3xl animate-pulse" />
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3 lg:gap-4">
+      {skeletonPattern.map((colSpan, i) => (
+        <div 
+          key={i} 
+          className={`relative bg-gray-200 rounded-2xl md:rounded-3xl animate-pulse col-span-1 md:col-span-${colSpan}`}
+          style={{ 
+            aspectRatio: colSpan >= 7 ? '3/2' : colSpan >= 5 ? '1/1' : '3/4',
+            minHeight: '300px'
+          }}
+        />
       ))}
     </div>
   );
@@ -59,6 +69,9 @@ export function ArticlesPageClient() {
   }, [searchParams, router, pathname]);
 
   useEffect(() => {
+    // AbortController untuk cancel previous requests
+    const abortController = new AbortController();
+    
     const fetchArticles = async () => {
       try {
         setLoading(true);
@@ -81,7 +94,12 @@ export function ArticlesPageClient() {
           params.append('search', search);
         }
 
-        const response = await fetch(`/api/articles?${params}`);
+        const response = await fetch(`/api/articles?${params}`, {
+          signal: abortController.signal,
+          // Leverage browser cache
+          next: { revalidate: 60 }
+        });
+        
         if (!response.ok) {
           throw new Error('Failed to fetch articles');
         }
@@ -89,6 +107,10 @@ export function ArticlesPageClient() {
         const data = await response.json();
         setResult(data);
       } catch (error) {
+        // Ignore abort errors
+        if (error instanceof Error && error.name === 'AbortError') {
+          return;
+        }
         console.error('Failed to fetch articles:', error);
       } finally {
         setLoading(false);
@@ -96,6 +118,11 @@ export function ArticlesPageClient() {
     };
 
     fetchArticles();
+    
+    // Cleanup: abort fetch on unmount or dependency change
+    return () => {
+      abortController.abort();
+    };
   }, [category, search, currentPage]);
 
   useEffect(() => {
