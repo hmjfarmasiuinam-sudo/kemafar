@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { Article, ArticleCategory, PaginatedResult } from '@/lib/api/articles';
 import { ARTICLE_CATEGORIES } from '@/config/domain.config';
