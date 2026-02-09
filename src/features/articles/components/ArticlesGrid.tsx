@@ -47,15 +47,14 @@ const ArticleCard = memo(({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px", amount: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px", amount: 0.1 }}
       transition={{
-        duration: 0.3,
-        ease: "easeOut",
+        duration: 0.4,
+        ease: [0.25, 0.1, 0.25, 1],
       }}
       style={{
-        willChange: 'auto',
         contentVisibility: 'auto',
         containIntrinsicSize: 'auto 400px'
       }}
@@ -79,11 +78,9 @@ const ArticleCard = memo(({
             : isMedium
             ? 'aspect-[4/3] md:aspect-[1/1]'
             : 'aspect-[4/3] md:aspect-[3/4]'
-        }`}
-          style={{ transform: 'translateZ(0)' }}
-        >
+        }`}>
           {/* Background Image - optimized */}
-          <div className="w-full h-full md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-105">
+          <div className="w-full h-full md:transition-transform md:duration-700 md:ease-out md:group-hover:scale-105 will-change-auto">
             <Image
               src={article.coverImage}
               alt={article.title}
@@ -92,19 +89,18 @@ const ArticleCard = memo(({
               className="object-cover"
               loading="lazy"
               quality={75}
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjQ3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
             />
           </div>
 
-          {/* Color overlay KUAT - warna biru jenuh */}
-          <div className="absolute inset-0 bg-primary-600 mix-blend-multiply" />
-
-          {/* Layer untuk saturasi warna lebih tinggi */}
-          <div className="absolute inset-0 bg-primary-600 mix-blend-color" />
+          {/* Single optimized overlay - lebih ringan */}
+          <div className="absolute inset-0 bg-primary-600/80 mix-blend-multiply" />
 
           {/* Content - Centered - optimized */}
           <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 text-center">
-            {/* Icon - responsive size */}
-            <div className="mb-3 md:mb-6 md:transform md:transition-transform md:duration-300 md:group-hover:scale-110">
+            {/* Icon - responsive size, no animation on mobile */}
+            <div className="mb-3 md:mb-6 md:transition-transform md:duration-500 md:ease-out md:group-hover:scale-110">
               <CategoryIcon className="text-white w-10 h-10 md:w-16 md:h-16" strokeWidth={1.5} />
             </div>
 
@@ -176,7 +172,7 @@ export const ArticlesGrid = memo(function ArticlesGrid({ articles }: ArticlesGri
   let remainingCols = 0;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3 lg:gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-3 lg:gap-4" style={{ contentVisibility: 'auto' }}>
       {articles.map((article, index) => {
         // Reset to 12 if starting new row
         if (remainingCols === 0) {

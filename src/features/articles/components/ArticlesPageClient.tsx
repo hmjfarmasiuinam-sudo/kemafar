@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { Article, ArticleCategory, PaginatedResult } from '@/lib/api/articles';
 import { ARTICLE_CATEGORIES } from '@/config/domain.config';
@@ -35,8 +35,8 @@ export function ArticlesPageClient() {
   const search = searchParams.get('search') || '';
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-  // Handle search input with debounce
-  const handleSearchChange = (value: string) => {
+  // Handle search input with debounce - memoized untuk prevent re-creation
+  const handleSearchChange = useCallback((value: string) => {
     setSearchQuery(value);
 
     if (debounceTimeoutRef.current) clearTimeout(debounceTimeoutRef.current);
@@ -56,15 +56,15 @@ export function ArticlesPageClient() {
       const queryString = params.toString();
       router.push(queryString ? `${pathname}?${queryString}` : pathname);
     }, 500); // 500ms debounce
-  };
+  }, [searchParams, router, pathname]);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         setLoading(true);
         
-        // Scroll to content section smoothly
-        if (contentRef.current) {
+        // Scroll to content section smoothly - only on desktop to prevent lag on mobile
+        if (contentRef.current && window.innerWidth >= 768) {
           contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
