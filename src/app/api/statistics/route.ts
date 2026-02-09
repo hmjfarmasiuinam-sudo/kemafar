@@ -7,18 +7,18 @@ export const revalidate = 300;
 /**
  * GET /api/statistics
  * Returns dynamic statistics:
- * - activeMembers: Total members including alumni
+ * - activeMembers: Total members from leadership table
  * - eventsCount: Total events
- * - divisionsCount: Unique divisions from members
+ * - divisionsCount: Unique positions from leadership
  * - yearFounded: Earliest year from timeline
  */
 export async function GET() {
   try {
     const supabase = createServerSupabase();
 
-    // 1. Get total members (including alumni)
+    // 1. Get total members from leadership table
     const { count: membersCount, error: membersError } = await supabase
-      .from('members')
+      .from('leadership')
       .select('*', { count: 'exact', head: true });
 
     if (membersError) {
@@ -34,18 +34,18 @@ export async function GET() {
       console.error('Error fetching events count:', eventsError);
     }
 
-    // 3. Get unique divisions from members
+    // 3. Get unique positions from leadership (as divisions)
     const { data: divisionsData, error: divisionsError } = await supabase
-      .from('members')
-      .select('division')
-      .not('division', 'is', null);
+      .from('leadership')
+      .select('position')
+      .not('position', 'is', null);
 
     if (divisionsError) {
       console.error('Error fetching divisions:', divisionsError);
     }
 
     const uniqueDivisions = divisionsData
-      ? new Set(divisionsData.map((m: { division: string }) => m.division)).size
+      ? new Set(divisionsData.map((m: { position: string }) => m.position)).size
       : 0;
 
     // 4. Get earliest year from about_settings timeline
