@@ -4,6 +4,20 @@ import { SITE_CONFIG } from '@/config/site.config';
 
 export const dynamic = 'force-dynamic';
 
+// Helper function to escape XML special characters
+function escapeXml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+    // Remove any remaining HTML tags
+    .replace(/<[^>]*>/g, '')
+    // Truncate to 160 characters for image caption
+    .substring(0, 160);
+}
+
 export async function GET() {
   const events = await getEvents();
   const baseUrl = SITE_CONFIG.url;
@@ -20,9 +34,9 @@ export async function GET() {
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     ${event.coverImage ? `<image:image>
-      <image:loc>${event.coverImage}</image:loc>
-      <image:title>${event.title}</image:title>
-      <image:caption>${event.description}</image:caption>
+      <image:loc>${escapeXml(event.coverImage)}</image:loc>
+      <image:title>${escapeXml(event.title)}</image:title>
+      <image:caption>${escapeXml(event.description || '')}</image:caption>
     </image:image>` : ''}
   </url>`
     )
