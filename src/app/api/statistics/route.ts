@@ -7,19 +7,22 @@ export const revalidate = 300;
 /**
  * GET /api/statistics
  * Returns dynamic statistics:
- * - activeMembers: Total members from leadership table
+ * - activeMembers: Total ACTIVE members (current period) from leadership table
  * - eventsCount: Total events
- * - divisionsCount: Unique positions from leadership
+ * - divisionsCount: Unique positions from ACTIVE leadership members
  * - yearFounded: Earliest year from timeline
  */
 export async function GET() {
   try {
     const supabase = createServerSupabase();
 
-    // 1. Get total members from leadership table
+    // 1. Get total ACTIVE members from leadership table (current period only)
+    const now = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
     const { count: membersCount, error: membersError } = await supabase
       .from('leadership')
-      .select('*', { count: 'exact', head: true });
+      .select('*', { count: 'exact', head: true })
+      .lte('period_start', now)  // period started on or before today
+      .gte('period_end', now);   // period ends on or after today
 
     if (membersError) {
       console.error('Error fetching members count:', membersError);
@@ -34,10 +37,12 @@ export async function GET() {
       console.error('Error fetching events count:', eventsError);
     }
 
-    // 3. Get unique positions from leadership (as divisions)
+    // 3. Get unique positions from ACTIVE leadership (as divisions)
     const { data: divisionsData, error: divisionsError } = await supabase
       .from('leadership')
       .select('position')
+      .lte('period_start', now)  // only active members
+      .gte('period_end', now)
       .not('position', 'is', null);
 
     if (divisionsError) {
@@ -48,25 +53,23 @@ export async function GET() {
       ? new Set(divisionsData.map((m: { position: string }) => m.position)).size
       : 0;
 
-    // 4. Get earliest year from about_settings timeline
-    const { data: aboutData, error: aboutError } = await supabase
-      .from('about_settings')
-      .select('timeline')
-      .single();
+    // 4. Get earliest year from organization_timeline table
+    const { data: timelineData, error: timelineError } = await supabase
+      .from('organization_timeline')
+      .select('year')
+      .order('year', { ascending: true })
+      .limit(1)
+      .maybeSingle() as { data: { year: string } | null; error: unknown };
 
-    if (aboutError) {
-      console.error('Error fetching about settings:', aboutError);
+    if (timelineError) {
+      console.error('Error fetching timeline:', timelineError);
     }
 
     let yearFounded = 2015; // Default fallback
-    const timelineData = aboutData as { timeline?: Array<{ year: string }> } | null;
-    if (timelineData?.timeline && Array.isArray(timelineData.timeline)) {
-      const years = timelineData.timeline
-        .map((item) => parseInt(item.year))
-        .filter((year: number) => !isNaN(year));
-
-      if (years.length > 0) {
-        yearFounded = Math.min(...years);
+    if (timelineData?.year) {
+      const year = parseInt(timelineData.year);
+      if (!isNaN(year)) {
+        yearFounded = year;
       }
     }
 

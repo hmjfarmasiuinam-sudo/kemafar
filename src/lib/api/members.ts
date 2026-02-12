@@ -187,7 +187,7 @@ export async function getMemberBatches(): Promise<string[]> {
 
   if (!data) return [];
 
-  // Get unique batches and sort
+  // Get unique batches and sort DESC (newest first)
   const batches = [...new Set(data.map((d: { batch: string | null }) => d.batch).filter((b): b is string => b !== null))];
-  return batches.sort();
+  return batches.sort((a, b) => parseInt(b) - parseInt(a));
 }

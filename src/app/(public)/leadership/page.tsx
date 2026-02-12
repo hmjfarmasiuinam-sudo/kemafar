@@ -211,15 +211,18 @@ export default function LeadershipPage() {
           <div className="container-custom pt-20">
             {loading ? (
               // Skeleton Loader for Core Team
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
-                {[...Array(4)].map((_, i) => (
-                  <CoreMemberSkeleton key={i} />
-                ))}
+              <div className="flex justify-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 max-w-7xl">
+                  {[...Array(4)].map((_, i) => (
+                    <CoreMemberSkeleton key={i} />
+                  ))}
+                </div>
               </div>
             ) : (
-              // Actual Core Team
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
-                {coreLeadership.map((member, index) => (
+              // Actual Core Team - Center aligned
+              <div className="flex justify-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
+                  {coreLeadership.map((member, index) => (
                   <motion.div
                     key={member.id}
                     initial={{ opacity: 0, y: 15 }}
@@ -264,6 +267,7 @@ export default function LeadershipPage() {
                     </div>
                   </motion.div>
                 ))}
+                </div>
               </div>
             )}
           </div>

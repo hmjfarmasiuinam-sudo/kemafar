@@ -2,6 +2,7 @@
 
 import { Timeline } from '@/features/about/components/Timeline';
 import { Section } from '@/shared/components/ui/Section';
+import { MarkdownContent } from '@/shared/components/ui/MarkdownContent';
 import { Leaf, Target, Heart, Award, BookOpen, Users, HeartHandshake, Briefcase, LucideIcon, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { AboutSettings } from '@/config';
@@ -149,9 +150,12 @@ export function AboutContent({ data }: AboutContentProps): JSX.Element {
                                 <Target className="w-8 h-8" />
                                 <h3 className="text-2xl font-bold">Misi Kami</h3>
                             </div>
-                            <p className="text-gray-300 text-lg leading-relaxed border-l-2 border-primary-600 pl-6">
-                                {data.mission}
-                            </p>
+                            <div className="border-l-2 border-primary-600 pl-6">
+                                <MarkdownContent 
+                                    content={data.mission} 
+                                    className="prose-invert prose-p:text-gray-300 prose-p:text-lg prose-li:text-gray-300 prose-li:text-lg prose-headings:text-white" 
+                                />
+                            </div>
                         </div>
 
                         <div className="space-y-6">
@@ -159,9 +163,12 @@ export function AboutContent({ data }: AboutContentProps): JSX.Element {
                                 <Heart className="w-8 h-8" />
                                 <h3 className="text-2xl font-bold">Visi Kami</h3>
                             </div>
-                            <p className="text-gray-300 text-lg leading-relaxed border-l-2 border-secondary-600 pl-6">
-                                {data.vision}
-                            </p>
+                            <div className="border-l-2 border-secondary-600 pl-6">
+                                <MarkdownContent 
+                                    content={data.vision} 
+                                    className="prose-invert prose-p:text-gray-300 prose-p:text-lg prose-li:text-gray-300 prose-li:text-lg prose-headings:text-white" 
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

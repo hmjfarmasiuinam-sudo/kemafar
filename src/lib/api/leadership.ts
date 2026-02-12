@@ -66,8 +66,12 @@ function isValidPhotoUrl(url: string | null): boolean {
   if (!url) return false;
   if (url.includes('w3.org')) return false;
   if (url.trim() === '') return false;
-  // Detect placeholder data URL SVG
-  if (url.startsWith('data:image/svg+xml') && url.includes('fill="%23f3f4f6"')) return false;
+  // Detect placeholder data URL SVG (both encoded and decoded)
+  if (url.startsWith('data:image/svg+xml')) {
+    if (url.includes('fill="%23f3f4f6"') || url.includes('fill="#f3f4f6"')) {
+      return false;
+    }
+  }
   return true;
 }
 

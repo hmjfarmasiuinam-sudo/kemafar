@@ -137,7 +137,6 @@ export default function MembersPage({
                   <h3 className="text-base font-bold text-gray-900 mb-1 line-clamp-2">
                     {member.name}
                   </h3>
-                  <p className="text-xs text-gray-600 mb-1">{member.nim}</p>
                   {member.batch && (
                     <p className="text-xs text-primary-600 font-bold">
                       Angkatan {member.batch}
