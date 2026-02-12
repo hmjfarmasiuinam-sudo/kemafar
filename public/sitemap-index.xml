@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://kemafar.org/sitemap.xml</loc>
+    <lastmod>2026-02-12T05:38:58.996Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kemafar.org/sitemap-articles.xml</loc>
+    <lastmod>2026-02-12T05:38:58.996Z</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://kemafar.org/sitemap-events.xml</loc>
+    <lastmod>2026-02-12T05:38:58.996Z</lastmod>
+  </sitemap>
+</sitemapindex>
