@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { useAuth } from '@/lib/auth/AuthContext';
 import { toast } from 'sonner';
-import { Settings, Home, Info, Save, Phone } from 'lucide-react';
+import { Settings, Home, Info, Save, Phone, Plus, Trash2 } from 'lucide-react';
 import { RichTextEditor } from '@/shared/components/RichTextEditorDynamic';
 
 type TabType = 'home' | 'about' | 'contact';
@@ -42,6 +42,11 @@ interface AboutSettings {
   vision: string;
   story: string;
   values: Array<{
+    title: string;
+    description: string;
+    icon: string;
+  }>;
+  programs: Array<{
     title: string;
     description: string;
     icon: string;
@@ -129,7 +134,15 @@ export default function SettingsPage() {
 
       // Set state with new data
       if (homeData) setHomeSettings(homeData.content as HomeSettings);
-      if (aboutData) setAboutSettings(aboutData.content as AboutSettings);
+      if (aboutData) {
+        const aboutContent = aboutData.content as AboutSettings;
+        // Ensure values and programs arrays exist
+        setAboutSettings({
+          ...aboutContent,
+          values: aboutContent.values || [],
+          programs: aboutContent.programs || [],
+        });
+      }
       if (contactData) setContactSettings(contactData.content as ContactSettings);
 
       // Force component re-mount by changing key
@@ -275,7 +288,7 @@ export default function SettingsPage() {
 
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-2">
-        <nav className="flex gap-2 justify-center">
+        <nav className="flex gap-2 justify-center flex-wrap">
           <button
             onClick={() => setActiveTab('home')}
             className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${activeTab === 'home'
@@ -427,11 +440,182 @@ export default function SettingsPage() {
               </div>
             </div>
 
+            {/* Programs Section (displayed on home page) */}
+            <div className="space-y-4 border-t pt-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-800">Programs</h3>
+              </div>
+
+              {/* Programs Group Container */}
+              <div className="p-6 border border-gray-200 rounded-lg bg-gray-50 space-y-6">
+                {/* Section Header */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Section Title
+                    </label>
+                    <input
+                      type="text"
+                      value={homeSettings?.features.title || ''}
+                      onChange={(e) => {
+                        if (homeSettings) {
+                          setHomeSettings({
+                            ...homeSettings,
+                            features: {
+                              ...homeSettings.features,
+                              title: e.target.value
+                            }
+                          });
+                        }
+                      }}
+                      placeholder="e.g., Program Kami"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Section Description
+                    </label>
+                    <textarea
+                      value={homeSettings?.features.description || ''}
+                      onChange={(e) => {
+                        if (homeSettings) {
+                          setHomeSettings({
+                            ...homeSettings,
+                            features: {
+                              ...homeSettings.features,
+                              description: e.target.value
+                            }
+                          });
+                        }
+                      }}
+                      rows={2}
+                      placeholder="e.g., Berbagai program pengembangan untuk mahasiswa Farmasi yang profesional dan berintegritas"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="border-t border-gray-300"></div>
+
+                {/* Program Items */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-semibold text-gray-700">Program Items</h4>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (aboutSettings) {
+                          setAboutSettings({
+                            ...aboutSettings,
+                            programs: [...(aboutSettings.programs || []), { title: '', description: '', icon: '' }]
+                          });
+                        }
+                      }}
+                      className="flex items-center gap-2 px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                    >
+                      <Plus className="w-4 h-4" />
+                      Add Program
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                {aboutSettings?.programs?.map((program, index) => (
+                  <div key={index} className="p-4 border border-gray-200 rounded-lg bg-gray-50 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-700">Program #{index + 1}</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (aboutSettings) {
+                            setAboutSettings({
+                              ...aboutSettings,
+                              programs: (aboutSettings.programs || []).filter((_, i) => i !== index)
+                            });
+                          }
+                        }}
+                        className="text-red-600 hover:text-red-700 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">
+                          Icon Name
+                        </label>
+                        <input
+                          type="text"
+                          value={program.icon}
+                          onChange={(e) => {
+                            if (aboutSettings) {
+                              const newPrograms = [...(aboutSettings.programs || [])];
+                              newPrograms[index].icon = e.target.value;
+                              setAboutSettings({ ...aboutSettings, programs: newPrograms });
+                            }
+                          }}
+                          placeholder="GraduationCap, Heart, etc."
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label className="block text-xs font-medium text-gray-700 mb-1">
+                          Title
+                        </label>
+                        <input
+                          type="text"
+                          value={program.title}
+                          onChange={(e) => {
+                            if (aboutSettings) {
+                              const newPrograms = [...(aboutSettings.programs || [])];
+                              newPrograms[index].title = e.target.value;
+                              setAboutSettings({ ...aboutSettings, programs: newPrograms });
+                            }
+                          }}
+                          placeholder="e.g., Keilmuan"
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">
+                        Description
+                      </label>
+                      <textarea
+                        value={program.description}
+                        onChange={(e) => {
+                          if (aboutSettings) {
+                            const newPrograms = [...(aboutSettings.programs || [])];
+                            newPrograms[index].description = e.target.value;
+                            setAboutSettings({ ...aboutSettings, programs: newPrograms });
+                          }
+                        }}
+                        rows={2}
+                        placeholder="Brief description of this program..."
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Save Button */}
             <div className="flex justify-end pt-6 border-t">
               <button
                 type="button"
-                onClick={handleSaveHome}
+                onClick={() => {
+                  // Save both home and about settings
+                  handleSaveHome();
+                  handleSaveAbout();
+                }}
                 disabled={loading}
                 className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
@@ -498,6 +682,111 @@ export default function SettingsPage() {
                 placeholder="Tell your organization's story..."
                 height="300px"
               />
+            </div>
+
+            {/* Values Section (displayed on about page) */}
+            <div className="space-y-4 border-t pt-6">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-gray-800">Organizational Values</h3>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (aboutSettings) {
+                      setAboutSettings({
+                        ...aboutSettings,
+                        values: [...(aboutSettings.values || []), { title: '', description: '', icon: '' }]
+                      });
+                    }
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add Value
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {aboutSettings.values?.map((value, index) => (
+                  <div key={index} className="p-4 border border-gray-200 rounded-lg bg-gray-50 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-700">Value #{index + 1}</span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (aboutSettings) {
+                            setAboutSettings({
+                              ...aboutSettings,
+                              values: (aboutSettings.values || []).filter((_, i) => i !== index)
+                            });
+                          }
+                        }}
+                        className="text-red-600 hover:text-red-700 transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">
+                          Icon Name
+                        </label>
+                        <input
+                          type="text"
+                          value={value.icon}
+                          onChange={(e) => {
+                            if (aboutSettings) {
+                              const newValues = [...(aboutSettings.values || [])];
+                              newValues[index].icon = e.target.value;
+                              setAboutSettings({ ...aboutSettings, values: newValues });
+                            }
+                          }}
+                          placeholder="BookOpen, Users, etc."
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label className="block text-xs font-medium text-gray-700 mb-1">
+                          Title
+                        </label>
+                        <input
+                          type="text"
+                          value={value.title}
+                          onChange={(e) => {
+                            if (aboutSettings) {
+                              const newValues = [...(aboutSettings.values || [])];
+                              newValues[index].title = e.target.value;
+                              setAboutSettings({ ...aboutSettings, values: newValues });
+                            }
+                          }}
+                          placeholder="e.g., Integrity"
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-medium text-gray-700 mb-1">
+                        Description
+                      </label>
+                      <textarea
+                        value={value.description}
+                        onChange={(e) => {
+                          if (aboutSettings) {
+                            const newValues = [...(aboutSettings.values || [])];
+                            newValues[index].description = e.target.value;
+                            setAboutSettings({ ...aboutSettings, values: newValues });
+                          }
+                        }}
+                        rows={2}
+                        placeholder="Brief description of this value..."
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Save Button */}

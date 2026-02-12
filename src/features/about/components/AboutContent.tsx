@@ -3,7 +3,7 @@
 import { Timeline } from '@/features/about/components/Timeline';
 import { Section } from '@/shared/components/ui/Section';
 import { MarkdownContent } from '@/shared/components/ui/MarkdownContent';
-import { Leaf, Target, Heart, Award, BookOpen, Users, HeartHandshake, Briefcase, LucideIcon, ChevronDown } from 'lucide-react';
+import { Leaf, Target, Heart, Award, BookOpen, Users, HeartHandshake, Briefcase, LucideIcon, ChevronDown, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { AboutSettings } from '@/config';
 import { useRef, useState, useEffect } from 'react';
@@ -12,7 +12,10 @@ const iconMap: Record<string, LucideIcon> = {
     BookOpen,
     Users,
     HeartHandshake,
-    Briefcase
+    Briefcase,
+    GraduationCap,
+    Heart,
+    Leaf
 };
 
 interface AboutContentProps {
@@ -202,6 +205,44 @@ export function AboutContent({ data }: AboutContentProps): JSX.Element {
                     </div>
                 </div>
             </Section>
+
+            {/* Programs - Grid Section */}
+            {data.programs && data.programs.length > 0 && (
+                <Section className="py-24 bg-gray-50">
+                    <div className="container-custom">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Program Kami</h2>
+                            <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto rounded-full" />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {data.programs.map((program, index) => {
+                                const Icon = program.icon ? iconMap[program.icon] || GraduationCap : GraduationCap;
+                                return (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="group bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300"
+                                    >
+                                        <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                            <Icon className="w-7 h-7 text-white" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                                            {program.title}
+                                        </h3>
+                                        <p className="text-gray-600 leading-relaxed">
+                                            {program.description}
+                                        </p>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </Section>
+            )}
 
             {/* Statistics - Bold Numbers */}
             {!loading && statistics && (

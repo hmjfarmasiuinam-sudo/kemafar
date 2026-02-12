@@ -89,9 +89,14 @@ export interface ContactSettings {
  */
 export interface AboutSettings {
   story: string;
-  mission: readonly string[];
+  mission: string;
   vision: string;
   values: readonly {
+    title: string;
+    description: string;
+    icon?: string;
+  }[];
+  programs: readonly {
     title: string;
     description: string;
     icon?: string;
@@ -191,12 +196,7 @@ export const HOME_CONTENT = {
  */
 export const ABOUT_CONTENT = {
   story: 'Your Organization is a modern platform designed to bring communities together. We provide tools for content management, event organization, and member engagement. Founded with the vision of empowering communities through technology, we continue to innovate and serve our members with excellence.',
-  mission: [
-    'Empower communities through modern technology and collaboration',
-    'Foster growth and development of our members',
-    'Build strong networks and partnerships',
-    'Deliver meaningful value to the community',
-  ],
+  mission: '1. Empower communities through modern technology and collaboration\n2. Foster growth and development of our members\n3. Build strong networks and partnerships\n4. Deliver meaningful value to the community',
   vision:
     'To be a leading platform for community engagement and digital collaboration',
   values: [
@@ -219,6 +219,28 @@ export const ABOUT_CONTENT = {
       title: 'Dedication',
       description: 'Fully committed to organizational growth and excellence',
       icon: 'Briefcase',
+    },
+  ],
+  programs: [
+    {
+      title: 'Keilmuan',
+      description: 'Program pengembangan kompetensi akademik dan riset farmasi',
+      icon: 'GraduationCap',
+    },
+    {
+      title: 'Keprofesian',
+      description: 'Pelatihan dan sertifikasi untuk persiapan dunia kerja',
+      icon: 'Leaf',
+    },
+    {
+      title: 'Kaderisasi',
+      description: 'Pembinaan karakter dan leadership mahasiswa',
+      icon: 'Users',
+    },
+    {
+      title: 'Pengabdian',
+      description: 'Kontribusi nyata untuk masyarakat dan lingkungan',
+      icon: 'Heart',
     },
   ],
   statistics: {
