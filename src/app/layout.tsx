@@ -4,6 +4,7 @@ import './globals.css';
 import { SITE_CONFIG } from '@/config/site.config';
 import { Toaster } from 'sonner';
 import { getHomeSettings } from '@/lib/api/settings';
+import { OrganizationStructuredData, WebsiteStructuredData } from '@/shared/components/seo/StructuredData';
 
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -98,7 +99,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     verification: {
-      google: 'google-site-verification-code', // Ganti dengan kode verifikasi Google Search Console
+      google: 'exWRxgfkK_Im73hprKz7yxLOE6KLX8XmSlbw3kT_kro',
     },
     alternates: {
       canonical: SITE_CONFIG.url,
@@ -113,6 +114,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="scroll-smooth">
+      <head>
+        <OrganizationStructuredData />
+        <WebsiteStructuredData />
+      </head>
       <body className={`${plusJakarta.variable} ${poppins.variable} font-sans antialiased`}>
         {children}
         <Toaster position="top-right" richColors />
