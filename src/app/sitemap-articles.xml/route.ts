@@ -4,18 +4,32 @@ import { SITE_CONFIG } from '@/config/site.config';
 
 export const dynamic = 'force-dynamic';
 
-// Helper function to escape XML special characters
+// Helper function to escape XML special characters and clean text
 function escapeXml(unsafe: string): string {
+  if (!unsafe) return '';
+
   return unsafe
+    // Remove HTML tags first
+    .replace(/<[^>]*>/g, '')
+    // Remove URLs (http/https links)
+    .replace(/https?:\/\/[^\s)]+/g, '')
+    // Remove markdown links like [text](url)
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    // Remove extra whitespace and newlines
+    .replace(/\s+/g, ' ')
+    // Trim
+    .trim()
+    // Then escape XML special characters
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;')
-    // Remove any remaining HTML tags
-    .replace(/<[^>]*>/g, '')
+    // Remove any parentheses with URLs inside
+    .replace(/\([^)]*https?[^)]*\)/g, '')
     // Truncate to 160 characters for image caption
-    .substring(0, 160);
+    .substring(0, 160)
+    .trim();
 }
 
 export async function GET() {
